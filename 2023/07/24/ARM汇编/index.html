@@ -16,8 +16,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="ARM 汇编入门笔记">
 <meta property="og:type" content="article">
@@ -83,6 +86,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -90,12 +94,38 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-友人帐"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友人帐</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </header>
         
@@ -155,6 +185,10 @@
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
 
     
@@ -238,6 +272,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
@@ -295,16 +336,14 @@ Store（存储）到内存中。</li>
 ARM
 处理器中，除了用户模式是普通模式，剩下的几种工作模式都属于特权模式。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/7059623d-ec4c-473f-b6dd-cc592303c1b7"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/7059623d-ec4c-473f-b6dd-cc592303c1b7"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>在 ARM
 处理器内部，除了基本的算术运算单元、逻辑运算单元、浮点运算单元和控制单元，还有一系列寄存器，包括各种通用寄存器、状态寄存器、控制寄存器，用来控制处理器的运行，保存程序运行时的各种状态和临时结果，如下图所示：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/2fbec729-8e2e-477d-9f8b-a5bb2804262f"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/2fbec729-8e2e-477d-9f8b-a5bb2804262f"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -334,8 +373,7 @@ Register，CPSR）主要用来表征当前处理器的运行状态。除了各�
 寄存器里也有一些控制位，用来切换处理器的工作模式和中断使能控制。CPSR
 寄存器各个标志位、控制位的详细说明下图所示：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/0e3f3e48-8ce0-46aa-9d89-f212df6b883b"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/0e3f3e48-8ce0-46aa-9d89-f212df6b883b"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -379,8 +417,7 @@ CPSR 寄存器中的 N、Z、C、V 标志位，而 SUB 指令不会。</li>
 空间中外设寄存器的访问都要通过 Load/Store 指令来完成。ARM
 处理器中经常使用的 Load/Store 指令的使用方法如下。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/2ff6eaef-147d-4815-b1e5-51014f28cfe5"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/2ff6eaef-147d-4815-b1e5-51014f28cfe5"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -390,8 +427,7 @@ alt="image" />
 指令常用来加载或存储一组寄存器到一片连续的内存，通过和堆栈格式符组合使用，LDM/STM
 指令还可以用来模拟堆栈操作。LDM/STM 指令常和下表的堆栈格式组合使用：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/4a6e20a4-2630-4466-9765-6d8660b4d6c3"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/4a6e20a4-2630-4466-9765-6d8660b4d6c3"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -399,8 +435,7 @@ alt="image" />
 总是指向栈顶元素，那么这个栈就是满栈；如果堆栈指针 SP
 指向的是栈顶元素的下一个空闲的存储单元，那么这个栈就是空栈。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/24b7757d-999b-4056-938e-8333a9a4816d"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/24b7757d-999b-4056-938e-8333a9a4816d"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -410,8 +445,7 @@ alt="image" />
 从低地址往高地址移动，那么这个栈就是递增栈。ARM
 处理器使用的一般都是满递减堆栈，在将一组寄存器入栈，或者从栈中弹出一组寄存器时，我们可以使用下面的指令。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/f8a0c6d1-ad66-466f-86e1-9b6b63046408"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/f8a0c6d1-ad66-466f-86e1-9b6b63046408"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -425,16 +459,14 @@ In Last Out，FILO），栈元素在入栈操作时，STMFD 会根据大括号
 寄存器中，接着是 R2、R1、R0。将栈中的元素依次弹出到 R14、R2
 寄存器后，堆栈指针在内存中的位置如图3-4右侧所示。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/4f3d58b9-a7d2-43a9-b930-12d616bd6e69"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/4f3d58b9-a7d2-43a9-b930-12d616bd6e69"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>除此之外，ARM 还专门提供了 PUSH 和 POP
 指令来执行栈元素的入栈和出栈操作。PUSH 和 POP 指令的使用方法如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/44cfc5d7-eb03-41a3-8721-a95305014d7f"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/44cfc5d7-eb03-41a3-8721-a95305014d7f"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -443,8 +475,7 @@ alt="image" />
 指令用来在寄存器和内存之间输送数据。如果我们想要在寄存器之间传送数据，则可以使用
 MOV 指令。MOV 指令的格式如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/14355230-5433-48e6-927e-deab72902f19"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/14355230-5433-48e6-927e-deab72902f19"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -455,23 +486,20 @@ alt="image" />
 operand2 可以是一个立即数，也可以是一个寄存器。</p>
 <p>MOV 和 MVN 指令的一般使用方法如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/6f681bd5-7e86-4a23-842f-c4e142b2b6af"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/6f681bd5-7e86-4a23-842f-c4e142b2b6af"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <h3 id="算术逻辑运算指令">算术逻辑运算指令</h3>
 <p>算术运算指令包括基本的加、减、乘、除，逻辑运算指令包括与、或、非、异或、清除等。指令格式如下。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/79a6eaa2-57c2-491b-ba21-f9490fdd0038"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/79a6eaa2-57c2-491b-ba21-f9490fdd0038"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>算术逻辑运算指令的基本使用方法及说明如下。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/e023cb2e-fa28-44a2-9bbd-9c67e3285d0b"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/e023cb2e-fa28-44a2-9bbd-9c67e3285d0b"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -480,8 +508,7 @@ alt="image" />
 operand2：可以是一个常数，也可以是寄存器+偏移的形式。</p>
 <p>操作数 operand2 在汇编程序中经常出现的两种格式如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/670567f6-0f40-4adf-85f8-388b78e29cc9"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/670567f6-0f40-4adf-85f8-388b78e29cc9"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -492,15 +519,13 @@ alt="image" />
 可选项，我们还可以通过多种移位或循环移位的方式，构建更加灵活的操作数。可选项
 <code>&#123;，shift&#125;</code> 可以选择的移位方式如下。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/9ed294d1-cd66-46da-9be7-09329c8228e0"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/9ed294d1-cd66-46da-9be7-09329c8228e0"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>可选性指令的使用示例及说明如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/e01e4b37-f585-4cff-aa7e-1aae71d5ebf0"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/e01e4b37-f585-4cff-aa7e-1aae71d5ebf0"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -510,15 +535,13 @@ CPSR 寄存器的 N、Z、C、V 标志位，具体的标志、位说明可参考
 寄存器介绍。</p>
 <p>比较指令的格式如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/d1a40e26-faa9-441c-a003-6a5d35cf36e6"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/d1a40e26-faa9-441c-a003-6a5d35cf36e6"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>比较指令的使用示例及说明如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/33bee05a-a3d9-4a07-afd5-2e1f2756a303"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/33bee05a-a3d9-4a07-afd5-2e1f2756a303"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -534,8 +557,7 @@ B，我们可以在后面加上条件码组成 BEQ、BNE 组合指令。</p>
 指令一起组合使用。</p>
 <p>ARM 指令的条件码如表3-3所示：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/08284c0f-d520-44bc-9aa3-02dfa66f44c8"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/08284c0f-d520-44bc-9aa3-02dfa66f44c8"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -543,8 +565,7 @@ alt="image" />
 序，通过循环结构，我们可以实现数据块的搬运功能。我们可以将无条件跳转指令
 B 和条件码 NE 组合在一起使用，构成一个循环程序结构。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/f2266b5e-6b35-435a-ad37-7fa42974b0c4"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/f2266b5e-6b35-435a-ad37-7fa42974b0c4"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -555,8 +576,7 @@ alt="image" />
 等跳转指令，每个指令都有各自的用武之地和使用场景。</p>
 <p>跳转指令的格式如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/3962c140-0876-473d-a460-87be2dc695a6"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/3962c140-0876-473d-a460-87be2dc695a6"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -565,8 +585,7 @@ alt="image" />
 跳转指令的跳转范围大小为[0，32MB]，可以往前跳，也可以往后跳。无条件跳转指令
 B 主要用在循环、分支结构的汇编程序中，使用示例如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/c4a44fc3-65d4-4900-b669-f30e6d35a612"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/c4a44fc3-65d4-4900-b669-f30e6d35a612"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -579,8 +598,7 @@ LR 寄存器中，然后跳转到 label 处执行。</p>
 LR 寄存器中；子函数执行结束后，LR 寄存器中的地址被赋值给
 PC，处理器就可以返回到原来的主函数中继续运行了。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/32056188-99a5-4044-aa38-df9a7d06a043"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/32056188-99a5-4044-aa38-df9a7d06a043"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -603,8 +621,7 @@ ARM
 <h3 id="寄存器寻址">寄存器寻址</h3>
 <p>寄存器寻址比较简单，操作数保存在寄存器中，通过寄存器名就可以直接对寄存器中的数据进行读写。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/eb0bf15a-0c26-41bf-a569-73a632ea5a66"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/eb0bf15a-0c26-41bf-a569-73a632ea5a66"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -612,8 +629,7 @@ alt="image" />
 <p>在立即数寻址中，ARM 指令中的操作数为一个常数。立即数以 ＃ 为前缀，0x
 前缀表示该立即数为十六进制，不加前缀默认是十进制。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/84c6864e-7512-4e11-8ab4-aaa9f408dac5"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/84c6864e-7512-4e11-8ab4-aaa9f408dac5"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -621,8 +637,7 @@ alt="image" />
 <p>寄存器偏移寻址可以看作寄存器寻址的一种特例，通过第二个操作数 operand2
 的灵活配置，我们可以将第二个操作数做各种左移和右移操作，作为新的操作数使用。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/6d9f7d6d-7229-4461-a85a-448cfe7471c0"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/6d9f7d6d-7229-4461-a85a-448cfe7471c0"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -632,16 +647,14 @@ alt="image" />
 <p>寄存器间接寻址主要用来在内存和寄存器之间传输数据。寄存器中保存的是数据在内存中的存储地址，我们通过这个地址就可以在寄存器和内存之间传输数据。C
 语言中的指针操作，在汇编层次其实就是使用寄存器间接寻址实现的。寄存器间接寻址的使用示例及说明如下所示。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/06d0cfd1-8274-4523-9777-b2772ae8ccf9"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/06d0cfd1-8274-4523-9777-b2772ae8ccf9"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <h3 id="基址寻址">基址寻址</h3>
 <p>基址寻址其实也属于寄存器间接寻址。两者的不同之处在于，基址寻址将寄存器中的地址与一个偏移量相加，生成一个新地址，然后基于这个新地址去访问内存。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/d107f147-5f08-46fd-aacc-2f6d1f2bde0c"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/d107f147-5f08-46fd-aacc-2f6d1f2bde0c"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -650,8 +663,7 @@ alt="image" />
 <h3 id="多寄存器寻址">多寄存器寻址</h3>
 <p>STM/LDM 指令就属于多寄存器寻址，一次可以传输多个寄存器的值。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/5d43bfe1-a2e3-4017-bbc2-65b23e668453"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/5d43bfe1-a2e3-4017-bbc2-65b23e668453"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -677,8 +689,7 @@ STM/LDM 指令和栈指针 SP 配合操作完成的。栈一般可以分为以�
 组合指令的助记符。</p>
 <p>PUSH 指令和 POP 指令的使用示例如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/1f106995-cf0d-46bf-999a-c5ccd62a135d"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/1f106995-cf0d-46bf-999a-c5ccd62a135d"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -688,15 +699,13 @@ alt="image" />
 指针作为基地址进行寻址的，以指令中的地址差作为偏移，两者相加后得到的就是一个新地址，然后可以对这个地址进行读写操作。</p>
 <p>ARM 中的 B、BL、ADR 指令其实都是采用相对寻址的。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/682acaa6-6c3b-40e5-b9c2-4c695eb0f3d2"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/682acaa6-6c3b-40e5-b9c2-4c695eb0f3d2"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>在上面的示例代码中，B LOOP 指令其实就等价于：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/6bb5563d-7e93-4cfa-a329-d08c6b51de46"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/6bb5563d-7e93-4cfa-a329-d08c6b51de46"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -709,8 +718,7 @@ alt="image" />
 <p>常见的 ARM 伪指令主要有 4
 个：ADR、ADRL、LDR、NOP，它们的使用示例如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/4a12f423-5440-4198-a6b1-5b1a9f978f31"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/4a12f423-5440-4198-a6b1-5b1a9f978f31"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -723,8 +731,7 @@ alt="image" />
 <p>在寄存器之间传递数据可以使用 MOV 指令，但是当传递的一个内存地址是 32
 位的立即数时，MOV 指令就应付不了了，如下面的第 2 条指令。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/a8d5ce2d-05b6-4136-8cce-a66f082ad0e6"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/a8d5ce2d-05b6-4136-8cce-a66f082ad0e6"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -734,8 +741,7 @@ MOV，而要使用 LDR 伪指令呢？这还得从 ARM 指令的编码格式说�
 位的系统中，一条指令通常是 32
 位的，指令中包括操作码和操作数，如图3-5所示：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/8cf1c334-6199-4c1f-be9d-a97b7c49add8"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/8cf1c334-6199-4c1f-be9d-a97b7c49add8"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -747,8 +753,7 @@ alt="image" />
 位，编译器就无法对这条指令进行编码了。为了解决这个难题，编译器提供了一个
 LDR 伪指令来完成上面的功能。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/dbbce217-c541-488c-b905-d2d0e2030e43"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/dbbce217-c541-488c-b905-d2d0e2030e43"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -766,16 +771,14 @@ alt="image" />
 <p>如当 LDR 伪指令中的操作数小于 8 位时，LDR 伪指令一般会被 MOV
 指令替代。下面的两行汇编指令其实是等价的：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/076072b8-7b10-421c-8d29-9da2ad9c1d0f"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/076072b8-7b10-421c-8d29-9da2ad9c1d0f"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>当 LDR 伪指令中的操作数大于 8 位时，LDR 指令会被编译器转换为
 <code>LDR 标准指令+文字池</code> 的形式。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/f6505634-6ec4-41cf-92c7-1906d46ac9fc"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/f6505634-6ec4-41cf-92c7-1906d46ac9fc"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -795,8 +798,7 @@ OFFSET，然后使用寄存器相对寻址，就可以将这个 32 位的立即�
 为小范围的地址读取伪指令，底层使用相对寻址来实现，因此可以做到代码与位置无关。</p>
 <p>ADR 伪指令的使用示例代码如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/10a60acb-927d-41fb-85c2-c17e30cf5143"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/10a60acb-927d-41fb-85c2-c17e30cf5143"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -824,8 +826,7 @@ section，分为代码段、数据段等，各个段之间相互独立，一个 
 <p>有时候我们会直接通过数字 [0，99]
 而不是使用字符来进行地址引用，我们称这种数字为局部标号。局部标号的作用域为当前段，在汇编程序中，我们可以使用下面的格式来引用局部标号。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/07151451-7548-407c-8645-5ce2ee7b0321"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/07151451-7548-407c-8645-5ce2ee7b0321"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -846,8 +847,7 @@ routename，则汇编程序将其与最近的一个前 ROUT
 指令的名称进行比较，如果不匹配，则汇编程序会生成一条错误消息，汇编失败。</p>
 <p>在汇编代码中，使用局部标号的示例程序如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/7b12ddc0-45c4-4f7d-899e-b8bcf8458b8d"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/7b12ddc0-45c4-4f7d-899e-b8bcf8458b8d"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -859,30 +859,26 @@ AREA 来定义一个段（section），使用 GBLA 来定义一个数据，使�
 来指定汇编程序的执行入口等，这些指令助记符统称为伪指令或伪操作。</p>
 <p>伪操作一般用在符号定义、数据定义、汇编程序结构控制等场合。在一个汇编程序中经常使用的伪操作如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/58ee7a2b-2622-4872-881f-86526cec3feb"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/58ee7a2b-2622-4872-881f-86526cec3feb"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>关于数据定义，常用的伪操作有
 DCD、DCB、SPACE、DATA，这些伪操作的使用方法如下所示。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/31f36818-6281-4977-b2bf-b3ccb8fd0b1f"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/31f36818-6281-4977-b2bf-b3ccb8fd0b1f"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>除此之外，还有一些其他常用的伪操作，如用来标识程序的入口地址、程序的结束地址、用来定义段的属性等，具体如表3-4所示。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/012659fa-3f6b-4dad-a32b-7a2dd01b8030"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/012659fa-3f6b-4dad-a32b-7a2dd01b8030"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>有了这些伪操作辅助，我们就可以设计出更加灵活、功能更加复杂的程序结构，也可以定义一个个汇编子程序，然后在主程序中分别去调用它们，实现汇编语言的模块化编程。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/131643eb-cbfc-4dcc-a3a1-11a955b3005c"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/131643eb-cbfc-4dcc-a3a1-11a955b3005c"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -917,8 +913,7 @@ FP。</li>
 汇编代码。</p>
 <p>在 C 程序中内嵌汇编代码的格式如下：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/8f570a61-88e5-4952-b79c-d82214b14038"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/8f570a61-88e5-4952-b79c-d82214b14038"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -928,8 +923,7 @@ alt="image" />
 程序传递参数和保存局部变量所依赖的堆栈环境，然后使用 BL
 指令直接跳转即可。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/02259172-1ab3-47b0-978a-15adc003ba33"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/02259172-1ab3-47b0-978a-15adc003ba33"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -956,8 +950,7 @@ ARM 编译器，另一类则使用开源的 GNU GCC for ARM
 <p>不同的 ARM 编译器之间的伪操作差别还是蛮大的。以 ARM 编译器和 GNU ARM
 编译器为例，我们可以对比一下它们在数据定义、程序结构方面的差别，如表3-5所示。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/a7aa4969-e9d8-4f5e-a3ae-6fa5a4e59eb1"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/a7aa4969-e9d8-4f5e-a3ae-6fa5a4e59eb1"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -965,8 +958,7 @@ alt="image" />
 语言的底层运行机制。为了能看懂反汇编代码，我们还需要熟悉一下在一个反汇编文件中经常看到的各种
 GNU ARM 伪指令操作，如表3-6所示：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/aba59382-95c7-4fc0-954f-0fe6d326265d"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/aba59382-95c7-4fc0-954f-0fe6d326265d"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -985,8 +977,7 @@ alt="image" />
 <p>在 GNU ARM 汇编语言中，用户可以使用 <code>.section</code>
 伪操作自定义一个段，使用格式如下。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/3ac36ade-80c3-40a7-90d2-6e3c46fbdb33"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/3ac36ade-80c3-40a7-90d2-6e3c46fbdb33"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -997,8 +988,7 @@ alt="image" />
 都是编译器系统预留的段名，分别表示代码段、数据段、BSS
 段、只读数据段。我们可以通过readelf命令来查看系统预留的段名。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/e183e122-8678-49f8-8b72-a028d05dea23"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/e183e122-8678-49f8-8b72-a028d05dea23"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -1014,8 +1004,7 @@ alt="image" />
 <code>NULL</code> 字符结尾的字符串，使用 <code>.rept</code>
 伪操作可以重复定义数据。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/2eeeef5f-5a09-42ea-aa04-19ef4adbc8c9"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/2eeeef5f-5a09-42ea-aa04-19ef4adbc8c9"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -1023,8 +1012,7 @@ alt="image" />
 <p>在 GNU ARM
 汇编程序中，如果我们想定义一个浮点数，那么可以使用下面的伪操作来定义：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/5043e05e-22cd-46bd-9437-2260e8eb59c7"
+<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/5043e05e-22cd-46bd-9437-2260e8eb59c7"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -1035,7 +1023,7 @@ f，并初始化为3.14。如果你想将这个浮点数重新赋值为3.1415，
 伪操作除了给数据赋值，还可以把常量定义在代码段中，然后在代码中直接引用。这一点有点类似
 C 语言中的 <code>#define</code> 宏定义。</p>
 <figure>
-<img src="/image/illustrations/0ba8b357a0694ce59173d2d7dcd455b3.jpg"
+<img data-src="/image/illustrations/0ba8b357a0694ce59173d2d7dcd455b3.jpg"
 alt="alt text" />
 <figcaption aria-hidden="true">alt text</figcaption>
 </figure>
@@ -1160,6 +1148,33 @@ C\)</span></td>
 </ul>
 </div>
 
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/XinranSix/archives/assets/62458905/6a6f2373-fbf5-4367-9ac2-65230cba90a2">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
           <div class="post-tags">
               <a href="/tags/ARM/" rel="tag"><i class="fa fa-tag"></i> ARM</a>
               <a href="/tags/%E6%B1%87%E7%BC%96/" rel="tag"><i class="fa fa-tag"></i> 汇编</a>
@@ -1188,6 +1203,7 @@ C\)</span></td>
 
 
 
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -1218,6 +1234,24 @@ C\)</span></td>
     <span title="站点阅读时长">6:12</span>
   </span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div><link
   rel="stylesheet"
@@ -1240,10 +1274,7 @@ C\)</span></td>
   </footer>
 
   
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 <noscript>
@@ -1252,17 +1283,25 @@ C\)</span></td>
 
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
   
-
-
-
-
-
-
-  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -1273,6 +1312,13 @@ C\)</span></td>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://xinransix.github.io/2023/07/24/ARM%E6%B1%87%E7%BC%96/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"XinranSix","repo":"comment","client_id":"9c03a2ae7f09aea822ba","client_secret":"d1c9ff2bb92b84493b307f1587585a6b12fc78b8","admin_user":"XinranSix","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"732ff67204ff6916a8766b704239f157"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
 </html>

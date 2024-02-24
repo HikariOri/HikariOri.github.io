@@ -16,8 +16,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="介绍人眼是如何看到颜色的，以及色彩空间">
 <meta property="og:type" content="article">
@@ -106,6 +109,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -113,12 +117,38 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-友人帐"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友人帐</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </header>
         
@@ -181,6 +211,10 @@ Reproduction &#x2F; Matching）</span></a><ol class="nav-child"><li class="nav-i
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
 
     
@@ -258,6 +292,13 @@ Reproduction &#x2F; Matching）</span></a><ol class="nav-child"><li class="nav-i
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
@@ -286,21 +327,21 @@ Reproduction &#x2F; Matching）</span></a><ol class="nav-child"><li class="nav-i
 <p>牛顿通过实验认识到，白光是由多种颜色的光线混合起来得到的。而我们在生活中可以看到的光在波长约
 400 mm-700 mm 之间。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231681716-8658c9c9-0ea3-470d-8f34-f0bd878f187f.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231681716-8658c9c9-0ea3-470d-8f34-f0bd878f187f.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>对于不同光，我们可以使用<strong>功率谱密度</strong>（Spectral Power
 Distribution，SPD）表示。功率谱密度展示了不同波长下光能量的多少。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231681887-f196d5c3-0738-4a9f-874d-23718bb12964.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231681887-f196d5c3-0738-4a9f-874d-23718bb12964.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>SPD 具有叠加性：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231682218-28fed8bf-bf68-437b-afa8-fbc758d885e4.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231682218-28fed8bf-bf68-437b-afa8-fbc758d885e4.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>而颜色，应该是人对于不同光线的感知，而光的一种属性，但不同波长的光确实会表现出不同的「颜色」。</p>
 <h2 id="biological-basis-of-color">Biological Basis of Color</h2>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231683077-db020a4c-8e6b-469b-a760-05667bfe9da1.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231683077-db020a4c-8e6b-469b-a760-05667bfe9da1.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>人的眼睛通过视网膜感受光线，在视网膜上存在着两种细胞：</p>
 <ul>
@@ -308,7 +349,7 @@ Distribution，SPD）表示。功率谱密度展示了不同波长下光能量�
 <li>锥细胞（Cones）感受颜色。锥细胞分为三种类型，对不同的波长的光线的响应不同。</li>
 </ul>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231683290-85add764-405e-479d-890d-5f5584e5c96f.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231683290-85add764-405e-479d-890d-5f5584e5c96f.png" alt="Img" style="zoom:75%;" />
 </center>
 <blockquote>
 <p>不同人的锥细胞的分布很不一样。</p>
@@ -317,7 +358,7 @@ Distribution，SPD）表示。功率谱密度展示了不同波长下光能量�
 <p>锥细胞可以分为 S、M、L
 三种，分别对短波，中波以及长波有更强的响应。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231684228-7188ec7d-6184-4160-be8d-379c8e02567f.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231684228-7188ec7d-6184-4160-be8d-379c8e02567f.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>对于这三条谱功率密度曲线，我们记为 <span
 class="math inline">\(r_S\left(\lambda\right)\)</span>、<span
@@ -334,7 +375,7 @@ L &amp; =\int r_L(\lambda) s(\lambda) d \lambda
 <p>对于人眼来说，我们并不关注每一种波长的分布，我们只关心三个响应量 （S,
 M, L）。即使是不同的光谱，也有可能有相同的响应，这就是同色异谱现象。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231684791-9e980ac3-0fc6-401e-84db-a7c00672d601.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231684791-9e980ac3-0fc6-401e-84db-a7c00672d601.png" alt="Img" style="zoom:75%;" />
 </center>
 <h2 id="同异谱metamerism">同⾊异谱（Metamerism）</h2>
 <p>同色异谱（Metamerism）指的是两种不同的谱密度分布得到了相同响应量，也就是相同的颜色。因此，当我们使用一些设备（例如屏幕）模拟其他颜色的时候，并不需要按照原来的谱密度进行模拟。</p>
@@ -356,7 +397,7 @@ RGB 能量就是对应的结果。但是可能存在某些颜色，使用 RGB
 <p>CIE RGB 使用红色（波长 700 nm），绿色（波长 546.1 nm）以及蓝色（波长
 435.8 nm）三种颜色的光进行实验，最终得到如下的结果：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231686582-f2e42abc-750e-4fb9-8f75-816ad1df2b96.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231686582-f2e42abc-750e-4fb9-8f75-816ad1df2b96.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>对应颜色的计算方式为： <span class="math display">\[
 \begin{aligned}
@@ -374,7 +415,7 @@ RGB）色彩空间，通过一个标准的屏幕来调整其他的屏幕色彩�
 <p>XYZ 色彩匹配函数是人造的函数。其中 Y
 的结果可以大致反应图片的亮度。这样的设计不仅所有颜色能量都是正值，同时可以表示出所有的颜色。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231687146-9d38e7d6-0600-4528-80be-592139c7dae3.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231687146-9d38e7d6-0600-4528-80be-592139c7dae3.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>我们令 <span
 class="math inline">\(x+y+z=1\)</span>，通过归一化的方式，我们可以将 XYZ
@@ -386,7 +427,7 @@ z &amp; =\frac{Z}{X+Y+Z}
 \end{aligned}
 \]</span></p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231687412-cffa1a44-c410-47bd-b206-59c8b0ec0c43.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231687412-cffa1a44-c410-47bd-b206-59c8b0ec0c43.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>对于 XYZ 颜色的分布，我们可以得到以下结果：</p>
 <ul>
@@ -412,21 +453,21 @@ Perception）</h1>
 <p>牛顿通过实验认识到，白光是由多种颜色的光线混合起来得到的。而我们在生活中可以看到的光在波长约
 400 mm-700 mm 之间。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231681716-8658c9c9-0ea3-470d-8f34-f0bd878f187f.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231681716-8658c9c9-0ea3-470d-8f34-f0bd878f187f.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>对于不同光，我们可以使用<strong>功率谱密度</strong>（Spectral Power
 Distribution，SPD）表示。功率谱密度展示了不同波长下光能量的多少。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231681887-f196d5c3-0738-4a9f-874d-23718bb12964.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231681887-f196d5c3-0738-4a9f-874d-23718bb12964.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>SPD 具有叠加性：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231682218-28fed8bf-bf68-437b-afa8-fbc758d885e4.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231682218-28fed8bf-bf68-437b-afa8-fbc758d885e4.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>而颜色，应该是人对于不同光线的感知，而光的一种属性，但不同波长的光确实会表现出不同的「颜色」。</p>
 <h2 id="biological-basis-of-color-1">Biological Basis of Color</h2>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231683077-db020a4c-8e6b-469b-a760-05667bfe9da1.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231683077-db020a4c-8e6b-469b-a760-05667bfe9da1.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>人的眼睛通过视网膜感受光线，在视网膜上存在着两种细胞：</p>
 <ul>
@@ -434,7 +475,7 @@ Distribution，SPD）表示。功率谱密度展示了不同波长下光能量�
 <li>锥细胞（Cones）感受颜色。锥细胞分为三种类型，对不同的波长的光线的响应不同。</li>
 </ul>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231683290-85add764-405e-479d-890d-5f5584e5c96f.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231683290-85add764-405e-479d-890d-5f5584e5c96f.png" alt="Img" style="zoom:75%;" />
 </center>
 <blockquote>
 <p>不同人的锥细胞的分布很不一样。</p>
@@ -443,7 +484,7 @@ Distribution，SPD）表示。功率谱密度展示了不同波长下光能量�
 <p>锥细胞可以分为 S、M、L
 三种，分别对短波，中波以及长波有更强的响应。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231684228-7188ec7d-6184-4160-be8d-379c8e02567f.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231684228-7188ec7d-6184-4160-be8d-379c8e02567f.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>对于这三条谱功率密度曲线，我们记为 <span
 class="math inline">\(r_S\left(\lambda\right)\)</span>、<span
@@ -460,7 +501,7 @@ L &amp; =\int r_L(\lambda) s(\lambda) d \lambda
 <p>对于人眼来说，我们并不关注每一种波长的分布，我们只关心三个响应量 （S,
 M, L）。即使是不同的光谱，也有可能有相同的响应，这就是同色异谱现象。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231684791-9e980ac3-0fc6-401e-84db-a7c00672d601.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231684791-9e980ac3-0fc6-401e-84db-a7c00672d601.png" alt="Img" style="zoom:75%;" />
 </center>
 <h2 id="同异谱metamerism-1">同⾊异谱（Metamerism）</h2>
 <p>同色异谱（Metamerism）指的是两种不同的谱密度分布得到了相同响应量，也就是相同的颜色。因此，当我们使用一些设备（例如屏幕）模拟其他颜色的时候，并不需要按照原来的谱密度进行模拟。</p>
@@ -482,7 +523,7 @@ RGB 能量就是对应的结果。但是可能存在某些颜色，使用 RGB
 <p>CIE RGB 使用红色（波长 700 nm），绿色（波长 546.1 nm）以及蓝色（波长
 435.8 nm）三种颜色的光进行实验，最终得到如下的结果：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231686582-f2e42abc-750e-4fb9-8f75-816ad1df2b96.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231686582-f2e42abc-750e-4fb9-8f75-816ad1df2b96.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>对应颜色的计算方式为： <span class="math display">\[
 \begin{aligned}
@@ -500,7 +541,7 @@ RGB）色彩空间，通过一个标准的屏幕来调整其他的屏幕色彩�
 <p>XYZ 色彩匹配函数是人造的函数。其中 Y
 的结果可以大致反应图片的亮度。这样的设计不仅所有颜色能量都是正值，同时可以表示出所有的颜色。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231687146-9d38e7d6-0600-4528-80be-592139c7dae3.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231687146-9d38e7d6-0600-4528-80be-592139c7dae3.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>我们令 <span
 class="math inline">\(x+y+z=1\)</span>，通过归一化的方式，我们可以将 XYZ
@@ -512,7 +553,7 @@ z &amp; =\frac{Z}{X+Y+Z}
 \end{aligned}
 \]</span></p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231687412-cffa1a44-c410-47bd-b206-59c8b0ec0c43.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231687412-cffa1a44-c410-47bd-b206-59c8b0ec0c43.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>对于 XYZ 颜色的分布，我们可以得到以下结果：</p>
 <ul>
@@ -533,14 +574,14 @@ class="math inline">\(\left(\frac{1}{3},\frac{1}{3}\right)\)</span>
 <li>亮度表示颜色的亮度（亮度越低，颜色越黑）。</li>
 </ul>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231688159-a27e13ab-a8a8-47b5-ab5f-3558e19b2b57.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231688159-a27e13ab-a8a8-47b5-ab5f-3558e19b2b57.png" alt="Img" style="zoom:75%;" />
 </center>
 <h3 id="cielab-空间lab">CIELAB 空间（L*a*b）</h3>
 <p>Lab 颜色空间也是根据人的感知建立的颜色空间。共包含了 3 个方向，L*
 方向指的是亮度，a* 方向指的是红绿互补色对，b*
 方向是蓝黄互补色对。之所以会选择这样的互补色对是因为黑白色，红绿色以及黄蓝色是三对互补色。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231688637-835b0d19-3b26-48e4-b2c7-7230413c5c46.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231688637-835b0d19-3b26-48e4-b2c7-7230413c5c46.png" alt="Img" style="zoom:75%;" />
 </center>
 <h3 id="减色系统">减色系统</h3>
 <h4 id="cmyk-颜色空间">CMYK 颜色空间</h4>
@@ -549,7 +590,7 @@ class="math inline">\(\left(\frac{1}{3},\frac{1}{3}\right)\)</span>
 种基础色，分别是青色（Cyan），品红（Magenta），黄色（Yellow）和黑色（Key）。使用前三种颜色就可以得到黑色，但是基于成本原因，还是加入了
 K 降低成本。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231688995-9cf5305f-3c3d-4af1-a855-44ceee2a369c.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231688995-9cf5305f-3c3d-4af1-a855-44ceee2a369c.png" alt="Img" style="zoom:75%;" />
 </center>
 
     </div>
@@ -574,6 +615,33 @@ K 降低成本。</p>
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/XinranSix/archives/assets/62458905/6a6f2373-fbf5-4367-9ac2-65230cba90a2">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
 </div>
 
           <div class="post-tags">
@@ -605,6 +673,7 @@ K 降低成本。</p>
 
 
 
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -635,6 +704,24 @@ K 降低成本。</p>
     <span title="站点阅读时长">6:12</span>
   </span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div><link
   rel="stylesheet"
@@ -657,10 +744,7 @@ K 降低成本。</p>
   </footer>
 
   
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 <noscript>
@@ -669,17 +753,25 @@ K 降低成本。</p>
 
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
   
-
-
-
-
-
-
-  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -690,6 +782,13 @@ K 降低成本。</p>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://xinransix.github.io/2023/07/16/%E9%A2%9C%E8%89%B2%E4%B8%8E%E6%84%9F%E7%9F%A5/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"XinranSix","repo":"comment","client_id":"9c03a2ae7f09aea822ba","client_secret":"d1c9ff2bb92b84493b307f1587585a6b12fc78b8","admin_user":"XinranSix","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"224a9804395b40868ff979badf636216"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
 </html>

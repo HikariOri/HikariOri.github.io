@@ -16,8 +16,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="什么是相机、镜头的基本原理，光场是什么？以及由此开发的光场相机">
 <meta property="og:type" content="article">
@@ -101,6 +104,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -108,12 +112,38 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-友人帐"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友人帐</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </header>
         
@@ -175,6 +205,10 @@ Tracing Ideal Thin Lenses）</span></a></li><li class="nav-item nav-level-3"><a 
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
 
     
@@ -252,6 +286,13 @@ Tracing Ideal Thin Lenses）</span></a></li><li class="nav-item nav-level-3"><a 
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
@@ -287,7 +328,7 @@ Image Formation）。小孔成像的特点是得到的成像没有景深效果�
 <p>摄像机的视场（Field of
 View，FOV）的大小和传感器的大小以及焦距（小孔成像中指的是传感器和小孔的距离）有关。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231658150-69b5c7d1-d326-49ce-ac8b-7285641e57fe.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231658150-69b5c7d1-d326-49ce-ac8b-7285641e57fe.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>由图可知： <span class="math display">\[
 \text{FOV} = 2 \arctan \left(\frac{h}{2f}\right)
@@ -301,7 +342,7 @@ class="math inline">\(35\text{mm}\)</span> 胶片（<span
 class="math inline">\(36 \times
 24\text{mm}\)</span>）对应的焦距来反映视场的大小。焦距越小，对应的视场越大；焦距越大，拍摄的距离越远。较小的传感器需要使用较短的焦距来保持一样的视场。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231658975-1eb3311a-ddac-4c9e-b540-7ab06c035f85.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231658975-1eb3311a-ddac-4c9e-b540-7ab06c035f85.png" alt="Img" style="zoom:75%;" />
 </center>
 <h2 id="曝光">曝光</h2>
 <p>曝光（Exposure，H）可以表示为曝光时间 T 和 Irradiance E 的乘积：
@@ -326,17 +367,17 @@ ISO 会增加噪声。ISO 是一种线性增长（ISO 200 增加亮度的一半�
 100）。</li>
 </ul>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231671812-06e3d19d-09fc-4ac4-970f-ab7ff19a9e3b.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231671812-06e3d19d-09fc-4ac4-970f-ab7ff19a9e3b.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>光圈和快门速度都可以控制曝光，因此理论上在一定的组合方式下，能够得到相同的曝光结果。但是，由于光圈和快门速度所带来的副作用不同，因此不同组合产生的效果也会有一些不同。在下表中，光圈和快门速度的组合能够得到相同的曝光。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231672238-aedbbe15-ac1e-41f5-b2c9-72785837282f.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231672238-aedbbe15-ac1e-41f5-b2c9-72785837282f.png" alt="Img" style="zoom:75%;" />
 </center>
 <h2 id="薄透镜近似thin-lens-approximation">薄透镜近似（Thin Lens
 Approximation）</h2>
 <p>真实的透镜都是由透镜组所组成的。真实的透镜并不是理想的，这是因为平行光经过真实透镜后不能聚焦在同一个点上。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231672675-b8b0d124-50a0-4d90-bff4-4d6c9aee4af9.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231672675-b8b0d124-50a0-4d90-bff4-4d6c9aee4af9.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>理想的薄透镜满足以下三点：</p>
 <ul>
@@ -352,11 +393,11 @@ class="math inline">\(z_i\)</span> 满足： <span class="math display">\[
 \]</span></p>
 <p>这被称为<strong>薄透镜方程</strong>（The Thin Lens Equation）。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231672903-c3ed5271-bfd3-4dfd-9b6a-d8dfb00dc546.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231672903-c3ed5271-bfd3-4dfd-9b6a-d8dfb00dc546.png" alt="Img" style="zoom:75%;" />
 </center>
 <h4 id="薄透镜方程的证明">薄透镜方程的证明</h4>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231673590-bbfb3d53-0524-486b-a469-bf853dba2051.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231673590-bbfb3d53-0524-486b-a469-bf853dba2051.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>根据相似三角形的性质，我们可以从蓝色相似三角形组和红色相似三角形组可以得到：
 <span class="math display">\[
@@ -374,7 +415,7 @@ class="math inline">\(z_i\)</span> 满足： <span class="math display">\[
 of Confusion，CoC），这就是<strong>离焦模糊</strong>（Defocus
 Blur）现象。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231674535-1416f49a-531a-4bbc-85db-73f194a1afa0.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231674535-1416f49a-531a-4bbc-85db-73f194a1afa0.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>弥散圆的直径 <span class="math inline">\(C\)</span> 和透镜的直径
 <span class="math inline">\(A\)</span> 满足： <span
@@ -388,13 +429,13 @@ C = A  \frac{\left|z_s - z_i\right|}{z_i} = \frac{f}{N} \frac{\left|z_s
 \]</span> 因此，光圈 f-stop
 越大，拍出来的相片越清晰，对应光圈的直径越小。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231675921-4fc42586-8e33-4cd1-83f8-619bf13d3470.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231675921-4fc42586-8e33-4cd1-83f8-619bf13d3470.png" alt="Img" style="zoom:75%;" />
 </center>
 <h3
 id="薄透镜下的光线追踪ray-tracing-ideal-thin-lenses">薄透镜下的光线追踪（Ray
 Tracing Ideal Thin Lenses）</h3>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231676268-ed66e9ca-3a5b-45fd-a2b5-e1968c323de5.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231676268-ed66e9ca-3a5b-45fd-a2b5-e1968c323de5.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>之前我们的路径追踪都是在小孔摄像机的假设下。现在我们使用薄透镜模型进行光线追踪。首先，我们需要定义：</p>
 <ul>
@@ -421,7 +462,7 @@ class="math inline">\(x&#39;&#39;&#39;\)</span> 点；</li>
 ofField）。在实际中我们认为 CoC
 小于一个像素的大小都可以看作足够小。景深的计算如下所示：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231677188-491ab800-13c1-4ef9-964d-b28f5368fd5c.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231677188-491ab800-13c1-4ef9-964d-b28f5368fd5c.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>根据离焦模糊公式和薄透镜方程有： <span class="math display">\[
 \begin{align*}
@@ -442,10 +483,10 @@ D_N &amp; =\frac{D_S f^2}{f^2+N C\left(D_S-f\right)}
 <h2 id="光场light-field-lumigraph">光场（Light Field / Lumigraph）</h2>
 <p>对于人眼来说，不关心光线究竟是从哪里来的，因此可以用一张图片来模拟一种光。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231678046-0fe98b34-50a7-4f9f-8146-47b5ae1ffcd5.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231678046-0fe98b34-50a7-4f9f-8146-47b5ae1ffcd5.png" alt="Img" style="zoom:75%;" />
 </center>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231678074-152214f3-3d37-46dd-b496-0adc5cb7f7a1.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231678074-152214f3-3d37-46dd-b496-0adc5cb7f7a1.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>在这里介绍全光函数（The Plenoptic Function）： <span
 class="math display">\[
@@ -476,16 +517,16 @@ P\left(\theta, \phi, V_X, V_Y, V_Z\right)
 2 维的，因此两个点只需要 4 个维度就可以了）。</p>
 <p>对于任何一个物体，我们可以使用一个包围盒来描述在各个方向上看到的光线情况。我们不关心包围盒内的物体情况，我们在观察时只用查询对应光场函数就可以了。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231679656-2033b6ec-3f03-45ab-8fee-ce5d4359bccf.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231679656-2033b6ec-3f03-45ab-8fee-ce5d4359bccf.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>我们关注一个面上的光场情况。前文提到，我们可以使用两个点表示一条光线。因此对于光场，我们也可以使用两个平面表示一个光场。其中，远离物体的为
 s-t 平面，靠近物体的为 u-v 平面。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231679960-6ec8e408-4a6b-4dc1-9fbd-43f3016e907e.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231679960-6ec8e408-4a6b-4dc1-9fbd-43f3016e907e.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>如果我们固定某一个平面上面的点，我们可以观察在另一平面上不同点的分布：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231680107-fff8418e-a8b4-4a84-ab44-5cda0c9573d0.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231680107-fff8418e-a8b4-4a84-ab44-5cda0c9573d0.png" alt="Img" style="zoom:75%;" />
 </center>
 <ul>
 <li>当我们固定 u-v 平面上的点，每一个 s-t 平面都是一副完整的图像；</li>
@@ -495,7 +536,7 @@ s-t 平面，靠近物体的为 u-v 平面。</p>
 <p>根据这样的方式，我们可以造出光场照相机（Light Field
 Camera）。光场照相机是一系列镜头矩阵构成的照相机。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231680577-e8ad6228-075b-4fec-8a4c-27373462143c.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231680577-e8ad6228-075b-4fec-8a4c-27373462143c.png" alt="Img" style="zoom:75%;" />
 </center>
 
     </div>
@@ -520,6 +561,33 @@ Camera）。光场照相机是一系列镜头矩阵构成的照相机。</p>
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/XinranSix/archives/assets/62458905/6a6f2373-fbf5-4367-9ac2-65230cba90a2">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
 </div>
 
           <div class="post-tags">
@@ -552,6 +620,7 @@ Camera）。光场照相机是一系列镜头矩阵构成的照相机。</p>
 
 
 
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -582,6 +651,24 @@ Camera）。光场照相机是一系列镜头矩阵构成的照相机。</p>
     <span title="站点阅读时长">6:12</span>
   </span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div><link
   rel="stylesheet"
@@ -604,10 +691,7 @@ Camera）。光场照相机是一系列镜头矩阵构成的照相机。</p>
   </footer>
 
   
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 <noscript>
@@ -616,17 +700,25 @@ Camera）。光场照相机是一系列镜头矩阵构成的照相机。</p>
 
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
   
-
-
-
-
-
-
-  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -637,6 +729,13 @@ Camera）。光场照相机是一系列镜头矩阵构成的照相机。</p>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://xinransix.github.io/2023/07/16/%E7%9B%B8%E6%9C%BA%E3%80%81%E9%95%9C%E5%A4%B4%E5%92%8C%E5%85%89%E5%9C%BA/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"XinranSix","repo":"comment","client_id":"9c03a2ae7f09aea822ba","client_secret":"d1c9ff2bb92b84493b307f1587585a6b12fc78b8","admin_user":"XinranSix","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"416a1f6eb4737b6b8c6a07f2b107df39"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
 </html>

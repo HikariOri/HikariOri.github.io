@@ -16,8 +16,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="介绍什么是材质，什么是外观，以及它们的决定因素是什么">
 <meta property="og:type" content="article">
@@ -94,6 +97,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -101,12 +105,38 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-友人帐"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友人帐</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </header>
         
@@ -168,6 +198,10 @@ Material）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" 
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
 
     
@@ -251,6 +285,13 @@ Material）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" 
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
@@ -283,7 +324,7 @@ Material）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" 
 <p>在渲染方程中，分析各个参数可以知道材质和 BRDF 具有密切的关系。BRDF
 定了物体的材质属性。下图中，从左到右依次是：漫反射材质、光泽表面材质以及折射材质。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231369893-cd808616-b0dd-4320-b9b7-a3f20e4febd8.png" alt="漫反射材质、光泽表面材质以及折射材质" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231369893-cd808616-b0dd-4320-b9b7-a3f20e4febd8.png" alt="漫反射材质、光泽表面材质以及折射材质" style="zoom:100%;" />
 </center>
 <blockquote>
 <p>材质 = BRDF.</p>
@@ -322,7 +363,7 @@ material）：可以折射一定量的光线。这种材质通常是透明材质
 <h4 id="反射定律">反射定律</h4>
 <p>反射定律（Reflection Law）：入射角等于出射角。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231373522-73f017fa-f6ec-4626-a07e-5be9ddf64d21.png" alt="反射定律" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231373522-73f017fa-f6ec-4626-a07e-5be9ddf64d21.png" alt="反射定律" style="zoom:100%;" />
 </center>
 <p>由出射角等于入射角可知：</p>
 <p><span class="math display">\[
@@ -338,7 +379,7 @@ class="math inline">\(\phi_o = \left(\phi_i + \pi\right)\mod 2
 <h4 id="折射定律">折射定律</h4>
 <p>折射定律（Snell’s Law）反映了折射角和入射角的关系。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231375068-b734066a-bfb0-453d-8c9d-951d78421dda.png" alt="折射定律" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231375068-b734066a-bfb0-453d-8c9d-951d78421dda.png" alt="折射定律" style="zoom:100%;" />
 </center>
 <p>折射定律的公式如下：</p>
 <p><span class="math display">\[
@@ -391,13 +432,13 @@ class="math inline">\(\eta\)</span></th>
 class="math inline">\(\frac{\eta_i}{\eta_t} &gt;
 1\)</span>，也就是说当入射介质的折射率大于反射介质的折射率时，有可能发生全反射现象。下图是一个全反射的例子：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231377241-d65d11cd-4730-4de8-8350-7d4baead363f.png" alt="全反射" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231377241-d65d11cd-4730-4de8-8350-7d4baead363f.png" alt="全反射" style="zoom:100%;" />
 </center>
 <h2 id="菲涅耳项fresnel-reflection-term">菲涅耳项（Fresnel Reflection /
 Term）</h2>
 <p>在现实生活中，我们发现有这样的现象：当我们在不同的视角下进行观察的时候会用不同的现象。如下图所示，当我们从不同的视角观察桌子的时候，桌子对书反射的程度也不尽相同。这就是菲涅耳带来的结果。</p>
 <center>
-<img src="https://github.com/XinranSix/computer-graphics/assets/62458905/ffc186ff-0dee-4b8e-a9aa-1818f4315d69
+<img data-src="https://github.com/XinranSix/computer-graphics/assets/62458905/ffc186ff-0dee-4b8e-a9aa-1818f4315d69
 " alt="菲涅耳带来的结果" style="zoom:100%;" />
 </center>
 <p>对于导体和非导体，菲涅耳项满足：</p>
@@ -405,13 +446,13 @@ Term）</h2>
 <li>对于非导体，入射光线和入射平面越近（入射角越大），被反射出去的光线越多。下图是非导体的反射率和入射角的关系图：</li>
 </ul>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231378308-ce0da876-e7c6-420a-951e-bf775a9d1c09.png" alt="非导体的反射率和入射角的关系" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231378308-ce0da876-e7c6-420a-951e-bf775a9d1c09.png" alt="非导体的反射率和入射角的关系" style="zoom:75%;" />
 </center>
 <ul>
 <li>对于导体，反射出来光线的多少和入射角度没有直接关系，光线都可以被大量反射出去。下图是导体的反射率和入射角的关系图：</li>
 </ul>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231378374-608c50bf-54ae-423c-9bdf-efc3bb377a2f.png" alt="导体的反射率和入射角" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231378374-608c50bf-54ae-423c-9bdf-efc3bb377a2f.png" alt="导体的反射率和入射角" style="zoom:75%;" />
 </center>
 <p>菲涅耳项的准确计算公式为：</p>
 <p><span class="math display">\[
@@ -450,7 +491,7 @@ Material）</h2>
 <p>微表面模型是更接近于物理的材质描述。我们认为<strong>广表面</strong>（Macroscale）是平坦且粗糙的，但是<strong>微表面</strong>（Microsurface）是凹凸不平但是光滑的（每一个小的面都是光滑平坦的），那么整体的光线反射情况应当是所有微表面反射情况的总和。从近处看是几何，从远处看就是一种材质。</p>
 <p>对于任何一种材质，我们使用法线分布来描述其材质。如果是光滑的表面，那么法线分布比较集中；否则，法线会分布在四处。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231381176-6ecca7de-fe78-41e8-89ac-9ad41fd26a40.png" alt="法线分布与材质效果" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231381176-6ecca7de-fe78-41e8-89ac-9ad41fd26a40.png" alt="法线分布与材质效果" style="zoom:75%;" />
 </center>
 <p>在微表面的情况下 BDRF 可以写作：</p>
 <p><span class="math display">\[
@@ -496,7 +537,7 @@ L_r\left(\mathrm{p}, \omega_r\right) = \int_{H^2}f_r\left(\mathrm{p},
 \right) \cos \theta_i \, \mathrm{d} \omega_i
 \]</span></p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231383755-bd8a667b-47f4-45c6-96f8-3972624567c6.png" alt="线性" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231383755-bd8a667b-47f4-45c6-96f8-3972624567c6.png" alt="线性" style="zoom:75%;" />
 </center>
 <ul>
 <li>可逆性（Reciprocity principle）</li>
@@ -506,7 +547,7 @@ f_r\left(\omega_r \rightarrow \omega_i\right) = f_r\left(\omega_i
 \rightarrow \omega_r\right)
 \]</span></p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231384090-803d2a17-f56f-4351-8d6e-2fa0819f0f74.png" alt="可逆性" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231384090-803d2a17-f56f-4351-8d6e-2fa0819f0f74.png" alt="可逆性" style="zoom:75%;" />
 </center>
 <ul>
 <li>能量守恒（Energy conservation）</li>
@@ -531,7 +572,7 @@ f_r\left(\omega_r \rightarrow \omega_i\right) = f_r\left(\omega_i
 <p>我们希望准确的测量出真实世界材质的
 BDRF。如下图所示，我们可以通过以下的实验方式测量某一种材质的 BDRF。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/231385956-af271128-7eb4-4b0b-9362-edbf58429e82.png" alt="BRDF 的测量" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/231385956-af271128-7eb4-4b0b-9362-edbf58429e82.png" alt="BRDF 的测量" style="zoom:75%;" />
 </center>
 <p>我们可以通过这样的装置得到各个入射方向和出射方向的
 BDRF，测量的算法如下：</p>
@@ -567,6 +608,33 @@ has Fresnel</a></li>
 </ul>
 </div>
 
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/XinranSix/archives/assets/62458905/6a6f2373-fbf5-4367-9ac2-65230cba90a2">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
           <div class="post-tags">
               <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 计算机图形学</a>
               <a href="/tags/%E6%9D%90%E8%B4%A8/" rel="tag"><i class="fa fa-tag"></i> 材质</a>
@@ -596,6 +664,7 @@ has Fresnel</a></li>
 
 
 
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -626,6 +695,24 @@ has Fresnel</a></li>
     <span title="站点阅读时长">6:12</span>
   </span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div><link
   rel="stylesheet"
@@ -648,10 +735,7 @@ has Fresnel</a></li>
   </footer>
 
   
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 <noscript>
@@ -660,17 +744,25 @@ has Fresnel</a></li>
 
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
   
-
-
-
-
-
-
-  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -681,6 +773,13 @@ has Fresnel</a></li>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://xinransix.github.io/2023/07/16/%E6%9D%90%E8%B4%A8%E4%B8%8E%E5%A4%96%E8%A7%82/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"XinranSix","repo":"comment","client_id":"9c03a2ae7f09aea822ba","client_secret":"d1c9ff2bb92b84493b307f1587585a6b12fc78b8","admin_user":"XinranSix","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"e65f205921ec1af01c453848a0835044"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
 </html>

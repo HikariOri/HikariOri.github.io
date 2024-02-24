@@ -16,8 +16,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="什么是 Shading">
 <meta property="og:type" content="article">
@@ -119,6 +122,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -126,12 +130,38 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-友人帐"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友人帐</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </header>
         
@@ -194,6 +224,10 @@ Rendering Pipeline）</span></a></li><li class="nav-item nav-level-2"><a class="
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
 
     
@@ -277,6 +311,13 @@ Rendering Pipeline）</span></a></li><li class="nav-item nav-level-2"><a class="
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
@@ -311,11 +352,11 @@ Rendering Pipeline）</span></a></li><li class="nav-item nav-level-2"><a class="
 reflection），高光（Specular highlights），环境光（Ambient
 lighting）。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230043719-b38a5f9a-4dad-4dfb-99ec-e604b0566325.png" alt="Img" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230043719-b38a5f9a-4dad-4dfb-99ec-e604b0566325.png" alt="Img" style="zoom:100%;" />
 </center>
 <h3 id="模型定义">模型定义</h3>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230045266-484d6e6c-e83f-4c4b-9282-93b68c6dfc80.png" alt="光线反射模型" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230045266-484d6e6c-e83f-4c4b-9282-93b68c6dfc80.png" alt="光线反射模型" style="zoom:100%;" />
 </center>
 <p>对于任意的着色点（Shading poing），我们定义：</p>
 <ul>
@@ -334,7 +375,7 @@ class="math inline">\(\vec{l}\)</span>
 <h3 id="漫反射diffuse-reflection">漫反射（Diffuse Reflection）</h3>
 <p>漫反射中光会向各个方向均匀反射，从如何方向观察到的表面颜色多是相同的。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230047344-9a171c3d-f50c-4bf2-8726-1d499ed1bb5a.png" alt="漫反射示意图" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230047344-9a171c3d-f50c-4bf2-8726-1d499ed1bb5a.png" alt="漫反射示意图" style="zoom:75%;" />
 </center>
 <p><strong>Lambert’s 余弦定律</strong>（Lambert’s Cosine
 Law）表明了漫反射光的能量和入射角度之间的关系。光线反射的能量和光照方向（<span
@@ -342,7 +383,7 @@ class="math inline">\(\vec{l}\)</span>）以及法线（<span
 class="math inline">\(\vec{n}\)</span>）的夹角余弦值（即 <span
 class="math inline">\(\cos \theta\)</span>）成正比。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230047998-59946ccc-229d-419a-9de3-d6e126ed8e3d.png" alt="Lambert’s 余弦定律" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230047998-59946ccc-229d-419a-9de3-d6e126ed8e3d.png" alt="Lambert’s 余弦定律" style="zoom:75%;" />
 </center>
 <p>由于 <span class="math inline">\(\vec{l}\)</span> 和 <span
 class="math inline">\(\vec{n}\)</span> 都是单位向量，所以可以得到：
@@ -369,17 +410,17 @@ class="math inline">\(\max \left(0,\boldsymbol{n} \cdot
 <p>下图表述了不同的 <span class="math inline">\(k_d\)</span>
 下的漫反射效果：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230051381-ebf6114d-6390-4c87-8473-0fd2cc02eaa6.png" alt="Lambert’s 余弦定律" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230051381-ebf6114d-6390-4c87-8473-0fd2cc02eaa6.png" alt="Lambert’s 余弦定律" style="zoom:75%;" />
 </center>
 <h3 id="高光项镜面反射">高光项（镜面反射）</h3>
 <p>镜面反射取决于观察方向，当观察方向与反射方向接近时我们就能看到高光，如下图所示：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230074681-e0497c4d-4714-47f7-8bb4-0b163621ce2d.png" alt="镜面反射示意图" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230074681-e0497c4d-4714-47f7-8bb4-0b163621ce2d.png" alt="镜面反射示意图" style="zoom:75%;" />
 </center>
 <p>在实际应用中一般用<strong>半程向量</strong>（Half
 vector）来刻画观察方向和反射方向的解决程度。如果观察方向和反射方向非常接近，则半程向量和法线方向非常接近，如下图所示：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230075798-ab5f2a87-53c2-4c1e-9e68-47333026d731.png" alt="半程向量示意图" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230075798-ab5f2a87-53c2-4c1e-9e68-47333026d731.png" alt="半程向量示意图" style="zoom:75%;" />
 </center>
 <p>半程向量用 <span class="math inline">\(\vec{h}\)</span> 表示，<span
 class="math inline">\(\vec{h}\)</span> 也是单位向量，显然： <span
@@ -399,12 +440,12 @@ class="math inline">\(p\)</span>，引入这个指数是为了将高光限制在
 class="math inline">\(p\in\left[100, 200\right]\)</span>。不同的 <span
 class="math inline">\(p\)</span> 对余弦函数的影响如下：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230078747-e9a54e57-216f-4d57-936a-ad05c887f497.png" alt="指数的选择" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230078747-e9a54e57-216f-4d57-936a-ad05c887f497.png" alt="指数的选择" style="zoom:75%;" />
 </center>
 <p>选取不同的 <span class="math inline">\(p\)</span> 和 <span
 class="math inline">\(k_s\)</span> 的得到的效果如下图所示：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230079173-753ff962-9657-422f-8842-0bdc36f76b7c.png" alt="Img" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230079173-753ff962-9657-422f-8842-0bdc36f76b7c.png" alt="Img" style="zoom:100%;" />
 </center>
 <h3 id="环境光">环境光</h3>
 <p>在 Blinn-Phong
@@ -423,7 +464,7 @@ L &amp;= L_a + L_d + L_S \\
 \end{align*}
 \]</span></p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230080150-2dd31032-835b-4844-8dc5-70479b002326.png" alt="Blinn-Phong 反射模型" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230080150-2dd31032-835b-4844-8dc5-70479b002326.png" alt="Blinn-Phong 反射模型" style="zoom:100%;" />
 </center>
 <h2 id="着色频率shading-frequencies">着色频率（Shading
 Frequencies）</h2>
@@ -438,33 +479,33 @@ Shading），指的是计算出每一个像素的法线进行着色。三角形�
 </ul>
 <p>不同的着色频率的效果如下所示：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230081961-97fcfe87-65e7-4450-96a8-23612143e532.png" alt="Img" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230081961-97fcfe87-65e7-4450-96a8-23612143e532.png" alt="Img" style="zoom:100%;" />
 </center>
 <p>当几何体相对复杂，构造精细的时候，三种着色效果产生的结果不相上下，如下图所示：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230082185-4a581a7f-93ef-4136-8d25-7f3e61e3d0a2.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230082185-4a581a7f-93ef-4136-8d25-7f3e61e3d0a2.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>如何定义一个顶点的法线呢？有两种方法，一种是使用一个球形包围盒，求顶点法线就简化成了求球表面顶点的法线，如下如所示：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230083024-b99a0202-a6bc-4e13-9371-e2dd89781bf3.png" alt="Img" style="zoom:50%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230083024-b99a0202-a6bc-4e13-9371-e2dd89781bf3.png" alt="Img" style="zoom:50%;" />
 </center>
 <p>另外一种方法是求出顶点相邻的三角形的法线，然后做一个平均，再做一个归一化，即：
 <span class="math display">\[
 N_v = \frac{\sum_i N_i}{\left\| \sum_i N_i \right\|}
 \]</span></p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230083668-cfcc2ce1-73d5-4def-9f84-c3e252a22245.png" alt="Img" style="zoom:50%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230083668-cfcc2ce1-73d5-4def-9f84-c3e252a22245.png" alt="Img" style="zoom:50%;" />
 </center>
 <p>如何求出每个像素的法线呢？先求出三角形顶点的法线，在通过插值的方式求出每个像素的法线，如下图所示：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230084990-758e0bc0-c1b8-40d4-9103-188f54e45e52.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230084990-758e0bc0-c1b8-40d4-9103-188f54e45e52.png" alt="Img" style="zoom:75%;" />
 </center>
 <h2
 id="实时渲染管线real-time-rendering-pipeline">实时渲染管线（Real-time
 Rendering Pipeline）</h2>
 <p>管线是从模型到图片生成的过程。管线分为以下过程：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230085432-ae7b5ff2-172f-4fea-8e71-0c57e43eb60e.png" alt="管线" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230085432-ae7b5ff2-172f-4fea-8e71-0c57e43eb60e.png" alt="管线" style="zoom:100%;" />
 </center>
 <p>首先将顶点的三位向量作为输入，进行几何变换后划分三角形区域。通过光栅化获得一个个小的碎片（或者是一个个小像素）后进行着色，得到我们的输出。</p>
 <p>我们可以定义顶点或者像素的着色方式来提供不同的着色要求，这被称为程序
@@ -483,13 +524,13 @@ Shader 编程，编程的结果会直接显示在网页中。</p>
 <h3 id="三维物体表面展开">三维物体表面展开</h3>
 <p>任何一个三维物体的表面都是二维的图形，可以将一个三维物体表面映射到一个二维的图像上。例如下图所示的地图和地球仪：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230094013-747a11f3-77e8-4205-9cad-3cdcdad3e7d6.png" alt="管线" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230094013-747a11f3-77e8-4205-9cad-3cdcdad3e7d6.png" alt="管线" style="zoom:100%;" />
 </center>
 <p>建立一个 <span class="math inline">\(\left(u, v\right)\)</span>
 坐标系，且 <span class="math inline">\(u, v \in \left[0,
 1\right]\)</span>. 如下图所示：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230092205-c34c08e3-f4c8-4c03-94b9-7b5c4a8697ef.png" alt="管线" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230092205-c34c08e3-f4c8-4c03-94b9-7b5c4a8697ef.png" alt="管线" style="zoom:100%;" />
 </center>
 <p>在知道知道每一个三角形的顶点坐标和对应的纹理坐标的情况下，可以通过插值的方法求出三角形内部所有点的对应的纹理坐标，需要使用重心坐标计算。</p>
 <p>在为墙面，地面加入纹理的时候可以使用边缘连接连续的纹理，称为
@@ -500,7 +541,7 @@ Coordinates）。</p>
 <p>重心坐标是一种使用三角形三个顶点定义的坐标系统，坐标为 <span
 class="math inline">\(\left(\alpha, \beta, \gamma \right)\)</span>.</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230101576-b88a05f4-f641-42eb-8807-2910c54528e0.png" alt="Img" style="zoom:50%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230101576-b88a05f4-f641-42eb-8807-2910c54528e0.png" alt="Img" style="zoom:50%;" />
 </center>
 <p>对于任意一点 <span class="math inline">\(\left(x,
 y\right)\)</span>，如果满足： <span class="math display">\[
@@ -523,7 +564,7 @@ class="math inline">\(A_A\)</span>、<span
 class="math inline">\(A_B\)</span>、<span
 class="math inline">\(A_C\)</span>，如下图所示：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230104883-801545ed-978d-41d6-a865-e5c82a40ecf8.png" alt="Img" style="zoom:50%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230104883-801545ed-978d-41d6-a865-e5c82a40ecf8.png" alt="Img" style="zoom:50%;" />
 </center>
 <p>则重心坐标为： <span class="math display">\[
 \begin{align*}
@@ -555,7 +596,7 @@ class="math inline">\(V_C\)</span>，那么三角形中任意一点的插值后�
 <span class="math inline">\(V = \alpha V_a + \beta V_B + \gamma
 V_C\)</span>. 如下图所示是对颜色的插值：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230108225-c2c8c30b-8858-42c5-98a7-975576770a44.png" alt="Img" style="zoom:50%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230108225-c2c8c30b-8858-42c5-98a7-975576770a44.png" alt="Img" style="zoom:50%;" />
 </center>
 <p>注意，重心坐标在投影后不能保证结果不变，所以我们要在空间中使用三维坐标的重心公式进行插值。</p>
 <h3 id="纹理映射的问题">纹理映射的问题</h3>
@@ -568,12 +609,12 @@ class="math inline">\(\left(u, v\right) \rightarrow k_d\)</span>.</p>
 <h4 id="纹理太小">纹理太小</h4>
 <p>如果纹理本身太小，但是物体像素点比较多，那么就会产生非常多类似于马赛克的像素。这是由于多个相邻的像素会映射到同一个纹理坐标。我们可以采用双线性插值来解决这个问题。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230114928-e9c9d19d-1fa8-4717-b025-2b71904ea6ed.png" alt="Img" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230114928-e9c9d19d-1fa8-4717-b025-2b71904ea6ed.png" alt="Img" style="zoom:100%;" />
 </center>
 <p><strong>双线性插值</strong>（Bilinear
 Interpolation）指的是对于任意一个纹理坐标，使用其临近的四个纹素值进行两次线性插值得到这个坐标对应的漫反射率。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230114360-71c7eaee-8d70-4564-ae77-58190c5647a6.png" alt="双线性插值示意图" style="zoom:50%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230114360-71c7eaee-8d70-4564-ae77-58190c5647a6.png" alt="双线性插值示意图" style="zoom:50%;" />
 </center>
 <p>在一维上的线性插值可以表示为： <span class="math display">\[
 \text{lerp}\left(x, v_0, v_1\right) = v_0 + x\left(v_1 - v_0\right)
@@ -590,7 +631,7 @@ f\left(x, y\right) = \text{lerp}\left(t, u_0, u_1\right)
 <h4 id="纹理太大">纹理太大</h4>
 <p>当纹理过大的时候，近处的物体会产生锯齿，远处的物体会产生摩尔纹，也就是说结果会产生走样。主要原因是因为当物体离得越远，每一个像素所代表的纹素的数量会变多。这个时候再使用像素和纹素一一对应的方式是不可靠的。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230117164-0f91b0ea-a96a-4343-8c2a-f6bce9e658e7.png" alt="纹理过大结果示意图" style="zoom:50%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230117164-0f91b0ea-a96a-4343-8c2a-f6bce9e658e7.png" alt="纹理过大结果示意图" style="zoom:50%;" />
 </center>
 <p>我们的解决方法是避免采样。通过像素点直接得到对应纹素区域的平均值。</p>
 <p>引入 <strong>MipMap</strong> 来解决范围查询的问题。Mipmap
@@ -599,11 +640,11 @@ f\left(x, y\right) = \text{lerp}\left(t, u_0, u_1\right)
 的纹理，这就是一个图像金字塔。最终存储这些纹理额外的开销是原本纹理的
 <span class="math inline">\(\frac{1}{3}\)</span>。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230118956-f78f0f7c-326c-4580-a797-70594d182d11.png" alt="纹理过大结果示意图" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230118956-f78f0f7c-326c-4580-a797-70594d182d11.png" alt="纹理过大结果示意图" style="zoom:100%;" />
 </center>
 <p>我们需要计算每一个像素对应纹理的方形大小，并使用对应层的纹理。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230119359-fb3307e7-7a94-4ff6-b12e-4da02612fb5a.png" alt="Mipmap 对应层数计算" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230119359-fb3307e7-7a94-4ff6-b12e-4da02612fb5a.png" alt="Mipmap 对应层数计算" style="zoom:75%;" />
 </center>
 <p>对于一个点 <span class="math inline">\(u\left(0, 0\right)\)</span>
 和其相邻的两个点之间在纹理上的距离，可以用微分形式表示，那么这个像素所对应纹理方形的大小是：
@@ -616,31 +657,31 @@ L = \max\left(\sqrt{\left(\frac{\mathrm{d}u}{\mathrm{d}x}\right)^2 +
 D = \log_2 L
 \]</span> 将 Mipmap 层数可视化的效果如下图所示：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230120918-6dc26752-7b2c-4470-863b-7cd5b076ba3e.png" alt="Mipmap 层数可视化" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230120918-6dc26752-7b2c-4470-863b-7cd5b076ba3e.png" alt="Mipmap 层数可视化" style="zoom:100%;" />
 </center>
 <p>可以看出，Mipmap
 只能查出整数的层，为了保证能够查询到非整数的层，使用三线性插值法得到对应的结果。首先，对于任意一个非整数层数，我们在其上下两层使用双线性插值进行取值。接下来我们在两个层之间使用线性插值就可以得到最后的结果。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230121854-e2edee8e-084d-4167-80b0-7dce704b7bfa.png" alt="Img" style="zoom:70%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230121854-e2edee8e-084d-4167-80b0-7dce704b7bfa.png" alt="Img" style="zoom:70%;" />
 </center>
 <p>使用三线性插值法的到效果如下：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230122237-274f524d-5d63-4d8d-a008-93b0c7b9757e.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230122237-274f524d-5d63-4d8d-a008-93b0c7b9757e.png" alt="Img" style="zoom:75%;" />
 </center>
 <p>Mipmap
 也存在局限性。由于所有的纹理都必须对应到一个正方形的区域，但是并不是所有的纹理都可以被一个正方形完美的包住（例如细长的长方形，或者是在对角线上的长方形）。最终远处的纹理会变得非常的模糊，丢失了许多细节。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230123225-11b439f0-3491-45df-837d-8e2688f945c2.png" alt="Img" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230123225-11b439f0-3491-45df-837d-8e2688f945c2.png" alt="Img" style="zoom:100%;" />
 </center>
 <p>为了解决这个问题，我们使用<strong>各向异性过滤</strong>（Anisotropic
 Filtering）解决。各向异性过滤指的是加入只在水平方向或者竖直方向上缩小的纹理，这样可以应对不同长方形纹理块区域。但是对于对角线上的纹理块依然不好解决，并且存储多余的纹理需要多使用原来纹理三倍的开销。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230123810-b1e7feca-62ec-4d97-bff2-cfa02afd6cb5.png" alt="各向异性过滤的纹理图" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230123810-b1e7feca-62ec-4d97-bff2-cfa02afd6cb5.png" alt="各向异性过滤的纹理图" style="zoom:75%;" />
 </center>
 <p>除此之外我们还可以使用 EWA
 过滤得到更好的结果。可以把纹理拆分成不同的圆形块进行多次查询获得最终的结果。但是开销也会比较大。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230124064-5fe39933-13df-45f5-bec5-d724410a6145.png" alt="EWA 过滤的纹理图" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230124064-5fe39933-13df-45f5-bec5-d724410a6145.png" alt="EWA 过滤的纹理图" style="zoom:75%;" />
 </center>
 <h2 id="纹理的应用">纹理的应用</h2>
 <p>纹理除了是一个「贴图」之外，纹理还有各种各样的应用。在现代的 GPU
@@ -649,7 +690,7 @@ Filtering）解决。各向异性过滤指的是加入只在水平方向或者�
 <p><strong>环境贴图</strong>（Environment
 Map）指的是环境中四面八方的情况。可以使用纹理来描述环境光的样子。环境光纹理可以看作一个光滑镜面的球表面在环境中所记录的信息。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230125475-d4d2a80e-88c9-4bb8-91c8-c19969cf1f41.png" alt=Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230125475-d4d2a80e-88c9-4bb8-91c8-c19969cf1f41.png" alt=Img" style="zoom:75%;" />
 </center>
 <p>我们需要将球表面展开成一个平面，可以使用两种展开方式：</p>
 <ol type="1">
@@ -657,7 +698,7 @@ Map）指的是环境中四面八方的情况。可以使用纹理来描述环�
 Projection）：通过将球面映射到一个平面上，我们可以使用墨卡托投影法。墨卡托投影法应用于目前地球仪的投影。它的特点是靠近南北极的地方会发生较大的畸变，这不是一个均匀地描述。</li>
 </ol>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230125867-f5a91235-4d89-4dce-bb58-d70872c3e507.png" alt=Img" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230125867-f5a91235-4d89-4dce-bb58-d70872c3e507.png" alt=Img" style="zoom:100%;" />
 </center>
 <ol start="2" type="1">
 <li><strong>立方体映射</strong>（Cube
@@ -666,7 +707,7 @@ Map）：我们为光滑球定义一个包围盒，将球面投影到立方体�
 张纹理，并且畸变比较小。但是在计算纹素时需要计算球面上的点对应哪一张纹理，需要判断点和方向的位置关系。</li>
 </ol>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230126371-2bd84266-ecf8-4f0e-954f-362b79de8f7d.png" alt=Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230126371-2bd84266-ecf8-4f0e-954f-362b79de8f7d.png" alt=Img" style="zoom:75%;" />
 </center>
 <h3 id="凹凸贴图">凹凸贴图</h3>
 <p><strong>凹凸贴图</strong>是指用纹理的方式得到物体表面凹凸不平的感觉，相比于直接通过做出物体凹凸不平的方式，这种方法更加的简单。对于任何一个点，我们只需要改变这个点的法线方向就可以表达出这个点高度的变化。因此这个贴图也被称作<strong>法线贴图</strong>（Bump
@@ -684,7 +725,7 @@ class="math inline">\(90\)</span> 度角，法线的方向向量是 <span
 class="math inline">\(\left(\mathrm{d} p, -1\right)\)</span>
 正则化后的结果。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230127805-b1f12349-d7b2-438d-8af7-d5416c7a605e.png" alt=Img" style="zoom:50%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230127805-b1f12349-d7b2-438d-8af7-d5416c7a605e.png" alt=Img" style="zoom:50%;" />
 </center>
 <p>推广到三维情况，对于一个原始法线是 <span
 class="math inline">\(\left(0, 0, 1\right)\)</span> 的平面，我们在 <span
@@ -701,7 +742,7 @@ class="math display">\[
 <p>对于任意方向的原始法线，我们都可以先按照局部坐标系计算法线后通过变换变换到世界坐标系上。</p>
 <p>除了凹凸贴图之外，还有另外一种贴图称作位移贴图。位移贴图会移动所有顶点位置。因此使用顶点贴图的时候模型三角形分的越细越好。凹凸贴图并没有实际改变物体的形状，所以在物体的边上依旧可以看到光滑的曲线。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/230128989-0e9ae946-8361-4fcd-9145-34df33d2ae11.png" alt=Img" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/230128989-0e9ae946-8361-4fcd-9145-34df33d2ae11.png" alt=Img" style="zoom:100%;" />
 </center>
 <p>贴图可以推广到三维空间，我们可以使用三维贴图，计算三维空间中任意一个点对应的纹理。</p>
 <h3 id="阴影贴图">阴影贴图</h3>
@@ -747,6 +788,33 @@ Mapping 的方法只适用于在点光源下计算硬阴影。</p>
 </ul>
 </div>
 
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/XinranSix/archives/assets/62458905/6a6f2373-fbf5-4367-9ac2-65230cba90a2">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
           <div class="post-tags">
               <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 计算机图形学</a>
               <a href="/tags/%E7%9D%80%E8%89%B2/" rel="tag"><i class="fa fa-tag"></i> 着色</a>
@@ -775,6 +843,7 @@ Mapping 的方法只适用于在点光源下计算硬阴影。</p>
 
 
 
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -805,6 +874,24 @@ Mapping 的方法只适用于在点光源下计算硬阴影。</p>
     <span title="站点阅读时长">6:12</span>
   </span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div><link
   rel="stylesheet"
@@ -827,10 +914,7 @@ Mapping 的方法只适用于在点光源下计算硬阴影。</p>
   </footer>
 
   
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 <noscript>
@@ -839,17 +923,25 @@ Mapping 的方法只适用于在点光源下计算硬阴影。</p>
 
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
   
-
-
-
-
-
-
-  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -860,6 +952,13 @@ Mapping 的方法只适用于在点光源下计算硬阴影。</p>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://xinransix.github.io/2023/07/16/%E7%9D%80%E8%89%B2/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"XinranSix","repo":"comment","client_id":"9c03a2ae7f09aea822ba","client_secret":"d1c9ff2bb92b84493b307f1587585a6b12fc78b8","admin_user":"XinranSix","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"21867b91bd634c4e01f4bab19fa6f4d7"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
 </html>

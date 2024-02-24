@@ -16,8 +16,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="介绍 C 语言中的构造类型">
 <meta property="og:type" content="article">
@@ -83,6 +86,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -90,12 +94,38 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-友人帐"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友人帐</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </header>
         
@@ -155,6 +185,10 @@
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
 
     
@@ -238,6 +272,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
@@ -310,8 +351,7 @@ id="先定义结构体类型再去定义结构体变量">先定义结构体类�
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> id;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">32</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">&#125; zhangsan, lisi = &#123;<span class="number">1002</span>, <span class="string">&quot;李四&quot;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="number">25</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">&#125; MSG;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">wangwu</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">zhaoliu</span> =</span> &#123;<span class="number">1001</span>, <span class="string">&quot;赵六&quot;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="number">20</span>&#125;;</span><br><span class="line">    MSG msg1, msg2 = &#123;<span class="number">100</span>, <span class="number">200</span>, <span class="string">&#x27;w&#x27;</span>&#125;;</span><br><span class="line">    <span class="comment">// 结构体变量的使用</span></span><br><span class="line">    zhangsan.id = <span class="number">1001</span>;</span><br><span class="line">    <span class="built_in">strcpy</span>(zhangsan.name, <span class="string">&quot;张三&quot;</span>);</span><br><span class="line">    zhangsan.sex = <span class="string">&#x27;B&#x27;</span>;</span><br><span class="line">    zhangsan.age = <span class="number">18</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d - %s - %c - %d\n&quot;</span>, zhangsan.id, zhangsan.name, zhangsan.sex,</span><br><span class="line">           zhangsan.age);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d - %s - %c - %d\n&quot;</span>, lisi.id, lisi.name, lisi.sex, lisi.age);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d - %s - %c - %d\n&quot;</span>, zhaoliu.id, zhaoliu.name, zhaoliu.sex,</span><br><span class="line">           zhaoliu.age);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d - %d - %c\n&quot;</span>, msg2.a, msg2.b, msg2.c);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/59fbf612-ec92-45ae-ad17-8968adc14597"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/59fbf612-ec92-45ae-ad17-8968adc14597"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -319,8 +359,7 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在结构体中嵌套结构体</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> year;</span><br><span class="line">    <span class="type">int</span> month;</span><br><span class="line">    <span class="type">int</span> day;</span><br><span class="line">&#125; BD;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> id;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">32</span>];</span><br><span class="line">    BD birthday;</span><br><span class="line">&#125; STU;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    STU xiaoming;</span><br><span class="line">    xiaoming.id = <span class="number">1001</span>;</span><br><span class="line">    <span class="built_in">strcpy</span>(xiaoming.name, <span class="string">&quot;小明&quot;</span>);</span><br><span class="line">    <span class="comment">// 如果结构体中嵌套结构体，赋值时找到最内层的成员再进行赋值</span></span><br><span class="line">    xiaoming.birthday.year = <span class="number">2002</span>;</span><br><span class="line">    xiaoming.birthday.month = <span class="number">12</span>;</span><br><span class="line">    xiaoming.birthday.day = <span class="number">20</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d - %s - %d-%d-%d\n&quot;</span>, xiaoming.id, xiaoming.name,</span><br><span class="line">           xiaoming.birthday.year, xiaoming.birthday.month,</span><br><span class="line">           xiaoming.birthday.day);</span><br><span class="line">    <span class="comment">// 嵌套的形式定义并初始化</span></span><br><span class="line">    STU xiaoli = &#123;<span class="number">1002</span>, <span class="string">&quot;小丽&quot;</span>, <span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>&#125;;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d - %s - %d-%d-%d\n&quot;</span>, xiaoli.id, xiaoli.name, xiaoli.birthday.year,</span><br><span class="line">           xiaoli.birthday.month, xiaoli.birthday.day);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/0ba410eb-be6c-4b95-bd0f-c63e11d2576c"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/0ba410eb-be6c-4b95-bd0f-c63e11d2576c"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -329,8 +368,7 @@ id="相同类型的结构体变量可以相互赋值">相同类型的结构体�
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> id;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">32</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">zhangsan</span>;</span></span><br><span class="line">    zhangsan.id = <span class="number">1001</span>;</span><br><span class="line">    <span class="built_in">strcpy</span>(zhangsan.name, <span class="string">&quot;张三&quot;</span>);</span><br><span class="line">    zhangsan.sex = <span class="string">&#x27;B&#x27;</span>;</span><br><span class="line">    zhangsan.age = <span class="number">18</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d - %s - %c - %d\n&quot;</span>, zhangsan.id, zhangsan.name, zhangsan.sex,</span><br><span class="line">           zhangsan.age);</span><br><span class="line">    <span class="comment">// 相同类型的结构体变量之间可以直接赋值</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">lisi</span>;</span></span><br><span class="line">    lisi = zhangsan;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d - %s - %c - %d\n&quot;</span>, lisi.id, lisi.name, lisi.sex, lisi.age);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/1600c6a0-551c-4545-be40-833e838c7f9c"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/1600c6a0-551c-4545-be40-833e838c7f9c"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -350,8 +388,7 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125; STU;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// 定义一个结构体数组</span></span><br><span class="line">    STU edu[<span class="number">3</span>] = &#123;&#123;<span class="number">101</span>, <span class="string">&quot;Lucy&quot;</span>, <span class="number">78</span>&#125;, &#123;<span class="number">102</span>, <span class="string">&quot;Bob&quot;</span>, <span class="number">59.5</span>&#125;, &#123;<span class="number">103</span>, <span class="string">&quot;Tom&quot;</span>, <span class="number">85</span>&#125;&#125;;</span><br><span class="line">    <span class="comment">// 输出结构体数组中的元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d - %s - %.2f\n&quot;</span>, edu[j].num, edu[j].name, edu[j].score);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">float</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">        sum += edu[i].score;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;平均成绩为%.2f\n&quot;</span>, sum / <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/e33e0370-4391-488e-9a46-546671d78fca"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/e33e0370-4391-488e-9a46-546671d78fca"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -364,8 +401,7 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> id;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">32</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// 定义一个结构体指针变量</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">stu</span> *<span class="title">s</span>;</span></span><br><span class="line">    <span class="comment">// 在堆区开辟结构体空间并将其地址保存在结构体指针变量中</span></span><br><span class="line">    s = (<span class="keyword">struct</span> stu *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> stu));</span><br><span class="line">    s-&gt;id = <span class="number">1001</span>;</span><br><span class="line">    <span class="built_in">strcpy</span>(s-&gt;name, <span class="string">&quot;张三&quot;</span>);</span><br><span class="line">    s-&gt;sex = <span class="string">&#x27;B&#x27;</span>;</span><br><span class="line">    s-&gt;age = <span class="number">20</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d - %s - %c - %d\n&quot;</span>, s-&gt;id, s-&gt;name, s-&gt;sex, s-&gt;age);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/deee6855-afbc-410a-a566-81459db4dab9"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/deee6855-afbc-410a-a566-81459db4dab9"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -413,8 +449,7 @@ alt="image" />
 <p>在结构体中，以位为单位的成员，称之为位段（位域）。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">packed_data</span> &#123;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> a : <span class="number">2</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> b : <span class="number">6</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> c : <span class="number">4</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> d : <span class="number">4</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> i;</span><br><span class="line">&#125; data;</span><br></pre></td></tr></table></figure>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/53efd5a1-afe4-4259-b71c-7b6f3daeee5f"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/53efd5a1-afe4-4259-b71c-7b6f3daeee5f"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -424,8 +459,7 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">packed_data</span> &#123;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> a : <span class="number">2</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> b : <span class="number">6</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> c : <span class="number">4</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> d : <span class="number">4</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> i;</span><br><span class="line">&#125; data;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="keyword">sizeof</span>(data));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>, &amp;data);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>, &amp;(data.i));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/a6798353-3a76-4cba-b258-cc75406623d2"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/a6798353-3a76-4cba-b258-cc75406623d2"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -448,8 +482,7 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> a : <span class="number">7</span>;</span><br><span class="line">    <span class="type">char</span> b : <span class="number">7</span>;</span><br><span class="line">    <span class="type">char</span> c : <span class="number">2</span>;</span><br><span class="line">&#125; temp;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="keyword">sizeof</span>(temp));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/9a5a3396-0ef9-4b60-896b-037084ab837b"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/9a5a3396-0ef9-4b60-896b-037084ab837b"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -465,8 +498,7 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">m_type</span> &#123;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> a : <span class="number">1</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> b : <span class="number">2</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> : <span class="number">0</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> c : <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">m_type</span> <span class="title">temp</span>;</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="keyword">sizeof</span>(temp));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/433b3003-4261-4070-b141-3510ab816bd9"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/433b3003-4261-4070-b141-3510ab816bd9"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -492,8 +524,7 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个共用体</span></span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">un</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line">    <span class="type">int</span> c;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// 定义共用体变量</span></span><br><span class="line">    <span class="class"><span class="keyword">union</span> <span class="title">un</span> <span class="title">myun</span>;</span></span><br><span class="line">    myun.a = <span class="number">100</span>;</span><br><span class="line">    myun.b = <span class="number">200</span>;</span><br><span class="line">    myun.c = <span class="number">300</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a = %d, b = %d, c = %d\n&quot;</span>, myun.a, myun.b, myun.c);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/e9e093b7-5b59-45ad-8ee7-5dda248c367b"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/e9e093b7-5b59-45ad-8ee7-5dda248c367b"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -514,8 +545,7 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">week</span> &#123;</span> mon = <span class="number">3</span>, tue, wed, thu, fri = <span class="number">4</span>, sat, sun &#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, mon);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, tue);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, wed);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, thu);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, fri);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, sat);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, sun);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/9f84fd78-2150-4089-a342-66f6a57fae18"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/9f84fd78-2150-4089-a342-66f6a57fae18"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -542,6 +572,33 @@ alt="image" />
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/XinranSix/archives/assets/62458905/6a6f2373-fbf5-4367-9ac2-65230cba90a2">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
 </div>
 
           <div class="post-tags">
@@ -574,6 +631,7 @@ alt="image" />
 
 
 
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -604,6 +662,24 @@ alt="image" />
     <span title="站点阅读时长">6:12</span>
   </span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div><link
   rel="stylesheet"
@@ -626,10 +702,7 @@ alt="image" />
   </footer>
 
   
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 <noscript>
@@ -638,17 +711,25 @@ alt="image" />
 
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
   
-
-
-
-
-
-
-  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -659,6 +740,13 @@ alt="image" />
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://xinransix.github.io/2023/07/16/%E7%BB%93%E6%9E%84%E4%BD%93%E3%80%81%E5%85%B1%E7%94%A8%E4%BD%93%E3%80%81%E6%9E%9A%E4%B8%BE/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"XinranSix","repo":"comment","client_id":"9c03a2ae7f09aea822ba","client_secret":"d1c9ff2bb92b84493b307f1587585a6b12fc78b8","admin_user":"XinranSix","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"460ae359b6c6abd6de2db7e7bcaca895"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
 </html>

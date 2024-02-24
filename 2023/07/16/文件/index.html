@@ -16,8 +16,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="介绍 C 语言中对文件的操作">
 <meta property="og:type" content="article">
@@ -81,6 +84,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -88,12 +92,38 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-友人帐"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友人帐</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </header>
         
@@ -153,6 +183,10 @@
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
 
     
@@ -236,6 +270,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
@@ -268,8 +309,7 @@
 目录下对应着一个设备文件，在程序中操作设备，就必须对与其对应的 /dev
 下的设备文件进行操作。</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/3ec4f64e-8ecb-4f5f-9f2a-848f55c1e693"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/3ec4f64e-8ecb-4f5f-9f2a-848f55c1e693"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -344,16 +384,14 @@ bit，而文本文件的基本单位是字符，所有二进制文件的空间�
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">fgetc</span><span class="params">(FILE *stream)</span>;</span><br><span class="line">功能：从文件指针标识的文件中读取一个字符</span><br><span class="line">参数：</span><br><span class="line">    stream：指定的文件指针</span><br><span class="line">返回值：</span><br><span class="line">    成功：读取的字符</span><br><span class="line">    失败：EOF</span><br><span class="line">如果文件读取完毕，也会返回EOF</span><br></pre></td></tr></table></figure>
 <p>文件内容：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/db2f7510-086a-4a50-866b-0e4a0eedbb0e"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/db2f7510-086a-4a50-866b-0e4a0eedbb0e"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> c;</span><br><span class="line">    <span class="keyword">while</span> ((c = fgetc(fp)) != EOF) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;c = [%c] - %d\n&quot;</span>, c, c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/704fa56c-97ab-47b3-8421-67913d928911"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/704fa56c-97ab-47b3-8421-67913d928911"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -362,8 +400,7 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fputc(<span class="string">&#x27;w&#x27;</span>, fp);</span><br><span class="line">    fputc(<span class="string">&#x27;h&#x27;</span>, fp);</span><br><span class="line">    fputc(<span class="string">&#x27;a&#x27;</span>, fp);</span><br><span class="line">    fputc(<span class="string">&#x27;t&#x27;</span>, fp);</span><br><span class="line">    fputc(<span class="string">&#x27;\n&#x27;</span>, fp);</span><br><span class="line">    fputc(<span class="string">&#x27;o&#x27;</span>, fp);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>执行结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/9359f70e-e6cd-4451-a976-6956ca7eac05"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/9359f70e-e6cd-4451-a976-6956ca7eac05"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -372,16 +409,14 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">fgets</span><span class="params">(<span class="type">char</span> *s, <span class="type">int</span> size, FILE *stream)</span>;</span><br><span class="line">功能：从文件中读取内容</span><br><span class="line">参数：</span><br><span class="line">    s：保存读取到的内容</span><br><span class="line">    size：每次读取的最大个数</span><br><span class="line">    stream：文件指针</span><br><span class="line">返回值：</span><br><span class="line">    成功：读取的数据的首地址</span><br><span class="line">    失败：<span class="literal">NULL</span></span><br><span class="line">    如果文件内容读取完毕，也返回<span class="literal">NULL</span></span><br><span class="line">注意：从stream所指的文件中读取字符，在读取的时候碰到换行符或者是碰到文件的末尾停止读取，或者是读取了size‐<span class="number">1</span>个字节停止读取，在读取的内容后面会加一个\<span class="number">0</span>,作为字符串的结尾</span><br></pre></td></tr></table></figure>
 <p>文件内容：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/bc68401f-ebaf-49a2-9ac4-1d5572b0829a"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/bc68401f-ebaf-49a2-9ac4-1d5572b0829a"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">char</span> buf[<span class="number">32</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    fgets(buf, <span class="number">32</span>, fp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;buf = %s\n&quot;</span>, buf);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>执行结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/408b3cc0-d479-49ba-9140-d2a55b6836ca"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/408b3cc0-d479-49ba-9140-d2a55b6836ca"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -389,8 +424,7 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">fputs</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s, FILE *stream)</span>;</span><br><span class="line">功能：向文件写入数据</span><br><span class="line">参数：</span><br><span class="line">    s：要写入的内容</span><br><span class="line">    stream：文件指针</span><br><span class="line">返回值：</span><br><span class="line">    成功：写入文件内容的字节数</span><br><span class="line">    失败：EOF</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;66666666666666\n&quot;</span>, fp);</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;nihao&quot;</span>, fp);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/e91690c0-d36e-4b12-a405-a2f6c4466460"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/e91690c0-d36e-4b12-a405-a2f6c4466460"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -400,16 +434,14 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num = fread(str,<span class="number">100</span>,<span class="number">3</span>,fp);</span><br><span class="line">从fp所代表的文件中读取内容存放到str指向的内存中，读取的字节数为 ，每块<span class="number">100</span>个字节，<span class="number">3</span>块。</span><br><span class="line">返回值num，如果读到<span class="number">300</span>个字节返回值num为<span class="number">3</span></span><br><span class="line">如果读到了大于等于<span class="number">200</span>个字节小于<span class="number">300</span>个字节 返回值为<span class="number">2</span></span><br><span class="line">读到的字节数，大于等于<span class="number">100</span>个字节小于<span class="number">200</span>个字节 返回<span class="number">1</span></span><br><span class="line">不到<span class="number">100</span>个字节返回<span class="number">0</span></span><br></pre></td></tr></table></figure>
 <p>文件内容：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/8f7a09bb-0e48-4d41-b33c-f68cc156d116"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/8f7a09bb-0e48-4d41-b33c-f68cc156d116"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> buf[<span class="number">128</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    num = fread(buf, <span class="number">5</span>, <span class="number">4</span>, fp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;buf = %s\n&quot;</span>, buf);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;num = %d\n&quot;</span>, num);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/9d0e4d82-9950-4f1a-a57f-5a15e783c1c4"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/9d0e4d82-9950-4f1a-a57f-5a15e783c1c4"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -418,15 +450,13 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">&#125; MSG;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;w+&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    MSG msg[<span class="number">4</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="string">&#x27;a&#x27;</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="string">&#x27;b&#x27;</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="string">&#x27;c&#x27;</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line">    fwrite(msg, <span class="keyword">sizeof</span>(MSG), <span class="number">4</span>, fp);</span><br><span class="line">    rewind(fp);</span><br><span class="line">    MSG rcv[<span class="number">4</span>];</span><br><span class="line">    fread(rcv, <span class="keyword">sizeof</span>(MSG), <span class="number">4</span>, fp);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d - %d - %c\n&quot;</span>, rcv[i].a, rcv[i].b, rcv[i].c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/8189a143-ca58-4d92-9784-c178e2fbf695"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/8189a143-ca58-4d92-9784-c178e2fbf695"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>输出的文件内容：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/09f49c19-e832-485a-ac93-7abe4ab65327"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/09f49c19-e832-485a-ac93-7abe4ab65327"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -435,15 +465,13 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    <span class="type">char</span> ch1 = <span class="string">&#x27;a&#x27;</span>, ch2;</span><br><span class="line">    <span class="type">int</span> num1 = <span class="number">50</span>, num2;</span><br><span class="line">    <span class="type">char</span> string1[<span class="number">20</span>] = <span class="string">&quot;hello&quot;</span>, string2[<span class="number">20</span>];</span><br><span class="line">    <span class="type">float</span> score1 = <span class="number">85.5</span>, score2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;w+&quot;</span>)) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">fprintf</span>(fp, <span class="string">&quot;%c %d %s %f\n&quot;</span>, ch1, num1, string1, score1);</span><br><span class="line">    rewind(fp);</span><br><span class="line">    <span class="built_in">fscanf</span>(fp, <span class="string">&quot;%c %d %s %f\n&quot;</span>, &amp;ch2, &amp;num2, string2, &amp;score2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c %d %s %f\n&quot;</span>, ch2, num2, string2, score2);</span><br><span class="line">    fclose(fp);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/1d4ce40b-4ea8-42b1-b3e2-8492e3d2a93c"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/1d4ce40b-4ea8-42b1-b3e2-8492e3d2a93c"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>文件内容：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/6679d044-3000-4abc-b795-44e9b47758f4"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/6679d044-3000-4abc-b795-44e9b47758f4"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -457,15 +485,13 @@ alt="image" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    <span class="keyword">if</span> ((fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;w+&quot;</span>)) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;123456789\n&quot;</span>, fp);</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;abcdefghijklmn&quot;</span>, fp);</span><br><span class="line">    <span class="comment">// 获取当前文件指针的读写位置</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;offset = %ld\n&quot;</span>, ftell(fp));</span><br><span class="line">    <span class="comment">// 将当前文件的读写文件设置到文件的起始位置</span></span><br><span class="line">    <span class="comment">// rewind(fp);</span></span><br><span class="line">    <span class="comment">// fseek(fp, 0, SEEK_SET);</span></span><br><span class="line">    <span class="comment">// 将当前文件的读写位置设置为倒数第五个位置</span></span><br><span class="line">    fseek(fp, <span class="number">-5</span>, SEEK_END);</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> buf[<span class="number">32</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">while</span> (fgets(buf, <span class="number">32</span>, fp) != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[%s]\n&quot;</span>, buf);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/ed85fbcf-ec37-4964-8754-958e588e4e77"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/ed85fbcf-ec37-4964-8754-958e588e4e77"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
 <p>文件内容：</p>
 <figure>
-<img
-src="https://github.com/XinranSix/docs/assets/62458905/66b1da96-8dc3-4818-a30a-83bb46e30029"
+<img data-src="https://github.com/XinranSix/docs/assets/62458905/66b1da96-8dc3-4818-a30a-83bb46e30029"
 alt="image" />
 <figcaption aria-hidden="true">image</figcaption>
 </figure>
@@ -492,6 +518,33 @@ alt="image" />
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/XinranSix/archives/assets/62458905/6a6f2373-fbf5-4367-9ac2-65230cba90a2">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
 </div>
 
           <div class="post-tags">
@@ -522,6 +575,7 @@ alt="image" />
 
 
 
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -552,6 +606,24 @@ alt="image" />
     <span title="站点阅读时长">6:12</span>
   </span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div><link
   rel="stylesheet"
@@ -574,10 +646,7 @@ alt="image" />
   </footer>
 
   
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 <noscript>
@@ -586,17 +655,25 @@ alt="image" />
 
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
   
-
-
-
-
-
-
-  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -607,6 +684,13 @@ alt="image" />
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://xinransix.github.io/2023/07/16/%E6%96%87%E4%BB%B6/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"XinranSix","repo":"comment","client_id":"9c03a2ae7f09aea822ba","client_secret":"d1c9ff2bb92b84493b307f1587585a6b12fc78b8","admin_user":"XinranSix","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"12f48aaa8ed00aba60ab1c88f368c283"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
 </html>

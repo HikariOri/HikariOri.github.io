@@ -16,8 +16,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="光栅图形学">
 <meta property="og:type" content="article">
@@ -95,6 +98,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -102,12 +106,38 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-友人帐"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友人帐</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </header>
         
@@ -168,6 +198,10 @@ And Occlusion）</span></a><ol class="nav-child"><li class="nav-item nav-level-3
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
 
     
@@ -245,6 +279,13 @@ And Occlusion）</span></a><ol class="nav-child"><li class="nav-item nav-level-3
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
@@ -283,7 +324,7 @@ class="math inline">\(\left[-1, 1\right]^3\)</span>
 RGB）。</p>
 <h2 id="屏幕空间">屏幕空间</h2>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/229706381-92102eb5-bbf8-4c1c-a262-ecac7f479ca3.png" alt="Img" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229706381-92102eb5-bbf8-4c1c-a262-ecac7f479ca3.png" alt="Img" style="zoom:100%;" />
 </center>
 <p>我们认为屏幕左下角为原点，向右为 <span
 class="math inline">\(x\)</span> 轴，向上为 <span
@@ -344,7 +385,7 @@ M_{viewport} = \begin{bmatrix}
 <p>注意：判断某个像素是否在三角形内部实际上是判断像素的中心是否在三角形内部。</p>
 </blockquote>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/229712533-69e42641-49bf-4ec9-9c44-3d45b768ead0.png" alt="Img" style="zoom:70%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229712533-69e42641-49bf-4ec9-9c44-3d45b768ead0.png" alt="Img" style="zoom:70%;" />
 </center>
 <p>判断某个像素是否在三角形内部，可以使用叉乘。对于三角形边界上的点，这里不做处理。</p>
 <p>为了能够更快速的遍历像素点，我们可以用以下方法：</p>
@@ -371,12 +412,12 @@ target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%82%85%E9%
 <h4 id="走样和滤波">走样和滤波</h4>
 <p>走样更为学术的定义是两个不同频率的信号在使用相同采样的方法后产生的结果无法进行区分。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/229715145-9eb2f23b-e5c8-4705-ab55-ee70f62b1928.png" alt="Img" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229715145-9eb2f23b-e5c8-4705-ab55-ee70f62b1928.png" alt="Img" style="zoom:100%;" />
 </center>
 <p>图中的红色信号和蓝色信号是两个频率不一样的信号，绿色虚线处是采样点，我们发现两个不同频率的信号在同一个采样方式下结果相同，这就产生了走样。</p>
 <p><strong>滤波</strong>（Filter）是把特定频率的波过滤掉。如果仅保留高频信息，那么这称为高通滤波；如果仅保留低频信息称为低通滤波；如果既删除高频信息，还删除低频信息，只保留中频信息称为带通滤波。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/229715725-bb3283a8-9d43-4dfc-bcc0-91586603a77b.png" alt="Img" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229715725-bb3283a8-9d43-4dfc-bcc0-91586603a77b.png" alt="Img" style="zoom:100%;" />
 </center>
 <p>对一个图片进行傅立叶变换后，得到的是上图右图的样子。中心代表了低频信息，边缘代表了高频信息，亮度代表对应频率的能量。对于图片而言，一般低频信息更加的丰富，而高频信息比较少。高频信息一般代表<strong>边缘信息</strong>，因为边缘信息频率比较高；低频信息是图片<strong>模糊后的结果</strong>，频率变化小。</p>
 <h3 id="卷积和卷积定律">卷积和卷积定律</h3>
@@ -392,16 +433,16 @@ class="math inline">\(n\)</span>
 越大，滤波器得到的频率范围越低。下图是一个 <span class="math inline">\(3
 \times 3\)</span> 的 Box Filter.</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/229717368-4b294929-ce87-4f8d-b741-a63a8b0220ac.png" alt="Img" style="zoom:60%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229717368-4b294929-ce87-4f8d-b741-a63a8b0220ac.png" alt="Img" style="zoom:60%;" />
 </center>
 <h4 id="深入了解采样">深入了解采样</h4>
 <p>采样我们可以认为是一个连续函数乘以一系列的脉冲函数的结果。根据卷积定律我们知道，这相当于连续函数的傅立叶变换和脉冲函数傅立叶变换的卷积。脉冲函数的傅立叶变换还是脉冲函数。卷积的结果是信号的频谱在不断地重复。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/229717860-97bec33e-e0b5-4e65-8da0-046940764d1e.png" alt="Img" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229717860-97bec33e-e0b5-4e65-8da0-046940764d1e.png" alt="Img" style="zoom:100%;" />
 </center>
 <p>当采样率不足时会使得频谱之间的间隔太小，导致频谱间产生重叠，这些重叠就是走样。</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/229718235-28dffa88-75ca-488c-9c2e-37e3b161f12d.png" alt="频谱重叠示意图" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229718235-28dffa88-75ca-488c-9c2e-37e3b161f12d.png" alt="频谱重叠示意图" style="zoom:75%;" />
 </center>
 <p>这也就解释了为什么使用高通滤波器可以帮助我们减少走样。这是因为使用高通滤波器只保留更窄的频率范围，可以减少频谱的重叠。</p>
 <h3 id="反走样的方法">反走样的方法</h3>
@@ -412,7 +453,7 @@ class="math inline">\(n\)</span>
 <li>超采样（Supersampling）。</li>
 </ul>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/229804678-bc129ae7-9d27-4c36-997a-5dacc0f3cce6.png" alt="Img" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229804678-bc129ae7-9d27-4c36-997a-5dacc0f3cce6.png" alt="Img" style="zoom:75%;" />
 </center>
 <h3 id="超采样">超采样</h3>
 <p>在实际的操作中，我们使用 MSAA（Multi-Sampling
@@ -424,9 +465,9 @@ Antialiasing）的方式来近似进行反走样的操作，具体的步骤如�
 <li>每一个像素点的结果都是这些小像素点的平均结果。</li>
 </ol>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/229805927-c5acc8ea-b1a7-4dd3-b3a9-023beee63260.png" alt="Img" style="zoom:50%;" />
-<img src="https://user-images.githubusercontent.com/62458905/229806033-26f6c6a2-8c9f-4795-88f8-2a5972eea2cc.png" alt="Img" style="zoom:50%;" />
-<img src="https://user-images.githubusercontent.com/62458905/229806257-f6180162-949c-4e79-ac1f-fa1b912d1d57.png" alt="Img" style="zoom:50%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229805927-c5acc8ea-b1a7-4dd3-b3a9-023beee63260.png" alt="Img" style="zoom:50%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229806033-26f6c6a2-8c9f-4795-88f8-2a5972eea2cc.png" alt="Img" style="zoom:50%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229806257-f6180162-949c-4e79-ac1f-fa1b912d1d57.png" alt="Img" style="zoom:50%;" />
 </center>
 <p>MSAA
 仅仅指的是模糊的过程，并不包含采样的过程。这样的方法虽然简单，效果好，但是会增加计算量。在工业界中，一般会采用更为有效的方式拆分采样点，甚至会复用采样点以达到更好的效果。</p>
@@ -456,7 +497,7 @@ n\right)\)</span>。这个算法存在以下几个问题：</p>
 <li>有时候不好确定各个三角形的远近，甚至会出现下图所示的情况。</li>
 </ol>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/229811294-639cc1ee-355c-4d67-b12c-911f00ac2b96.png" alt="遮挡成环的情况" style="zoom:75%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229811294-639cc1ee-355c-4d67-b12c-911f00ac2b96.png" alt="遮挡成环的情况" style="zoom:75%;" />
 </center>
 <h3 id="z-buffer">Z-Buffer</h3>
 <p><strong>深度缓存</strong>（Z-Bufer）算法是处理远近的终极算法。</p>
@@ -467,7 +508,7 @@ buffer）遍历所以三角形上的点，对于任意一个像素，我们记�
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (each triangle T) &#123;</span><br><span class="line">    <span class="keyword">for</span> (each <span class="built_in">sample</span>(x, y, z) in T) &#123;</span><br><span class="line">        <span class="keyword">if</span> (z &lt; zbuffer[x, y]) &#123;	<span class="comment">// closest sample so far</span></span><br><span class="line">            framebuffer[x, y] = rgb;	<span class="comment">// update color</span></span><br><span class="line">            zbuffer[x, y] = z;	<span class="comment">// update depth</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// do nothing, this sample is occluded</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 <p>使用深度缓存生成的深度缓存图和颜色缓存图如下所示：</p>
 <center>
-<img src="https://user-images.githubusercontent.com/62458905/229814214-df26dd9e-899e-453e-b78c-a25cd2d67668.png" alt="Img" style="zoom:100%;" />
+<img data-src="https://user-images.githubusercontent.com/62458905/229814214-df26dd9e-899e-453e-b78c-a25cd2d67668.png" alt="Img" style="zoom:100%;" />
 </center>
 <p>深度缓存技术的时间复杂度是 <span class="math inline">\(\Omicron
 \left(n\right)\)</span>。这并不是一个排序算法，因此复杂度比排序算法要小。如果
@@ -495,6 +536,33 @@ MASS 中需要深度缓存技术，需要对每一个采样点应用 Z-Buffer �
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/XinranSix/archives/assets/62458905/6a6f2373-fbf5-4367-9ac2-65230cba90a2">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
 </div>
 
           <div class="post-tags">
@@ -525,6 +593,7 @@ MASS 中需要深度缓存技术，需要对每一个采样点应用 Z-Buffer �
 
 
 
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -555,6 +624,24 @@ MASS 中需要深度缓存技术，需要对每一个采样点应用 Z-Buffer �
     <span title="站点阅读时长">6:12</span>
   </span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div><link
   rel="stylesheet"
@@ -577,10 +664,7 @@ MASS 中需要深度缓存技术，需要对每一个采样点应用 Z-Buffer �
   </footer>
 
   
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 <noscript>
@@ -589,17 +673,25 @@ MASS 中需要深度缓存技术，需要对每一个采样点应用 Z-Buffer �
 
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
   
-
-
-
-
-
-
-  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -610,6 +702,13 @@ MASS 中需要深度缓存技术，需要对每一个采样点应用 Z-Buffer �
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://xinransix.github.io/2023/07/16/%E5%85%89%E6%A0%85%E5%8C%96/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"XinranSix","repo":"comment","client_id":"9c03a2ae7f09aea822ba","client_secret":"d1c9ff2bb92b84493b307f1587585a6b12fc78b8","admin_user":"XinranSix","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"5965fb683edc6285a37658e5d795d0d2"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
 </html>
