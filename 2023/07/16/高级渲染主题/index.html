@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="简单介绍下一些较高级的渲染方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高级渲染主题">
+<meta property="og:url" content="https://xinransix.github.io/2023/07/16/%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93%E4%B8%BB%E9%A2%98/index.html">
+<meta property="og:site_name" content="木漏れ日">
+<meta property="og:description" content="简单介绍下一些较高级的渲染方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231392207-a5d78f12-1277-461f-a1ae-9d554c986e50.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231392172-73920a70-5f9a-49a7-aa35-b991ddf63480.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231391911-7372976e-6abb-463e-9728-13bb0b9eedef.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231392925-c6544672-d194-4ef0-af94-0436dc494bbe.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231393236-81d73aa4-b02d-4d20-97ad-740a54f19f0c.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231394358-e1607f8e-bcc5-4d0a-9121-328642f409bc.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231408693-9766422c-77ab-4598-8c80-d2e94dc4ec57.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231409723-b5066afd-4128-47cb-806f-763d2a5104d3.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231412180-9fe05e93-e566-4cd6-a471-1d787d40e538.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231652667-750a6887-2407-4db2-a5dd-e801e5bfc75c.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231653290-aa79bb6a-3fbc-4516-ae93-ef7b7d4b4ef6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231653886-d78f2d2f-192b-414c-9896-23438306c1b7.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231654420-34b0b24e-347e-4237-9808-46ace086b3ff.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231654935-f6524435-3b1d-4841-8983-9760b05cb235.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231655049-ddb0d053-fede-4eb8-9249-2966ac6e11bc.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231655321-ee00b9c5-731f-42ec-b68d-2730c42d61ce.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231655403-f3c94387-5f28-43e7-9d76-da3644c902e9.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231656315-482c42ab-231f-4d6b-8091-3d889f29ef1d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231656429-ac385ac6-7a37-4c8f-ab9f-71b8d21bac22.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231656768-777d08a2-c53f-4706-892f-966484098806.png">
+<meta property="article:published_time" content="2023-07-16T02:23:05.000Z">
+<meta property="article:modified_time" content="2024-02-10T09:19:27.084Z">
+<meta property="article:author" content="Yao J">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="高级渲染">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/62458905/231392207-a5d78f12-1277-461f-a1ae-9d554c986e50.png">
+
+
+<link rel="canonical" href="https://xinransix.github.io/2023/07/16/%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93%E4%B8%BB%E9%A2%98/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xinransix.github.io/2023/07/16/%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93%E4%B8%BB%E9%A2%98/","path":"2023/07/16/高级渲染主题/","title":"高级渲染主题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>高级渲染主题 | 木漏れ日</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">木漏れ日</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD"><span class="nav-number">1.</span> <span class="nav-text">高级光线传播</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%81%8F%E4%B8%8E%E6%97%A0%E5%81%8F%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.1.</span> <span class="nav-text">有偏与无偏蒙特卡洛估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bidirectional-path-tracing"><span class="nav-number">1.2.</span> <span class="nav-text">Bidirectional Path Tracing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#metropolis-light-transport"><span class="nav-number">1.3.</span> <span class="nav-text">Metropolis Light Transport</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#photon-mapping"><span class="nav-number">1.4.</span> <span class="nav-text">Photon Mapping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vertex-connection-and-merging"><span class="nav-number">1.5.</span> <span class="nav-text">Vertex Connection and
+Merging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instant-radiosity-ir"><span class="nav-number">1.6.</span> <span class="nav-text">Instant Radiosity (IR)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E5%A4%96%E8%A7%82%E5%BB%BA%E6%A8%A1advanced-appearance-modeling"><span class="nav-number">2.</span> <span class="nav-text">高级外观建模（Advanced
+Appearance Modeling）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#non-surface-models"><span class="nav-number">2.1.</span> <span class="nav-text">Non-surface models</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#participating-media"><span class="nav-number">2.1.1.</span> <span class="nav-text">Participating media</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hair-fur-fiber"><span class="nav-number">2.1.2.</span> <span class="nav-text">Hair &#x2F; fur &#x2F; fiber</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#granular-material"><span class="nav-number">2.1.3.</span> <span class="nav-text">Granular Material</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#surface-models"><span class="nav-number">2.2.</span> <span class="nav-text">Surface models</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#translucent-material"><span class="nav-number">2.2.1.</span> <span class="nav-text">Translucent Material</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cloth"><span class="nav-number">2.2.2.</span> <span class="nav-text">Cloth</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">真实世界模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E5%8C%96%E7%94%9F%E6%88%90"><span class="nav-number">3.</span> <span class="nav-text">程序化生成</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yao J"
+      src="https://avatars.githubusercontent.com/u/62458905?v=4">
+  <p class="site-author-name" itemprop="name">Yao J</p>
+  <div class="site-description" itemprop="description">图形渣</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/XinranSix" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;XinranSix" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2937552332@qq.com" title="E-Mail → 2937552332@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://shyarcher.github.io/" title="https:&#x2F;&#x2F;shyarcher.github.io&#x2F;" rel="noopener" target="_blank">ShyArcher</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://noahapps.github.io/" title="https:&#x2F;&#x2F;noahapps.github.io&#x2F;" rel="noopener" target="_blank">Noah</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xinransix.github.io/2023/07/16/%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93%E4%B8%BB%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/62458905?v=4">
+      <meta itemprop="name" content="Yao J">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木漏れ日">
+      <meta itemprop="description" content="图形渣">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="高级渲染主题 | 木漏れ日">
+      <meta itemprop="description" content="简单介绍下一些较高级的渲染方法">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高级渲染主题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-16 10:23:05" itemprop="dateCreated datePublished" datetime="2023-07-16T10:23:05+08:00">2023-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-10 17:19:27" itemprop="dateModified" datetime="2024-02-10T17:19:27+08:00">2024-02-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/GAMES-101/" itemprop="url" rel="index"><span itemprop="name">GAMES 101</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>10 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">简单介绍下一些较高级的渲染方法</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="高级光线传播">高级光线传播</h2>
+<p>高级光线传播方法有如下几种：</p>
+<ul>
+<li><p>无偏光线传播方法</p>
+<ul>
+<li><p>Bidirectional path tracing（BDPT）：双向路径追踪；</p></li>
+<li><p>Metropolis light transport（MLT）。</p></li>
+</ul></li>
+<li><p>有偏光线传播方法</p>
+<ul>
+<li><p>Photon mapping：光子映射；</p></li>
+<li><p>Vertex connection and merging（VCM）。</p></li>
+</ul></li>
+<li><p>Instant radiosity（VPL / many light methods）</p></li>
+</ul>
+<h3 id="有偏与无偏蒙特卡洛估计">有偏与无偏蒙特卡洛估计</h3>
+<p><strong>无偏</strong>（Unbiased）蒙塔卡洛估计指的是不论我们选取多少样本进行估计，得到的期望值和正确值一样。</p>
+<p><strong>有偏</strong>（Biased）蒙特卡洛估计指的是如果我们取样后得到的估计值与要预测的真实值是有偏差的，那么我们认为这是一个有偏估计。当我们采样足够大的的时候，有偏估计也可以收敛到正确值，这说明了有偏估计具有一致性（consistent）。</p>
+<h3 id="bidirectional-path-tracing">Bidirectional Path Tracing</h3>
+<p>BDPT
+指的是我们分别从光源和眼睛（摄像机）引出半路径，并将半路径的终点连接起来形成路径。这种方法非常适用于光源出光线比较复杂的情况。但是实现困难并且渲非常慢，是一种无偏的估计。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231392207-a5d78f12-1277-461f-a1ae-9d554c986e50.png" alt="Img" style="zoom:75%;" />
+</center>
+<h3 id="metropolis-light-transport">Metropolis Light Transport</h3>
+<p>MLT 使用使用马尔可夫链的方法进行采样：从当前采样点依据某种 PDF
+跳到下一个采样点。</p>
+<p>这种采样方式可以很容易的采样到某一个采样的临近点。其主要思想是，当一条路径可以到达光源时，那么临近的采样也应该容易到达光源。非常适用于困难场景的渲染，尤其是
+SDS（Specular-Diffuse-Specular）路径。</p>
+<p>但是很难估计收敛速度，每一个像素的收敛速度也不一样。操作独立，各个像素独立导致画面会比较「脏」，因此很难应用到动画上。MLT
+也是无偏估计。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231392172-73920a70-5f9a-49a7-aa35-b991ddf63480.png" alt="Img" style="zoom:75%;" />
+</center>
+<h3 id="photon-mapping">Photon Mapping</h3>
+<p>光子映射是一个分为两步的方法。是一种有偏估计。适合于 SDS
+路径以及焦散（caustics）材质。</p>
+<ol type="1">
+<li>从光源出发射出光子，当光子反射到漫反射平面时停止，记录光子位置；</li>
+<li>从摄像机射出半路径，直到路径反射到漫反射平面上。</li>
+</ol>
+<p>我们需要通过局部密度估计在计算单位面积内，光子数的多少。那么光子密度越高的地方应当越亮。对于任意一个点，我们选取临近
+<span class="math inline">\(N\)</span> 个距离最近的光子，那么使用 <span
+class="math inline">\(N\)</span> 处以光子所占的面积 <span
+class="math inline">\(\Delta A\)</span> 就可以得到该就可以得到该
+点的局部密度。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231391911-7372976e-6abb-463e-9728-13bb0b9eedef.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>为什么这是一个有偏的方法？我们 <span class="math inline">\(N\)</span>
+太少的话易产生噪声，但是 <span class="math inline">\(N\)</span>
+太多又会模糊。当我们使用的光子足够多的时候，<span
+class="math inline">\(\Delta A\)</span> 就趋近于 <span
+class="math inline">\(\mathrm{d} A\)</span>
+因此，只要我们的采样是有限的，得到的密度多少都会有偏差，所以这是一个有偏的估计。但是这是一致的估计。</p>
+<h3 id="vertex-connection-and-merging">Vertex Connection and
+Merging</h3>
+<p>VCM
+是一种结合了双向路径追踪和光子映射的方法。其主要思想是在双向光线追踪中如果半路径的结束点并不在一起但是距离比较近的话可以组合在一起。使用光子映射的方法来组合这些临近的「光子」。是一种有偏估计。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231392925-c6544672-d194-4ef0-af94-0436dc494bbe.png" alt="Img" style="zoom:75%;" />
+</center>
+<h3 id="instant-radiosity-ir">Instant Radiosity (IR)</h3>
+<p>IR
+最主要的思想是认为被照亮的表面可以当作一个小光源。从光源打出来的地方到一些表面后，到达点就是新的虚拟光源。之后就可以将这些虚拟光源看作光源进行渲染。优点是渲染速度快并且在漫反射场景中表现的很好;缺点是不能很好的处理反射材质。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231393236-81d73aa4-b02d-4d20-97ad-740a54f19f0c.png" alt="Img" style="zoom:75%;" />
+</center>
+<h2 id="高级外观建模advanced-appearance-modeling">高级外观建模（Advanced
+Appearance Modeling）</h2>
+<p>此节会介绍：</p>
+<ul>
+<li>Non-surface models（非表面模型）
+<ul>
+<li>Participating media（散射介质）</li>
+<li>Hair / fur / fiber (BCSDF)（毛发）</li>
+<li>Granular material（颗粒材质）</li>
+</ul></li>
+<li>Surface models（表面模型）
+<ul>
+<li>Translucent material (BSSRDF)</li>
+<li>Cloth（织物）</li>
+<li>Detailed material (non-statistical BRDF)</li>
+</ul></li>
+<li>Procedural appearance</li>
+</ul>
+<h3 id="non-surface-models">Non-surface models</h3>
+<h4 id="participating-media">Participating media</h4>
+<p>对于一些散射介质，例如云、雾，我们认为他们是非表面模型。因此他们不存在一个表面，而是由许多散射小颗粒组成的。任何一束光通过散射介质，会发生（部分）吸收或者散射。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231394358-e1607f8e-bcc5-4d0a-9121-328642f409bc.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>我们采用<strong>相位函数</strong>（Phase
+Function）去描述在某一点光的散射和散射角度的关系。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231408693-9766422c-77ab-4598-8c80-d2e94dc4ec57.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>再渲染散射介质时：</p>
+<ul>
+<li>Randomly choose a direction to bounce;</li>
+<li>Randomly choose a distance to go straight;</li>
+<li>At each 'shading point', connect to the light.</li>
+</ul>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231409723-b5066afd-4128-47cb-806f-763d2a5104d3.png" alt="Img" style="zoom:75%;" />
+</center>
+<h4 id="hair-fur-fiber">Hair / fur / fiber</h4>
+<p>光线与头发的作用不是简单的光线和表面的作用，首先视头发为一个圆柱体。</p>
+<p>在 Kajiya-Kay
+模型中，我们认为一束光射到头发上后，头发会将光线散射为一个圆锥。Kajiya-Kay
+模型做出来的效果并不好。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231412180-9fe05e93-e566-4cd6-a471-1d787d40e538.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>在 Marschner
+模型中，我们认为头发是一个能够透光的「玻璃」，光线应该分为三部分，分别是：</p>
+<ul>
+<li>R：光线直接反射光；</li>
+<li>TT：光线经过两次折射后射出的折射光；</li>
+<li>TRT：光线折射后经过一次介质内反射后的折射光。</li>
+</ul>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231652667-750a6887-2407-4db2-a5dd-e801e5bfc75c.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>以上的模型对于人类的毛发已经有了很好的表现，但是对于动物毛发来说，表现并不好。这是因为动物的毛发并不是单层的结构。动物毛发中包含一层毛髓质（Medulla），因此引入双层模型（Double
+CylinderModel）来对毛发进行建模。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231653290-aa79bb6a-3fbc-4516-ae93-ef7b7d4b4ef6.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>在这个模型中我们额外增加了两种光：</p>
+<ul>
+<li><span
+class="math inline">\(\text{TT}^{\text{s}}\)</span>：经过了中间介质的 TT
+光线；</li>
+<li><span
+class="math inline">\(\text{TRT}^{S}\)</span>：经过了中间介质的 TRT
+光线。</li>
+</ul>
+<p>这样 5 种光线结合在一起得到的毛发会更加的真实。</p>
+<h4 id="granular-material">Granular Material</h4>
+<p>粒状材质是由细小的颗粒组成的材质，例如谷物，沙子，调味料等。这样的材质也有程序化的方法进行渲染。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231653886-d78f2d2f-192b-414c-9896-23438306c1b7.png" alt="Img" style="zoom:75%;" />
+</center>
+<h3 id="surface-models">Surface models</h3>
+<h4 id="translucent-material">Translucent Material</h4>
+<p>Translucent
+材质指的是能够透光的一些材质，光线可以从一个地方进去并从另一个地方出去。例如玉石，水母都是典型的
+Translucent 材质。</p>
+<p>一条光在半透明材质上入射后，出射光的起点并不一定在入射点上（Subsurface
+Scattering），因此我们需要对 BRDF 进行拓展。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231654420-34b0b24e-347e-4237-9808-46ace086b3ff.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>此时 BDRF 就变成了
+BSSDRF，此时我们需要引入新的位置参数，我们不仅要对角度进行积分。BSSDRF
+的定义为： <span class="math display">\[
+S\left(x_i,\omega_i,x_o,\omega_o\right)
+\]</span></p>
+<p>渲染方程要修正为： <span class="math display">\[
+L\left(x_o,\omega_o\right) =
+\int_A\int_{H^2}S\left(x_i,\omega_i,x_o,\omega_o\right)
+L_i\left(x_i,\omega_i\right) \cos \theta_i \, \mathrm{d} \omega_i \,
+\mathrm{d} A
+\]</span></p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231654935-f6524435-3b1d-4841-8983-9760b05cb235.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>我们会等效的认为，一个半透明材质上有一束光摄入相当于在介质的外部和内部各有一个光源。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231655049-ddb0d053-fede-4eb8-9249-2966ac6e11bc.png" alt="Img" style="zoom:75%;" />
+</center>
+<h4 id="cloth">Cloth</h4>
+<p>织物的制作工艺比较的复杂。首先，多层（Ply）缠绕会变成一根纱（Yarn），多根纱相互缠绕就会变成一根线（Fiber）。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231655321-ee00b9c5-731f-42ec-b68d-2730c42d61ce.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>我们可以使用两种编织工艺，一种是机织（Woven），通过线之间的经纬交叉得到布料，另一种方式是手打（Knitted）的方式，类似于织毛衣的过程。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231655403-f3c94387-5f28-43e7-9d76-da3644c902e9.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>不同的布料有不同的 BDRF，常见的渲染方法有：</p>
+<ul>
+<li>Render as Surface
+<ul>
+<li>Given the weaving pattern, calculate the overall behavior</li>
+<li>Render using a BRDF</li>
+</ul></li>
+<li>Render as Surface</li>
+<li>Render as Participating Media
+<ul>
+<li>Properties of individual fibers &amp; their distribution -&gt;
+scattering parameters</li>
+<li>Render as a participating medium</li>
+</ul></li>
+<li>Render as Actual Fibers
+<ul>
+<li>Render every fiber explicitly</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>对于天鹅绒材质等布料，使用 BDRF 并不合适。</p>
+</blockquote>
+<h3 id="真实世界模型">真实世界模型</h3>
+<p>现在的渲染器渲染出的画面并不真实，主要原因是这些渲染器过于完美。在实际生活中的物体一般表面都会带有划痕，会让物体表面看起来更真实。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231656315-482c42ab-231f-4d6b-8091-3d889f29ef1d.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>我们可以用微表面模型的发现分布来解决这种情况。我们只需要在微表面模型的分布上加一些噪声，就可以产生带有划痕的效果。但是，在这样的法线分布下，光线很难反射到光源处。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231656429-ac385ac6-7a37-4c8f-ab9f-71b8d21bac22.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>因此，我们的解决方案是，我们对于每一个像素，对应一部分法线分布 <span
+class="math inline">\(\mathcal{P}-\mathrm{NDF}\)</span>，使用这一部分的法线总体分布进行路径追踪。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231656768-777d08a2-c53f-4706-892f-966484098806.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>此外，目前研究比较前沿的问题还有波动光学（Wave Optics）的渲染。</p>
+<h2 id="程序化生成">程序化生成</h2>
+<p>程序化生成（Procedural
+Appearance）指的是我们可以不定义一个纹理，而是直接定义一个噪声，通过噪声计算纹理。木纹，陶瓷都可以定制对应的纹理进行程序化的生成。</p>
+<p>不仅可以定义 2 维的噪声，也可以定义 3 维的噪声，在将物体切割时，3
+维噪声会将切面的纹理动态地计算出来。</p>
+<p>例如下面这个噪声函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">if</span> <span class="title">noise</span><span class="params">(x, y, z)</span> &gt; threshold:</span></span><br><span class="line"><span class="function">    reflectance =</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    reflectance = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yao J
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xinransix.github.io/2023/07/16/%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93%E4%B8%BB%E9%A2%98/" title="高级渲染主题">https://xinransix.github.io/2023/07/16/高级渲染主题/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 计算机图形学</a>
+              <a href="/tags/%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93/" rel="tag"><i class="fa fa-tag"></i> 高级渲染</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E9%A2%9C%E8%89%B2%E4%B8%8E%E6%84%9F%E7%9F%A5/" rel="prev" title="颜色与感知">
+                  <i class="fa fa-angle-left"></i> 颜色与感知
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E7%9B%B8%E6%9C%BA%E3%80%81%E9%95%9C%E5%A4%B4%E5%92%8C%E5%85%89%E5%9C%BA/" rel="next" title="相机、镜头和光场">
+                  相机、镜头和光场 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yao J</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">102k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:12</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div><link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.css"
+/>
+<div id="sakana-widget" style="position: fixed; bottom: 10px; right: 20px; z-index: 999;"></div>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount('#sakana-widget');
+  }
+</script>
+<script
+  async
+  onload="initSakanaWidget()"
+  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.js"
+></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

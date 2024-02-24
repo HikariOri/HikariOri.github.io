@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="介绍 C 语言中对文件的操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件">
+<meta property="og:url" content="https://xinransix.github.io/2023/07/16/%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:site_name" content="木漏れ日">
+<meta property="og:description" content="介绍 C 语言中对文件的操作">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-07-16T02:38:34.000Z">
+<meta property="article:modified_time" content="2024-02-10T08:44:47.908Z">
+<meta property="article:author" content="Yao J">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="文件">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://xinransix.github.io/2023/07/16/%E6%96%87%E4%BB%B6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xinransix.github.io/2023/07/16/%E6%96%87%E4%BB%B6/","path":"2023/07/16/文件/","title":"文件"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>文件 | 木漏れ日</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">木漏れ日</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">文件的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">文件的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E6%96%87%E4%BB%B6%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">磁盘文件的分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8C%87%E9%92%88"><span class="nav-number">2.</span> <span class="nav-text">文件指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6-fopen"><span class="nav-number">3.</span> <span class="nav-text">打开文件 fopen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E6%96%87%E4%BB%B6-fclose"><span class="nav-number">4.</span> <span class="nav-text">关闭文件 fclose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E8%AF%BB%E5%86%99%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6"><span class="nav-number">5.</span> <span class="nav-text">一次读写一个字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fgetc"><span class="nav-number">5.1.</span> <span class="nav-text">fgetc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fputc"><span class="nav-number">5.2.</span> <span class="nav-text">fputc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E8%AF%BB%E5%86%99%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">6.</span> <span class="nav-text">一次读写一个字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fgets"><span class="nav-number">6.1.</span> <span class="nav-text">fgets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fputs"><span class="nav-number">6.2.</span> <span class="nav-text">fputs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E6%96%87%E4%BB%B6-fread"><span class="nav-number">7.</span> <span class="nav-text">读文件 fread</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E6%96%87%E4%BB%B6-fwrite"><span class="nav-number">8.</span> <span class="nav-text">写文件 fwrite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6%E5%87%BD%E6%95%B0"><span class="nav-number">9.</span> <span class="nav-text">格式化读写文件函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E8%AF%BB%E5%86%99"><span class="nav-number">10.</span> <span class="nav-text">随机读写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rewind"><span class="nav-number">10.1.</span> <span class="nav-text">rewind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ftell"><span class="nav-number">10.2.</span> <span class="nav-text">ftell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fseek"><span class="nav-number">10.3.</span> <span class="nav-text">fseek</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yao J"
+      src="https://avatars.githubusercontent.com/u/62458905?v=4">
+  <p class="site-author-name" itemprop="name">Yao J</p>
+  <div class="site-description" itemprop="description">图形渣</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/XinranSix" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;XinranSix" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2937552332@qq.com" title="E-Mail → 2937552332@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://shyarcher.github.io/" title="https:&#x2F;&#x2F;shyarcher.github.io&#x2F;" rel="noopener" target="_blank">ShyArcher</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://noahapps.github.io/" title="https:&#x2F;&#x2F;noahapps.github.io&#x2F;" rel="noopener" target="_blank">Noah</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xinransix.github.io/2023/07/16/%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/62458905?v=4">
+      <meta itemprop="name" content="Yao J">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木漏れ日">
+      <meta itemprop="description" content="图形渣">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="文件 | 木漏れ日">
+      <meta itemprop="description" content="介绍 C 语言中对文件的操作">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          文件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-16 10:38:34" itemprop="dateCreated datePublished" datetime="2023-07-16T10:38:34+08:00">2023-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-10 16:44:47" itemprop="dateModified" datetime="2024-02-10T16:44:47+08:00">2024-02-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">C 语言基础</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>11 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">介绍 C 语言中对文件的操作</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="文件的概念">文件的概念</h2>
+<h3 id="文件的定义">文件的定义</h3>
+<p>磁盘文件：指一组相关数据的有序集合，通常存储在外部介质上，使用时才调入内存。</p>
+<p>设备文件：在操作系统中把每一个与主机相连的输入、输出设备看作是一个文件，把它们的输入、输出等同于对磁盘文件的读和写。</p>
+<p>在 Linux 操作系统中，每一个外部设备都在 /dev
+目录下对应着一个设备文件，在程序中操作设备，就必须对与其对应的 /dev
+下的设备文件进行操作。</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/3ec4f64e-8ecb-4f5f-9f2a-848f55c1e693"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<p>我就豁出去是库函数申请的一段内存，由库函数对其进行操作，程序员没有必要找到存放在哪里，只需要知道对文件操作时的一些缓冲特点即可。</p>
+<p><strong>行缓冲：</strong></p>
+<p>标准 IO 库函数，往标准输出输出东西时是行缓冲的。</p>
+<p>所谓行缓冲就是缓冲区碰到换行符时才刷新缓冲区。。</p>
+<p>如果不刷新缓冲区，无法对文件进行读写操作。</p>
+<p>行缓冲的刷新条件：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> <span class="type">const</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="comment">// 由于printf函数是一个标准io，所以只有刷新缓冲区才可以将数据输出到终端</span></span><br><span class="line">    <span class="comment">// printf(&quot;hello world&quot;);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 刷新缓冲区方法1：使用\n</span></span><br><span class="line">    <span class="comment">// printf(&quot;hello world\n&quot;);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 刷新缓冲区方法2：程序正常结束</span></span><br><span class="line">    <span class="comment">// printf(&quot;hello world&quot;);</span></span><br><span class="line">    <span class="comment">// return 0;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 刷新缓冲区方法3：使用fflush函数刷新缓冲区</span></span><br><span class="line">    <span class="comment">// printf(&quot;hello world&quot;);</span></span><br><span class="line">    <span class="comment">// fflush：刷新函数。可以刷新指定的缓冲区</span></span><br><span class="line">    <span class="comment">// stdout：标准输出，就是对终端进行写操作</span></span><br><span class="line">    <span class="comment">// fflush(stdout);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 刷新缓冲区方法4：当缓冲区满的时候自动刷新</span></span><br><span class="line">    <span class="comment">// 默认行缓冲的大小为1024个字节</span></span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; <span class="number">300</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%03d &quot;</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">        ;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>全缓冲：</strong></p>
+<p>标准 IO
+库函数，往普通文件读写数据时，是全缓冲的，碰到换行符也不刷新缓冲区，只有缓冲区满了才刷新缓冲区。</p>
+<p>刷新缓冲区的情况：</p>
+<ol type="1">
+<li>缓冲区满了，刷新缓冲区；</li>
+<li>使用 <code>fflush</code> 函数刷新缓冲区。</li>
+<li>程序正常结束，刷新缓冲区。</li>
+</ol>
+<p><strong>无缓冲：</strong></p>
+<p>在读写文件时通过系统调用 IO
+对文件进行读写操作，这个时候是无缓冲的，即写数据会立马进入文件，读数据会立马进入内存。</p>
+<p><strong>写文件的流程：</strong></p>
+<p>应用程序空间-&gt;内核空间-&gt;驱动程序-&gt;硬盘</p>
+<p>应用程序和内核程序运行在不同的空间里，目的是为了保护内核。</p>
+<blockquote>
+<p>设置缓存区可以减少进出内核的次数，提高效率。</p>
+</blockquote>
+<h3 id="磁盘文件的分类">磁盘文件的分类</h3>
+<p>一个文件通常是磁盘上一段命名的存储区，计算机的存储在物理上是二进制的。</p>
+<p>物理上所有的磁盘文件本质上都是一样的：以字节为单位进行顺序存储。</p>
+<p>从用户或者操作系统的角度来说把文件分为：</p>
+<ul>
+<li>文本文件：基于字符编码的文件；</li>
+<li>二进制文件：基于值编码的文件。</li>
+</ul>
+<p><strong>文本文件、二进制文件对比：</strong></p>
+<p>译码：文本文件基于字符，译码容易些；二进制文件编码是边长的，译码难一些。（不同的二进制文件有不同的编码方式）</p>
+<p>空间利用率：二进制文件的基本单位是
+bit，而文本文件的基本单位是字符，所有二进制文件的空间利用率高。</p>
+<p>可读性：文本文件可以用记事本的等软件阅读，二进制文件需要用特定的译码器。</p>
+<h2 id="文件指针">文件指针</h2>
+<p>文件指针用来标识一个文件，所有对文件的操作都是通过对文件指针来完成的。</p>
+<p>定义文件指针的语法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILE *指针名;</span><br></pre></td></tr></table></figure>
+<p>文件指针是一个结构体指针，结构体中包含了与文件相关的很多信息，但在编程时无需结构体的成员，只需使用文件指针即可。</p>
+<p><strong>对文件操作的步骤：</strong></p>
+<ol type="1">
+<li>对文件进行读写等操作之前要打开文件得到文件指针；</li>
+<li>通过文件指针对文件进行读写操作；</li>
+<li>操作结束后，要关闭文件，关闭文件后，就不能再通过此文件指针对文件进行操作了。</li>
+</ol>
+<p><strong>C 语言中有三个定义好的特殊文件指针：</strong></p>
+<ol type="1">
+<li><code>stdin</code>：标准输入，使用
+<code>scanf</code>、<code>getchar</code> 函数默认从 <code>stdin</code>
+中输入；</li>
+<li><code>stdout</code>：标准输出，使用
+<code>printf</code>、<code>puts</code> 函数默认输出到
+<code>stdout</code>；</li>
+<li><code>stderr</code>：标准错误输出，使用 <code>perror</code>
+函数默认输出到 <code>stderr</code>.</li>
+</ol>
+<h2 id="打开文件-fopen">打开文件 <code>fopen</code></h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line">FILE *<span class="title function_">fopen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path, <span class="type">const</span> <span class="type">char</span> *mode)</span>;</span><br><span class="line">功能：创建或者打开一个文件</span><br><span class="line">参数：</span><br><span class="line">    path：文件名，如果只写文件名，默认就是当前路径，也可以添加路径</span><br><span class="line">    mode：文件权限</span><br><span class="line">        r 只读，如果文件不存在则报错</span><br><span class="line">        r+ 读写，如果文件不存在则报错</span><br><span class="line">        w 只写，如果文件不存在则创建，如果文件存在则清空</span><br><span class="line">        w+ 读写，如果文件不存在则创建，如果文件存在则清空</span><br><span class="line">        a 只写，如果文件不存在则创建，如果文件存在则追加</span><br><span class="line">        a+ 读写，如果文件不存在则创建，如果文件存在则追加</span><br><span class="line">返回值：</span><br><span class="line">    成功：文件指针</span><br><span class="line">    失败：<span class="literal">NULL</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="关闭文件-fclose">关闭文件 <code>fclose</code></h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">fclose</span><span class="params">(FILE *stream)</span>;</span><br><span class="line">功能：关闭一个文件指针，无法在对当前文件进行操作</span><br><span class="line">参数：</span><br><span class="line">    stream：指定的文件指针，fopen函数的返回值</span><br><span class="line">返回值：</span><br><span class="line">    成功：<span class="number">0</span></span><br><span class="line">    失败：EOF</span><br><span class="line">注意：注意一个文件只能关闭一次，不能多次关闭。</span><br><span class="line">关闭文件之后就不能再文件指针对文件进行读写等操作了</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;a&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    fclose(fp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="一次读写一个字符">一次读写一个字符</h2>
+<h3 id="fgetc"><code>fgetc</code></h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">fgetc</span><span class="params">(FILE *stream)</span>;</span><br><span class="line">功能：从文件指针标识的文件中读取一个字符</span><br><span class="line">参数：</span><br><span class="line">    stream：指定的文件指针</span><br><span class="line">返回值：</span><br><span class="line">    成功：读取的字符</span><br><span class="line">    失败：EOF</span><br><span class="line">如果文件读取完毕，也会返回EOF</span><br></pre></td></tr></table></figure>
+<p>文件内容：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/db2f7510-086a-4a50-866b-0e4a0eedbb0e"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> c;</span><br><span class="line">    <span class="keyword">while</span> ((c = fgetc(fp)) != EOF) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;c = [%c] - %d\n&quot;</span>, c, c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/704fa56c-97ab-47b3-8421-67913d928911"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h3 id="fputc"><code>fputc</code></h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">fputc</span><span class="params">(<span class="type">int</span> c, FILE *stream)</span>;</span><br><span class="line">功能：向文件指针标识的文件中写入一个字符</span><br><span class="line">参数：</span><br><span class="line">    c：要写入的字符</span><br><span class="line">    stream：指定的文件指针</span><br><span class="line">返回值：</span><br><span class="line">成功：要写入的字符</span><br><span class="line">    失败：EOF</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fputc(<span class="string">&#x27;w&#x27;</span>, fp);</span><br><span class="line">    fputc(<span class="string">&#x27;h&#x27;</span>, fp);</span><br><span class="line">    fputc(<span class="string">&#x27;a&#x27;</span>, fp);</span><br><span class="line">    fputc(<span class="string">&#x27;t&#x27;</span>, fp);</span><br><span class="line">    fputc(<span class="string">&#x27;\n&#x27;</span>, fp);</span><br><span class="line">    fputc(<span class="string">&#x27;o&#x27;</span>, fp);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/9359f70e-e6cd-4451-a976-6956ca7eac05"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h2 id="一次读写一个字符串">一次读写一个字符串</h2>
+<h3 id="fgets"><code>fgets</code></h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">fgets</span><span class="params">(<span class="type">char</span> *s, <span class="type">int</span> size, FILE *stream)</span>;</span><br><span class="line">功能：从文件中读取内容</span><br><span class="line">参数：</span><br><span class="line">    s：保存读取到的内容</span><br><span class="line">    size：每次读取的最大个数</span><br><span class="line">    stream：文件指针</span><br><span class="line">返回值：</span><br><span class="line">    成功：读取的数据的首地址</span><br><span class="line">    失败：<span class="literal">NULL</span></span><br><span class="line">    如果文件内容读取完毕，也返回<span class="literal">NULL</span></span><br><span class="line">注意：从stream所指的文件中读取字符，在读取的时候碰到换行符或者是碰到文件的末尾停止读取，或者是读取了size‐<span class="number">1</span>个字节停止读取，在读取的内容后面会加一个\<span class="number">0</span>,作为字符串的结尾</span><br></pre></td></tr></table></figure>
+<p>文件内容：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/bc68401f-ebaf-49a2-9ac4-1d5572b0829a"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">char</span> buf[<span class="number">32</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    fgets(buf, <span class="number">32</span>, fp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;buf = %s\n&quot;</span>, buf);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/408b3cc0-d479-49ba-9140-d2a55b6836ca"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h3 id="fputs"><code>fputs</code></h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">fputs</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s, FILE *stream)</span>;</span><br><span class="line">功能：向文件写入数据</span><br><span class="line">参数：</span><br><span class="line">    s：要写入的内容</span><br><span class="line">    stream：文件指针</span><br><span class="line">返回值：</span><br><span class="line">    成功：写入文件内容的字节数</span><br><span class="line">    失败：EOF</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;66666666666666\n&quot;</span>, fp);</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;nihao&quot;</span>, fp);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/e91690c0-d36e-4b12-a405-a2f6c4466460"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h2 id="读文件-fread">读文件 <code>fread</code></h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">fread</span><span class="params">(<span class="type">void</span> *ptr, <span class="type">size_t</span> size, <span class="type">size_t</span> nmemb, FILE *stream)</span>;</span><br><span class="line">功能：从文件中读取数据</span><br><span class="line">参数：</span><br><span class="line">    ptr：保存读取的数据</span><br><span class="line">    size：每次读取的字节数</span><br><span class="line">    nmemb：一共读取的次数</span><br><span class="line">    stream：文件指针</span><br><span class="line">返回值：</span><br><span class="line">    成功：实际读取的次数（对象数、块数）</span><br><span class="line">    失败：<span class="number">0</span></span><br><span class="line">    如果文件内容读取完毕，返回<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num = fread(str,<span class="number">100</span>,<span class="number">3</span>,fp);</span><br><span class="line">从fp所代表的文件中读取内容存放到str指向的内存中，读取的字节数为 ，每块<span class="number">100</span>个字节，<span class="number">3</span>块。</span><br><span class="line">返回值num，如果读到<span class="number">300</span>个字节返回值num为<span class="number">3</span></span><br><span class="line">如果读到了大于等于<span class="number">200</span>个字节小于<span class="number">300</span>个字节 返回值为<span class="number">2</span></span><br><span class="line">读到的字节数，大于等于<span class="number">100</span>个字节小于<span class="number">200</span>个字节 返回<span class="number">1</span></span><br><span class="line">不到<span class="number">100</span>个字节返回<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>文件内容：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/8f7a09bb-0e48-4d41-b33c-f68cc156d116"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> buf[<span class="number">128</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    num = fread(buf, <span class="number">5</span>, <span class="number">4</span>, fp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;buf = %s\n&quot;</span>, buf);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;num = %d\n&quot;</span>, num);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/9d0e4d82-9950-4f1a-a57f-5a15e783c1c4"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h2 id="写文件-fwrite">写文件 <code>fwrite</code></h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">fwrite</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *ptr, <span class="type">size_t</span> size, <span class="type">size_t</span> nmemb, FILE *stream)</span>;</span><br><span class="line">功能：向文件中写入数据</span><br><span class="line">参数：</span><br><span class="line">    ptr：要写入的数据</span><br><span class="line">    size：一次写入的字节数</span><br><span class="line">    nmemb：一共写入的次数</span><br><span class="line">    stream：文件指针</span><br><span class="line">返回值：</span><br><span class="line">    成功：实际写入的次数</span><br><span class="line">    失败：<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">&#125; MSG;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;w+&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    MSG msg[<span class="number">4</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="string">&#x27;a&#x27;</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="string">&#x27;b&#x27;</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="string">&#x27;c&#x27;</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line">    fwrite(msg, <span class="keyword">sizeof</span>(MSG), <span class="number">4</span>, fp);</span><br><span class="line">    rewind(fp);</span><br><span class="line">    MSG rcv[<span class="number">4</span>];</span><br><span class="line">    fread(rcv, <span class="keyword">sizeof</span>(MSG), <span class="number">4</span>, fp);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d - %d - %c\n&quot;</span>, rcv[i].a, rcv[i].b, rcv[i].c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/8189a143-ca58-4d92-9784-c178e2fbf695"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<p>输出的文件内容：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/09f49c19-e832-485a-ac93-7abe4ab65327"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h2 id="格式化读写文件函数">格式化读写文件函数</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">函数调用:</span><br><span class="line"><span class="built_in">fprintf</span>(文件指针, 格式字符串, 输出表列);</span><br><span class="line"><span class="built_in">fscanf</span>(文件指针, 格式字符串, 输入表列);</span><br><span class="line"></span><br><span class="line">函数功能:</span><br><span class="line">    从磁盘文件中读入或输出字符</span><br><span class="line"></span><br><span class="line"><span class="built_in">fprintf</span> 和<span class="built_in">printf</span>函数类似：</span><br><span class="line"><span class="built_in">printf</span>是将数据输出到屏幕上（标准输出），</span><br><span class="line"><span class="built_in">fprintf</span>函数是将数据输出到文件指针所指定的文件中。</span><br><span class="line"></span><br><span class="line"><span class="built_in">fscanf</span>和<span class="built_in">scanf</span> 函数类似：</span><br><span class="line"><span class="built_in">scanf</span>是从键盘（标准输入）获取输入，</span><br><span class="line"><span class="built_in">fscanf</span>是从文件指针所标示的文件中获取输入。</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    <span class="type">char</span> ch1 = <span class="string">&#x27;a&#x27;</span>, ch2;</span><br><span class="line">    <span class="type">int</span> num1 = <span class="number">50</span>, num2;</span><br><span class="line">    <span class="type">char</span> string1[<span class="number">20</span>] = <span class="string">&quot;hello&quot;</span>, string2[<span class="number">20</span>];</span><br><span class="line">    <span class="type">float</span> score1 = <span class="number">85.5</span>, score2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;w+&quot;</span>)) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">fprintf</span>(fp, <span class="string">&quot;%c %d %s %f\n&quot;</span>, ch1, num1, string1, score1);</span><br><span class="line">    rewind(fp);</span><br><span class="line">    <span class="built_in">fscanf</span>(fp, <span class="string">&quot;%c %d %s %f\n&quot;</span>, &amp;ch2, &amp;num2, string2, &amp;score2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c %d %s %f\n&quot;</span>, ch2, num2, string2, score2);</span><br><span class="line">    fclose(fp);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/1d4ce40b-4ea8-42b1-b3e2-8492e3d2a93c"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<p>文件内容：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/6679d044-3000-4abc-b795-44e9b47758f4"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h2 id="随机读写">随机读写</h2>
+<h3 id="rewind"><code>rewind</code></h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">rewind</span><span class="params">(FILE *stream)</span>;</span><br><span class="line">    功能：将文件位置定位到起始位置</span><br><span class="line">参数：</span><br><span class="line">    stream：文件指针</span><br><span class="line">返回值：无</span><br></pre></td></tr></table></figure>
+<h3 id="ftell"><code>ftell</code></h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">long</span> <span class="title function_">ftell</span><span class="params">(FILE *stream)</span>;</span><br><span class="line">功能：获取当前文件的偏移量</span><br><span class="line">参数：</span><br><span class="line">    stream：文件指针</span><br><span class="line">返回值：</span><br><span class="line">    获取当前文件的偏移量</span><br></pre></td></tr></table></figure>
+<h3 id="fseek"><code>fseek</code></h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">fseek</span><span class="params">(FILE *stream, <span class="type">long</span> offset, <span class="type">int</span> whence)</span>;</span><br><span class="line">功能：设置文件位置指针的偏移量</span><br><span class="line">参数：</span><br><span class="line">    stream：文件指针</span><br><span class="line">    offset：偏移量，可正可负也可为<span class="number">0</span></span><br><span class="line">    whence：相对位置</span><br><span class="line">        SEEK_SET 文件起始位置</span><br><span class="line">        SEEK_CUR 文件当前位置</span><br><span class="line">        SEEK_END 文件末尾位置（最后一个字符后面一个位置）</span><br><span class="line">返回值：</span><br><span class="line">    成功：<span class="number">0</span></span><br><span class="line">    失败：‐<span class="number">1</span></span><br><span class="line"></span><br><span class="line">rewind(fp) &lt;==&gt; fseek(fp, <span class="number">0</span>, SEEK_SET);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    <span class="keyword">if</span> ((fp = fopen(<span class="string">&quot;./file.txt&quot;</span>, <span class="string">&quot;w+&quot;</span>)) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fail to fopen\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;123456789\n&quot;</span>, fp);</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;abcdefghijklmn&quot;</span>, fp);</span><br><span class="line">    <span class="comment">// 获取当前文件指针的读写位置</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;offset = %ld\n&quot;</span>, ftell(fp));</span><br><span class="line">    <span class="comment">// 将当前文件的读写文件设置到文件的起始位置</span></span><br><span class="line">    <span class="comment">// rewind(fp);</span></span><br><span class="line">    <span class="comment">// fseek(fp, 0, SEEK_SET);</span></span><br><span class="line">    <span class="comment">// 将当前文件的读写位置设置为倒数第五个位置</span></span><br><span class="line">    fseek(fp, <span class="number">-5</span>, SEEK_END);</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> buf[<span class="number">32</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">while</span> (fgets(buf, <span class="number">32</span>, fp) != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[%s]\n&quot;</span>, buf);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/ed85fbcf-ec37-4964-8754-958e588e4e77"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<p>文件内容：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/66b1da96-8dc3-4818-a30a-83bb46e30029"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yao J
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xinransix.github.io/2023/07/16/%E6%96%87%E4%BB%B6/" title="文件">https://xinransix.github.io/2023/07/16/文件/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
+              <a href="/tags/%E6%96%87%E4%BB%B6/" rel="tag"><i class="fa fa-tag"></i> 文件</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E7%BB%93%E6%9E%84%E4%BD%93%E3%80%81%E5%85%B1%E7%94%A8%E4%BD%93%E3%80%81%E6%9E%9A%E4%B8%BE/" rel="prev" title="结构体、共用体、枚举">
+                  <i class="fa fa-angle-left"></i> 结构体、共用体、枚举
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" rel="next" title="运算符重载">
+                  运算符重载 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yao J</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">102k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:12</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div><link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.css"
+/>
+<div id="sakana-widget" style="position: fixed; bottom: 10px; right: 20px; z-index: 999;"></div>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount('#sakana-widget');
+  }
+</script>
+<script
+  async
+  onload="initSakanaWidget()"
+  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.js"
+></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

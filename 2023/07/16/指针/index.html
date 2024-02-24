@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="介绍 C 语言中的各种指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="指针">
+<meta property="og:url" content="https://xinransix.github.io/2023/07/16/%E6%8C%87%E9%92%88/index.html">
+<meta property="og:site_name" content="木漏れ日">
+<meta property="og:description" content="介绍 C 语言中的各种指针">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/XinranSix/docs/assets/62458905/4cdf558d-d9fd-4187-aa9c-c45318b1e1aa">
+<meta property="article:published_time" content="2023-07-16T02:34:31.000Z">
+<meta property="article:modified_time" content="2024-02-10T09:13:18.407Z">
+<meta property="article:author" content="Yao J">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="指针">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/XinranSix/docs/assets/62458905/4cdf558d-d9fd-4187-aa9c-c45318b1e1aa">
+
+
+<link rel="canonical" href="https://xinransix.github.io/2023/07/16/%E6%8C%87%E9%92%88/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xinransix.github.io/2023/07/16/%E6%8C%87%E9%92%88/","path":"2023/07/16/指针/","title":"指针"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>指针 | 木漏れ日</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">木漏れ日</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">内存相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">指针的相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">指针的定义方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">4.</span> <span class="nav-text">指针的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%92%8C%E5%8F%98%E9%87%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">5.</span> <span class="nav-text">指针和变量的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%92%8C%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">6.</span> <span class="nav-text">指针和数组元素之间的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E4%B8%8E%E6%8C%87%E9%92%88%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%85%B3%E7%B3%BB"><span class="nav-number">6.1.</span> <span class="nav-text">数组元素与指针的基本关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%95%B0%E7%BB%84%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">6.2.</span> <span class="nav-text">访问数组数组元素的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E8%BF%90%E7%AE%97"><span class="nav-number">7.</span> <span class="nav-text">指针的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%8F%AF%E4%BB%A5%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%95%B4%E6%95%B0"><span class="nav-number">7.1.</span> <span class="nav-text">指针可以加一个整数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%9B%B8%E5%90%8C%E7%B1%BB%E5%9E%8B%E6%8C%87%E9%92%88%E5%8F%AF%E4%BB%A5%E6%AF%94%E8%BE%83%E5%A4%A7%E5%B0%8F"><span class="nav-number">7.2.</span> <span class="nav-text">两个相同类型指针可以比较大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%9B%B8%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%8C%87%E9%92%88%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%87%8F%E6%B3%95"><span class="nav-number">7.3.</span> <span class="nav-text">两个相同类型的指针可以做减法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%9B%B8%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%8C%87%E9%92%88%E5%8F%AF%E4%BB%A5%E7%9B%B8%E4%BA%92%E8%B5%8B%E5%80%BC"><span class="nav-number">7.4.</span> <span class="nav-text">两个相同类型的指针可以相互赋值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84"><span class="nav-number">8.</span> <span class="nav-text">指针数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E6%8C%87%E9%92%88"><span class="nav-number">9.</span> <span class="nav-text">指针的指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%8C%87%E9%92%88"><span class="nav-number">10.</span> <span class="nav-text">字符串和指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88"><span class="nav-number">11.</span> <span class="nav-text">数组指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="nav-number">11.1.</span> <span class="nav-text">二维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">11.2.</span> <span class="nav-text">数组指针的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95"><span class="nav-number">11.3.</span> <span class="nav-text">数组指针的定义方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">11.4.</span> <span class="nav-text">各种数组指针的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number">11.5.</span> <span class="nav-text">容易混淆的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%90%8D%E5%AD%97%E5%8F%96%E5%9C%B0%E5%9D%80"><span class="nav-number">11.6.</span> <span class="nav-text">数组名字取地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%90%8D%E5%AD%97%E5%92%8C%E6%8C%87%E9%92%88%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">11.7.</span> <span class="nav-text">数组名字和指针变量的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E6%8C%87%E9%92%88%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">11.8.</span> <span class="nav-text">多维数组中指针的转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E4%B8%8E%E5%87%BD%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">12.</span> <span class="nav-text">指针与函数的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="nav-number">12.1.</span> <span class="nav-text">指针作为函数的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E6%95%B0%E7%BB%84"><span class="nav-number">12.2.</span> <span class="nav-text">传数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0"><span class="nav-number">12.3.</span> <span class="nav-text">指针函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88"><span class="nav-number">12.4.</span> <span class="nav-text">函数指针</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E6%8C%87%E9%92%88"><span class="nav-number">13.</span> <span class="nav-text">特殊指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main-%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82"><span class="nav-number">14.</span> <span class="nav-text">main 函数传参</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yao J"
+      src="https://avatars.githubusercontent.com/u/62458905?v=4">
+  <p class="site-author-name" itemprop="name">Yao J</p>
+  <div class="site-description" itemprop="description">图形渣</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/XinranSix" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;XinranSix" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2937552332@qq.com" title="E-Mail → 2937552332@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://shyarcher.github.io/" title="https:&#x2F;&#x2F;shyarcher.github.io&#x2F;" rel="noopener" target="_blank">ShyArcher</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://noahapps.github.io/" title="https:&#x2F;&#x2F;noahapps.github.io&#x2F;" rel="noopener" target="_blank">Noah</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xinransix.github.io/2023/07/16/%E6%8C%87%E9%92%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/62458905?v=4">
+      <meta itemprop="name" content="Yao J">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木漏れ日">
+      <meta itemprop="description" content="图形渣">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="指针 | 木漏れ日">
+      <meta itemprop="description" content="介绍 C 语言中的各种指针">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          指针
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-16 10:34:31" itemprop="dateCreated datePublished" datetime="2023-07-16T10:34:31+08:00">2023-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-10 17:13:18" itemprop="dateModified" datetime="2024-02-10T17:13:18+08:00">2024-02-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">C 语言基础</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>18 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">介绍 C 语言中的各种指针</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="内存相关概念">内存相关概念</h2>
+<p><strong>外存</strong>：又称拓展存储器，长期存放数据，是可掉电的设备，常见的外存设备有：硬盘、flash、ROM、U
+盘、光盘、磁带。</p>
+<p><strong>内存</strong>：暂时存放数据的设备，掉电丢失数据，厂家的内存有：RAM，DDR.</p>
+<p>内存分为<strong>物理内存</strong>和虚拟内存。</p>
+<ul>
+<li>物理内存：实实在在的存储设备；</li>
+<li>虚拟内存：操作系统虚拟出来的内存。</li>
+</ul>
+<p>操作系统会将虚拟内存和物理内存进行映射。</p>
+<p>在 32 位操作系统下，每个进程的寻址范围位
+<code>0x00000000~0xffffffff</code>，即
+4G，我们在编程时看到的内存地址都是虚拟地址。</p>
+<p>在程序运行时，操作系统会将<strong>虚拟内存</strong>进行分区：</p>
+<ul>
+<li>堆：在动态申请内存时，会在堆区开辟空间；</li>
+<li>栈：主要存放局部变量；</li>
+<li>静态全局区：
+<ul>
+<li>位初始化的静态全局区：没有初始化的静态变量（<code>static</code>
+修饰的变量），或全局变量存放在此区；</li>
+<li>初始化了的静态全局区：初始化过的全局变量、静态变量存在此区。</li>
+</ul></li>
+<li>代码区：存放代码的区；</li>
+<li>文字常量区：存放常量的区；</li>
+</ul>
+<h2 id="指针的相关概念">指针的相关概念</h2>
+<blockquote>
+<p>本文均在 32 为平台上进行讨论。</p>
+</blockquote>
+<p>系统给每个存储单元分配了一个编号，从
+<code>0x00000000~0xffffffff</code>，这个编号就是地址。</p>
+<blockquote>
+<p>指针就是地址。</p>
+</blockquote>
+<figure>
+<img
+src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/51a85890-ee89-4e25-9489-6545d4a5f796"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<p>指针变量：一个存放地址编号的变量。</p>
+<p>在 32 位平台下，地址总线是 32 位的，所以地址是 32 位编号，占用 4
+个字节，所以在 32 位平台下指针变量占用 4 个字节。</p>
+<blockquote>
+<p>鱼代表鱼，虾代表虾，乌龟代表是王八。对应指针变量只能存放对应类型变量的地址，例如
+<code>int</code> 类型的指针只能存放 <code>int</code>
+类型变量的地址。</p>
+</blockquote>
+<p><code>char</code> 占 1
+个字节，它有一个地址编号，这个地址编号就是其地址；<code>int</code> 占 4
+个字节，它占有 4 个字节的存储单元，有 4 个地址编号。</p>
+<figure>
+<img
+src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/67036c70-1ee8-4729-8dbf-3df54f568cd7"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h2 id="指针的定义方法">指针的定义方法</h2>
+<p>定义指针的语法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">数据类型 *指针变量名;</span><br><span class="line"><span class="type">int</span> *p;</span><br><span class="line"><span class="type">int</span> *p1, p2;</span><br></pre></td></tr></table></figure>
+<p>与指针相关的运算符：<code>&amp;</code>、<code>*</code>.</p>
+<p><code>&amp;</code> 是取地址运算符，<code>*</code> 是取值运算符。</p>
+<figure>
+<img
+src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/1139ce2c-7536-4c61-a440-9ed2d47bd911"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> a = <span class="number">100</span>;</span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line">    p = &amp;a;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a = %d %d\n&quot;</span>, a, *p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;a = %p %p\n&quot;</span>, &amp;a, p);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/921666e3-b0bc-40a4-8b5e-3577d2859315"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<p>指针大小：在 32 位系统下，所有类型的指针都是 4 个字节。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="type">char</span> *a;</span><br><span class="line">    <span class="type">short</span> *b;</span><br><span class="line">    <span class="type">int</span> *c;</span><br><span class="line">    <span class="type">long</span> *d;</span><br><span class="line">    <span class="type">float</span> *e;</span><br><span class="line">    <span class="type">double</span> *f;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sizeof(a) = %lld\n&quot;</span>, <span class="keyword">sizeof</span>(a));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sizeof(b) = %lld\n&quot;</span>, <span class="keyword">sizeof</span>(b));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sizeof(c) = %lld\n&quot;</span>, <span class="keyword">sizeof</span>(c));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sizeof(d) = %lld\n&quot;</span>, <span class="keyword">sizeof</span>(d));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sizeof(e) = %lld\n&quot;</span>, <span class="keyword">sizeof</span>(e));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sizeof(f) = %lld\n&quot;</span>, <span class="keyword">sizeof</span>(f));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/4c425eb6-d0c4-418d-be0a-5ac63d3b2ddc"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h2 id="指针的分类">指针的分类</h2>
+<ol type="1">
+<li><code>char</code> 型指针；</li>
+<li><code>short int</code> 型指针；</li>
+<li><code>int</code> 指针；</li>
+<li><code>long</code> 指针；</li>
+<li><code>float</code> 型指针；</li>
+<li><code>double</code> 型指针；</li>
+<li>函数指针；</li>
+<li>结构体指针；</li>
+<li>指针的指针；</li>
+<li>数组指针。</li>
+</ol>
+<blockquote>
+<p>不管是声明指针，在 32 位操作系统上，均占有 4 个字节。</p>
+</blockquote>
+<h2 id="指针和变量的关系">指针和变量的关系</h2>
+<p>指针可以存放变量的地址。</p>
+<p>在程序中，访问变量的值可以字节使用变量名，例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a;</span><br><span class="line">a = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<p>也可以通过指针来访问变量的值：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p;</span><br><span class="line">p = &amp;a;</span><br><span class="line">*p = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：</p>
+<ol type="1">
+<li>指针在试用期一定要初始化。</li>
+<li>指针只能指向开辟好空间的地址，不能随意保存地址。</li>
+</ol>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> *p1, *p2, temp, a, b;</span><br><span class="line">    p1 = &amp;a;</span><br><span class="line">    p2 = &amp;b;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入:a b的值:\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, p1, p2); <span class="comment">// 给p1和p2指向的变量赋值</span></span><br><span class="line">    temp = *p1;             <span class="comment">// 用p1指向的变量（a）给temp赋值</span></span><br><span class="line">    *p1 = *p2;  <span class="comment">// 用p2指向的变量（b）给p1指向的变量（a）赋值</span></span><br><span class="line">    *p2 = temp; <span class="comment">// temp给p2指向的变量（b）赋值</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a=%d b=%d\n&quot;</span>, a, b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;*p1=%d *p2=%d\n&quot;</span>, *p1, *p2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/e6af8b05-742b-47a4-b2b0-08926a1105d6"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<blockquote>
+<p>注意：对应类型的指针，只能保持对应类型数据的地址，如果想让不同类型的指针互相赋值，需要强制类型转换。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> a = <span class="number">0x1234</span>, b = <span class="number">0x5678</span>;</span><br><span class="line">    <span class="type">char</span> *p1, *p2;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%#x %#x\n&quot;</span>, a, b);</span><br><span class="line">    p1 = (<span class="type">char</span> *)&amp;a;</span><br><span class="line">    p2 = (<span class="type">char</span> *)&amp;b;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%#x %#x\n&quot;</span>, *p1, *p2);</span><br><span class="line">    p1++;</span><br><span class="line">    p2++;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%#x %#x\n&quot;</span>, *p1, *p2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/a9cbbfec-00d8-43d2-afd0-8618d8d8ec3e"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<blockquote>
+<p>注意：</p>
+<ol type="1">
+<li>使用 <code>*</code>
+对指针取值时，取几个字节，由指针类型决定，<code>int</code> 类型的指针取
+4 个字节，<code>double</code> 类型的指针取 8 个字节。</li>
+<li>对指针进行 <code>+1</code>
+操作时，指针会跳过若干字节，跳过的字节的大小有指针类型决定，例如
+<code>int</code> 类型的指针会跳过 4 个字节。</li>
+</ol>
+</blockquote>
+<h2 id="指针和数组元素之间的关系">指针和数组元素之间的关系</h2>
+<h3 id="数组元素与指针的基本关系">数组元素与指针的基本关系</h3>
+<p>变量存放在内存中，有自己的地址编号。数组时多个相同类型变量的集合，每个变量都占用内存空间，都有自己的内存编号，数组在内存中是连续存放的。</p>
+<p>指针变量可以指向存放数组元素的地址。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line">    p = &amp;a[<span class="number">0</span>]; <span class="comment">// 指针变量p保存了数组a中第0个元素的地址，即a[0]的地址</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="访问数组数组元素的方法">访问数组数组元素的方法</h3>
+<p><strong>方式 1：</strong><code>数组名[索引]</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line">a[<span class="number">2</span>] = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>方式 2：</strong><code>指针名 + 下标</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> *p;</span><br><span class="line">p = a;</span><br><span class="line">p[<span class="number">2</span>] = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在 C 语言中，数组名就是数组的首地址，即第 0
+个元素的地址，是个常量。</p>
+</blockquote>
+<blockquote>
+<p>注意：p 和 a 不同，p 是指针变量，而 a 是个常量。所以可以使用等号给 p
+赋值，但不能给 a 赋值。例如：<code>int a[10]; a++;</code>
+这种用法是错误的，因为 a 是数组名，是一种地址常量。</p>
+</blockquote>
+<p><strong>方式 3：</strong>通过指针运算加取值的方法来引用数组的元素</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> *p;</span><br><span class="line">p = a;</span><br><span class="line">*(p + <span class="number">2</span>) = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<p><code>p</code> 是第 个元素的地址，<code>p + 2</code> 是
+<code>a[2]</code> 这个元素的地址，对第二个元素的地址取值，即
+<code>a[2]</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> a[<span class="number">5</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">    <span class="type">int</span> *p = a;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 只要将数组名赋值给同类型的指针变量，则此时的指针变量与数组名可</span></span><br><span class="line">    <span class="comment">// 以用相同的方法操作数组</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a[2]=%d\n&quot;</span>, a[<span class="number">2</span>]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p[2]=%d\n&quot;</span>, p[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//*(a + n) &lt;==&gt; *(p + n) &lt;==&gt; a[n] &lt;==&gt; p[n]</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;*(p+2) = %d\n&quot;</span>, *(p + <span class="number">2</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;*(a+2) = %d\n&quot;</span>, *(a + <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p=%p\n&quot;</span>, p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p+2=%p\n&quot;</span>, p + <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;a[0] = %p\n&quot;</span>, &amp;a[<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;a[2] = %p\n&quot;</span>, &amp;a[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/e1579dc7-a6f4-458f-b131-da3e6d227fc8"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h2 id="指针的运算">指针的运算</h2>
+<h3 id="指针可以加一个整数">指针可以加一个整数</h3>
+<p>往后指几个它指向的变量，结果还是个地址。</p>
+<blockquote>
+<p>注意：一般来说，指针指向数组是加一个整数才有意义。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line">    <span class="type">int</span> *p, *q;</span><br><span class="line">    <span class="comment">// p和q间隔8个字节，意味着加一个整数最终移动的字节数与指针变量的类型也有关系</span></span><br><span class="line">    p = a;</span><br><span class="line">    q = p + <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p = %p\n&quot;</span>, p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;q = %p\n&quot;</span>, q);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/0796e556-3cb2-4464-9a0b-aba79d814d8f"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h3 id="两个相同类型指针可以比较大小">两个相同类型指针可以比较大小</h3>
+<blockquote>
+<p>注意：只有相同类型的指针指向同一个数组里的元素，比较大小才有意义。</p>
+</blockquote>
+<p>指向前面元素的指针小于指向后面元素的指针。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line">    <span class="type">int</span> *p, *q;</span><br><span class="line">    p = &amp;a[<span class="number">1</span>];</span><br><span class="line">    q = &amp;a[<span class="number">6</span>];</span><br><span class="line">    <span class="keyword">if</span> (p &lt; q) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;p &lt; q\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p &gt; q) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;p &gt; q\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;p = q\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/70dfe7a9-6152-40fd-887a-5f883ed571c6"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h3 id="两个相同类型的指针可以做减法">两个相同类型的指针可以做减法</h3>
+<blockquote>
+<p>注意：只有相同类型的指针指向同一个数组里的元素，做减法才有意义。</p>
+</blockquote>
+<p>做减法的结果是两个指针之间有多少个元素。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line">    <span class="type">int</span> *p, *q;</span><br><span class="line">    p = &amp;a[<span class="number">0</span>];</span><br><span class="line">    q = &amp;a[<span class="number">3</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, q - p);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/94c08063-3ba2-4c90-b368-5170dbafb76f"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h3
+id="两个相同类型的指针可以相互赋值">两个相同类型的指针可以相互赋值</h3>
+<blockquote>
+<p>注意：只有相同类型的指针才可以互相赋值（<code>void *</code>
+类型的除外）。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> a = <span class="number">100</span>;</span><br><span class="line">    <span class="type">int</span> *p, *q;</span><br><span class="line">    p = &amp;a;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a = %d %d\n&quot;</span>, a, *p);</span><br><span class="line">    q = p;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;*q = %d\n&quot;</span>, *q);</span><br><span class="line">    *q = <span class="number">999</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a = %d\n&quot;</span>, a);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/06eaf1c8-1cb9-4b39-9819-8302fb3a1b4b"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h2 id="指针数组">指针数组</h2>
+<p>指针可以保存数组元素的地址，也可以定义一个数组，数组中的元素是若干个相同类型的指针变量，这个数组就是<strong>指针数组</strong>。</p>
+<p>定义指针数组的语法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">类型说明符 *数组名[元素个数];</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p[<span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> a;</span><br><span class="line">p[<span class="number">1</span>] = &amp;a;</span><br><span class="line"><span class="type">int</span> b[<span class="number">10</span>];</span><br><span class="line">p[<span class="number">2</span>] = &amp;b[<span class="number">3</span>];</span><br><span class="line"><span class="comment">// p[2] 和 *(p + 2) 是等价的，都是指针数组中的第 2 个元素。</span></span><br></pre></td></tr></table></figure>
+<p>指针数组按照其元素进行分类。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> *name[<span class="number">5</span>] = &#123;<span class="string">&quot;Follw me&quot;</span>, <span class="string">&quot;BASIC&quot;</span>, <span class="string">&quot;Greatwall&quot;</span>, <span class="string">&quot;FORTRAN&quot;</span>, <span class="string">&quot;Computer&quot;</span>&#125;;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, name[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/f14afb71-5e32-4fc7-8753-45f8e5e3d07d"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h2 id="指针的指针">指针的指针</h2>
+<p>指针的指针又称为二级指针。</p>
+<p>指针本身也是一个变量，也有地址，可以用二级指针保存其地址。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> a = <span class="number">100</span>;</span><br><span class="line">    <span class="type">int</span> *p = &amp;a;</span><br><span class="line">    <span class="type">int</span> **q = &amp;p;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a = %d %d %d\n&quot;</span>, a, *p, **q);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;a = %p %p %p\n&quot;</span>, &amp;a, p, *q);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;p = %p %p\n&quot;</span>, &amp;p, q);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;q = %p\n&quot;</span>, &amp;q);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/beb44686-257b-4683-9fdc-00174129116e"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h2 id="字符串和指针">字符串和指针</h2>
+<p>在 C 语言中，字符串是以 <code>'\0'</code> 结尾的若干字符的集合。</p>
+<p>字符串的存储形式：数组、字符串指针、堆。</p>
+<ol type="1">
+<li><code>char string[100] = "I love C!";</code>， 定义了一个字符数组
+<code>string</code>，用来存放多个字符，并且使用 <code>I love C!\0</code>
+给 <code>string</code> 数组初始化。</li>
+<li><code>char *str = "I love C!"</code>，定义了一个指针变量
+<code>str</code>，这个字符串中的字符不能存放在 <code>str</code>
+变量中，<code>str</code> 只存放了字符 <code>I</code>
+的地址，<code>"I love C!"</code> 存放在文字常量区。</li>
+<li><code>char *str = (char*)malloc(10 * sizeof(char));</code>，动态申请了
+10 个字节的存储空间，使用首地址个给 <code>str</code> 赋值，可以使用
+<code>strcpy(str, "I love C")</code> 的方式将字符串
+<code>"I love C!"</code> 拷贝到 <code>str</code> 指向的内存中。</li>
+</ol>
+<p><strong>可修改性：</strong></p>
+<ol type="1">
+<li>栈区和全局区内存中的内容是可修改的。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> str[<span class="number">100</span>] = <span class="string">&quot;I love C!&quot;</span>;</span><br><span class="line">str[<span class="number">0</span>] = <span class="string">&#x27;y&#x27;</span>; <span class="comment">// 这是 ok 的</span></span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>文字常量区的内容是不可修改的。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *str = <span class="string">&quot;I love C!&quot;</span>;</span><br><span class="line">*str = <span class="string">&#x27;y&#x27;</span>; <span class="comment">// 这是不行的</span></span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>堆区的内容是可以修改的。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *str = (<span class="type">char</span>*)<span class="built_in">malloc</span>(<span class="number">10</span> * <span class="keyword">sizeof</span>(<span class="type">char</span>));</span><br></pre></td></tr></table></figure>
+<p><strong>初始化：</strong></p>
+<p>字符数组、指向字符串的指针可以在定义时初始化：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> buf_aver[] = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"><span class="type">char</span> *buf_point = <span class="string">&quot;hello world&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>堆中存放的字符串不能初始化，只能使用
+<code>strcpy</code>、<code>scanf</code> 进行赋值：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *buf_heap;</span><br><span class="line">buf_heap = (<span class="type">char</span>*)<span class="built_in">malloc</span>(<span class="number">15</span>);</span><br><span class="line"><span class="built_in">strcpy</span>(buf_heap, <span class="string">&quot;hello world&quot;</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, buf_heap);</span><br></pre></td></tr></table></figure>
+<p><strong>使用时赋值：</strong></p>
+<p>字符数组使用 <code>scanf</code> 或者 <code>strcpy</code>
+进行赋值：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> buf_aver[<span class="number">128</span>];</span><br><span class="line">buf_aver = <span class="string">&quot;hello kitty&quot;</span>; <span class="comment">//这样是错误的，数组名是个常量</span></span><br><span class="line"><span class="built_in">strcpy</span>(buf_aver, <span class="string">&quot;hello kitty&quot;</span>); <span class="comment">// 正确</span></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, buf_aver); <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
+<p>指向字符串的指针：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *buf_point;</span><br><span class="line">buf_point = <span class="string">&quot;hello kitty&quot;</span>; <span class="comment">// 正确，buf_point 指向另外一个字符串</span></span><br><span class="line"><span class="built_in">strcpy</span>(buf_point, <span class="string">&quot;hello kitty&quot;</span>); <span class="comment">// 错误</span></span><br></pre></td></tr></table></figure>
+<h2 id="数组指针">数组指针</h2>
+<h3 id="二维数组">二维数组</h3>
+<p>二维数组，有行，有列。二维数组可以看成有多个一维数组构成的，是多个一维数组的集合。</p>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">3</span>][<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+<p>定义了一个 3 行 5 列的二维数组。</p>
+<p>可以认为二维数组 a 由 3 个一维数组构成，每个元素是一个一维数组。</p>
+<p>二维数组 a 中，<code>a + 1</code>
+指向下一个元素，即下一个一维数组，即下一行。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">3</span>][<span class="number">5</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a=%p\n&quot;</span>, a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a+1=%p\n&quot;</span>, a + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/fab7d608-941e-4bc2-b41a-3e1869c52f0a"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h3 id="数组指针的概念">数组指针的概念</h3>
+<p>数组本身是一个指针，指向一个数组，对数组指针加
+1，指向下一个数组。</p>
+<p>数组指针可以用来保存二维数组的首地址。</p>
+<h3 id="数组指针的定义方法">数组指针的定义方法</h3>
+<p>数组指针的定义语法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">指向的数组的类型 (*指针名)[指向的数组元素的个数]</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> (*p)[<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p>定义了一个指向有 5 个元素的 <code>int</code> 类型的指针
+p，<code>p + 1</code> 会跳过一个有 5 个数组元素的数组。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">3</span>][<span class="number">5</span>];</span><br><span class="line">    <span class="type">int</span>(*p)[<span class="number">5</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a=%p\n&quot;</span>, a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a+1=%p\n&quot;</span>, a + <span class="number">1</span>);</span><br><span class="line">    p = a;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p=%p\n&quot;</span>, p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p+1=%p\n&quot;</span>, p + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/63a00439-b8df-4193-84fa-a96de3a6930d"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<p>数组指针的用法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">fun</span><span class="params">(<span class="type">int</span> (*p)[<span class="number">5</span>], <span class="type">int</span> x, <span class="type">int</span> y)</span> &#123; p[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">101</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">3</span>][<span class="number">5</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    fun(a, <span class="number">3</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, a[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/3faa7ff5-4fc7-42ca-8a17-52750dc99701"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h3 id="各种数组指针的定义">各种数组指针的定义</h3>
+<p><strong>一维数组指针</strong></p>
+<p>一维数组指针，加 1 后指向下一个一维数组。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> (*p)[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+<p>配合每行有 5 个 <code>int</code> 类型的二维数组来用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">3</span>][<span class="number">5</span>];</span><br><span class="line"><span class="type">int</span> b[<span class="number">4</span>][<span class="number">5</span>];</span><br><span class="line"><span class="type">int</span> c[<span class="number">5</span>][<span class="number">5</span>];</span><br><span class="line"><span class="type">int</span> d[<span class="number">6</span>][<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">p = a;</span><br><span class="line">p = b;</span><br><span class="line">p = c;</span><br><span class="line">p = d;</span><br></pre></td></tr></table></figure>
+<p>上述操作都是可以的。</p>
+<p><strong>二维数组指针</strong></p>
+<p>二维数组指针，加 1 后指向下一个二维数组。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> (*p)[<span class="number">4</span>][<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+<p>配合三维数组来用，三维数组由若干 4 行 5 列的二维数组组成。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">3</span>][<span class="number">4</span>][<span class="number">5</span>];</span><br><span class="line"><span class="type">int</span> b[<span class="number">4</span>][<span class="number">4</span>][<span class="number">5</span>];</span><br><span class="line"><span class="type">int</span> c[<span class="number">5</span>][<span class="number">4</span>][<span class="number">5</span>];</span><br><span class="line"><span class="type">int</span> d[<span class="number">6</span>][<span class="number">4</span>][<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">p = a;</span><br><span class="line">p = b;</span><br><span class="line">p = c;</span><br><span class="line">p = d;</span><br></pre></td></tr></table></figure>
+<p>上述操作都是可以的。</p>
+<p><strong>三维数组指针</strong></p>
+<p>三维数组指针，加 1 后指向下一个三维数组</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> (*p)[<span class="number">4</span>][<span class="number">5</span>][<span class="number">6</span>];</span><br></pre></td></tr></table></figure>
+<p><code>p + 1</code> 跳一个三维数组，配合
+<code>int a[7][4][5][6];</code> 使用。</p>
+<h3 id="容易混淆的内容">容易混淆的内容</h3>
+<p><strong>指针数组：</strong>是个数组，数组元素是指针。</p>
+<p><strong>数组指针：</strong>是个指针，指向一个数组。</p>
+<p><strong>指针的指针：</strong>是指向指针的指针。</p>
+<h3 id="数组名字取地址">数组名字取地址</h3>
+<p>对一维数组名取地址，变成一位数组指针，即加 1 跳一个一维数组。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">10</span>];</span><br></pre></td></tr></table></figure>
+<p><code>a + 1</code> 跳一个 <code>int</code> 元素，即 <code>a[1]</code>
+的地址，<code>a</code> 和 <code>a + 1</code> 相差一个元素，4
+个字节。</p>
+<p><code>&amp;a</code> 就变成了一个一维数组指针，是
+<code>int(*p)[10]</code> 类型的，<code>(&amp;a) + 1</code> 和
+<code>&amp;a</code> 相差一个数组，10 个元素，40 个字节。</p>
+<h3 id="数组名字和指针变量的区别">数组名字和指针变量的区别</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> *p;</span><br><span class="line">p = a;</span><br></pre></td></tr></table></figure>
+<p><strong>相同点：</strong><code>a</code> 是数组的名字，是
+<code>a[0]</code> 的地址，<code>p</code> 也保存了 <code>a[0]</code>
+的地址，即 <code>a</code> 和 <code>p</code> 都指向
+<code>a[0]</code>，所以在访问数组元素时，<code>a</code> 和
+<code>p</code> 是等价的。</p>
+<p><strong>不同点：</strong></p>
+<ol type="1">
+<li><code>a</code> 是常量，<code>p</code> 是变量，可以使用
+<code>=</code> 运算符为 <code>p</code> 赋值，但是不能为 <code>a</code>
+赋值；</li>
+<li>对 <code>a</code> 取地址和对 <code>p</code> 取地址得到的结果不同。对
+<code>a</code> 取地址得到的是指针数组，对 <code>p</code>
+取地址得到的是指针的指针。</li>
+</ol>
+<h3 id="多维数组中指针的转换">多维数组中指针的转换</h3>
+<p>在二维数组中，行地址取 <code>*</code>
+会将指针降级，由行地址变成指向这一行第 0 个元素的指针，取 <code>*</code>
+之后还是会指向同一个地方，但指针类型不一样了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">3</span>][<span class="number">5</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a=%p\n&quot;</span>, a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a +1=%p\n&quot;</span>, a + <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;*a =%p\n&quot;</span>, *a); </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;(*a)+1 =%p\n&quot;</span>, (*a) + <span class="number">1</span>); </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<p><img src="https://github.com/XinranSix/docs/assets/62458905/4cdf558d-d9fd-4187-aa9c-c45318b1e1aa" alt="image"  /></p>
+<h2 id="指针与函数的关系">指针与函数的关系</h2>
+<h3 id="指针作为函数的参数">指针作为函数的参数</h3>
+<p>指针可以作为函数的参数。</p>
+<p>C 语言中的参数传递方式：复制传参、地址传参。</p>
+<p><strong>复制传参：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">fun</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> temp;</span><br><span class="line">    temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;in fun: a = %d, b = %d\n&quot;</span>, a, b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;a = %p, &amp;b = %p\n&quot;</span>, &amp;a, &amp;b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">100</span>, b = <span class="number">20</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;before fun: a = %d, b = %d\n&quot;</span>, a, b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;a = %p, &amp;b = %p\n&quot;</span>, &amp;a, &amp;b);</span><br><span class="line">    fun(a, b);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;after fun: a = %d, b = %d\n&quot;</span>, a, b);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/fbf8f802-cc9d-4b0b-bdff-85cfcbc1f2e2"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<p><strong>地址传参：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">fun</span><span class="params">(<span class="type">int</span> *p, <span class="type">int</span> *q)</span> &#123;</span><br><span class="line">    <span class="type">int</span> temp;</span><br><span class="line">    temp = *p;</span><br><span class="line">    *p = *q;</span><br><span class="line">    *q = temp;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;in fun: *p = %d, *q = %d\n&quot;</span>, *p, *q);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p = %p, q = %p\n&quot;</span>, p, q);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">100</span>, b = <span class="number">20</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;before fun: a = %d, b = %d\n&quot;</span>, a, b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;a = %p, &amp;b = %p\n&quot;</span>, &amp;a, &amp;b);</span><br><span class="line">    fun(&amp;a, &amp;b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;after fun: a = %d, b = %d\n&quot;</span>, a, b);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/9d3569fb-81eb-4624-81cf-a1e8b4a7a155"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h3 id="传数组">传数组</h3>
+<p>将数组为参数传递给函数，传递的是数组的地址。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 传一维数组</span></span><br><span class="line"><span class="comment">// void fun1(int p[])//形式1</span></span><br><span class="line"><span class="comment">// 形式2(常用)</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">fun1</span><span class="params">(<span class="type">int</span> *p)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p[<span class="number">2</span>]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, *(p + <span class="number">3</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">test1</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">10</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;;</span><br><span class="line">    fun1(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传二维数组</span></span><br><span class="line"><span class="comment">// void fun2( int p[][4] )//形式1</span></span><br><span class="line"><span class="comment">// 形式2：通过数组指针</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">fun2</span><span class="params">(<span class="type">int</span> (*p)[<span class="number">4</span>])</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p[<span class="number">0</span>][<span class="number">2</span>]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, *(*(p + <span class="number">1</span>) + <span class="number">2</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">test2</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">2</span>][<span class="number">4</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;;</span><br><span class="line">    fun2(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">fun3</span><span class="params">(<span class="type">char</span> **q)</span> &#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, q[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">test3</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> *p[<span class="number">3</span>] = &#123;<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>, <span class="string">&quot;kitty&quot;</span>&#125;;</span><br><span class="line">    fun3(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    test1();</span><br><span class="line">    test2();</span><br><span class="line">    test3();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/2b905c47-9548-49fe-8ac8-0f28d3d07d49"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h3 id="指针函数">指针函数</h3>
+<p>返回值为指针的函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 指针函数：指针作为函数的返回值</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">fun</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 栈区开辟的空间会随着当前代码段的结束而释放空间</span></span><br><span class="line">    <span class="comment">// char str[100] = &quot;hello world&quot;;</span></span><br><span class="line">    <span class="comment">// 静态区的空间不会随着当前代码段的结束而释放空间</span></span><br><span class="line">    <span class="type">static</span> <span class="type">char</span> str[<span class="number">100</span>] = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> *p;</span><br><span class="line">    p = fun();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p = %s\n&quot;</span>, p);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/73160357-c6c7-4219-9769-aae6d1ae19c6"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h3 id="函数指针">函数指针</h3>
+<p>在 C
+语言中，函数名就是函数的首地址，可以定义一个函数指针变量指向这个函数。</p>
+<p><strong>函数指针的定义语法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回值类型 (*指针名)(形参列表);</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">max</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123;&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">min</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> (*p)(<span class="type">int</span>, <span class="type">int</span>);</span><br><span class="line"></span><br><span class="line">    p = max;</span><br><span class="line">    p = min;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>调用函数的方法：</strong></p>
+<p>通过函数的名字调用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">max</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    num = max(<span class="number">3</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过函数指针调用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">max</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">int</span> (*p)(<span class="type">int</span>, <span class="type">int</span>);</span><br><span class="line">    p = max;</span><br><span class="line">    num = p(<span class="number">3</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>函数指针数组：</strong></p>
+<p>是一个数组，每个元素都是一个函数指针。</p>
+<p>定义方式：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回值类型 (*指针名)[函数指针的个数](形参列表);</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> (*p)[<span class="number">10</span>](<span class="type">int</span>, <span class="type">int</span>);</span><br></pre></td></tr></table></figure>
+<p>定义了一个函数指针数组，有 10 个元素，每个元素指向一个返回值为
+<code>int</code>，有两个 <code>int</code> 类型的参数的指针。</p>
+<p><strong>函数指针最常用的地方：</strong>将函数作为另外一个是函数的参数传递过去，即回调函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123; <span class="keyword">return</span> x + y; &#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sub</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123; <span class="keyword">return</span> x - y; &#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mux</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123; <span class="keyword">return</span> x * y; &#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">dive</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123; <span class="keyword">return</span> x / y; &#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">process</span><span class="params">(<span class="type">int</span> (*p)(<span class="type">int</span>, <span class="type">int</span>), <span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> ret;</span><br><span class="line">    ret = (*p)(a, b);</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    num = process(add, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;num = %d\n&quot;</span>, num);</span><br><span class="line">    num = process(sub, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;num = %d\n&quot;</span>, num);</span><br><span class="line">    num = process(mux, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;num = %d\n&quot;</span>, num);</span><br><span class="line">    num = process(dive, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;num = %d\n&quot;</span>, num);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/0381f37e-89f5-4ae6-9252-e1c0c0099cc8"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h2 id="特殊指针">特殊指针</h2>
+<p><strong><code>void</code>
+类型的指针：</strong>万能指针，可以将任意类型的指针赋值给他，但
+<code>void</code>
+类型的指针要转换成其他类型的指针必须要强转。有些函数的参数或者返回值就是
+<code>void *</code> 类型。</p>
+<p><code>NULL</code>：空指针，编号为 0 的指针，地址为
+<code>0x00000000</code>，一般用 <code>NULL</code> 给指针初始化。</p>
+<h2 id="main-函数传参">main 函数传参</h2>
+<p>C 语言中主函数的头为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span>;</span><br></pre></td></tr></table></figure>
+<p><code>argv</code>：记录输入的参数个数。</p>
+<p><code>argv</code>：记录输入的参数值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;argc=%d\n&quot;</span>, argc);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; argc; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;argv[%d]=%s\n&quot;</span>, i, argv[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用如下命令运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">main10.exe nihao hello world</span><br></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/docs/assets/62458905/80b7aaf2-06bb-483a-9e42-7002dfcf88f2"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<p>可以看到第一个参数是程序在计算机上的绝对路径，从第 2
+个参数开始才是我们输入的值。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yao J
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xinransix.github.io/2023/07/16/%E6%8C%87%E9%92%88/" title="指针">https://xinransix.github.io/2023/07/16/指针/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
+              <a href="/tags/%E6%8C%87%E9%92%88/" rel="tag"><i class="fa fa-tag"></i> 指针</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E9%A2%84%E5%A4%84%E7%90%86/" rel="prev" title="预处理">
+                  <i class="fa fa-angle-left"></i> 预处理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%94%B3%E8%AF%B7/" rel="next" title="动态内存申请">
+                  动态内存申请 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yao J</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">102k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:12</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div><link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.css"
+/>
+<div id="sakana-widget" style="position: fixed; bottom: 10px; right: 20px; z-index: 999;"></div>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount('#sakana-widget');
+  }
+</script>
+<script
+  async
+  onload="initSakanaWidget()"
+  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.js"
+></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

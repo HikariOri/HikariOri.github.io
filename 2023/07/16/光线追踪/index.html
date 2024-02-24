@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="光线追踪基本方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="光线追踪">
+<meta property="og:url" content="https://xinransix.github.io/2023/07/16/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/index.html">
+<meta property="og:site_name" content="木漏れ日">
+<meta property="og:description" content="光线追踪基本方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230715952-5e2915dd-a5ba-49c2-9e5c-55afb864f46c.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230715967-91f702bd-2922-4d54-afad-2576002b432c.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230716051-fbd5333c-44fb-462d-9c4f-7b0f6c4f8ebd.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230716370-e32022af-4b56-4d12-ab60-3c55cbc956d5.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230717077-4c6a3992-0878-4892-a924-716d670140f3.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230718152-4ac85887-f9e4-412e-8483-a33a306884b4.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230718698-d6ea213d-a9ef-4c4b-9be9-403504b70eb6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230719150-05a4114f-3101-4056-b723-e60b2279813e.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230719373-97d6641d-fe3c-4540-a7b6-e70bf0105192.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230719487-4f0cc5a7-f806-4691-a4b0-ac8a901cef3d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230719748-50bf164f-f9f5-43ea-b151-520f861e91d6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230720351-28c5443d-496e-4212-b194-cdddae6370a0.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230720515-56305412-c91a-4af5-a4e0-2e31ebd1abb2.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230768937-da2153ee-d92e-4315-8249-879b1fa9e3c4.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230769545-ddc3545f-a97a-4b14-bc5f-d9749674dbfb.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230769778-cac70be3-5405-405a-85b2-864c1e22fa7a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230770394-9a04aab5-c10e-48a4-bec3-e9e23773c4b3.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230770613-845cc77b-6be1-4d3e-a98f-ae144a5d257d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230777534-d14b47f7-6eab-4ce4-92b0-6541436813af.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230777593-a006e7c7-737d-4fbf-9c64-6fdf2516c242.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230777873-ec1909a3-5177-4053-9949-f63cba371afa.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230778813-4eef39cf-255d-41cd-9721-6a90f96097af.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230779152-6afad7f7-05c2-4eae-a619-571fb40c5e1a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230780809-ce276ef6-27d3-4a9f-b22a-3e0585ee4d47.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230780988-87a2305f-978c-4f4d-a94e-1797514ae78c.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230781397-20e0341b-c35f-46ad-ad95-a3297ea25766.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230782074-a2f4cf9c-765a-4366-bb62-27a6c50d61e8.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230782286-908ef2a3-1968-421d-b9cb-a35f3155106a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230782906-053b6dec-f188-42c9-89db-2f1c06676d75.jpg">
+<meta property="article:published_time" content="2023-07-16T02:19:27.000Z">
+<meta property="article:modified_time" content="2024-02-10T09:21:03.683Z">
+<meta property="article:author" content="Yao J">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="光线追踪">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/62458905/230715952-5e2915dd-a5ba-49c2-9e5c-55afb864f46c.png">
+
+
+<link rel="canonical" href="https://xinransix.github.io/2023/07/16/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xinransix.github.io/2023/07/16/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/","path":"2023/07/16/光线追踪/","title":"光线追踪"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>光线追踪 | 木漏れ日</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">木漏れ日</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">基本光线追踪方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#whitted-style-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA"><span class="nav-number">2.</span> <span class="nav-text">Whitted-Style 光线追踪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%89%E7%BA%BF-%E8%A1%A8%E9%9D%A2%E6%B1%82%E4%BA%A4"><span class="nav-number">3.</span> <span class="nav-text">光线-表面求交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%89%E7%BA%BF%E6%96%B9%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">光线方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%89%E7%BA%BF%E4%B8%8E%E9%9A%90%E5%BC%8F%E8%A1%A8%E9%9D%A2%E6%B1%82%E4%BA%A4"><span class="nav-number">3.2.</span> <span class="nav-text">光线与隐式表面求交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%89%E7%BA%BF%E4%B8%8E%E6%98%BE%E7%A4%BA%E4%B8%89%E8%A7%92%E5%BD%A2%E9%9D%A2%E6%B1%82%E4%BA%A4"><span class="nav-number">3.3.</span> <span class="nav-text">光线与显示三角形面求交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#m%C3%B6ller-trumbore-%E7%AE%97%E6%B3%95"><span class="nav-number">3.4.</span> <span class="nav-text">Möller Trumbore 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%89%E7%BA%BF-%E8%A1%A8%E9%9D%A2%E6%B1%82%E4%BA%A4%E5%8A%A0%E9%80%9F"><span class="nav-number">4.</span> <span class="nav-text">光线-表面求交加速</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%85%E5%9B%B4%E7%9B%92bounding-volumes"><span class="nav-number">4.1.</span> <span class="nav-text">包围盒（Bounding Volumes）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E5%88%92%E5%88%86"><span class="nav-number">4.2.</span> <span class="nav-text">空间划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E4%BD%93%E5%88%92%E5%88%86"><span class="nav-number">4.3.</span> <span class="nav-text">物体划分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6basic-radiometry"><span class="nav-number">5.</span> <span class="nav-text">辐射度量学（Basic Radiometry）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#radiant-energy-and-flux"><span class="nav-number">5.1.</span> <span class="nav-text">Radiant Energy And Flux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#radiant-intensity"><span class="nav-number">5.2.</span> <span class="nav-text">Radiant Intensity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AB%8B%E4%BD%93%E8%A7%92solid-angle"><span class="nav-number">5.2.1.</span> <span class="nav-text">立体角（solid angle）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#irradiance"><span class="nav-number">5.3.</span> <span class="nav-text">Irradiance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#radiance"><span class="nav-number">5.4.</span> <span class="nav-text">Radiance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#irradiance-vs.-radiance"><span class="nav-number">5.5.</span> <span class="nav-text">Irradiance vs. Radiance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#brdf"><span class="nav-number">6.</span> <span class="nav-text">BRDF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#brdf-%E4%BB%8B%E7%BB%8D"><span class="nav-number">6.1.</span> <span class="nav-text">BRDF 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E6%96%B9%E7%A8%8Bthe-reflection-equation"><span class="nav-number">6.2.</span> <span class="nav-text">反射方程（The Reflection
+Equation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E6%96%B9%E7%A8%8Bthe-rendering-equation"><span class="nav-number">6.3.</span> <span class="nav-text">渲染方程（The Rendering
+Equation）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%A7%AF%E5%88%86monte-carlo-integration"><span class="nav-number">7.</span> <span class="nav-text">蒙特卡罗积分（Monte Carlo
+Integration）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AApath-tracing"><span class="nav-number">8.</span> <span class="nav-text">路径追踪（Path Tracing）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%AF%E5%88%86%E6%B1%82%E8%A7%A3"><span class="nav-number">8.1.</span> <span class="nav-text">积分求解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D%E5%85%A8%E5%B1%80%E5%85%89%E7%85%A7"><span class="nav-number">8.2.</span> <span class="nav-text">介绍全局光照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA"><span class="nav-number">8.3.</span> <span class="nav-text">介绍路径追踪</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E6%95%B0%E7%88%86%E7%82%B8%E9%97%AE%E9%A2%98"><span class="nav-number">8.3.1.</span> <span class="nav-text">指数爆炸问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E5%81%9C%E6%AD%A2%E9%97%AE%E9%A2%98"><span class="nav-number">8.3.2.</span> <span class="nav-text">递归停止问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E5%85%89%E6%BA%90%E9%87%87%E6%A0%B7"><span class="nav-number">8.3.3.</span> <span class="nav-text">对光源采样</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yao J"
+      src="https://avatars.githubusercontent.com/u/62458905?v=4">
+  <p class="site-author-name" itemprop="name">Yao J</p>
+  <div class="site-description" itemprop="description">图形渣</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/XinranSix" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;XinranSix" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2937552332@qq.com" title="E-Mail → 2937552332@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://shyarcher.github.io/" title="https:&#x2F;&#x2F;shyarcher.github.io&#x2F;" rel="noopener" target="_blank">ShyArcher</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://noahapps.github.io/" title="https:&#x2F;&#x2F;noahapps.github.io&#x2F;" rel="noopener" target="_blank">Noah</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xinransix.github.io/2023/07/16/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/62458905?v=4">
+      <meta itemprop="name" content="Yao J">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木漏れ日">
+      <meta itemprop="description" content="图形渣">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="光线追踪 | 木漏れ日">
+      <meta itemprop="description" content="光线追踪基本方法">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          光线追踪
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-16 10:19:27" itemprop="dateCreated datePublished" datetime="2023-07-16T10:19:27+08:00">2023-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-10 17:21:03" itemprop="dateModified" datetime="2024-02-10T17:21:03+08:00">2024-02-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/GAMES-101/" itemprop="url" rel="index"><span itemprop="name">GAMES 101</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>26 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">光线追踪基本方法</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>光线追踪可以解决解决光栅化中没有解决的一些问题：</p>
+<ul>
+<li>全局的光照效果不好表示；</li>
+<li>软阴影效果的产生；</li>
+<li>光泽反射（Glossy reflection）；</li>
+<li>间接光照，在漫反射场景中，有些光线在到达眼睛前反射不止一次。</li>
+</ul>
+<p>光栅化是一种快速、近似的一种渲染方式，用于实时渲染；光线追踪是比较准确但是比较慢的渲染方式，用于离线渲染。</p>
+<h2 id="基本光线追踪方法">基本光线追踪方法</h2>
+<p>我们假设光线满足下面 3 点要求：</p>
+<ol type="1">
+<li>光线沿直线传播；</li>
+<li>光线与光线直接「无碰撞」；</li>
+<li>光线从光源射入人眼中，但在路径反转的情况下，物理性质是不变的（光路的可逆性）。</li>
+</ol>
+<p>光的可逆性是光线追踪的重要思想（尽管它不符合实际物理学）。</p>
+<ul>
+<li>通过每像素投射一条光线生成图像</li>
+<li>通过向灯光发送光线来检查阴影</li>
+</ul>
+<p>视眼睛（相机）为一个点，光源为点光源。对于每一个像素，我们从眼睛向像素画出一条光线，如果光线和物体有交点（这个交点要求是光线上的第一个交点，因为后面的交点都会被第一个交点遮挡），将这个交点和光源进行连线，如果可以连接到光源（即连线上无遮挡），那么这一点会被光源照亮，在这一点上要计算着色。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230715952-5e2915dd-a5ba-49c2-9e5c-55afb864f46c.png" alt="Img" style="zoom:75%;" />
+</center>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230715967-91f702bd-2922-4d54-afad-2576002b432c.png" alt="Img" style="zoom:75%;" />
+</center>
+<h2 id="whitted-style-光线追踪">Whitted-Style 光线追踪</h2>
+<p>从眼睛沿着像素连接一条光线，我们认为光线在传播过程中会发生反射和折射，且假设反射是完美的镜面反射。将所有反射、折射点和光源连接起来，如果可以连接，则这一点会被光源照亮，那么这一点的着色要叠加到这个像素上。对于一个像素，可能对应多个被照亮的点，<strong>需要将这些点的着色全部叠加到这个像素上</strong>。</p>
+<p>我们认为光线在传播的过程中发生反射和折射现象。假设反射是完美的镜面反射。当我们将所有的反射（折射）点和光源连接起来。如果这一点可以被光源照亮，那么我们认为这一点的着色应当叠加在这个像素上。对于光线我们认为存在能量的消逝，不会一直反射。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230716051-fbd5333c-44fb-462d-9c4f-7b0f6c4f8ebd.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>在上图中，通过了像素但还没通过反射、折射点的光线称为 primary
+ray，经过了反射、折射点的光线称为 secondary
+rays，从反射、折射点连接到光源的光线称为 shadow rays.</p>
+<p>我们需要求出光线与物体表面的交点，才能确定反射点和折射点。</p>
+<h2 id="光线-表面求交">光线-表面求交</h2>
+<h3 id="光线方程">光线方程</h3>
+<p>光线方程通过其光源实在的位置和一个方向向量定义，如下所示：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230716370-e32022af-4b56-4d12-ab60-3c55cbc956d5.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>光线方程为： <span class="math display">\[
+\mathbf{r}\left(t\right)=\mathbf{o}+t \mathbf{d} \quad 0 \leq
+t&lt;\infty
+\]</span></p>
+<h3 id="光线与隐式表面求交">光线与隐式表面求交</h3>
+<p>先来看光线如何和球面求交，已知光线方程为： <span
+class="math display">\[
+\mathbf{r}\left(t\right) = \mathbf{o} + t\mathbf{d} \quad 0 \leq
+t&lt;\infty
+\]</span> 球面方程为： <span class="math display">\[
+\mathbf{p}: \left(\mathbf{p - c}\right)^2 - R^2 = 0
+\]</span></p>
+<p>那么光线和球面的交点满足： <span class="math display">\[
+\left(\mathbf{o} + t\mathbf{d} - \mathbf{c}\right)^2 - R^2 = 0
+\]</span> 这是一个二次方程，可以写为： <span class="math display">\[
+\begin{align*}
+&amp;at^2 + bt^2 + c = 0 \\
+&amp;a = \mathbf{d} \cdot \mathbf{d}\\
+&amp;b =  2 \left(\mathbf{o} - \mathbf{c}\right) \cdot \mathbf{d}\\
+&amp;c = \left(\mathbf{o}-\mathbf{c}\right) \cdot
+\left(\mathbf{o}-\mathbf{c}\right) - R^2
+\end{align*}
+\]</span> 这个方程的解为： <span class="math display">\[
+t = \frac{-b \pm \sqrt{b^2 -4ac}}{2a}
+\]</span> 解出的 <span class="math inline">\(t\)</span>
+为正实数是光线与圆就有交点。</p>
+<p>对于一般的隐式表面，其方程为： <span class="math display">\[
+\mathbf{p} : f\left(\mathbf{b}\right) = 0
+\]</span> 带入光线方程的： <span class="math display">\[
+f\left(\mathbf{o} + t\mathbf{d}\right) = 0
+\]</span> 只要求解出的 <span class="math inline">\(t\)</span>
+为正实数，则光线与表面有交点。</p>
+<h3 id="光线与显示三角形面求交">光线与显示三角形面求交</h3>
+<blockquote>
+<p>对于一个封闭的曲面，我们可以通过求光线与曲面的交点的个数来判断光源实在这个曲面的内部还是内部。如果光线与曲面的交点个数为奇数，则光源在曲面内部；如果光线与曲面的交点个数为偶数，则光源在曲面外部。</p>
+</blockquote>
+<p>三角形一点处于一个平面上，光线与三角形求交分为两步：</p>
+<ol type="1">
+<li>求出光线与三角形所在平面的交点；</li>
+<li>判断这个交点是否在三角形内部。</li>
+</ol>
+<p>对于一个平面，我们可以使用平面的法向量和平面上的一点来表示这个平面的方程：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230717077-4c6a3992-0878-4892-a924-716d670140f3.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>假设平面的法向量为 <span
+class="math inline">\(\mathbf{N}\)</span>，平面上的一点为 <span
+class="math inline">\(\mathbf{p&#39;}\)</span>，这平面方程为： <span
+class="math display">\[
+\mathbf{p}: \left(\mathbf{p} - \mathbf{p}&#39;\right) \cdot \mathbf{N} =
+0
+\]</span> 将光线方程带入平面方程得： <span class="math display">\[
+\left(\mathbf{o} + t \mathbf{d} - \mathbf{p}\right)\cdot \mathbf{N} = 0
+\]</span> 解得： <span class="math display">\[
+t = \frac{\left(\mathbf{p}&#39; - \mathbf{o}\right) \cdot
+\mathbf{N}}{\mathbf{d} \cdot \mathbf{N}}
+\]</span> 然后检查 <span class="math inline">\(t\)</span>
+是否为正实数。</p>
+<h3 id="möller-trumbore-算法">Möller Trumbore 算法</h3>
+<p>对于 <span class="math inline">\(\triangle
+P_0P_1P_2\)</span>，在三角形平面上的点满足：</p>
+<p><span class="math display">\[
+\mathbf{P} = (1 - b_1 - b_2) \mathbf{P_0} + b_1\mathbf{P_1} +
+b_2\mathbf{P_2}
+\]</span></p>
+<p>求交点得：</p>
+<p><span class="math display">\[
+\mathbf{O} + t\mathbf{D} = (1 - b_1 - b_2) \mathbf{P_0} +
+b_1\mathbf{P_1} + b_2\mathbf{P_2}
+\]</span></p>
+<p>解得：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+t \\
+b_1\\
+b_2
+\end{bmatrix} = \frac{1}{\mathbf{S_1} \cdot \mathbf{E_1}}\begin{bmatrix}
+\mathbf{S_2} \cdot \mathbf{E_2} \\
+\mathbf{S_1} \cdot \mathbf{S} \\
+\mathbf{S_2} \cdot \mathbf{D}
+\end{bmatrix}
+\]</span></p>
+<p>其中： <span class="math display">\[
+\begin{align*}
+\mathbf{E_1} &amp;= \mathbf{P_1} - \mathbf{P_0} \\
+\mathbf{E_2} &amp;= \mathbf{P_2} - \mathbf{P_0} \\
+\mathbf{S} &amp;= \mathbf{O} - \mathbf{P_0} \\
+\mathbf{S_1} &amp;= \mathbf{D} \times \mathbf{E_2} \\
+\mathbf{S_2} &amp;= \mathbf{S} \times \mathbf{E_1}
+\end{align*}
+\]</span> 最后检查 <span class="math inline">\(b1 \ge 0\)</span>、<span
+class="math inline">\(b2 \ge 0\)</span>、<span class="math inline">\(1 -
+b_1 - b_2 \ge 0\)</span> 是否成立，成立则说明解是合理的。</p>
+<h2 id="光线-表面求交加速">光线-表面求交加速</h2>
+<p>简单的光线表面求交算法每一像素需要对每一个三角形都进行测试，然后找出深度最小的那个点，这个算法需要计算
+<span class="math inline">\(\text{\#pixels} \times
+\text{\#traingles}\)</span> 次，是非常慢的。</p>
+<h3 id="包围盒bounding-volumes">包围盒（Bounding Volumes）</h3>
+<p>将物体使用一个简单的包围盒包起来，如果光线与包围盒都没有交点，则一定与这个物体表面没有交点，所以我们可以先测试包围盒，如果光线与包围盒有交点，再测试物体。</p>
+<p>我们常用的包围盒是<strong>轴对齐包围盒</strong>（Axis-Aligned
+Bounding Box, AABB），包围盒的长宽高和坐标轴都是平行的。我们认为包围盒是
+3 对无限大的平面。</p>
+<p>先来看一下 2 维情况下光线与包围盒的求交：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230718152-4ac85887-f9e4-412e-8483-a33a306884b4.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>我们求出光线在 x 平面上的两个交点以及 y
+平面上的两个交点，那么最终光线在包围盒内部的部分是这些交点区间的交集。</p>
+<p>可以认为：</p>
+<ul>
+<li>光线进入到三个面中，才可以进入到包围盒；</li>
+<li>光线离开任意一个面，就会离开包围盒。</li>
+</ul>
+<p>在 3 维的情况下，我们对每对平面求一个 <span
+class="math inline">\(t_{\text{min}}\)</span> 和 <span
+class="math inline">\(t_{\text{max}}\)</span>，然后令 <span
+class="math inline">\(t_{\text{enter}} =
+\max{\left\{t_{\text{min}}\right\}}\)</span>，<span
+class="math inline">\(t_{\text{exit}} =
+\min{\left\{t_{\text{max}}\right\}}\)</span>.</p>
+<p>如果 <span class="math inline">\(t_{\text{exit}} \lt
+0\)</span>，则包围盒在光源的「背面」；如果 <span
+class="math inline">\(t_{\text{exit}} \ge 0\)</span> 且 <span
+class="math inline">\(t_\text{enter} \lt
+0\)</span>，则光源在包围内。</p>
+<p>综上所述，当 <span class="math inline">\(t_\text{enter} &lt;
+t_\text{exit}\)</span> 且 <span class="math inline">\(t_\text{exit} \gt
+0\)</span> 时，光源和包围盒有交点。</p>
+<p>使用轴对齐包围盒可以非常快速地计算出 <span
+class="math inline">\(t\)</span>，例如对于垂直于 <span
+class="math inline">\(x\)</span> 轴的平面：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230718698-d6ea213d-a9ef-4c4b-9be9-403504b70eb6.png" alt="Img" style="zoom:100%;" />
+</center>
+<p><span class="math inline">\(t\)</span> 求出来为： <span
+class="math display">\[
+t = \frac{\mathbf{p}&#39;_x - \mathbf{o}_x}{\mathbf{d}_x}
+\]</span></p>
+<h3 id="空间划分">空间划分</h3>
+<p>为了可以加速光线和物体求交点，我们可以使用大小相同的网格将原本比较大的包围盒进行划分。我们进行网格划分分为以下几个步骤：</p>
+<ol type="1">
+<li>找到场景中的包围盒；</li>
+<li>将包围盒划分成一个一个小格子；</li>
+<li>存储哪些小格子中包含物体（我们认为物体都是非实心的面，只记录包含面的小格子，物体内部不包含面的小格子不计入）；</li>
+<li>判断光线是否和格子相交，如果光线和某个格子相交并且这个格子中包含物体，那么我们要对存储在这个网格内的所有物体进行求交。</li>
+</ol>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230719150-05a4114f-3101-4056-b723-e60b2279813e.png" alt="Img" style="zoom:50%;" />
+</center>
+<p>在这个里，我们有两个假设：</p>
+<ol type="1">
+<li>判断光线和格子是否相交是很快的；</li>
+<li>我们可以使用类似于光栅化直线的方式来判断直线与那些网格是相交的。</li>
+</ol>
+<p>一般来说，格子的划分不可以太稀疏也不可以太稠密，需要对格子的量进行控制。网格的数量
+<span class="math inline">\(\text{\#cells} = C *
+\text{\#objs}\)</span>，在 3 维情况下，<span
+class="math inline">\(C\approx 27\)</span>.</p>
+<p>这种划分方式对于物体分布均匀的场景比较合适。对于物体分布稀疏的场景需要多次和格子进行相交判断，这种方法相对不合适。</p>
+<p>还有其他空间划分方法，包括八叉树（Oct-Tree），KD 树（KD-Tree）以及
+BSP 树（BSP-Tree）。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230719373-97d6641d-fe3c-4540-a7b6-e70bf0105192.png" alt="Img" style="zoom:50%;" />
+</center>
+<ul>
+<li><strong>八叉树</strong>（Oct-Tree），将一个包围盒切成八块（图中是二维情况，只有
+4
+块）。对于每一个小格子我们会继续进行划分直到小格子中没有物体或者物体的数量比较少；</li>
+<li><strong>KD
+树</strong>（KD-Tree），每一次都进行一次水平划分或者竖直划分，将包围盒分成两部分。可以形成一个二叉树的存储结构。水平划分和竖直划分交替进行，保证划分的空间是均匀的；</li>
+<li><strong>BSP
+树</strong>（BSP-Tree），每一次选择一个方向进行一次划分，并不是沿着轴平行方向划分。、</li>
+</ul>
+<p>三种划分方法，KD
+树更常用并且使用起来比较方便，可以用二叉树来存储。在每一个二叉树节点中，我们都要储存以下信息：</p>
+<ul>
+<li>如果是非叶子结点，需要存储划分轴，划分的位置以及孩子节点的指针；</li>
+<li>如果是叶子结点，需要存储格子中包含的物体。</li>
+</ul>
+<p>实际划分出的盒子均在叶子结点上。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230719487-4f0cc5a7-f806-4691-a4b0-ac8a901cef3d.png" alt="Img" style="zoom:50%;" />
+</center>
+<p>我们通过类似于二分查找的方式计算交点：</p>
+<ul>
+<li>如果光线和一个节点有交点，那么它和它的子节点也有交点；</li>
+<li>如果光线和叶子结点有交点，那么它需要和格子内的所有物体求交点。</li>
+</ul>
+<p>这种方法存在两个问题，首先，格子和一个三角形面是否相交的判断比较复杂。其次，一个物体可能会在多个不同的格子中，需要多次存储。因此我们会使用更常用的物体划分的方式。</p>
+<h3 id="物体划分">物体划分</h3>
+<p><strong>物体划分</strong>（Bounding Volume
+Hierarchy，BVH）的主要思想是对物体进行进行划分，并重新计算包围盒。BVH
+中，每一个物体只属于一个包围盒。</p>
+<p>BVH 的划分主要分为以下几步：</p>
+<ol type="1">
+<li>划分包围盒；</li>
+<li>将物体组成的集合划分为两个子集合；</li>
+<li>计算每个子集合的包围盒；</li>
+<li>当叶子结点的三角形面数量足够少的时候，停止划分。</li>
+</ol>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230719748-50bf164f-f9f5-43ea-b151-520f861e91d6.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>当我们进行划分的时候，也有不同的划分技巧：</p>
+<ol type="1">
+<li>沿着最长的轴划分为两半（让长轴变短，分割更加均匀）；</li>
+<li>取中间的物体进行划分，可以保证两边三角形数量差不多（找到第 <span
+class="math inline">\(k\)</span> 个物体的算法可以在 <span
+class="math inline">\(\Omicron(n)\)</span>
+的时间内解决，被称作快速选择算法）；</li>
+<li>当包围盒中的物体数量小于一定数量的时候停止划分。</li>
+</ol>
+<p>非叶子节点存储：</p>
+<ul>
+<li>包围盒</li>
+<li>孩子节点的指针。</li>
+</ul>
+<p>叶子节点存储：</p>
+<ul>
+<li>包围盒；</li>
+<li>包围盒中的物体。</li>
+</ul>
+<p>BVH 的遍历：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Intersect</span>(Ray ray, BVH node) &#123;</span><br><span class="line">    <span class="keyword">if</span> (ray misses node.bbox) <span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (node is a leaf node) &#123;</span><br><span class="line">        test intersection with all objs;</span><br><span class="line">        <span class="keyword">return</span> closest intersection;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    hit1 = <span class="built_in">Intersect</span>(ray, node.child1);</span><br><span class="line">    hit2 = <span class="built_in">Intersect</span>(ray, node.child2);</span><br><span class="line">    <span class="keyword">return</span> the closer of hit1, hit2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="辐射度量学basic-radiometry">辐射度量学（Basic Radiometry）</h2>
+<h3 id="radiant-energy-and-flux">Radiant Energy And Flux</h3>
+<p><strong>Radiant energy</strong>：指的是电磁辐射的能量（The energy of
+electromagnetic radiation），单位为焦耳，符号记为： <span
+class="math display">\[
+Q\,\left[\mathrm{J}=\text { Joule }\right]
+\]</span> <strong>Radiant
+flux（power）</strong>：指的是单位时间内的能量（The energy emitted,
+reflected, transmitted or received, per unit time.），单位是瓦特： <span
+class="math display">\[
+\Phi \equiv \frac{\mathrm{d} Q}{\mathrm{d}
+t}\,\left[\mathrm{W}=\mathrm{Watt}\right]\left[\operatorname{lm}=\text {
+lumen }\right]^*
+\]</span></p>
+<blockquote>
+<p>Radiant flux 是对单位时间内流过传感器的光子数目的度量。</p>
+</blockquote>
+<h3 id="radiant-intensity">Radiant Intensity</h3>
+<p><strong>Radiant Intensity</strong>
+指的是光源在单位立体角上的功率（The power per unit solid
+angle）。数学定义为： <span class="math display">\[
+I(\omega) \equiv \frac{\mathrm{d} \Phi}{\mathrm{d} \omega}
+\,\left[\frac{\mathrm{W}}{\mathrm{sr}}\right]\left[\frac{\mathrm{lm}}{\mathrm{sr}}=\mathrm{cd}=\text
+{ candela }\right]
+\]</span></p>
+<h4 id="立体角solid-angle">立体角（solid angle）</h4>
+<p>在 2 维中，弧度制的定义如下： <span class="math display">\[
+\theta = \frac{l}{r}
+\]</span> 单位为 <span class="math inline">\(rad\)</span>. 整圆的角度为
+<span class="math inline">\(2\pi\, rad\)</span>.</p>
+<p>在 3 维中，立体角的定义如下： <span class="math display">\[
+\omega = \frac{A}{r^2}
+\]</span></p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230720351-28c5443d-496e-4212-b194-cdddae6370a0.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>单位为 <span class="math inline">\(sr\)</span>，整球对应的立体角为
+<span class="math inline">\(4 \pi \, sr\)</span>.</p>
+<p>接下来我们推出单位立体角（Differential Solid Angles）的公式：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230720515-56305412-c91a-4af5-a4e0-2e31ebd1abb2.png" alt="Img" style="zoom:75%;" />
+</center>
+<p><span class="math display">\[
+\begin{align*}
+\mathrm{d}A &amp;= \left(r \mathrm{d} \theta \right)\left(r \sin
+{\theta}\mathrm{d}\phi\right) \\
+&amp;=r^2 \sin {\theta} \mathrm{d} \theta \mathrm{d} \phi \\
+\mathrm{d}\omega &amp;= \frac{\mathrm{d} A}{r^2} = \sin \theta
+\mathrm{d} \theta \mathrm{d}\phi
+\end{align*}
+\]</span></p>
+<p>对整个球面的单位立体角进行积分： <span class="math display">\[
+\Omega=\int_{S^2} d \omega=\int_0^{2 \pi} \int_0^\pi \sin \theta d
+\theta d \phi=4 \pi
+\]</span></p>
+<p>对 <span class="math inline">\(\mathrm{d} \Phi\)</span> 积分得：</p>
+<p><span class="math display">\[
+\begin{align*}
+\Phi &amp; = \int_{S^2} \mathrm{d} \Phi \\
+&amp; = \int_{S^2} I \mathrm{~d} \omega \\
+&amp; =4 \pi I \\
+\end{align*}
+\]</span></p>
+<p>所以： <span class="math display">\[
+I =\frac{\Phi}{4 \pi}
+\]</span></p>
+<h3 id="irradiance">Irradiance</h3>
+<p>Irradiance：是指单位面积上所接收的功率（The power per unit area
+incident on a surface point.）。 <span class="math display">\[
+E(\mathbf{x}) \equiv \frac{\mathrm{d} \Phi(\mathbf{x})}{\mathrm{d} A
+\cos \theta}  \,
+\left[\frac{W}{\mathrm{~m}^2}\right]\left[\frac{\operatorname{lm}}{\mathrm{m}^2}=\operatorname{lux}\right]
+\]</span> 上式中，<span class="math inline">\(\theta\)</span>
+是光线与平面法线的夹角。</p>
+<p>Lambert’s 余弦定理可以使用 Irradiance 来解释。</p>
+<p>假设光线一功率 <span class="math inline">\(\Phi\)</span>
+均匀向外均匀发出，一个球面上的 Irradiance
+和这个球的半径成平方反比。假设在半径为 1 的球面上的 Irradiance 为 <span
+class="math inline">\(E\)</span>，则在半径为 <span
+class="math inline">\(r\)</span> 的球面上的 Irradiance 为： <span
+class="math display">\[
+\begin{align*}
+E&#39; &amp;= \frac{\Phi}{4 \pi r^2} \\
+&amp;= \frac{E} {r^2} \\
+\end{align*}
+\]</span></p>
+<h3 id="radiance">Radiance</h3>
+<p>Radiance 是描述光在环境中发布的基本场量。</p>
+<ul>
+<li>Radiance 是与光线相关的量</li>
+<li>渲染就是在就算 Radiance.</li>
+</ul>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230768937-da2153ee-d92e-4315-8249-879b1fa9e3c4.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>Radiance 是单位立体角、单位面积上的功率（The power emitted,
+reflected, transmitted or received by a surface, per unit solid angle,
+per projected unit area.）。 <span class="math display">\[
+L\left(\mathrm{p}, \omega\right) \equiv \frac{\mathrm{d}^2
+\Phi(\mathrm{p}, \omega)}{\mathrm{d} \omega \mathrm{d} A \cos \theta} \,
+\left[\frac{\mathrm{W}}{\mathrm{sr}
+\mathrm{m}^2}\right]\left[\frac{\mathrm{cd}}{\mathrm{m}^2}=\frac{\mathrm{lm}}{\mathrm{sr}
+\mathrm{m}^2}=\mathrm{nit}\right]
+\]</span> 我们可以从两个方面来理解 Radiance。</p>
+<ul>
+<li>从入射角度来说（Incident Radiance），我们认为 Radiance
+是单位立体角下的 Irradiance：</li>
+</ul>
+<p><span class="math display">\[
+L\left(\mathrm{p}, \omega\right)  = \frac{\mathrm{d}
+E\left(\mathrm{p}\right)}{\mathrm{d} \omega \cos \theta}
+\]</span></p>
+<blockquote>
+<p>Incident radiance is the irradiance per unit solid angle arriving at
+the surface.</p>
+</blockquote>
+<ul>
+<li>从出射角度来说（Exiting Radiance），我们认为 Radiance 是单位面积下的
+Intensity：</li>
+</ul>
+<p><span class="math display">\[
+L\left(\mathrm{p}, \omega\right)  = \frac{\mathrm{d} I\left(\mathrm{p},
+\omega\right)}{\mathrm{d} A \cos \theta}
+\]</span></p>
+<blockquote>
+<p>Exiting surface radiance is the intensity per unit projected area
+leaving the surface.</p>
+</blockquote>
+<h3 id="irradiance-vs.-radiance">Irradiance vs. Radiance</h3>
+<p>Irradiance: total power received by area <span
+class="math inline">\(\mathrm{d}A\)</span>.</p>
+<p>Radiance: power received by area <span
+class="math inline">\(\mathrm{d}A\)</span> from "direction" <span
+class="math inline">\(\mathrm{d} \omega\)</span>.</p>
+<p>那么 Irradiance 可以表示为 Radiance 在所有角度上的积分： <span
+class="math display">\[
+\begin{align*}
+\mathrm{d} E(\mathrm{p}, \omega) &amp;=
+L_i\left(\mathrm{p},\omega\right) \cos \theta \mathrm{d} \omega \\
+E\left(\mathrm{p}\right)&amp; = \int_{H^2}
+L_i\left(\mathrm{p},\omega\right) \cos \theta \mathrm{d} \omega
+\end{align*}
+\]</span>
+我们这里只对上半求进行积分，下半球方向的光线对这一点没有任何贡献。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230769545-ddc3545f-a97a-4b14-bc5f-d9749674dbfb.png" alt="Img" style="zoom:75%;" />
+</center>
+<h2 id="brdf">BRDF</h2>
+<h3 id="brdf-介绍">BRDF 介绍</h3>
+<p>BRDF 的全称是：Bidirectional Reflectance Distribution Function.
+翻译过来就是：双向反射分布函数。</p>
+<p>BRDF 是一个函数，这个函数描述了一个点上的反射：将从 <span
+class="math inline">\({\omega}_i\)</span> 方向来的 radiance 转换为 <span
+class="math inline">\(\mathrm{d} A\)</span> 上接收的功率 <span
+class="math inline">\(E\)</span>，任何功率 <span
+class="math inline">\(E\)</span> 会变成其他任意方向 <span
+class="math inline">\({\omega}_{0}\)</span> 方向的 radiance.</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230769778-cac70be3-5405-405a-85b2-864c1e22fa7a.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>我们可以将反射分为两步：</p>
+<ol type="1">
+<li>光线入射某一点，得到了一部分能量；</li>
+<li>这个点将得到的能量发射出去。</li>
+</ol>
+<p>Differential irradiance incoming: <span class="math display">\[
+\mathrm{d}E\left(\omega_i\right) = L\left(\omega_i\right) \cos \theta_i
+\mathrm{d} \omega_i
+\]</span> Differential radiance exiting (due to <span
+class="math inline">\(\mathrm{d} E\left(\omega_i\right)\)</span>): <span
+class="math display">\[
+\mathrm{d}L_r\left(\omega_r\right)
+\]</span> The BRDF represents how much light is reflected into each
+outgoing direction <span class="math inline">\(\omega_r\)</span> from
+each incoming direction.</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230770394-9a04aab5-c10e-48a4-bec3-e9e23773c4b3.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>BRDF 的定义如下： <span class="math display">\[
+f_r\left(\omega_i \rightarrow \omega_r \right) = \frac{\mathrm{d}
+L_r\left(\omega_r\right)}{\mathrm{d} E_i\left(\omega_i\right)} =
+\frac{\mathrm{d}L_r\left(\omega_r\right)}{L\left(\omega_i\right) \cos
+\theta_i \mathrm{d} \omega_i} \,\left[\frac{\text{1}}{\text{sr}}\right]
+\]</span></p>
+<h3 id="反射方程the-reflection-equation">反射方程（The Reflection
+Equation）</h3>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230770613-845cc77b-6be1-4d3e-a98f-ae144a5d257d.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>对于某一个出射方向，对于的能量应该是所有入射方向光线的叠加，于是乎我们可以得到反射方程：</p>
+<p><span class="math display">\[
+L_r\left(\mathrm{p}, \omega_r\right) = \int_{H^2}f_r\left(\mathrm{p},
+\omega_i \rightarrow \omega_r \right)L_i\left(\mathrm{P},
+\omega_i\right) \cos \theta_i \,\mathrm{d} \omega_i
+\]</span></p>
+<blockquote>
+<p>反射 radiance 依赖于一个 入射 radiance，这个入射 radiance
+又依赖于另外一个点出的反射 radiance，这是一个递归的过程。</p>
+</blockquote>
+<h3 id="渲染方程the-rendering-equation">渲染方程（The Rendering
+Equation）</h3>
+<p>反射方程为： <span class="math display">\[
+L_r\left(\mathrm{p}, \omega_r\right) = \int_{H^2}f_r\left(\mathrm{p},
+\omega_i \rightarrow \omega_r \right)L_i\left(\mathrm{P},
+\omega_i\right) \cos \theta_i \,\mathrm{d} \omega_i
+\]</span> 有些物体本来就会发光，于是乎我们加上发光项，便得到了渲染方程：
+<span class="math display">\[
+L_o\left(\mathrm{p}, \omega_o\right) = L_e\left(\mathrm{p},
+\omega_o\right) + \int_{\Omega^+}L_i\left(\mathrm{p}, \omega_i\right)
+f_r\left(\mathrm{p}, \omega_i, \omega_o\right)\left(n \cdot \omega_i
+\right)\mathrm{d} \omega_i
+\]</span></p>
+<blockquote>
+<p>注意，所有的方向都是向外的。</p>
+</blockquote>
+<p>我们可以认为 <span class="math inline">\(L_i\)</span>
+包含其他点光源、面光源以及其他物体二次反射光线，最终结果我们使用积分的方式进行叠加。渲染方程可以简写为：
+<span class="math display">\[
+l\left(u\right) = e\left(u\right) + \int l\left(v\right)K\left(u,
+v\right) \mathrm{d} v
+\]</span> 我们可以通过矩阵再一次简化公式为： <span
+class="math display">\[
+L = E + KL
+\]</span> 其中 <span class="math inline">\(K\)</span>
+是反射操作符，上述方程是一个离散化的简单矩阵方程，<span
+class="math inline">\(L\)</span>、<span class="math inline">\(E\)</span>
+都是向量，<span class="math inline">\(K\)</span> 是 light transport
+matrix.</p>
+<p>求解得： <span class="math display">\[
+L = (I - K)^{-1}E
+\]</span> 泰勒展开得： <span class="math display">\[
+\begin{align*}
+L &amp;= (I + K + K^2 + K^3 + \cdots)E \\
+&amp;= E + KE + K^2 E + K^3E + \cdots
+\end{align*}
+\]</span>
+每一项分别代表的是：物体直接发出的光，光源经过一次反射的光，光源经过两次反射得到的间接光照……</p>
+<p>着色是直接光照，对应 <span class="math inline">\(E\)</span> 和 <span
+class="math inline">\(KE\)</span>；<span
+class="math inline">\(KE\)</span> 对应直接光照，<span
+class="math inline">\(K^2E\)</span> 对应间接光照；<span
+class="math inline">\(KE + K^2E + K^3E + \cdots\)</span>
+对应全局光照。</p>
+<h2 id="蒙特卡罗积分monte-carlo-integration">蒙特卡罗积分（Monte Carlo
+Integration）</h2>
+<p>对于任意一个函数，无论其表达式复杂与否，我们都希望能够求出这个函数得积分值。在微积分中我们学习过黎曼积分，即：分隔、近似、求和、取极限，这对于表达式较为简单的函数很好操作，但对于表达式比较复杂的函数甚至表达式无法写出来的函数来说是不可行的。对于表达式比较复杂或者表达式无法写出来的函数我们可以采用数值方法求出其积分值，蒙特卡洛法就是这样的一种数值方法。</p>
+<p>蒙特卡洛积分会进行多次随机采样，将采样点对应函数值除以采样点对应的概率，然后做一个平均，将这个结果作为积分结果。</p>
+<p>对于下面这个积分： <span class="math display">\[
+\int_a^b f\left(x\right) \,\mathrm{d} x
+\]</span> 取一个随机变量： <span class="math display">\[
+X_i \sim p\left(x\right)
+\]</span></p>
+<p>则蒙特卡洛积分为： <span class="math display">\[
+F_N = \frac{1}{N} \sum^N_{i =
+1}\frac{f\left(X_i\right)}{p\left(X_i\right)}
+\]</span> 例如 <span class="math inline">\(X_i\)</span> 满足下列分布：
+<span class="math display">\[
+X_i\sim p\left(x\right) = \frac{1}{b - a}
+\]</span> 则蒙特卡洛积分为： <span class="math display">\[
+F_N = \frac{b- a}{N} \sum^N_{i = 1}f\left(X_i\right)
+\]</span>
+蒙特卡洛积分对于任何一种采样分布都是成立的。只要进行采样就可以得到对应的积分。使用蒙特卡洛积分要注意两点：</p>
+<ol type="1">
+<li>采样的次数越多，得到的结果越准确；</li>
+<li>如果对 <span class="math inline">\(x\)</span> 进行采样，则要对 <span
+class="math inline">\(x\)</span> 进行积分。</li>
+</ol>
+<h2 id="路径追踪path-tracing">路径追踪（Path Tracing）</h2>
+<p>Whitted-style 光线追踪有两个问题：</p>
+<ol type="1">
+<li>只做镜面反射（折射），这样不能很好地表示 glossy 材质的物体。</li>
+</ol>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230777534-d14b47f7-6eab-4ce4-92b0-6541436813af.png" alt="Img" style="zoom:75%;" />
+</center>
+<ol start="2" type="1">
+<li>在漫反射材质直之间没有反射</li>
+</ol>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230777593-a006e7c7-737d-4fbf-9c64-6fdf2516c242.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>所以 Whitted-style 的路径追踪是有问题的。但渲染方程是绝对正确的：
+<span class="math display">\[
+L_o\left(\mathrm{p}, \omega_o\right) = L_e\left(\mathrm{p},
+\omega_o\right) + \int_{\Omega^+}L_i\left(\mathrm{p}, \omega_i\right)
+f_r\left(\mathrm{p}, \omega_i, \omega_o\right)\left(n \cdot \omega_i
+\right)\mathrm{d} \omega_i
+\]</span> 我们现在就要求出这个积分。</p>
+<h3 id="积分求解">积分求解</h3>
+<p>假设我们现在下面场景中渲染一个只有直接光照的像素：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230777873-ec1909a3-5177-4053-9949-f63cba371afa.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>我们先忽略渲染方程中的非积分项好了： <span class="math display">\[
+L_o\left(\mathrm{p}, \omega_o\right) =
+\int_{\Omega^+}L_i\left(\mathrm{p}, \omega_i\right) f_r\left(\mathrm{p},
+\omega_i, \omega_o\right)\left(n \cdot \omega_i \right)\mathrm{d}
+\omega_i
+\]</span> 我们使用蒙特卡洛积分求出这个积分值： <span
+class="math display">\[
+\int_a^b f\left(x\right) \, \mathrm{d}x \approx = \frac{1}{N}\sum^N_{k =
+1}\frac{f\left(X_k\right)}{p\left(X_k\right)} \quad X_k \sim
+p\left(x\right)
+\]</span> <span class="math inline">\(f\left(x \right)\)</span> 是：
+<span class="math display">\[
+L_i\left(\mathrm{p}, \omega_i\right) f_r\left(\mathrm{p}, \omega_i,
+\omega_o\right)\left(n \cdot \omega_i \right)
+\]</span> pdf 选取半球上均匀分布： <span class="math display">\[
+p\left(\omega_i\right) = \frac{1}{2\pi}
+\]</span> 所以积分值求出来为： <span class="math display">\[
+\begin{align*}
+L_o\left(\mathrm{p}, \omega_o\right) &amp;=
+\int_{\Omega^+}L_i\left(\mathrm{p}, \omega_i\right) f_r\left(\mathrm{p},
+\omega_i, \omega_o\right)\left(n \cdot \omega_i \right)\,\mathrm{d}
+\omega_i \\
+&amp; \approx \frac{1}{N}\sum_{i = 1}^N \frac{L_i\left(\mathrm{p},
+\omega_i\right) f_r\left(\mathrm{p}, \omega_i, \omega_o\right)\left(n
+\cdot \omega_i \right)}{p\left(\omega_i\right)}
+\end{align*}
+\]</span>
+这个算法就是一个<strong>适用于直接光照</strong>的正确着色算法，写出伪代码是：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">shade</span>(p, wo)</span><br><span class="line">    Randomly choose N directions wi~pdf</span><br><span class="line">    Lo = <span class="number">0.0</span></span><br><span class="line">    For each wi</span><br><span class="line">        Trace a ray <span class="built_in">r</span>(p, wi)</span><br><span class="line">        If ray r hit the light</span><br><span class="line">        	Lo += (<span class="number">1</span> / N) * L_i * f_r * cosine / <span class="built_in">pdf</span>(wi)</span><br><span class="line">    Return Lo</span><br></pre></td></tr></table></figure>
+<h3 id="介绍全局光照">介绍全局光照</h3>
+<p>对于间接光照，对于下图中的 <span class="math inline">\(P\)</span>
+点，如果我们想要求出来自 <span class="math inline">\(Q\)</span>
+点的光线，我们可以看作我们从 <span class="math inline">\(P\)</span>
+点看向 <span class="math inline">\(Q\)</span>
+点来自光源的光线反射得到的结果。那么以上的伪代码我们可以改写为递归的形式：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230778813-4eef39cf-255d-41cd-9721-6a90f96097af.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>伪代码为： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">shade(p, wo)</span><br><span class="line">    Randomly choose N directions wi~pdf</span><br><span class="line">    Lo = 0.0</span><br><span class="line">    For each wi</span><br><span class="line">        Trace a ray r(p, wi)</span><br><span class="line">        If ray r hit the light</span><br><span class="line">        	Lo += (1 / N) * L_i * f_r * cosine / pdf(wi)</span><br><span class="line">        Else If ray r hit an object at q</span><br><span class="line">        	Lo += (1 / n) * shade(q, -wi) * f_r * cosine / pdf(wi)</span><br><span class="line">    Return Lo</span><br></pre></td></tr></table></figure></p>
+<h3 id="介绍路径追踪">介绍路径追踪</h3>
+<h4 id="指数爆炸问题">指数爆炸问题</h4>
+<p>如果我们采样 <span class="math inline">\(N\)</span> 次，那么在经过
+<span class="math inline">\(r\)</span> 次反射后，光线的数目可以达到
+<span class="math inline">\(N^r\)</span> 条，会使计算量大大增加。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230779152-6afad7f7-05c2-4eae-a619-571fb40c5e1a.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>当且仅当 <span class="math inline">\(N = 1\)</span>
+时，才不会出现指数爆炸的情况。也就是说，对每个着色点只追踪一条光线。这样做会产生噪声，no
+problem，只需在每个像素中追踪更多路径，然后做一个平均即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">shade</span>(p, wo)</span><br><span class="line">    Randomly choose one directions wi~<span class="built_in">pdf</span>(w)</span><br><span class="line">    <span class="function">Trace a ray <span class="title">r</span><span class="params">(p, wi)</span></span></span><br><span class="line"><span class="function">    If ray r hit the light</span></span><br><span class="line"><span class="function">    	Return L_i * f_r * consine / <span class="title">pdf</span><span class="params">(wi)</span></span></span><br><span class="line"><span class="function">    Else If ray r hit an object at q</span></span><br><span class="line"><span class="function">    	Return <span class="title">shade</span><span class="params">(q, -wi)</span> * f_r * cosine / <span class="title">pdf</span><span class="params">(wi)</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>则会就是路径追踪，即 <span class="math inline">\(N = 1\)</span>，对于
+<span class="math inline">\(N \neq 1\)</span> 的称为分布式光线追踪。</p>
+</blockquote>
+<p>对于路径追踪，使用如下的光线生成算法（与光线追踪中的光线投射很像）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ray_generation</span>(camPos, pixel)</span><br><span class="line">    Uniformly choose N sample positions within the pixel</span><br><span class="line">    pixel_radiance = <span class="number">0.0</span></span><br><span class="line">    For each sample in the pixel </span><br><span class="line">    	Shoot a ray <span class="built_in">r</span>(camPos, cam_to_sample)</span><br><span class="line">    	If ray r hit the scene at p</span><br><span class="line">    		pixel_radiance += <span class="number">1</span> / N * <span class="built_in">shade</span>(p, sample_to_cam)</span><br><span class="line">    Return pixel_radiance</span><br></pre></td></tr></table></figure>
+<p>这个算法还有一个问题，递归永远不会结束，这样复合现实情况，但在程序里这样肯定是不行的，我们必须选取一个合适的时机让算法停下来。</p>
+<h4 id="递归停止问题">递归停止问题</h4>
+<p>引入俄罗斯轮盘赌（RR）来解决这个问题。对于，假设光线有 <span
+class="math inline">\(P\)</span> 的概率能射出，这时候返回 Lo /
+P，那么会有 1 - P 的概率不能射出，这时候返回 0 即可。</p>
+<p>使用这种方式的到的期望是：E = P * (Lo / P) + (1 - P) * 0 = Lo.</p>
+<p>引入 RR 后 shade 的伪代码是：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">shade</span>(p, wo)</span><br><span class="line">    Manually specify a probability P_RR</span><br><span class="line">    Randomly select ksi in a uniform dist. in [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    <span class="built_in">If</span> (ksi &gt; P_RR) <span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line"></span><br><span class="line">	Randomly choose ONE direction wi~<span class="built_in">pdf</span>(w)</span><br><span class="line">    <span class="function">Trace a ray <span class="title">r</span><span class="params">(p, wi)</span></span></span><br><span class="line"><span class="function">    If ray r hit the light</span></span><br><span class="line"><span class="function">        Return L_i * f_r * cosine / <span class="title">pdf</span><span class="params">(wi)</span> / P_RR</span></span><br><span class="line"><span class="function">    Else If ray r hit an object at q</span></span><br><span class="line"><span class="function">        Return <span class="title">shade</span><span class="params">(q, -wi)</span> * f_r * cosine / <span class="title">pdf</span><span class="params">(wi)</span> / P_RR</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这个算法就是正确的路径追踪算法！</p>
+</blockquote>
+<p>但很没用效率：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230780809-ce276ef6-27d3-4a9f-b22a-3e0585ee4d47.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>如上图所示，在 Low SPP 下效果很差。</p>
+<h4 id="对光源采样">对光源采样</h4>
+<p>对于同一个点来说，光源面积大，那么我们使用较少的光线就可以接触到光源，但是如果光源面积太小，我们必须使用较多的光线才可以和光源发生接触。那么对于小光源计算量会上升。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230780988-87a2305f-978c-4f4d-a94e-1797514ae78c.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>为了解决这个问题，我们直接在光源上采样，这样就不会有光线被浪费。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230781397-20e0341b-c35f-46ad-ad95-a3297ea25766.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>假设对光源均匀采样，则： <span class="math display">\[
+\text{pdf} = \frac{1}{A} \quad(\int \text{pdf} \, \mathrm{d} A = 1)
+\]</span>
+但是蒙特卡洛积分的采样必须在积分域上。此时积分域发生了变换，我们需要找到
+<span class="math inline">\(\mathrm{\omega}\)</span> 和 <span
+class="math inline">\(\mathrm{d} A\)</span> 之间的关系。<span
+class="math inline">\(\mathrm{\omega}\)</span> 是 <span
+class="math inline">\(\mathrm{d} A\)</span> 在对应单位球上的投影，因此：
+<span class="math display">\[
+\mathrm{d} \omega = \frac{\mathrm{d} A \cos \theta&#39;}{\left\|x&#39; -
+x\right\| ^ 2}
+\]</span> 如何就可以写出对光源的渲染方程啦： <span
+class="math display">\[
+\begin{align*}
+L_o\left(\mathrm{x}, \omega_o\right) &amp;=
+\int_{\Omega^+}L_i\left(\mathrm{x}, \omega_i\right) f_r\left(\mathrm{x},
+\omega_i, \omega_o\right)\cos \theta \,\mathrm{d} \omega_i \\
+&amp;= \int_A L_i\left(\mathrm{x}, \omega_i\right)f_r\left(\mathrm{x},
+\omega_i, \omega_o\right)\frac{\cos \theta \cos
+\theta&#39;}{\left\|x&#39; - x\right\| ^ 2} \, \mathrm{d} A
+\end{align*}
+\]</span>
+以前，我们假设光是通过均匀半球采样「意外」射出的，现在我们考虑来自两个部分的辐射：</p>
+<ol type="1">
+<li>直接光照，不需要做 RR;</li>
+<li>间接光照，需要做 RR.</li>
+</ol>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230782074-a2f4cf9c-765a-4366-bb62-27a6c50d61e8.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>对光源采样的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">shade</span>(p, wo)</span><br><span class="line">	# Contribution from the light source.</span><br><span class="line">	Uniformly sample the light at x’ (pdf_light = <span class="number">1</span> / A)</span><br><span class="line">	L_dir = L_i * f_r * cos θ * cos θ’ / |x’ - p|^<span class="number">2</span> / pdf_light</span><br><span class="line">	</span><br><span class="line">	# Contribution from other reflectors.</span><br><span class="line">	L_indir = <span class="number">0.0</span></span><br><span class="line">	Test Russian Roulette with probability P_RR</span><br><span class="line">	Uniformly sample the hemisphere toward <span class="built_in">wi</span> (pdf_hemi = <span class="number">1</span> / <span class="number">2</span>pi)</span><br><span class="line">	Trace a ray <span class="built_in">r</span>(p, wi)</span><br><span class="line">	If ray r hit a non-emitting object at q</span><br><span class="line">		L_indir = <span class="built_in">shade</span>(q, -wi) * f_r * cos θ / pdf_hemi / P_RR</span><br><span class="line">    </span><br><span class="line">    Return L_dir + L_indir</span><br></pre></td></tr></table></figure>
+<p>最后一件事，考虑遮挡：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/230782286-908ef2a3-1968-421d-b9cb-a35f3155106a.png" alt="Img" style="zoom:100%;" />
+</center>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">shade</span>(p, wo)</span><br><span class="line">    # Contribute from the light source</span><br><span class="line">    L_dir = <span class="number">0.0</span></span><br><span class="line">    Uniformly sample the light at x’ (pdf_light = <span class="number">1</span> / A)</span><br><span class="line">    Shoot a ray from p to x’</span><br><span class="line">    If the ray is <span class="keyword">not</span> blocked in the middle</span><br><span class="line">		L_dir = L_i * f_r * cos θ * cos θ’ / |x’ - p|^<span class="number">2</span> / pdf_light</span><br><span class="line">    </span><br><span class="line">    # Contribution from other reflectors.</span><br><span class="line">	L_indir = <span class="number">0.0</span></span><br><span class="line">	Test Russian Roulette with probability P_RR</span><br><span class="line">	Uniformly sample the hemisphere toward <span class="built_in">wi</span> (pdf_hemi = <span class="number">1</span> / <span class="number">2</span>pi)</span><br><span class="line">	Trace a ray <span class="built_in">r</span>(p, wi)</span><br><span class="line">	If ray r hit a non-emitting object at q</span><br><span class="line">		L_indir = <span class="built_in">shade</span>(q, -wi) * f_r * cos θ / pdf_hemi / P_RR</span><br><span class="line">    </span><br><span class="line">    Return L_dir + L_indir</span><br></pre></td></tr></table></figure>
+<p><strong>这就是最终的路径追踪算法！</strong></p>
+<p>最后放一张 Cornell box 的图：</p>
+<center>
+<a target="_blank" rel="noopener" href="http://www.graphics.cornell.edu/online/box/compare.html">
+<img src="https://user-images.githubusercontent.com/62458905/230782906-053b6dec-f188-42c9-89db-2f1c06676d75.jpg" alt="Cornell box" style="zoom:100%;" />
+</a>
+</center>
+<p>左边的是使用路径追踪的渲染图，右边是照片，可以看到渲染图和照片非常像。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yao J
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xinransix.github.io/2023/07/16/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/" title="光线追踪">https://xinransix.github.io/2023/07/16/光线追踪/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 计算机图形学</a>
+              <a href="/tags/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/" rel="tag"><i class="fa fa-tag"></i> 光线追踪</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E5%87%A0%E4%BD%95/" rel="prev" title="几何">
+                  <i class="fa fa-angle-left"></i> 几何
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E6%9D%90%E8%B4%A8%E4%B8%8E%E5%A4%96%E8%A7%82/" rel="next" title="材质与外观">
+                  材质与外观 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yao J</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">102k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:12</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div><link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.css"
+/>
+<div id="sakana-widget" style="position: fixed; bottom: 10px; right: 20px; z-index: 999;"></div>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount('#sakana-widget');
+  }
+</script>
+<script
+  async
+  onload="initSakanaWidget()"
+  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.js"
+></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

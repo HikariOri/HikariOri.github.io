@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="四元数与 3D 旋转">
+<meta property="og:type" content="article">
+<meta property="og:title" content="四元数与 3 维旋转">
+<meta property="og:url" content="https://xinransix.github.io/2024/02/17/%E5%9B%9B%E5%85%83%E6%95%B0%E4%B8%8E3%E7%BB%B4%E6%97%8B%E8%BD%AC/index.html">
+<meta property="og:site_name" content="木漏れ日">
+<meta property="og:description" content="四元数与 3D 旋转">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-17T08:48:08.000Z">
+<meta property="article:modified_time" content="2024-02-23T15:14:06.198Z">
+<meta property="article:author" content="Yao J">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="四元数">
+<meta property="article:tag" content="旋转">
+<meta property="article:tag" content="欧拉角">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://xinransix.github.io/2024/02/17/%E5%9B%9B%E5%85%83%E6%95%B0%E4%B8%8E3%E7%BB%B4%E6%97%8B%E8%BD%AC/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xinransix.github.io/2024/02/17/%E5%9B%9B%E5%85%83%E6%95%B0%E4%B8%8E3%E7%BB%B4%E6%97%8B%E8%BD%AC/","path":"2024/02/17/四元数与3维旋转/","title":"四元数与 3 维旋转"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>四元数与 3 维旋转 | 木漏れ日</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">木漏れ日</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%97%8B%E8%BD%AC"><span class="nav-number">1.</span> <span class="nav-text">矩阵表示旋转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">复数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97"><span class="nav-number">2.2.</span> <span class="nav-text">复数的运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%95%B0%E7%9A%84%E6%8C%87%E6%95%B0%E5%BD%A2%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">复数的指数形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%95%B0%E4%B8%8E-2d-%E6%97%8B%E8%BD%AC"><span class="nav-number">2.4.</span> <span class="nav-text">复数与 2D 旋转</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yao J"
+      src="https://avatars.githubusercontent.com/u/62458905?v=4">
+  <p class="site-author-name" itemprop="name">Yao J</p>
+  <div class="site-description" itemprop="description">图形渣</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/XinranSix" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;XinranSix" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2937552332@qq.com" title="E-Mail → 2937552332@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://shyarcher.github.io/" title="https:&#x2F;&#x2F;shyarcher.github.io&#x2F;" rel="noopener" target="_blank">ShyArcher</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://noahapps.github.io/" title="https:&#x2F;&#x2F;noahapps.github.io&#x2F;" rel="noopener" target="_blank">Noah</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xinransix.github.io/2024/02/17/%E5%9B%9B%E5%85%83%E6%95%B0%E4%B8%8E3%E7%BB%B4%E6%97%8B%E8%BD%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/62458905?v=4">
+      <meta itemprop="name" content="Yao J">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木漏れ日">
+      <meta itemprop="description" content="图形渣">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="四元数与 3 维旋转 | 木漏れ日">
+      <meta itemprop="description" content="四元数与 3D 旋转">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          四元数与 3 维旋转
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-17 16:48:08" itemprop="dateCreated datePublished" datetime="2024-02-17T16:48:08+08:00">2024-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-23 23:14:06" itemprop="dateModified" datetime="2024-02-23T23:14:06+08:00">2024-02-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机图形学</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">四元数与 3D 旋转</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="矩阵表示旋转">矩阵表示旋转</h2>
+<p>绕着 <span class="math inline">\(x\)</span> 轴旋转：</p>
+<p><span class="math display">\[
+R_x\left(\alpha\right)=\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; \cos \alpha &amp; -\sin \alpha &amp; 0 \\
+0 &amp; \sin \alpha &amp; \cos \alpha &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<p>绕着 <span class="math inline">\(y\)</span> 轴旋转：</p>
+<p><span class="math display">\[
+R_y\left(\beta\right)=\begin{bmatrix}
+\cos \beta &amp; 0 &amp; \sin \beta &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+-\sin \beta &amp; 0 &amp; \cos \beta &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<p>绕着 <span class="math inline">\(z\)</span> 轴旋转：</p>
+<p><span class="math display">\[
+R_z\left(\gamma\right)=\begin{bmatrix}
+\cos \gamma &amp; -\sin \gamma &amp; 0 &amp; 0 \\
+\sin \gamma &amp; \cos \gamma &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<h2 id="复数">复数</h2>
+<h3 id="定义">定义</h3>
+<p>复数域使用 <span class="math inline">\(\mathbb{C}\)</span>
+表示，<span class="math inline">\(\forall z \in
+\mathbb{C}\)</span>，都可以表示成 <span
+class="math inline">\(z=a+b\mathrm{i}\)</span>，其中 <span
+class="math inline">\(\mathrm{i}^2 = -1\)</span>，<span
+class="math inline">\(a, b \in \mathbb{R}\)</span>。<span
+class="math inline">\(a\)</span> 称为复数 <span
+class="math inline">\(z\)</span> 的<strong>实部</strong>（Real
+Part），<span class="math inline">\(b\)</span> 称为复数 <span
+class="math inline">\(z\)</span> 的<strong>虚部</strong>（Imaginary
+Part）。<span class="math inline">\(a\)</span> 可表示为 <span
+class="math inline">\(\mathrm{Re}z\)</span>，<span
+class="math inline">\(b\)</span> 可以表示为 <span
+class="math inline">\(\mathrm{Im}z\)</span>。</p>
+<p><span class="math inline">\(z = a+b\mathrm{i}\)</span> 实际上是对
+<span class="math inline">\(\left\{1,\mathrm{i}\right\}\)</span>
+这个<strong>基</strong>（Basis）的<strong>线性组合</strong>（Linear
+Combination），可以使用二维向量来表示复数：</p>
+<p><span class="math display">\[
+z=\begin{bmatrix}
+a   \\
+b  
+\end{bmatrix}
+\]</span></p>
+<p>既然是一个二维向量，就我们可以非常轻松地把它在平面直角坐标系上画出来：</p>
+<figure>
+<img
+src="https://github.com/XinranSix/computer-graphics/assets/62458905/28207773-fe34-47c2-8ddf-279efe8f5f79"
+alt="复数可视化" />
+<figcaption aria-hidden="true">复数可视化</figcaption>
+</figure>
+<h3 id="复数的运算">复数的运算</h3>
+<p><strong>加减法</strong>：</p>
+<p>设 <span class="math inline">\(z_1 = a + b \mathrm{i}\)</span>，<span
+class="math inline">\(z_2=c+d\mathrm{i}\)</span>，则：</p>
+<p><span class="math display">\[
+z_1 \pm z_2=\left(a\pm c\right)+\left(b\pm d\right)\mathrm{i}
+\]</span></p>
+<p><strong>乘法</strong>：</p>
+<p>设 <span class="math inline">\(z_1 = a + b \mathrm{i}\)</span>，<span
+class="math inline">\(z_2=c+d\mathrm{i}\)</span>，则：</p>
+<p><span class="math display">\[
+\begin{align*}
+    z_1z_2 &amp;=\left(a+b\mathrm{i}\right)\left(c+d\mathrm{i}\right)\\
+     &amp; =ac+ad\mathrm{i}+bc\mathrm{i}+bd\mathrm{i}^2 \\
+        &amp; =\left(ac-bd\right)+\left(bc+ad\right)\mathrm{i}
+\end{align*}
+\]</span></p>
+<p>瞪眼法发现，fuck，这不就是矩阵乘法吗？所以，我们可以把复数看成是一个
+<span class="math inline">\(2\times 2\)</span>
+的矩阵作用于一个向量。即：</p>
+<p><span class="math display">\[
+\begin{align*}
+    z_1z_2 &amp;=\left(ac-bd\right)+\left(bc+ad\right)\mathrm{i}\\
+    &amp;= \begin{bmatrix}
+    a &amp; -b \\
+    b &amp; a
+    \end{bmatrix}\begin{bmatrix}
+     c  \\d
+    \end{bmatrix}
+\end{align*}
+\]</span></p>
+<p>右侧的 <span class="math inline">\(\begin{bmatrix} c
+\\d\end{bmatrix}\)</span> 是 <span class="math inline">\(z_2\)</span>
+的向量形式，而左侧的 <span class="math inline">\(\begin{bmatrix}a &amp;
+-b \\b &amp; a \end{bmatrix}\)</span> 则是 <span
+class="math inline">\(z_1\)</span> 的矩阵形式。</p>
+<p>可以看到，复数的乘法，于矩阵 <span
+class="math inline">\(\begin{bmatrix}a &amp; -b \\b &amp; a
+\end{bmatrix}\)</span>
+表示的变换是等价的（复数于矩阵的关系不止如此）。</p>
+<p>如果 <span class="math inline">\(z_1\)</span>、<span
+class="math inline">\(z_2\)</span>
+都使用矩阵形式来表示的话，复数的乘法可以就变成了矩阵的乘法，得到的结果矩阵表示
+<span class="math inline">\(z_2\)</span>、<span
+class="math inline">\(z_1\)</span> 的表示的变换的复合变换。即：</p>
+<p><span class="math display">\[
+\begin{align*}
+z_1z_2 &amp;= \begin{bmatrix}
+a &amp;-b  \\
+b&amp;a  
+\end{bmatrix}\begin{bmatrix}
+c &amp;-d  \\
+d&amp;c  
+\end{bmatrix}\\
+&amp;= \begin{bmatrix}
+ac-bd &amp;-(bc+ad)  \\
+bc+ad &amp; ac-bd  
+\end{bmatrix}
+\end{align*}
+\]</span></p>
+<blockquote>
+<p>注意：复数的乘法是满足交换律的，矩阵的乘法一般是不可交换的，显然复数的矩阵形式也是可以交换的。</p>
+</blockquote>
+<p>来看一些特殊的复数的矩阵形式：</p>
+<p><span class="math display">\[
+\begin{align*}
+1 &amp;= \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix} = I \\
+\mathrm{i} &amp;= \begin{bmatrix}
+0 &amp; -1 \\
+1 &amp; 0
+\end{bmatrix} .
+\end{align*}
+\]</span></p>
+<p>即：实数单位 <span class="math inline">\(1\)</span>
+与单位矩阵是等价的，虚数单位 <span
+class="math inline">\(\mathrm{i}\)</span> 与矩阵 <span
+class="math inline">\(\begin{bmatrix}0 &amp; -1 \\1 &amp; 0
+\end{bmatrix}\)</span> 是等价的。</p>
+<p>我们都知道，<span class="math inline">\(\mathrm{i}^2 =
+-1\)</span>，用矩阵形式表示就说：</p>
+<p><span class="math display">\[
+\mathrm{i}^2 = \begin{bmatrix}0 &amp; -1\\1&amp; 0
+\end{bmatrix}  \begin{bmatrix}0 &amp; -1\\1&amp; 0 \end{bmatrix} =
+\begin{bmatrix}-1 &amp; 0\\0&amp; -1 \end{bmatrix} = -I = -1
+\]</span></p>
+<p>可以矩阵形式也满足 <span class="math inline">\(\mathrm{i}^2 =
+-1\)</span>.</p>
+<p><strong>模长与共轭</strong>：</p>
+<p>设复数 <span class="math inline">\(z=a+b\mathrm{i}\)</span>，则 <span
+class="math inline">\(z\)</span>
+的<strong>模长</strong>（Magnitude）定义为：</p>
+<p><span class="math display">\[
+\|z\|=\sqrt{a^2+b^2}
+\]</span></p>
+<p><span class="math inline">\(z\)</span>
+的<strong>共轭</strong>（Conjugate）定义为：</p>
+<p><span class="math display">\[
+\overline{z}=a-b\mathrm{i}
+\]</span></p>
+<p>可以发现：</p>
+<p><span class="math display">\[
+z\overline{z}=\left(a+b\mathrm{i}\right)\left(a-b\mathrm{i}\right)=a^2+b^2=\|z\|^2
+\]</span></p>
+<p>所以：</p>
+<p><span class="math display">\[
+\|z\|=\sqrt{z\overline{z}}
+\]</span></p>
+<p>同时我们发现：</p>
+<p><span class="math display">\[
+a = \frac{z+\overline{z}}{2}, b = \frac{z-\overline{z}}{2\mathrm{i}}
+\]</span></p>
+<h3 id="复数的指数形式">复数的指数形式</h3>
+<p>根据<a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Euler%27s_formula">欧拉公式</a>：</p>
+<p><span class="math display">\[
+\mathrm{e}^{\mathrm{i}\theta}=\cos \theta + \mathrm{i}\sin \theta
+\]</span></p>
+<p>可以得到复数的指数形式。</p>
+<p>设复数 <span
+class="math inline">\(z=a+b\mathrm{i}\)</span>，则其复数矩阵形式和复数形式为：</p>
+<p><span class="math display">\[
+\begin{align*}
+z &amp;= \|z\|\begin{bmatrix}
+\cos \theta &amp; -\sin \theta  \\
+\sin \theta &amp;  \cos \theta
+\end{bmatrix} \\
+&amp;= \|z\|\left(\cos \theta + \mathrm{i}\sin \theta\right) \\
+&amp;= \|z\|\mathrm{e}^{\mathrm{i}\theta}
+\end{align*}
+\]</span></p>
+<p>其中： <span class="math display">\[\theta =
+\mathrm{atan2}\left(\frac{b}{a}\right)\]</span></p>
+<p>我们可以得到：</p>
+<p><span class="math display">\[
+\sin x =
+\frac{\mathrm{e}^{\mathrm{i}x}-\mathrm{e}^{-\mathrm{i}x}}{2\mathrm{i}},\cos
+x = \frac{\mathrm{e}^{\mathrm{i}x}+\mathrm{e}^{-\mathrm{i}x}}{2}
+\]</span></p>
+<p>如果使用复数的指数形式，复数的乘法就变得非常简单，设 <span
+class="math inline">\(z_1
+=r_1\mathrm{e}^{\mathrm{i}\theta_1}\)</span>，<span
+class="math inline">\(z_2
+=r_2\mathrm{e}^{\mathrm{i}\theta_2}\)</span>，则：</p>
+<p><span class="math display">\[
+z_1z_2=r_1r_2\mathrm{e}^{\mathrm{i}\left(\theta_1+\theta_2\right)}
+\]</span></p>
+<p>使用三角函数的复数形式可以很方便地证明三角函数的一些公式。</p>
+<h3 id="复数与-2d-旋转">复数与 2D 旋转</h3>
+<p>前面讨论了复数的矩阵形式，复数 <span
+class="math inline">\(z=a+b\mathrm{i}\)</span> 的矩阵形式为 <span
+class="math inline">\(\begin{bmatrix}a &amp; -b \\b &amp; a
+\end{bmatrix}\)</span>.</p>
+<p>将这个矩阵稍微变形一下：</p>
+<p><span class="math display">\[
+\begin{align*}
+    \begin{bmatrix}a &amp; -b \\b &amp; a \end{bmatrix} &amp;=
+\sqrt{a^2+b^2}\begin{bmatrix}
+\frac{a}{\sqrt{a^2+b^2}} &amp; \frac{-b}{\sqrt{a^2+b^2}} \\
+\frac{b}{\sqrt{a^2+b^2}} &amp; \frac{a}{\sqrt{a^2+b^2}}  
+\end{bmatrix}\\ &amp;= \|z\|\begin{bmatrix}    \cos \theta &amp; -\sin
+\theta  \\
+\sin \theta &amp;  \cos \theta \end{bmatrix}  \\
+&amp;= \begin{bmatrix}
+\|z\|  &amp; 0 \\
+0  &amp;  \|z\|
+\end{bmatrix}\begin{bmatrix}    \cos \theta &amp; -\sin \theta  \\
+\sin \theta &amp;  \cos \theta \end{bmatrix}
+\end{align*}
+\]</span></p>
+<p>哦~，原来这个矩阵表示是一个旋转矩阵和一个缩放矩阵的复合啊（实际上我早就看出来了）。</p>
+<p>即：复数 <span class="math inline">\(z=a+b\mathrm{i}\)</span>
+可以表示一个平面上的旋转和缩放变换。缩放因子为：<span
+class="math inline">\(\|z\|\)</span>，旋转角度为：<span
+class="math inline">\(\mathrm{atan2}\left(\frac{b}{a}\right)\)</span>（CCW）。</p>
+<p>如果 <span class="math inline">\(\|z\|=1\)</span>，即 <span
+class="math inline">\(a^2+b^2=1\)</span> 当如何，即 <span
+class="math inline">\(z\)</span>
+是一个单位复数，那么这个变换就是一个纯粹的旋转变换：</p>
+<p><span class="math display">\[
+z=\begin{bmatrix}
+\cos \theta &amp;  -\sin \theta\\
+\sin \theta &amp;  \cos \theta
+\end{bmatrix}
+\]</span></p>
+<p>如果我们想旋转一个二维向量，可以使用矩阵进行变换：</p>
+<p><span class="math display">\[
+\require{boldsymbol} \boldsymbol{v}  v
+\]</span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yao J
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xinransix.github.io/2024/02/17/%E5%9B%9B%E5%85%83%E6%95%B0%E4%B8%8E3%E7%BB%B4%E6%97%8B%E8%BD%AC/" title="四元数与 3 维旋转">https://xinransix.github.io/2024/02/17/四元数与3维旋转/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 计算机图形学</a>
+              <a href="/tags/%E5%9B%9B%E5%85%83%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 四元数</a>
+              <a href="/tags/%E6%97%8B%E8%BD%AC/" rel="tag"><i class="fa fa-tag"></i> 旋转</a>
+              <a href="/tags/%E6%AC%A7%E6%8B%89%E8%A7%92/" rel="tag"><i class="fa fa-tag"></i> 欧拉角</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/08/07/CPP%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" rel="prev" title="C++ 模板元编程基础">
+                  <i class="fa fa-angle-left"></i> C++ 模板元编程基础
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/02/23/%E7%9F%B3%E8%92%9C%E6%A8%A1%E6%8B%9F%E5%99%A8-%E4%B8%BA-Next-%E4%B8%BB%E9%A2%98%E5%8A%A0%E4%B8%8A%F0%9F%90%9F%E5%90%A7/" rel="next" title="石蒜模拟器——为 Next 主题加上🐟吧~">
+                  石蒜模拟器——为 Next 主题加上🐟吧~ <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yao J</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">102k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:12</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div><link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.css"
+/>
+<div id="sakana-widget" style="position: fixed; bottom: 10px; right: 20px; z-index: 999;"></div>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount('#sakana-widget');
+  }
+</script>
+<script
+  async
+  onload="initSakanaWidget()"
+  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.js"
+></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

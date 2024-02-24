@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="GAMES 101 涉及到的数学基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性代数复习">
+<meta property="og:url" content="https://xinransix.github.io/2023/07/16/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="木漏れ日">
+<meta property="og:description" content="GAMES 101 涉及到的数学基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229414846-986e11d8-e705-4cea-bdc0-f76aa376d60a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229419075-8481a506-5625-415a-9119-046d7eb172be.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229419697-1137b072-5391-4dd0-9f7f-bfa03129e82a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229421008-1c4ef68b-ca64-4d19-9517-151b5d051c03.png">
+<meta property="article:published_time" content="2023-07-16T02:10:10.000Z">
+<meta property="article:modified_time" content="2023-07-16T02:27:47.585Z">
+<meta property="article:author" content="Yao J">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="光线追踪">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/62458905/229414846-986e11d8-e705-4cea-bdc0-f76aa376d60a.png">
+
+
+<link rel="canonical" href="https://xinransix.github.io/2023/07/16/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xinransix.github.io/2023/07/16/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0/","path":"2023/07/16/线性代数复习/","title":"线性代数复习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>线性代数复习 | 木漏れ日</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">木漏れ日</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8Fvectors"><span class="nav-number">1.</span> <span class="nav-text">向量（Vectors）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96vector-normalization"><span class="nav-number">1.1.</span> <span class="nav-text">向量归一化（Vector
+Normalization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E5%8A%A0%E6%B3%95vector-addition"><span class="nav-number">1.2.</span> <span class="nav-text">向量加法（Vector Addition）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BBcartesian-coordinates-system"><span class="nav-number">1.3.</span> <span class="nav-text">笛卡尔坐标系（Cartesian
+Coordinates System）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E4%B9%98%E6%B3%95vector-multiplication"><span class="nav-number">1.4.</span> <span class="nav-text">向量乘法（Vector
+Multiplication）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%82%B9%E4%B9%98dot-product"><span class="nav-number">1.4.1.</span> <span class="nav-text">点乘（Dot Product）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%89%E4%B9%98cross-product"><span class="nav-number">1.4.2.</span> <span class="nav-text">叉乘（Cross product）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E5%9F%BA%E5%92%8C%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BBorthonormal-bases-and-coordinate-frames"><span class="nav-number">2.</span> <span class="nav-text">正交基和笛卡尔坐标系（Orthonormal
+bases and coordinate frames）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5matrices"><span class="nav-number">3.</span> <span class="nav-text">矩阵（Matrices）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95matrix-multiplication"><span class="nav-number">3.1.</span> <span class="nav-text">矩阵乘法（Matrix
+Multiplication）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BD%8D%E7%9F%A9%E9%98%B5%E5%92%8C%E9%80%86identity-matrix-and-inverses"><span class="nav-number">3.2.</span> <span class="nav-text">单位矩阵和逆（Identity
+Matrix And Inverses）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E4%B9%98%E6%B3%95%E7%9A%84%E7%9F%A9%E9%98%B5%E5%BD%A2%E5%BC%8Fvector-multiplication-in-matrix-form"><span class="nav-number">3.3.</span> <span class="nav-text">向量乘法的矩阵形式（Vector
+Multiplication In Matrix form）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yao J"
+      src="https://avatars.githubusercontent.com/u/62458905?v=4">
+  <p class="site-author-name" itemprop="name">Yao J</p>
+  <div class="site-description" itemprop="description">图形渣</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/XinranSix" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;XinranSix" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2937552332@qq.com" title="E-Mail → 2937552332@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://shyarcher.github.io/" title="https:&#x2F;&#x2F;shyarcher.github.io&#x2F;" rel="noopener" target="_blank">ShyArcher</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://noahapps.github.io/" title="https:&#x2F;&#x2F;noahapps.github.io&#x2F;" rel="noopener" target="_blank">Noah</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xinransix.github.io/2023/07/16/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/62458905?v=4">
+      <meta itemprop="name" content="Yao J">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木漏れ日">
+      <meta itemprop="description" content="图形渣">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="线性代数复习 | 木漏れ日">
+      <meta itemprop="description" content="GAMES 101 涉及到的数学基础">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          线性代数复习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-07-16 10:10:10 / 修改时间：10:27:47" itemprop="dateCreated datePublished" datetime="2023-07-16T10:10:10+08:00">2023-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/GAMES-101/" itemprop="url" rel="index"><span itemprop="name">GAMES 101</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">GAMES 101 涉及到的数学基础</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="向量vectors">向量（Vectors）</h2>
+<p>向量指的是具有<strong>大小</strong>（Magnitude）和<strong>方向</strong>（Direction）的量。在物理学中也称为矢量。向量的表示通常使用小写字母上面加上向右的箭头
+<span class="math inline">\(\rightarrow\)</span> 表示，例如 <span
+class="math inline">\(\vec{a}\)</span>，或者使用粗体的小写字母表示，例如
+<span class="math inline">\(\boldsymbol{a}\)</span>.</p>
+<p>向量具有平移不变形。向量只与大小和方向有关系，和向量的起点和终点没有关系。向量也只包含两个属性：<strong>大小</strong>和<strong>方向</strong>。</p>
+<p>对于空间中的两个点 <span class="math inline">\(𝐴\)</span> 和 <span
+class="math inline">\(𝐵\)</span>，从 <span
+class="math inline">\(𝐴\)</span> 到 <span
+class="math inline">\(𝐵\)</span> 的向量可以表示为 <span
+class="math inline">\(\overrightarrow{AB}\)</span>，计算方法为 <span
+class="math inline">\(\overrightarrow{AB} = B - A\)</span>.</p>
+<p>对于向量 <span class="math inline">\(\vec{a}\)</span>
+来说，其大小，即 <span class="math inline">\(\vec{a}\)</span>
+的模（norm）记为：<span class="math inline">\(\left\| \vec{a}
+\right\|\)</span>.</p>
+<h3 id="向量归一化vector-normalization">向量归一化（Vector
+Normalization）</h3>
+<p><strong>模为 1 的向量</strong>称之为<strong>单位向量（Unit
+vector）</strong>，对于向量 <span
+class="math inline">\(\vec{a}\)</span>，与其方向相同的单位向量记为：<span
+class="math inline">\(\hat{a}\)</span>，计算公式为：</p>
+<p><span class="math display">\[
+\hat{a} = \frac{\vec{a}}{\left\| \vec{a} \right\|}
+\]</span></p>
+<blockquote>
+<p>上述公式不适应于零向量。零向量方向是唯一的，没有对应的单位向量。</p>
+<p>单位向量一般用来表示方向。</p>
+</blockquote>
+<h3 id="向量加法vector-addition">向量加法（Vector Addition）</h3>
+<p>向量的加法可以用两种法则：<strong>平行四边形法则</strong>（Parallelogram
+law）或者<strong>三角形法则</strong>（Triangle law）。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229414846-986e11d8-e705-4cea-bdc0-f76aa376d60a.png" alt="Img" style="zoom:30%;" />
+</center>
+<p>两个向量相加时，以表示这两个向量的线段为邻边作平行四边形，这两个邻边之间的对角线就代表向量和的大小和方向，这就叫做平行四边形定则。</p>
+<p>三角形法则是指，将一个向量的起点移动到另一个向量的终点时，向量和为从未移动向量的起点指向所移动向量的终点的向量。三角形法则适用于多个向量求和，只需要将向量按照相加顺序依次首尾排列，第一个向量的起点指向最后一个向量的终点的向量就是求和的结果。</p>
+<p>在代数上，对于在笛卡尔坐标系中定义的向量，向量求和可以简化为求向量各个对应坐标值的和。</p>
+<h3
+id="笛卡尔坐标系cartesian-coordinates-system">笛卡尔坐标系（Cartesian
+Coordinates System）</h3>
+<p>笛卡尔坐标系，亦称直角坐标系，是一种正交坐标系。二维的直角坐标系是由两条相互垂直，相交于原点的数线构成的。在平面内，任何一点的坐标是根据数轴上对应的点的坐标设定的。对于向量，我们认为所有向量都是以原点为起点，那么终点的坐标就可以表示一个唯一的向量。</p>
+<p>在计算机图形学中，我们默认所有的向量都是列向量，用符号表示向量，向量的转置以及向量的模如下：</p>
+<p><span class="math display">\[
+A=\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+A^{\mathrm{T}} = \begin{bmatrix}
+x &amp; y
+\end{bmatrix}^{T}
+\]</span></p>
+<p><span class="math display">\[
+\left\| A \right\| = \sqrt{x^2 + y^{2}}
+\]</span></p>
+<h3 id="向量乘法vector-multiplication">向量乘法（Vector
+Multiplication）</h3>
+<h4 id="点乘dot-product">点乘（Dot Product）</h4>
+<p>点乘，又称为向量的内积。计算公式为：</p>
+<p><span class="math display">\[
+\vec{a} \cdot \vec{b}=\left\| \vec{a} \right\| \left\|\vec{b} \right\|
+\cos \theta
+\]</span></p>
+<p>在笛卡尔坐标系下点乘的计算结果是逐坐标元素相乘后相加的结果。</p>
+<p>在 2 维情况下：</p>
+<p><span class="math display">\[
+\vec{a} \cdot \vec{b} = \begin{bmatrix} x_a \\ y_a \end{bmatrix} \cdot
+\begin{bmatrix} x_b \\ y_b \end{bmatrix} = x_a x_b + y_a y_b
+\]</span></p>
+<p>在 3 维情况下：</p>
+<p><span class="math display">\[
+\vec{a} \cdot \vec{b} = \begin{bmatrix} x_a \\ y_a \\ z_a  \end{bmatrix}
+\cdot \begin{bmatrix} x_b \\ y_b \\ z_b \end{bmatrix} = x_a x_b + y_a
+y_b + z_a z_b
+\]</span></p>
+<p>点乘的性质：</p>
+<p><span class="math display">\[
+\begin{align*}
+\vec{a} \cdot \vec{b} &amp;= \vec{b} \cdot \vec{a} \text{ (交换律)} \\
+\vec{a} \cdot (\vec{b} + \vec{c}) &amp;= \vec{a} \cdot \vec{b} + \vec{a}
+\cdot \vec{c} \text{ (分配律)} \\
+(k \vec{a}) \cdot \vec{b} &amp;= \vec{a} \cdot (k\vec{b}) = k(\vec{a}
+\cdot \vec{b})
+\end{align*}
+\]</span></p>
+<p>点乘的应用：</p>
+<ol type="1">
+<li>计算出两个向量的夹角：</li>
+</ol>
+<p><span class="math display">\[
+\cos \theta=\frac{\vec{a} \cdot \vec{b}}{\left\| \vec{a} \right \|
+\left\| \vec{b} \right\|}
+\]</span></p>
+<p>用 <span class="math inline">\(\vec{a}\)</span> 和 <span
+class="math inline">\(\vec{b}\)</span> 的单位向量表示为：</p>
+<p><span class="math display">\[
+\cos \theta = \hat{a} \cdot \hat{b}
+\]</span></p>
+<ol start="2" type="1">
+<li>计算一个向量在另外一个向量上的投影：</li>
+</ol>
+<p>向量 <span class="math inline">\(\vec{b}\)</span> 在向量 <span
+class="math inline">\(\vec{a}\)</span> 上的投影满足：</p>
+<p><span class="math display">\[
+\vec{b}_{\perp} = k \vec{a}
+\]</span></p>
+<p><span class="math inline">\(k\)</span> 的大小为：</p>
+<p><span class="math display">\[
+k = \left\| \vec{b}_{\perp} \right\| = \left\| \vec{b} \right\| \cos
+\theta
+\]</span></p>
+<p>已知两个向量的内积，则 <span class="math inline">\(k\)</span>
+的大小可表示如下：</p>
+<p><span class="math display">\[
+k = \left\| \vec{b} \right\| \cos \theta = \frac{\vec{a} \cdot
+\vec{b}}{\left\| \vec{a} \right\|}
+\]</span></p>
+<ol start="3" type="1">
+<li>计算两个向量的接近程度：根据 <span
+class="math inline">\(\cos\)</span> 在角度 <span
+class="math inline">\(\left[0, \pi \right]\)</span>
+之间的值可以得出结论，越接近（夹角比较小）的两个向量的单位向量点乘结果越接近于
+<span
+class="math inline">\(1\)</span>，反之越远离（夹角比较大）的两个向量的单位向量点乘结果越接近于
+<span class="math inline">\(-1\)</span>.</li>
+<li>计算两个向量的方向是相同还是相反的：首先我们定义两个向量的方向相同或者相反。如图所示，向量
+<span class="math inline">\(\vec{a}\)</span>
+以其垂线为分界，在上半部分（上半圆）的向量认为和向量 <span
+class="math inline">\(\vec{a}\)</span>
+方向基本相同，在下半部分（下半圆）的向量认为和向量 <span
+class="math inline">\(\vec{a}\)</span> 方向基本相反。</li>
+</ol>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229419075-8481a506-5625-415a-9119-046d7eb172be.png" alt="Img" style="zoom:45%;" />
+</center>
+<p>如果两个向量方向基本相同，那么点乘的结果大于 <span
+class="math inline">\(0\)</span>；如果两个向量的方向基本相反，点乘的结果小于
+<span
+class="math inline">\(0\)</span>；如果两个向量是垂直的，那么点乘的结果等于
+<span class="math inline">\(0\)</span>.</p>
+<h4 id="叉乘cross-product">叉乘（Cross product）</h4>
+<p>叉乘，又称作向量的外积。两个向量叉乘的结果还是一个向量，这个向量和原来的两个向量垂直。叉乘的结果向量的长度为：</p>
+<p><span class="math display">\[
+\left\| \vec{a} \times \vec{b} \right\| = \left\| \vec{a} \right\|
+\left\| \vec{b} \right\| \sin {\varphi}
+\]</span></p>
+<p>结果向量的方向满足<strong>右手定则</strong>。叉乘不满足交换律。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229419697-1137b072-5391-4dd0-9f7f-bfa03129e82a.png" alt="Img" style="zoom:100%;" />
+</center>
+<blockquote>
+<p>叉乘在右手坐标系中满足右手定则，在左手坐标系中满足左手定则，但其代数运算在右手坐标系和左手坐标系的是一样的。</p>
+</blockquote>
+<p>叉乘的性质：</p>
+<p><span class="math display">\[
+\begin{align*}
+\vec{a} \times \vec{b} &amp;= - \vec{b} \times \vec{a} \\
+\vec{a} \times \vec{a} &amp;= \vec{0} \\
+\vec{a} \times (\vec{b} + \vec{c}) &amp;= \vec{a} \times \vec{b} +
+\vec{a} \times \vec{c} \\
+\vec{a} \times {k \vec{b}} &amp;= k (\vec{a} \times \vec{b}) \\
+\end{align*}
+\]</span></p>
+<p>在笛卡尔坐标系的表示下进行叉乘计算的结果可以写作：</p>
+<p><span class="math display">\[
+\vec{a} \times \vec{b} = \begin{bmatrix}
+y_a z_b-y_b z_a \\
+z_a x_b-x_a z_b \\
+x_a y_b-y_a x_b
+\end{bmatrix}
+\]</span></p>
+<p>我们可以将向量 <span class="math inline">\(\vec{a}\)</span>
+写成等价的矩阵形式：</p>
+<p><span class="math display">\[
+\vec{a} \times \vec{b} = A^{*} b = \begin{bmatrix}
+0 &amp; -z_a &amp; y_a  \\
+z_a &amp; 0 &amp; -x_a \\
+-y_a &amp; x_a &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+x_b \\
+y_b \\
+z_b
+\end{bmatrix}
+\]</span></p>
+<p>称 <span class="math inline">\(A^*\)</span> 为向量 <span
+class="math inline">\(\vec{a}\)</span> 的对偶矩阵（dual matrix）.</p>
+<p>叉乘的应用：</p>
+<ol type="1">
+<li>判断一个向量在另一个向量的左边还是右边：如果 <span
+class="math inline">\(\vec{a} \times \vec{b}\)</span> 的方向与 <span
+class="math inline">\(z\)</span> 轴正方向相同，则说明 <span
+class="math inline">\(\vec{b}\)</span> 在 <span
+class="math inline">\(\vec{a}\)</span> 的左侧；如果相反，则说明 <span
+class="math inline">\(\vec{b}\)</span> 在 <span
+class="math inline">\(\vec{a}\)</span> 的右侧。将 <span
+class="math inline">\(\vec{a}\)</span> 和 <span
+class="math inline">\(\vec{b}\)</span> 的起点移动到重合到一起，如果
+<span class="math inline">\(\vec{b}\)</span> 在 <span
+class="math inline">\(\vec{a}\)</span> 的左侧，则 <span
+class="math inline">\(\vec{b}\)</span> 的终点在 <span
+class="math inline">\(\vec{a}\)</span> 的左侧；如果 <span
+class="math inline">\(\vec{b}\)</span> 在 <span
+class="math inline">\(\vec{a}\)</span> 的右侧，则 <span
+class="math inline">\(\vec{b}\)</span> 的终点在 <span
+class="math inline">\(\vec{a}\)</span> 的右侧。</li>
+<li>判定一个点在三角形的内部还是外部：如果 点 <span
+class="math inline">\(P\)</span> 在点 <span
+class="math inline">\(\overrightarrow{AB}\)</span>，<span
+class="math inline">\(\overrightarrow{BC}\)</span>，<span
+class="math inline">\(\overrightarrow{CA}\)</span> 的同一侧，则说明点
+<span class="math inline">\(P\)</span> 在 <span
+class="math inline">\(\triangle ABC\)</span> 的内部。即可以判断 <span
+class="math inline">\(\overrightarrow{AB} \times
+\overrightarrow{AP}\)</span>，<span
+class="math inline">\(\overrightarrow{BC} \times
+\overrightarrow{BP}\)</span>，<span
+class="math inline">\(\overrightarrow{CA} \times
+\overrightarrow{CP}\)</span> 的方向是否全部相同。</li>
+</ol>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229421008-1c4ef68b-ca64-4d19-9517-151b5d051c03.png" alt="Img" style="zoom:50%;" />
+</center>
+<h2
+id="正交基和笛卡尔坐标系orthonormal-bases-and-coordinate-frames">正交基和笛卡尔坐标系（Orthonormal
+bases and coordinate frames）</h2>
+<p>对于任意的 3 个 3 维向量，满足：</p>
+<p><span class="math display">\[
+\begin{align*}
+&amp; \left\| \vec{u} \right\| = \left\| \vec{v} \right\| = \left\|
+\vec{w} \right\| = 1 \\
+&amp; \vec{u} \cdot \vec{v}=\vec{v} \cdot \vec{w}=\vec{u} \cdot
+\vec{w}=0 \\
+&amp; \vec{w}=\vec{u} \times \vec{v} \quad \text {(right-handed)} \\
+\end{align*}
+\]</span></p>
+<p>则向量 <span class="math inline">\(\vec{u}\)</span>、<span
+class="math inline">\(\vec{v}\)</span>、<span
+class="math inline">\(\vec{w}\)</span>
+定义了一个右手坐标系，对于任意一个向量 <span
+class="math inline">\(\vec{p}\)</span>，在这个坐标系中的表示为：</p>
+<p><span class="math display">\[
+\vec{p}=(\vec{p} \cdot \vec{u}) \vec{u}+(\vec{p} \cdot \vec{v})
+\vec{v}+(\vec{p} \cdot \vec{w}) \vec{w}
+\]</span></p>
+<p>其中 <span class="math inline">\(\vec{p} \cdot \vec{u}\)</span> 是
+<span class="math inline">\(\vec{p}\)</span> 在 <span
+class="math inline">\(\vec{u}\)</span> 的投影（projection）。</p>
+<h2 id="矩阵matrices">矩阵（Matrices）</h2>
+<p>矩阵是一个数的阵列（array），这个阵列中的数可以是实数也可以是虚数。如下所示是一个由实数组成的矩阵。</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+1 &amp; 3 \\
+5 &amp; 2 \\
+0 &amp; 4
+\end{bmatrix}
+\]</span></p>
+<p>矩阵的加法和标量乘法（multiplication by a
+scalar）只需逐元素操作即可。</p>
+<h3 id="矩阵乘法matrix-multiplication">矩阵乘法（Matrix
+Multiplication）</h3>
+<p>矩阵乘法 <span class="math inline">\(A \times B\)</span> 必须满足
+<span class="math inline">\(A\)</span> 的列数 = <span
+class="math inline">\(B\)</span> 的行数。求出的矩阵的大小为：</p>
+<p><span class="math display">\[
+A_{n\times m} B_{n \times p} = C_{n \times p}
+\]</span></p>
+<p>乘法性质：</p>
+<p><span class="math display">\[
+\begin{align*}
+AB &amp;\neq BA \text{ (一般来说不满足交换律)}. \\
+(AB)C &amp;= A(BC) \\
+(A + B)C &amp;= AC + BC \\
+(AB)^{\mathrm{T}} &amp;= B^{\mathrm{T}} A^{\mathrm{T}} \\
+\end{align*}
+\]</span></p>
+<p>矩阵和向量相乘时，认为向量是一个列向量并乘在矩阵的右边。</p>
+<h3 id="单位矩阵和逆identity-matrix-and-inverses">单位矩阵和逆（Identity
+Matrix And Inverses）</h3>
+<p>单位矩阵是一个左上到右下对角线值为 1，其他值为 0
+的正方形矩阵，以长度为 3 的单位矩阵为例：</p>
+<p><span class="math display">\[
+I_{3 \times 3}=\begin{bmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<p>单位矩阵定义了矩阵的逆运算。对于矩阵 <span
+class="math inline">\(A\)</span> 来说，矩阵的逆 <span
+class="math inline">\(A^{-1}\)</span> 满足：</p>
+<p><span class="math display">\[
+\begin{align*}
+AA^{-1} &amp;= A^{-1}A = I \\
+(AB)^{-1} &amp;= B^{-1} A^{-1} \\
+(A^\mathrm{T})^{-1} &amp;= (A^{-1})^\mathrm{T} = A^{-\mathrm{T}}
+\end{align*}
+\]</span></p>
+<h3
+id="向量乘法的矩阵形式vector-multiplication-in-matrix-form">向量乘法的矩阵形式（Vector
+Multiplication In Matrix form）</h3>
+<p>点乘：</p>
+<p><span class="math display">\[
+\vec{a} \cdot \vec{b} = \vec{a}^{\mathrm{T}}\vec{b} = \begin{bmatrix}
+x_a &amp; y_a &amp; z_a \end{bmatrix} \begin{bmatrix} x_b \\ y_b \\ z_b
+\end{bmatrix} = x_a y_a + y_a y_b + z_a z_ b
+\]</span></p>
+<p>叉乘：</p>
+<p><span class="math display">\[
+\vec{a} \times \vec{b} = A^{*} b = \begin{bmatrix}
+0 &amp; -z_a &amp; y_a \\
+z_a &amp; 0 &amp; -x_a \\
+-y_a &amp; x_a &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+x_b \\
+y_b \\
+z_b
+\end{bmatrix}
+\]</span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yao J
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xinransix.github.io/2023/07/16/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0/" title="线性代数复习">https://xinransix.github.io/2023/07/16/线性代数复习/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 计算机图形学</a>
+              <a href="/tags/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/" rel="tag"><i class="fa fa-tag"></i> 光线追踪</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E5%8F%98%E6%8D%A2/" rel="next" title="变换">
+                  变换 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yao J</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">102k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:12</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div><link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.css"
+/>
+<div id="sakana-widget" style="position: fixed; bottom: 10px; right: 20px; z-index: 999;"></div>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount('#sakana-widget');
+  }
+</script>
+<script
+  async
+  onload="initSakanaWidget()"
+  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.js"
+></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

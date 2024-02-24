@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="介绍人眼是如何看到颜色的，以及色彩空间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="颜色与感知">
+<meta property="og:url" content="https://xinransix.github.io/2023/07/16/%E9%A2%9C%E8%89%B2%E4%B8%8E%E6%84%9F%E7%9F%A5/index.html">
+<meta property="og:site_name" content="木漏れ日">
+<meta property="og:description" content="介绍人眼是如何看到颜色的，以及色彩空间">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231681716-8658c9c9-0ea3-470d-8f34-f0bd878f187f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231681887-f196d5c3-0738-4a9f-874d-23718bb12964.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231682218-28fed8bf-bf68-437b-afa8-fbc758d885e4.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231683077-db020a4c-8e6b-469b-a760-05667bfe9da1.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231683290-85add764-405e-479d-890d-5f5584e5c96f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231684228-7188ec7d-6184-4160-be8d-379c8e02567f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231684791-9e980ac3-0fc6-401e-84db-a7c00672d601.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231686582-f2e42abc-750e-4fb9-8f75-816ad1df2b96.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231687146-9d38e7d6-0600-4528-80be-592139c7dae3.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231687412-cffa1a44-c410-47bd-b206-59c8b0ec0c43.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231681716-8658c9c9-0ea3-470d-8f34-f0bd878f187f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231681887-f196d5c3-0738-4a9f-874d-23718bb12964.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231682218-28fed8bf-bf68-437b-afa8-fbc758d885e4.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231683077-db020a4c-8e6b-469b-a760-05667bfe9da1.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231683290-85add764-405e-479d-890d-5f5584e5c96f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231684228-7188ec7d-6184-4160-be8d-379c8e02567f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231684791-9e980ac3-0fc6-401e-84db-a7c00672d601.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231686582-f2e42abc-750e-4fb9-8f75-816ad1df2b96.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231687146-9d38e7d6-0600-4528-80be-592139c7dae3.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231687412-cffa1a44-c410-47bd-b206-59c8b0ec0c43.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231688159-a27e13ab-a8a8-47b5-ab5f-3558e19b2b57.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231688637-835b0d19-3b26-48e4-b2c7-7230413c5c46.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231688995-9cf5305f-3c3d-4af1-a855-44ceee2a369c.png">
+<meta property="article:published_time" content="2023-07-16T02:21:51.000Z">
+<meta property="article:modified_time" content="2023-07-16T02:22:53.238Z">
+<meta property="article:author" content="Yao J">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="颜色">
+<meta property="article:tag" content="感知">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/62458905/231681716-8658c9c9-0ea3-470d-8f34-f0bd878f187f.png">
+
+
+<link rel="canonical" href="https://xinransix.github.io/2023/07/16/%E9%A2%9C%E8%89%B2%E4%B8%8E%E6%84%9F%E7%9F%A5/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xinransix.github.io/2023/07/16/%E9%A2%9C%E8%89%B2%E4%B8%8E%E6%84%9F%E7%9F%A5/","path":"2023/07/16/颜色与感知/","title":"颜色与感知"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>颜色与感知 | 木漏れ日</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">木漏れ日</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#physical-basis-of-color"><span class="nav-number">1.</span> <span class="nav-text">Physical Basis of Color</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#biological-basis-of-color"><span class="nav-number">2.</span> <span class="nav-text">Biological Basis of Color</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tristimulus-theory-of-color"><span class="nav-number">3.</span> <span class="nav-text">Tristimulus Theory of Color</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#the-human-visual-system"><span class="nav-number">3.1.</span> <span class="nav-text">The Human Visual System</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E5%BC%82%E8%B0%B1metamerism"><span class="nav-number">4.</span> <span class="nav-text">同⾊异谱（Metamerism）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2%E5%8C%B9%E9%85%8Dcolor-reproduction-matching"><span class="nav-number">5.</span> <span class="nav-text">颜色匹配（Color
+Reproduction &#x2F; Matching）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%89%B2%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.1.</span> <span class="nav-text">加色系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cie-rgb-%E5%8C%B9%E9%85%8D%E6%96%B9%E7%A8%8B"><span class="nav-number">5.1.1.</span> <span class="nav-text">CIE RGB 匹配方程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4"><span class="nav-number">6.</span> <span class="nav-text">色彩空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cie-xyz-%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4"><span class="nav-number">6.1.</span> <span class="nav-text">CIE XYZ 色彩空间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%9F%E7%9F%A5%E9%A2%9C%E8%89%B2%E7%B3%BB%E7%BB%9F"><span class="nav-number">7.</span> <span class="nav-text">感知颜色系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hsv-%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4"><span class="nav-number">7.1.</span> <span class="nav-text">HSV 色彩空间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2%E4%B8%8E%E6%84%9F%E7%9F%A5color-and-perception"><span class="nav-number"></span> <span class="nav-text">颜色与感知（Color and
+Perception）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#physical-basis-of-color-1"><span class="nav-number">1.</span> <span class="nav-text">Physical Basis of Color</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#biological-basis-of-color-1"><span class="nav-number">2.</span> <span class="nav-text">Biological Basis of Color</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tristimulus-theory-of-color-1"><span class="nav-number">3.</span> <span class="nav-text">Tristimulus Theory of Color</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#the-human-visual-system-1"><span class="nav-number">3.1.</span> <span class="nav-text">The Human Visual System</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E5%BC%82%E8%B0%B1metamerism-1"><span class="nav-number">4.</span> <span class="nav-text">同⾊异谱（Metamerism）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2%E5%8C%B9%E9%85%8Dcolor-reproduction-matching-1"><span class="nav-number">5.</span> <span class="nav-text">颜色匹配（Color
+Reproduction &#x2F; Matching）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%89%B2%E7%B3%BB%E7%BB%9F-1"><span class="nav-number">5.1.</span> <span class="nav-text">加色系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cie-rgb-%E5%8C%B9%E9%85%8D%E6%96%B9%E7%A8%8B-1"><span class="nav-number">5.1.1.</span> <span class="nav-text">CIE RGB 匹配方程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4-1"><span class="nav-number">6.</span> <span class="nav-text">色彩空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cie-xyz-%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4-1"><span class="nav-number">6.1.</span> <span class="nav-text">CIE XYZ 色彩空间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%9F%E7%9F%A5%E9%A2%9C%E8%89%B2%E7%B3%BB%E7%BB%9F-1"><span class="nav-number">7.</span> <span class="nav-text">感知颜色系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hsv-%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4-1"><span class="nav-number">7.1.</span> <span class="nav-text">HSV 色彩空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cielab-%E7%A9%BA%E9%97%B4lab"><span class="nav-number">7.2.</span> <span class="nav-text">CIELAB 空间（L*a*b）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%8F%E8%89%B2%E7%B3%BB%E7%BB%9F"><span class="nav-number">7.3.</span> <span class="nav-text">减色系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cmyk-%E9%A2%9C%E8%89%B2%E7%A9%BA%E9%97%B4"><span class="nav-number">7.3.1.</span> <span class="nav-text">CMYK 颜色空间</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yao J"
+      src="https://avatars.githubusercontent.com/u/62458905?v=4">
+  <p class="site-author-name" itemprop="name">Yao J</p>
+  <div class="site-description" itemprop="description">图形渣</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/XinranSix" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;XinranSix" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2937552332@qq.com" title="E-Mail → 2937552332@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://shyarcher.github.io/" title="https:&#x2F;&#x2F;shyarcher.github.io&#x2F;" rel="noopener" target="_blank">ShyArcher</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://noahapps.github.io/" title="https:&#x2F;&#x2F;noahapps.github.io&#x2F;" rel="noopener" target="_blank">Noah</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xinransix.github.io/2023/07/16/%E9%A2%9C%E8%89%B2%E4%B8%8E%E6%84%9F%E7%9F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/62458905?v=4">
+      <meta itemprop="name" content="Yao J">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木漏れ日">
+      <meta itemprop="description" content="图形渣">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="颜色与感知 | 木漏れ日">
+      <meta itemprop="description" content="介绍人眼是如何看到颜色的，以及色彩空间">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          颜色与感知
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-07-16 10:21:51 / 修改时间：10:22:53" itemprop="dateCreated datePublished" datetime="2023-07-16T10:21:51+08:00">2023-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/GAMES-101/" itemprop="url" rel="index"><span itemprop="name">GAMES 101</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>11 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">介绍人眼是如何看到颜色的，以及色彩空间</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="physical-basis-of-color">Physical Basis of Color</h2>
+<p>牛顿通过实验认识到，白光是由多种颜色的光线混合起来得到的。而我们在生活中可以看到的光在波长约
+400 mm-700 mm 之间。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231681716-8658c9c9-0ea3-470d-8f34-f0bd878f187f.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>对于不同光，我们可以使用<strong>功率谱密度</strong>（Spectral Power
+Distribution，SPD）表示。功率谱密度展示了不同波长下光能量的多少。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231681887-f196d5c3-0738-4a9f-874d-23718bb12964.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>SPD 具有叠加性：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231682218-28fed8bf-bf68-437b-afa8-fbc758d885e4.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>而颜色，应该是人对于不同光线的感知，而光的一种属性，但不同波长的光确实会表现出不同的「颜色」。</p>
+<h2 id="biological-basis-of-color">Biological Basis of Color</h2>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231683077-db020a4c-8e6b-469b-a760-05667bfe9da1.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>人的眼睛通过视网膜感受光线，在视网膜上存在着两种细胞：</p>
+<ul>
+<li>杆细胞（Rods）感受光线的明暗（也就是灰度值）；</li>
+<li>锥细胞（Cones）感受颜色。锥细胞分为三种类型，对不同的波长的光线的响应不同。</li>
+</ul>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231683290-85add764-405e-479d-890d-5f5584e5c96f.png" alt="Img" style="zoom:75%;" />
+</center>
+<blockquote>
+<p>不同人的锥细胞的分布很不一样。</p>
+</blockquote>
+<h2 id="tristimulus-theory-of-color">Tristimulus Theory of Color</h2>
+<p>锥细胞可以分为 S、M、L
+三种，分别对短波，中波以及长波有更强的响应。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231684228-7188ec7d-6184-4160-be8d-379c8e02567f.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>对于这三条谱功率密度曲线，我们记为 <span
+class="math inline">\(r_S\left(\lambda\right)\)</span>、<span
+class="math inline">\(r_M\left(\lambda\right)\)</span>、<span
+class="math inline">\(r_L\left(\lambda\right)\)</span>
+那么对应的细胞感受到的能量是： <span class="math display">\[
+\begin{align*}
+S &amp; =\int r_S(\lambda) s(\lambda) d \lambda \\
+M &amp; =\int r_M(\lambda) s(\lambda) d \lambda \\
+L &amp; =\int r_L(\lambda) s(\lambda) d \lambda
+\end{align*}
+\]</span></p>
+<h3 id="the-human-visual-system">The Human Visual System</h3>
+<p>对于人眼来说，我们并不关注每一种波长的分布，我们只关心三个响应量 （S,
+M, L）。即使是不同的光谱，也有可能有相同的响应，这就是同色异谱现象。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231684791-9e980ac3-0fc6-401e-84db-a7c00672d601.png" alt="Img" style="zoom:75%;" />
+</center>
+<h2 id="同异谱metamerism">同⾊异谱（Metamerism）</h2>
+<p>同色异谱（Metamerism）指的是两种不同的谱密度分布得到了相同响应量，也就是相同的颜色。因此，当我们使用一些设备（例如屏幕）模拟其他颜色的时候，并不需要按照原来的谱密度进行模拟。</p>
+<h2 id="颜色匹配color-reproduction-matching">颜色匹配（Color
+Reproduction / Matching）</h2>
+<h3 id="加色系统">加色系统</h3>
+<p>常见的加色系统为 RGB
+系统，在加色系统中，越多的颜色混合，得到的颜色越白。在 RGB
+系统中我们只要得到 RGB 的谱密度 <span
+class="math inline">\(s_R\left(\lambda\right)\)</span>、<span
+class="math inline">\(s_G\left(\lambda\right)\)</span>、<span
+class="math inline">\(s_B\left(\lambda\right)\)</span>，就可以通过 <span
+class="math inline">\(s_R\left(\lambda\right) + s_G\left(\lambda\right)
++ s_B\left(\lambda\right)\)</span> 得到对应的颜色。</p>
+<p>每一种波长的颜色通过人眼的方式进行匹配，当两种颜色看上去一致的时候，对应的
+RGB 能量就是对应的结果。但是可能存在某些颜色，使用 RGB
+不可以调整出来，这个时候通过在原来的颜色上加入某些颜色使得颜色看上去一致。这个时候对应的颜色分量能量我们视为负数。</p>
+<h4 id="cie-rgb-匹配方程">CIE RGB 匹配方程</h4>
+<p>CIE RGB 使用红色（波长 700 nm），绿色（波长 546.1 nm）以及蓝色（波长
+435.8 nm）三种颜色的光进行实验，最终得到如下的结果：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231686582-f2e42abc-750e-4fb9-8f75-816ad1df2b96.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>对应颜色的计算方式为： <span class="math display">\[
+\begin{aligned}
+R_{\mathrm{CIE} \mathrm{RGB}} &amp; =\int_\lambda s(\lambda)
+\bar{r}(\lambda) d \lambda \\
+G_{\mathrm{CIE} \mathrm{RGB}} &amp; =\int_\lambda s(\lambda)
+\bar{g}(\lambda) d \lambda \\
+B_{\mathrm{CIE} \mathrm{RGB}} &amp; =\int_\lambda s(\lambda)
+\bar{b}(\lambda) d \lambda
+\end{aligned}
+\]</span> 目前还会广泛使用 sRGB（standardized
+RGB）色彩空间，通过一个标准的屏幕来调整其他的屏幕色彩。这种方式被广泛使用，但是其色域比较窄。</p>
+<h2 id="色彩空间">色彩空间</h2>
+<h3 id="cie-xyz-色彩空间">CIE XYZ 色彩空间</h3>
+<p>XYZ 色彩匹配函数是人造的函数。其中 Y
+的结果可以大致反应图片的亮度。这样的设计不仅所有颜色能量都是正值，同时可以表示出所有的颜色。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231687146-9d38e7d6-0600-4528-80be-592139c7dae3.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>我们令 <span
+class="math inline">\(x+y+z=1\)</span>，通过归一化的方式，我们可以将 XYZ
+三维空间变成一个二维的空间进行表示： <span class="math display">\[
+\begin{aligned}
+x &amp; =\frac{X}{X+Y+Z} \\
+y &amp; =\frac{Y}{X+Y+Z} \\
+z &amp; =\frac{Z}{X+Y+Z}
+\end{aligned}
+\]</span></p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231687412-cffa1a44-c410-47bd-b206-59c8b0ec0c43.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>对于 XYZ 颜色的分布，我们可以得到以下结果：</p>
+<ul>
+<li>分布图的边缘都是纯色；</li>
+<li>中间的颜色没有那么纯；</li>
+<li>白色是最不纯的颜色，位置在 <span
+class="math inline">\(\left(\frac{1}{3},\frac{1}{3}\right)\)</span>
+处。</li>
+</ul>
+<p>色域指的是一系列颜色集所能得到的颜色的集合。不同的颜色空间能够得到不同的色域。</p>
+<h2 id="感知颜色系统">感知颜色系统</h2>
+<h3 id="hsv-色彩空间">HSV 色彩空间</h3>
+<p>HSV
+色彩空间由<strong>色调</strong>（Hue），<strong>饱和度</strong>（Saturation）以及<strong>亮度</strong>（Lightness）三个部分组成。其中：</p>
+<ul>
+<li>色调表示颜色的种类；</li>
+<li>饱和度表示颜色的纯度（饱和度越低，颜色越白）；</li>
+<li>亮度表示颜色的亮度（亮度越低，颜色越黑）。</li>
+</ul>
+<h1 id="颜色与感知color-and-perception">颜色与感知（Color and
+Perception）</h1>
+<h2 id="physical-basis-of-color-1">Physical Basis of Color</h2>
+<p>牛顿通过实验认识到，白光是由多种颜色的光线混合起来得到的。而我们在生活中可以看到的光在波长约
+400 mm-700 mm 之间。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231681716-8658c9c9-0ea3-470d-8f34-f0bd878f187f.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>对于不同光，我们可以使用<strong>功率谱密度</strong>（Spectral Power
+Distribution，SPD）表示。功率谱密度展示了不同波长下光能量的多少。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231681887-f196d5c3-0738-4a9f-874d-23718bb12964.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>SPD 具有叠加性：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231682218-28fed8bf-bf68-437b-afa8-fbc758d885e4.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>而颜色，应该是人对于不同光线的感知，而光的一种属性，但不同波长的光确实会表现出不同的「颜色」。</p>
+<h2 id="biological-basis-of-color-1">Biological Basis of Color</h2>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231683077-db020a4c-8e6b-469b-a760-05667bfe9da1.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>人的眼睛通过视网膜感受光线，在视网膜上存在着两种细胞：</p>
+<ul>
+<li>杆细胞（Rods）感受光线的明暗（也就是灰度值）；</li>
+<li>锥细胞（Cones）感受颜色。锥细胞分为三种类型，对不同的波长的光线的响应不同。</li>
+</ul>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231683290-85add764-405e-479d-890d-5f5584e5c96f.png" alt="Img" style="zoom:75%;" />
+</center>
+<blockquote>
+<p>不同人的锥细胞的分布很不一样。</p>
+</blockquote>
+<h2 id="tristimulus-theory-of-color-1">Tristimulus Theory of Color</h2>
+<p>锥细胞可以分为 S、M、L
+三种，分别对短波，中波以及长波有更强的响应。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231684228-7188ec7d-6184-4160-be8d-379c8e02567f.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>对于这三条谱功率密度曲线，我们记为 <span
+class="math inline">\(r_S\left(\lambda\right)\)</span>、<span
+class="math inline">\(r_M\left(\lambda\right)\)</span>、<span
+class="math inline">\(r_L\left(\lambda\right)\)</span>
+那么对应的细胞感受到的能量是： <span class="math display">\[
+\begin{align*}
+S &amp; =\int r_S(\lambda) s(\lambda) d \lambda \\
+M &amp; =\int r_M(\lambda) s(\lambda) d \lambda \\
+L &amp; =\int r_L(\lambda) s(\lambda) d \lambda
+\end{align*}
+\]</span></p>
+<h3 id="the-human-visual-system-1">The Human Visual System</h3>
+<p>对于人眼来说，我们并不关注每一种波长的分布，我们只关心三个响应量 （S,
+M, L）。即使是不同的光谱，也有可能有相同的响应，这就是同色异谱现象。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231684791-9e980ac3-0fc6-401e-84db-a7c00672d601.png" alt="Img" style="zoom:75%;" />
+</center>
+<h2 id="同异谱metamerism-1">同⾊异谱（Metamerism）</h2>
+<p>同色异谱（Metamerism）指的是两种不同的谱密度分布得到了相同响应量，也就是相同的颜色。因此，当我们使用一些设备（例如屏幕）模拟其他颜色的时候，并不需要按照原来的谱密度进行模拟。</p>
+<h2 id="颜色匹配color-reproduction-matching-1">颜色匹配（Color
+Reproduction / Matching）</h2>
+<h3 id="加色系统-1">加色系统</h3>
+<p>常见的加色系统为 RGB
+系统，在加色系统中，越多的颜色混合，得到的颜色越白。在 RGB
+系统中我们只要得到 RGB 的谱密度 <span
+class="math inline">\(s_R\left(\lambda\right)\)</span>、<span
+class="math inline">\(s_G\left(\lambda\right)\)</span>、<span
+class="math inline">\(s_B\left(\lambda\right)\)</span>，就可以通过 <span
+class="math inline">\(s_R\left(\lambda\right) + s_G\left(\lambda\right)
++ s_B\left(\lambda\right)\)</span> 得到对应的颜色。</p>
+<p>每一种波长的颜色通过人眼的方式进行匹配，当两种颜色看上去一致的时候，对应的
+RGB 能量就是对应的结果。但是可能存在某些颜色，使用 RGB
+不可以调整出来，这个时候通过在原来的颜色上加入某些颜色使得颜色看上去一致。这个时候对应的颜色分量能量我们视为负数。</p>
+<h4 id="cie-rgb-匹配方程-1">CIE RGB 匹配方程</h4>
+<p>CIE RGB 使用红色（波长 700 nm），绿色（波长 546.1 nm）以及蓝色（波长
+435.8 nm）三种颜色的光进行实验，最终得到如下的结果：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231686582-f2e42abc-750e-4fb9-8f75-816ad1df2b96.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>对应颜色的计算方式为： <span class="math display">\[
+\begin{aligned}
+R_{\mathrm{CIE} \mathrm{RGB}} &amp; =\int_\lambda s(\lambda)
+\bar{r}(\lambda) d \lambda \\
+G_{\mathrm{CIE} \mathrm{RGB}} &amp; =\int_\lambda s(\lambda)
+\bar{g}(\lambda) d \lambda \\
+B_{\mathrm{CIE} \mathrm{RGB}} &amp; =\int_\lambda s(\lambda)
+\bar{b}(\lambda) d \lambda
+\end{aligned}
+\]</span> 目前还会广泛使用 sRGB（standardized
+RGB）色彩空间，通过一个标准的屏幕来调整其他的屏幕色彩。这种方式被广泛使用，但是其色域比较窄。</p>
+<h2 id="色彩空间-1">色彩空间</h2>
+<h3 id="cie-xyz-色彩空间-1">CIE XYZ 色彩空间</h3>
+<p>XYZ 色彩匹配函数是人造的函数。其中 Y
+的结果可以大致反应图片的亮度。这样的设计不仅所有颜色能量都是正值，同时可以表示出所有的颜色。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231687146-9d38e7d6-0600-4528-80be-592139c7dae3.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>我们令 <span
+class="math inline">\(x+y+z=1\)</span>，通过归一化的方式，我们可以将 XYZ
+三维空间变成一个二维的空间进行表示： <span class="math display">\[
+\begin{aligned}
+x &amp; =\frac{X}{X+Y+Z} \\
+y &amp; =\frac{Y}{X+Y+Z} \\
+z &amp; =\frac{Z}{X+Y+Z}
+\end{aligned}
+\]</span></p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231687412-cffa1a44-c410-47bd-b206-59c8b0ec0c43.png" alt="Img" style="zoom:75%;" />
+</center>
+<p>对于 XYZ 颜色的分布，我们可以得到以下结果：</p>
+<ul>
+<li>分布图的边缘都是纯色；</li>
+<li>中间的颜色没有那么纯；</li>
+<li>白色是最不纯的颜色，位置在 <span
+class="math inline">\(\left(\frac{1}{3},\frac{1}{3}\right)\)</span>
+处。</li>
+</ul>
+<p>色域指的是一系列颜色集所能得到的颜色的集合。不同的颜色空间能够得到不同的色域。</p>
+<h2 id="感知颜色系统-1">感知颜色系统</h2>
+<h3 id="hsv-色彩空间-1">HSV 色彩空间</h3>
+<p>HSV
+色彩空间由<strong>色调</strong>（Hue），<strong>饱和度</strong>（Saturation）以及<strong>亮度</strong>（Lightness）三个部分组成。其中：</p>
+<ul>
+<li>色调表示颜色的种类；</li>
+<li>饱和度表示颜色的纯度（饱和度越低，颜色越白）；</li>
+<li>亮度表示颜色的亮度（亮度越低，颜色越黑）。</li>
+</ul>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231688159-a27e13ab-a8a8-47b5-ab5f-3558e19b2b57.png" alt="Img" style="zoom:75%;" />
+</center>
+<h3 id="cielab-空间lab">CIELAB 空间（L*a*b）</h3>
+<p>Lab 颜色空间也是根据人的感知建立的颜色空间。共包含了 3 个方向，L*
+方向指的是亮度，a* 方向指的是红绿互补色对，b*
+方向是蓝黄互补色对。之所以会选择这样的互补色对是因为黑白色，红绿色以及黄蓝色是三对互补色。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231688637-835b0d19-3b26-48e4-b2c7-7230413c5c46.png" alt="Img" style="zoom:75%;" />
+</center>
+<h3 id="减色系统">减色系统</h3>
+<h4 id="cmyk-颜色空间">CMYK 颜色空间</h4>
+<p>CMYK 颜色空间是一种减色系统，当混合的颜色越多，得到的颜色越黑。CMYK
+广泛应用于打印中。CMYK 包含 4
+种基础色，分别是青色（Cyan），品红（Magenta），黄色（Yellow）和黑色（Key）。使用前三种颜色就可以得到黑色，但是基于成本原因，还是加入了
+K 降低成本。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/231688995-9cf5305f-3c3d-4af1-a855-44ceee2a369c.png" alt="Img" style="zoom:75%;" />
+</center>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yao J
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xinransix.github.io/2023/07/16/%E9%A2%9C%E8%89%B2%E4%B8%8E%E6%84%9F%E7%9F%A5/" title="颜色与感知">https://xinransix.github.io/2023/07/16/颜色与感知/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 计算机图形学</a>
+              <a href="/tags/%E9%A2%9C%E8%89%B2/" rel="tag"><i class="fa fa-tag"></i> 颜色</a>
+              <a href="/tags/%E6%84%9F%E7%9F%A5/" rel="tag"><i class="fa fa-tag"></i> 感知</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E6%9D%90%E8%B4%A8%E4%B8%8E%E5%A4%96%E8%A7%82/" rel="prev" title="材质与外观">
+                  <i class="fa fa-angle-left"></i> 材质与外观
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93%E4%B8%BB%E9%A2%98/" rel="next" title="高级渲染主题">
+                  高级渲染主题 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yao J</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">102k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:12</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div><link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.css"
+/>
+<div id="sakana-widget" style="position: fixed; bottom: 10px; right: 20px; z-index: 999;"></div>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount('#sakana-widget');
+  }
+</script>
+<script
+  async
+  onload="initSakanaWidget()"
+  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.js"
+></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

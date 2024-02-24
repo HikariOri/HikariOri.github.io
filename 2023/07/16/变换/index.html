@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="图形学中的变换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="变换">
+<meta property="og:url" content="https://xinransix.github.io/2023/07/16/%E5%8F%98%E6%8D%A2/index.html">
+<meta property="og:site_name" content="木漏れ日">
+<meta property="og:description" content="图形学中的变换">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229434074-f3ba1ffe-60c9-474e-bbda-8e992d1838ca.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229434981-be796343-4915-44fb-bcd0-404fa2dedf3a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229440719-c54a6999-5404-4978-9b89-3414935e4d5d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229446825-70279e44-8dd8-4560-b4f5-420b9f8da403.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229449074-e6cc0be4-e96a-4171-bb2c-3b8b632bbaf9.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229450246-a44aee7c-e026-42e3-912b-c3e89d4cb02f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229450693-113e43c9-646a-49ee-a5bb-00a9eb0845c6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229451208-e4282270-ad77-491d-b88c-5461b97c6ff5.png">
+<meta property="article:published_time" content="2023-07-16T02:13:07.000Z">
+<meta property="article:modified_time" content="2023-07-16T02:14:08.707Z">
+<meta property="article:author" content="Yao J">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="变换">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/62458905/229434074-f3ba1ffe-60c9-474e-bbda-8e992d1838ca.png">
+
+
+<link rel="canonical" href="https://xinransix.github.io/2023/07/16/%E5%8F%98%E6%8D%A2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xinransix.github.io/2023/07/16/%E5%8F%98%E6%8D%A2/","path":"2023/07/16/变换/","title":"变换"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>变换 | 木漏れ日</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">木漏れ日</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%8F%98%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">模型变换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E5%8F%98%E6%8D%A22d-transformations"><span class="nav-number">1.1.</span> <span class="nav-text">二维变换（2D Transformations）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%B8%E7%BC%A9%E5%8F%98%E6%8D%A2scale-transform"><span class="nav-number">1.1.1.</span> <span class="nav-text">伸缩变换（Scale Transform）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E5%8F%98%E6%8D%A2reflection-transform"><span class="nav-number">1.1.2.</span> <span class="nav-text">反射变换（Reflection
+Transform）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%99%E5%88%87%E5%8F%98%E6%8D%A2shear-transform"><span class="nav-number">1.1.3.</span> <span class="nav-text">错切变换（Shear Transform）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2rotate-transform"><span class="nav-number">1.1.4.</span> <span class="nav-text">旋转变换（Rotate Transform）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2linear-transformations"><span class="nav-number">1.1.5.</span> <span class="nav-text">线性变换（Linear
+Transformations）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87homogeneous-coordinates"><span class="nav-number">1.2.</span> <span class="nav-text">齐次坐标（Homogeneous
+Coordinates）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E7%A7%BB%E5%8F%98%E6%8D%A2translation-transform"><span class="nav-number">1.2.1.</span> <span class="nav-text">平移变换（Translation
+Transform）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87homogenous-coordinates"><span class="nav-number">1.2.2.</span> <span class="nav-text">齐次坐标（Homogenous
+Coordinates）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2affine-transformations"><span class="nav-number">1.2.3.</span> <span class="nav-text">仿射变换（Affine
+Transformations）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E5%8F%98%E6%8D%A2inverse-transform"><span class="nav-number">1.3.</span> <span class="nav-text">逆变换（Inverse Transform）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E6%8D%A2%E7%9A%84%E5%A4%8D%E5%90%88%E5%92%8C%E5%88%86%E8%A7%A3composing-transforms-and-decomposing-complex-transforms"><span class="nav-number">1.4.</span> <span class="nav-text">变换的复合和分解（Composing
+Transforms And Decomposing Complex Transforms）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E6%8D%A2%E7%9A%84%E5%A4%8D%E5%90%88"><span class="nav-number">1.4.1.</span> <span class="nav-text">变换的复合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E6%8D%A2%E7%9A%84%E5%88%86%E8%A7%A3"><span class="nav-number">1.4.2.</span> <span class="nav-text">变换的分解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%BB%B4%E5%8F%98%E6%8D%A23d-transformations"><span class="nav-number">1.5.</span> <span class="nav-text">三维变换（3D Transformations）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%B8%E7%BC%A9%E5%8F%98%E6%8D%A2"><span class="nav-number">1.5.1.</span> <span class="nav-text">伸缩变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E7%A7%BB"><span class="nav-number">1.5.2.</span> <span class="nav-text">平移</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%97%8B%E8%BD%AC"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">旋转</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%97%E5%BE%B7%E9%87%8C%E6%A0%BC%E6%96%AF%E6%97%8B%E8%BD%AC%E5%85%AC%E5%BC%8Frodrigues-rotation-formula"><span class="nav-number">1.5.3.</span> <span class="nav-text">罗德里格斯旋转公式（Rodrigues’
+Rotation Formula）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%86%E5%9B%BE%E5%8F%98%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">视图变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2projection-transformation"><span class="nav-number">3.</span> <span class="nav-text">投影变换（Projection
+Transformation）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B1"><span class="nav-number">3.1.</span> <span class="nav-text">正交投影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E7%9A%84%E5%8F%98%E6%8D%A2%E5%90%8E%E7%9A%84%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5"><span class="nav-number">3.2.</span> <span class="nav-text">透视投影的变换后的正交投影变换矩阵</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yao J"
+      src="https://avatars.githubusercontent.com/u/62458905?v=4">
+  <p class="site-author-name" itemprop="name">Yao J</p>
+  <div class="site-description" itemprop="description">图形渣</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/XinranSix" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;XinranSix" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2937552332@qq.com" title="E-Mail → 2937552332@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://shyarcher.github.io/" title="https:&#x2F;&#x2F;shyarcher.github.io&#x2F;" rel="noopener" target="_blank">ShyArcher</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://noahapps.github.io/" title="https:&#x2F;&#x2F;noahapps.github.io&#x2F;" rel="noopener" target="_blank">Noah</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xinransix.github.io/2023/07/16/%E5%8F%98%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/62458905?v=4">
+      <meta itemprop="name" content="Yao J">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木漏れ日">
+      <meta itemprop="description" content="图形渣">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="变换 | 木漏れ日">
+      <meta itemprop="description" content="图形学中的变换">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          变换
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-07-16 10:13:07 / 修改时间：10:14:08" itemprop="dateCreated datePublished" datetime="2023-07-16T10:13:07+08:00">2023-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/GAMES-101/" itemprop="url" rel="index"><span itemprop="name">GAMES 101</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>16 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">图形学中的变换</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>变换是计算机图形学中非常重要的一部分。变换包含<strong>模型变换</strong>（Modeling
+transform、视图变换（View
+transform）以及<strong>投影变换</strong>（Projection
+transformation）。模型变换指的是变换模型（被拍摄物体）的位置，大小和角度；视图变换指的是变换照相机的位置和角度。从相对运动的角度来看，模型变换和投影变换是可以相互转化的。投影变换（Projection
+transformation）是把 3 维模型投影到 2 维平面的变换。</p>
+<h2 id="模型变换">模型变换</h2>
+<h3 id="二维变换2d-transformations">二维变换（2D Transformations）</h3>
+<h4 id="伸缩变换scale-transform">伸缩变换（Scale Transform）</h4>
+<p>伸缩变换中，如果一个图片以原点 <span class="math inline">\(\left(0, 0
+\right)\)</span> 为中心缩放 <span class="math inline">\(s\)</span>
+倍。那么点 <span class="math inline">\(\left(x, y \right)\)</span>
+变换后数学形式可以表示为：</p>
+<p><span class="math display">\[
+\begin{align*}
+x^{\prime} &amp; =s x \\
+y^{\prime} &amp; =s y
+\end{align*}
+\]</span></p>
+<p>写成矩阵形式为：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+x^{\prime} \\
+y^{\prime}
+\end{bmatrix} =
+\begin{bmatrix}
+s &amp; 0 \\
+0 &amp; s
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\]</span></p>
+<p>当然，我们也可以给 <span class="math inline">\(x\)</span> 轴和 <span
+class="math inline">\(y\)</span> 轴不同的缩放倍数 <span
+class="math inline">\(s_x\)</span> 和 <span
+class="math inline">\(s_y\)</span>。在非均匀情况下，缩放变换的矩阵形式为：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+x^{\prime} \\
+y^{\prime}
+\end{bmatrix} =
+\begin{bmatrix}
+s_x &amp; 0 \\
+0 &amp; s_y
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\]</span></p>
+<h4 id="反射变换reflection-transform">反射变换（Reflection
+Transform）</h4>
+<p>反射变换（Reflection）指的是图片对着 <span
+class="math inline">\(x\)</span> 轴或者 <span
+class="math inline">\(y\)</span> 轴做对称变换。对于图片上的点 <span
+class="math inline">\(\left(x, y \right)\)</span> 在经过 <span
+class="math inline">\(x\)</span>
+轴的对称反射变换后，数学形式可以表示为： <span class="math display">\[
+\begin{align*}
+&amp; x^{\prime}=-x \\
+&amp; y^{\prime}=y
+\end{align*}
+\]</span></p>
+<p>表示成矩阵形式为：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+x^{\prime} \\
+y^{\prime}
+\end{bmatrix} =
+\begin{bmatrix}
+-1 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\]</span></p>
+<p>同理可以得到 <span class="math inline">\(y\)</span>
+轴对称反射变换后的变换矩阵为：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+x^{\prime} \\
+y^{\prime}
+\end{bmatrix} =
+\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; -1
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\]</span></p>
+<p>沿原点反射变换的变换矩阵为：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+x^{\prime} \\
+y^{\prime}
+\end{bmatrix} =
+\begin{bmatrix}
+-1 &amp; 0 \\
+0 &amp; -1
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\]</span></p>
+<h4 id="错切变换shear-transform">错切变换（Shear Transform）</h4>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229434074-f3ba1ffe-60c9-474e-bbda-8e992d1838ca.png" alt="Img" style="zoom:50%;" />
+</center>
+<p>水平方向的错切：</p>
+<ul>
+<li>对于 <span class="math inline">\(y = 0\)</span>
+上的点来说，其<strong>水平移位</strong>（Horizontal shift）为 0.</li>
+<li>对于 <span class="math inline">\(y = 1\)</span>
+上的点来说，其<strong>水平移位</strong>（Horizontal shift）为 a.</li>
+<li><strong>垂直移位</strong>（Vertical shift ）始终为 0.</li>
+</ul>
+<p>变换矩阵为：</p>
+<p><span class="math display">\[
+\left[\begin{array}{l}
+x^{\prime} \\
+y^{\prime}
+\end{array}\right]=\left[\begin{array}{ll}
+1 &amp; a \\
+0 &amp; 1
+\end{array}\right]\left[\begin{array}{l}
+x \\
+y
+\end{array}\right]
+\]</span></p>
+<p>垂直方向的错切变换，其变换矩阵为：</p>
+<p><span class="math display">\[
+\left[\begin{array}{l}
+x^{\prime} \\
+y^{\prime}
+\end{array}\right]=\left[\begin{array}{ll}
+1 &amp; 0 \\
+b &amp; 1
+\end{array}\right]\left[\begin{array}{l}
+x \\
+y
+\end{array}\right]
+\]</span></p>
+<h4 id="旋转变换rotate-transform">旋转变换（Rotate Transform）</h4>
+<p>默认情况下，都是考虑绕点 <span class="math inline">\(\left(0,
+0\right)\)</span>
+，<strong>逆时针（CCW）</strong>旋转。旋转矩阵的推导如下：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229434981-be796343-4915-44fb-bcd0-404fa2dedf3a.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>我们在直角坐标系中绘制一个边长为 <span
+class="math inline">\(1\)</span> 的正方形，点 <span
+class="math inline">\(A\)</span> 坐标为 <span
+class="math inline">\(\left(1, 0\right)\)</span>，点 <span
+class="math inline">\(B\)</span> 坐标为 <span
+class="math inline">\(\left(0, 1\right)\)</span>。正方形沿着原点 <span
+class="math inline">\(\left(0, 0\right)\)</span> 旋转的角度为 <span
+class="math inline">\(\theta\)</span> 角。我们设：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+x&#39; \\
+y&#39;
+\end{bmatrix} = \begin{bmatrix}
+A &amp; B \\
+C &amp; D
+\end{bmatrix} = \begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\]</span></p>
+<p>代入点 <span class="math inline">\(A\)</span> 的的值 <span
+class="math inline">\(\left(1, 0\right)\)</span> 可以得到：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+\sin \theta \\
+\cos \theta
+\end{bmatrix} = \begin{bmatrix}
+A &amp; B \\
+C &amp; D
+\end{bmatrix} = \begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\]</span></p>
+<p>解方程得到：</p>
+<p><span class="math display">\[
+\begin{align*}
+A &amp;= \cos \theta \\
+C &amp;= \sin \theta
+\end{align*}
+\]</span></p>
+<p>代入点 <span class="math inline">\(B\)</span> 的的值 <span
+class="math inline">\(\left(0, 1\right)\)</span> 可以得到：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+-\sin \theta \\
+\cos \theta
+\end{bmatrix} = \begin{bmatrix}
+A &amp; B \\
+C &amp; D
+\end{bmatrix} = \begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\]</span></p>
+<p>解方程得到：</p>
+<p><span class="math display">\[
+\begin{align*}
+B &amp;= -\sin \theta \\
+D &amp;= \cos \theta
+\end{align*}
+\]</span></p>
+<p>即旋转变换的变换矩阵为：</p>
+<p><span class="math display">\[
+\mathbf{R}_\theta = \begin{bmatrix}
+\cos \theta &amp; -\sin \theta \\
+\sin \theta &amp; \cos \theta
+\end{bmatrix}
+\]</span></p>
+<h4 id="线性变换linear-transformations">线性变换（Linear
+Transformations）</h4>
+<p>对于任何一种变换如果可以写作：</p>
+<p><span class="math display">\[
+\begin{align*}
+x^{\prime} &amp; =a x+b y \\
+y^{\prime} &amp; =c x+d y
+\end{align*}
+\]</span></p>
+<p>矩阵形式可以表示为：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+x^{\prime} \\
+y^{\prime}
+\end{bmatrix} = \begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix} \begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\]</span></p>
+<p>那么我们认为这种变换是<strong>线性变换</strong>。</p>
+<p>显然，伸缩变换，反射变换，错切变换和旋转变换都是线性变换。</p>
+<p>设 <span class="math inline">\(f\)</span> 为一个线性变换变换，则
+<span class="math inline">\(f\)</span> 满足有以下性质： <span
+class="math display">\[
+f\left(x + y\right) = f\left(x\right)  + f\left( y\right) \\
+f\left(kx\right) = kf\left(x\right)
+\]</span></p>
+<h3 id="齐次坐标homogeneous-coordinates">齐次坐标（Homogeneous
+Coordinates）</h3>
+<h4 id="平移变换translation-transform">平移变换（Translation
+Transform）</h4>
+<p>平移变换（Translation）相比于以上的线性变换有特殊的地方。平移变换的数学形式为：</p>
+<p><span class="math display">\[
+\begin{align*}
+x^{\prime} &amp; =x+t_x \\
+y^{\prime} &amp; =y+t_y
+\end{align*}
+\]</span></p>
+<p>这种数学表示不能写作线性变换的矩阵形式，只能记作：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+x^{\prime} \\
+y^{\prime}
+\end{bmatrix}=\begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix} \begin{bmatrix}
+x \\
+y
+\end{bmatrix}+ \begin{bmatrix}
+t_x \\
+t_y
+\end{bmatrix}
+\]</span></p>
+<p>说明平移操作不是线性变换。但是我们不希望把平移操作看作特殊变换，因此需要把这些变换统一起来，就引入了齐次坐标。</p>
+<h4 id="齐次坐标homogenous-coordinates">齐次坐标（Homogenous
+Coordinates）</h4>
+<p>为了统一变换操作，我们引入一个新的维度。对于二维的点 <span
+class="math inline">\(\left(0, 0\right)\)</span>
+我们可以增加一个维度，对于 <span class="math inline">\(2\)</span>
+维的点可以表示为 <span class="math inline">\(\left(x, y,
+1\right)^{\mathrm{T}}\)</span>，2 维向量的 <span
+class="math inline">\(\left(x, y,
+0\right)^{\mathrm{T}}\)</span>。因此，一个点的平移可以用矩阵表示为：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+x^{\prime} \\
+y^{\prime} \\
+w^{\prime}
+\end{bmatrix} = \begin{bmatrix}
+1 &amp; 0 &amp; t_x \\
+0 &amp; 1 &amp; t_y \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+x \\
+y \\
+1
+\end{bmatrix}=\begin{bmatrix}
+x+t_x \\
+y+t_y \\
+1
+\end{bmatrix}
+\]</span></p>
+<p>齐次坐标就是在原来的坐标上加上一个<strong>维度（w-coordinate）</strong>：</p>
+<ul>
+<li>2D point = <span class="math inline">\(\begin{bmatrix}x &amp; y
+&amp; 1 \\ \end{bmatrix}\)</span>.</li>
+<li>2D vector = <span class="math inline">\(\begin{bmatrix}x &amp; y
+&amp; 0 \\ \end{bmatrix}\)</span>.</li>
+</ul>
+<p>用其次坐标表示平移变换： <span class="math display">\[
+\begin{bmatrix}
+x^{\prime} \\
+y^{\prime} \\
+w^{\prime}
+\end{bmatrix}=\begin{bmatrix}
+1 &amp; 0 &amp; t_x \\
+0 &amp; 1 &amp; t_y \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+x \\
+y \\
+1
+\end{bmatrix}=\begin{bmatrix}
+x+t_x \\
+y+t_y \\
+1
+\end{bmatrix}
+\]</span></p>
+<p>当求出来的 w-coordinate 为 1 或者 0 时才是一个有效的操作：</p>
+<ul>
+<li>vector + vector = vector</li>
+<li>point – point = vector</li>
+<li>point - vector = point</li>
+<li>point - point = midpoint</li>
+</ul>
+<p>在齐次坐标中，<span class="math inline">\(\begin{bmatrix}x \\y \\w
+\end{bmatrix}\)</span> 表示二维空间中的点： <span
+class="math inline">\(\begin{bmatrix} \frac{x}{w} \\ \frac{y}{w} \\1
+\end{bmatrix}\)</span>, <span class="math inline">\(w \neq
+0\)</span>.</p>
+<h4 id="仿射变换affine-transformations">仿射变换（Affine
+Transformations）</h4>
+<p>仿射变换 = 线性变换 + 平移变换。</p>
+<p>对于平移变换：</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+x^{\prime} \\
+y^{\prime}
+\end{bmatrix}=\begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix}\begin{bmatrix}
+x \\
+y
+\end{bmatrix}+\begin{bmatrix}
+t_x \\
+t_y
+\end{bmatrix}
+\]</span> 使用齐次坐标表示如下： <span class="math display">\[
+\begin{bmatrix}
+x^{\prime} \\
+y^{\prime} \\
+1
+\end{bmatrix}=\begin{bmatrix}
+a &amp; b &amp; t_x \\
+c &amp; d &amp; t_y \\
+0 &amp; 0 &amp; 1
+\end{bmatrix} \begin{bmatrix}
+x \\
+y \\
+1
+\end{bmatrix}
+\]</span></p>
+<p>二维空间仿射变换的齐次坐标表示：</p>
+<p>错切变换：</p>
+<p><span class="math display">\[
+S\left(s_x, s_y\right)=\begin{bmatrix}
+s_x &amp; 0 &amp; 0 \\
+0 &amp; s_y &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<p>旋转变换：</p>
+<p><span class="math display">\[
+R(\alpha)=\begin{bmatrix}
+\cos \alpha &amp; -\sin \alpha &amp; 0 \\
+\sin \alpha &amp; \cos \alpha &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<p>平移变换：</p>
+<p><span class="math display">\[
+T\left(t_x, t_y\right)=\begin{bmatrix}
+1 &amp; 0 &amp; t_x \\
+0 &amp; 1 &amp; t_y \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<h3 id="逆变换inverse-transform">逆变换（Inverse Transform）</h3>
+<p>设 <span class="math inline">\(M\)</span> 为一个变换矩阵，对于 <span
+class="math inline">\(M\)</span> 来说，<span
+class="math inline">\({M}^{-1}\)</span> 为其在代数和几何上的逆变换。</p>
+<h3
+id="变换的复合和分解composing-transforms-and-decomposing-complex-transforms">变换的复合和分解（Composing
+Transforms And Decomposing Complex Transforms）</h3>
+<h4 id="变换的复合">变换的复合</h4>
+<p>可以用矩阵的乘法进行变换的组合。变换的先后顺序不同，变换的结果不同。矩阵和向量的乘法是从右到左依次相乘，从右到左依次应用变化。有一个仿射变换序列：<span
+class="math inline">\(A_{1}, A_{2}, A_{3}, \dots\)</span>
+，依次应用到向量上，如下所示：</p>
+<p><span class="math display">\[
+A_n\left(\ldots A_2\left(A_1(x)\right)\right)=A_n \cdots A_2 \cdot A_1
+\cdot \begin{bmatrix}
+x \\
+y \\
+1
+\end{bmatrix}
+\]</span></p>
+<p>根据矩阵运算的结合律,
+我们可以先把变换矩阵乘在一起，接下来把这个矩阵的乘积和向量相乘。可以用一个矩阵表示一个复杂的变换。</p>
+<h4 id="变换的分解">变换的分解</h4>
+<p>所有的复杂变换都可以分解成多个普通的变换。</p>
+<p>例如，如何绕着容易一个点旋转？</p>
+<ol type="1">
+<li>将旋转中心平移到<strong>原点（origin）</strong>；</li>
+<li>旋转；</li>
+<li>平移回去。</li>
+</ol>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229440719-c54a6999-5404-4978-9b89-3414935e4d5d.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>变换矩阵为： <span class="math display">\[
+T(c) \cdot R(\alpha) \cdot T(-c)
+\]</span></p>
+<h3 id="三维变换3d-transformations">三维变换（3D Transformations）</h3>
+<p>用其次坐标表示点和向量：</p>
+<ul>
+<li>3D point = <span class="math inline">\(\begin{bmatrix}x &amp; y
+&amp; z &amp; 1 \\ \end{bmatrix}^{T}\)</span></li>
+<li>3D vector = <span class="math inline">\(\begin{bmatrix}x &amp; y
+&amp; z &amp; 0 \\ \end{bmatrix}^{T}\)</span></li>
+</ul>
+<p>一般来说，<span class="math inline">\(\left[\begin{array}{l}x &amp; y
+&amp; z &amp; 1 \\ \end{array}\right]^{T}(w \neq 0)\)</span>
+表示三维空间的点：<span class="math inline">\(\left[\begin{array}{l}
+\frac{x}{w} &amp; \frac{y}{w} &amp; \frac{z}{w} &amp; 1
+\end{array}\right]^{T}\)</span>.</p>
+<p>用 <span class="math inline">\(4 \times 4\)</span>
+的矩阵表示仿射变换： <span class="math display">\[
+\begin{bmatrix}
+x^{\prime} \\
+y^{\prime} \\
+z^{\prime} \\
+1
+\end{bmatrix}=\begin{bmatrix}
+a &amp; b &amp; c &amp; t_x \\
+d &amp; e &amp; f &amp; t_y \\
+g &amp; h &amp; i &amp; t_z \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} \begin{bmatrix}
+x \\
+y \\
+z \\
+1
+\end{bmatrix}
+\]</span></p>
+<p>左上角是一个 <span class="math inline">\(3 \times 3\)</span>
+的线性变换矩阵。在仿射变换中的变换矩阵表示先做线性变换再做平移变换。</p>
+<h4 id="伸缩变换">伸缩变换</h4>
+<p><span class="math display">\[
+S\left(s_x, s_y, s_z\right)=\begin{bmatrix}
+s_x &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; s_y &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; s_z &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<h4 id="平移">平移</h4>
+<p><span class="math display">\[
+T \left(t_x, t_y, t_z\right)=\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; t_x \\
+0 &amp; 1 &amp; 0 &amp; t_y \\
+0 &amp; 0 &amp; 1 &amp; t_z \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<h5 id="旋转">旋转</h5>
+<p>考虑绕着 <span class="math inline">\(x, y, z\)</span> CCW 旋转。</p>
+<p><span class="math display">\[
+\begin{align*}
+&amp; {R}_x(\alpha)=\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; \cos \alpha &amp; -\sin \alpha &amp; 0 \\
+0 &amp; \sin \alpha &amp; \cos \alpha &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} \\
+&amp; R_y(\alpha)=\begin{bmatrix}
+\cos \alpha &amp; 0 &amp; \sin \alpha &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+-\sin \alpha &amp; 0 &amp; \cos \alpha &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} \\
+&amp; R_z(\alpha)=\begin{bmatrix}
+\cos \alpha &amp; -\sin \alpha &amp; 0 &amp; 0 \\
+\sin \alpha &amp; \cos \alpha &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\end{align*}
+\]</span></p>
+<p>对于一般性的旋转问题，可以用简单的旋转描述复杂的旋转。用 <span
+class="math inline">\(x\)</span> 轴。<span
+class="math inline">\(y\)</span> 轴和 <span
+class="math inline">\(z\)</span> 轴上的旋转来定义旋转： <span
+class="math display">\[
+R_{x y z}(\alpha, \beta, \gamma)=R_x(\alpha) R_y(\beta) R_z(\gamma)
+\]</span> 称 <span class="math inline">\(\alpha, \beta, \gamma\)</span>
+为<strong>欧拉角</strong>（Euler angles）。</p>
+<h4
+id="罗德里格斯旋转公式rodrigues-rotation-formula">罗德里格斯旋转公式（Rodrigues’
+Rotation Formula）</h4>
+<p>绕着旋转轴 <span class="math inline">\(\vec{n}\)</span> 旋转角度
+<span
+class="math inline">\(\alpha\)</span>。默认旋转轴是过原点的，对于不过原点的条件可以将图形平移到过原点的旋转轴上，旋转后再平移回去。罗德里格斯旋转公式是：
+<span class="math display">\[
+R(\boldsymbol{n}, \alpha)=\cos \alpha \cdot I+ (1-\cos \alpha)
+\boldsymbol{n} \boldsymbol{n}^T+\sin \alpha
+\cdot\left[\begin{array}{ccc}
+0 &amp; -n_z &amp; n_y \\
+n_z &amp; 0 &amp; -n_x \\
+-n_y &amp; n_x &amp; 0
+\end{array}\right]
+\]</span></p>
+<h2 id="视图变换">视图变换</h2>
+<p>在 3
+维物体变到二维平面的过程中，我们需要规定好相机的位置。对于相机所做的变换就是视图变换（Viewing
+/ Camera transformation）。</p>
+<p>我们需要对相机位置进行定义，对于一个相机我们要规定下面三个属性：</p>
+<ul>
+<li>相机位置（Position）： <span
+class="math inline">\(\vec{e}\)</span>.</li>
+<li>相机拍摄方向（Look-at / Gaze direction）：<span
+class="math inline">\(\hat{g}\)</span>.</li>
+<li>相机向上方向（Up direction）：<span
+class="math inline">\(\hat{t}\)</span>.</li>
+</ul>
+<p>根据相对运动我们可以知道，只要相机和被拍摄物体相对位置不变，那么拍摄出来的照片应当是一样的。我们可以通过对被拍摄物体做相同的变换来把相机变换到标准位置。相机的标准位置为：</p>
+<ol type="1">
+<li>相机位置在原点：<span class="math inline">\(\left(0,
+0\right)\)</span>.</li>
+<li>相机拍摄方向是 <span class="math inline">\(-z\)</span> 轴方向.</li>
+<li>相机的向上方向是 <span class="math inline">\(y\)</span> 轴方向.</li>
+</ol>
+<p>将任意位置的相机移动到标准位置需要以下操作：</p>
+<ol type="1">
+<li>将中心点 <span class="math inline">\(\vec{e}\)</span>
+移动到原点；</li>
+<li>把 <span class="math inline">\(\hat{g}\)</span> 旋转到 <span
+class="math inline">\(-z\)</span> 轴方向；</li>
+<li>把 <span class="math inline">\(\hat{t}\)</span> 旋转到 <span
+class="math inline">\(y\)</span> 轴方向；</li>
+<li>把 <span class="math inline">\(\hat{g} \times \hat{t}\)</span>
+旋转到 <span class="math inline">\(x\)</span> 轴方向。</li>
+</ol>
+<p>操作 2～4
+只要满足任意两个，另外一个条件就会满足。也就是说我们需要先做一次平移变换，再做一次旋转变换。</p>
+<p>通过 <span class="math inline">\(M_{view}\)</span> 来变换相机。令
+<span class="math inline">\(M_{view} = R_{view}T_{view}\)</span>. <span
+class="math inline">\(T_{view}\)</span> 表示平移变换，<span
+class="math inline">\(R_{view}\)</span> 表示旋转变换。<span
+class="math inline">\(T_{view}\)</span> 的表示如下：</p>
+<p><span class="math display">\[
+T_{ view }=\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; -x_e \\
+0 &amp; 1 &amp; 0 &amp; -y_e \\
+0 &amp; 0 &amp; 1 &amp; -z_e \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<p>直接求 <span class="math inline">\(R_{view}\)</span>
+比较难，可以考虑其逆变换： <span class="math display">\[
+R_{view }^{-1}=\begin{bmatrix}
+x_{\hat{g} \times \hat{t}} &amp; x_t &amp; x_{-g} &amp; 0 \\
+y_{\hat{g} \times \hat{t}} &amp; y_t &amp; y_{-g} &amp; 0 \\
+z_{\hat{g} \times \hat{t}} &amp; z_t &amp; z_{-g} &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\Leftrightarrow R_{view }=\begin{bmatrix}
+x_{\hat{g} \times \hat{t}} &amp; y_{\hat{g} \times \hat{t}} &amp;
+z_{\hat{g} \times \hat{t}} &amp; 0 \\
+x_t &amp; y_t &amp; z_t &amp; 0 \\
+x_{-g} &amp; y_{-g} &amp; z_{-g} &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<blockquote>
+<p>旋转变换矩阵是<a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Orthogonal_matrix">正交矩阵</a>。</p>
+</blockquote>
+<h2 id="投影变换projection-transformation">投影变换（Projection
+Transformation）</h2>
+<p>投影变换是把 3 维模型投影到 2
+维平面的变换。投影变换分为<strong>正交投影</strong>（Orthographic
+projection）以及<strong>透视投影</strong>（Perspective
+projection）。正交投影中，投影后原本平行的线保持平行关系。但是透视投影中平行的线在投影后不一定能保持平行关系，会相交到某一点上（这也就是近大远小现象）。</p>
+<center>
+<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/36573283/from-perspective-picture-to-orthographic-picture">
+<img src="https://user-images.githubusercontent.com/62458905/229446825-70279e44-8dd8-4560-b4f5-420b9f8da403.png" alt="Img" style="zoom:100%;" />
+</a>
+</center>
+<h3 id="正交投影">正交投影</h3>
+<p>正交投影将相机放在原点上，拍摄方向是 <span
+class="math inline">\(-z\)</span> 轴方向，向上方向是 <span
+class="math inline">\(y\)</span> 轴方向。只需要去掉 <span
+class="math inline">\(z\)</span> 轴后，<span
+class="math inline">\(xy\)</span>
+平面上的图像就是投影结果。为了能够正交投影，我们会把所有模型变换到 <span
+class="math inline">\(\left[-1,1\right]^3\)</span> 的区间范围内。</p>
+<p>在空间中描述一个立方体（立方体中包含了所有需要绘制的模型），将立方体变换到
+<span class="math inline">\(\left[-1,1\right]^3\)</span>
+的区间范围内。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229449074-e6cc0be4-e96a-4171-bb2c-3b8b632bbaf9.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>定义空间中的立方体的左右在 <span class="math inline">\(x\)</span>
+轴的坐标，上下在 <span class="math inline">\(y\)</span> 轴的坐标，远近在
+<span class="math inline">\(z\)</span> 轴的坐标。这个立方体就可以被描述
+<span class="math inline">\(\left[l, r\right] \times \left[b, t \right]
+\times \left[f, n\right]\)</span>。对于 <span
+class="math inline">\(z\)</span> 轴来说，越远 <span
+class="math inline">\(z\)</span> 值更小，越近 <span
+class="math inline">\(z\)</span>
+值更大。远是小于近的，保证了右手坐标系下从 <span
+class="math inline">\(-z\)</span> 方向看过去 <span
+class="math inline">\(z\)</span> 值的规律。</p>
+<p>将这样的立方体映射到正则 / 标准 / 规范（canonical）立方体 <span
+class="math inline">\(\left[-1, 1\right]\)</span> 中。</p>
+<p>变换方法是先将中心平移到原点，之后对每个边进行缩放到大小为 2。</p>
+<p>变换矩阵为：</p>
+<p><span class="math display">\[
+M_{\text {ortho }}=\begin{bmatrix}
+\frac{2}{r-l} &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; \frac{2}{t-b} &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; \frac{2}{n-f} &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} \begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \\
+0 &amp; 1 &amp; 0 &amp; -\frac{t+b}{2} \\
+0 &amp; 0 &amp; 1 &amp; -\frac{n+f}{2} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span> ### 透视投影</p>
+<p>透视投影是最为广泛的投影方式。透视投影满足近大远小的性质。接下来我们定义视锥。视锥就是一个透视相机渲染时能看到区域的形状，相机放在平面的中心，一个视锥包含
+4 个元素：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229450246-a44aee7c-e026-42e3-912b-c3e89d4cb02f.png" alt="Img" style="zoom:60%;" />
+</center>
+<ol type="1">
+<li>近平面：渲染的区域里相机最近的平面；</li>
+<li>远平面：渲染的区域里相机最远的平面；</li>
+<li>视野（Field of view,
+FOV）：平面顶部和底部中心到相机连线的夹角；</li>
+<li>宽高比：平面宽度和高度之比。</li>
+</ol>
+<p>从一个点射出的四棱锥定义了远和近两个平面。我们可以把远平面缩小成和近平面一样大的长方形，这样视锥就会变成一个立方体。再做一次正交投影就可以得到最终的投影结果了。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229450693-113e43c9-646a-49ee-a5bb-00a9eb0845c6.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>我们需要对处于四棱锥中的点进行变换，变换满足三个条件：</p>
+<ol type="1">
+<li>任何一个在近平面上的点不会发生变化；</li>
+<li>远平面处的点 <span class="math inline">\(z\)</span>
+值不发生变化；</li>
+</ol>
+<p>先将四棱锥变换成长方体，然后再做正交投影变换即可，记将四棱锥变换成长方体的矩阵为：<span
+class="math inline">\(M_{persp \rightarrow ortho}\)</span>.</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229451208-e4282270-ad77-491d-b88c-5461b97c6ff5.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>从 <span class="math inline">\(YZ\)</span>
+平面看过去，对于远平面上的点 <span class="math inline">\(\left[x, y,
+z\right]\)</span> 在投影变换后，根据相似三角形的性质，点的位置变为 <span
+class="math inline">\(\left[\frac{n}{z}x, \frac{n}{z}y,
+z\right]\)</span>. 对于任意一个点点 <span class="math inline">\(\left[x,
+y, z\right]\)</span> 来说，变化过程为： <span class="math display">\[
+\begin{bmatrix}
+x \\
+y \\
+z \\
+1
+\end{bmatrix} \Rightarrow\begin{bmatrix}
+n x / z \\
+n y / z \\
+\text { unknown } \\
+1
+\end{bmatrix} \stackrel{\times z}{=}\begin{bmatrix}
+n x \\
+n y \\
+\text { still unknown } \\
+z
+\end{bmatrix}
+\]</span> 中间点的 <span class="math inline">\(z\)</span>
+值变化目前是不确定的。但是对于以上的变化结果我们可以得到变换矩阵的部分结果：
+<span class="math display">\[
+M_{persp \rightarrow ortho} = \begin{bmatrix}
+n &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; n &amp; 0 &amp; 0 \\
+? &amp; ? &amp; ? &amp; ? \\
+0 &amp; 0 &amp; 1 &amp; 0
+\end{bmatrix}
+\]</span> 接下来求出未知量。对于近平面的上的点，应当满足变换： <span
+class="math display">\[
+\begin{bmatrix}
+x \\
+y \\
+n \\
+1
+\end{bmatrix} \Rightarrow \begin{bmatrix}
+x \\
+y \\
+n \\
+1
+\end{bmatrix}=\begin{bmatrix}
+n x \\
+n y \\
+n^2 \\
+n
+\end{bmatrix}
+\]</span> 因此可以得到方程： <span class="math display">\[
+\begin{bmatrix}
+0 &amp; 0 &amp; A &amp; B
+\end{bmatrix} \begin{bmatrix}
+x \\
+y \\
+n \\
+1
+\end{bmatrix}=n^2
+\]</span> <span class="math inline">\(n^2\)</span> 显然和 <span
+class="math inline">\(x\)</span>，<span class="math inline">\(y\)</span>
+的值没有什么关系，因此 <span class="math inline">\(x\)</span>，<span
+class="math inline">\(y\)</span> 的系数为 <span
+class="math inline">\(0\)</span>。但是方程不能解出，还需要一个方程。</p>
+<p>对于远平面，我们选择中心点，变换应当满足： <span
+class="math display">\[
+\begin{bmatrix}
+0 \\
+0 \\
+f \\
+1
+\end{bmatrix} \Rightarrow \begin{bmatrix}
+0 \\
+0 \\
+f \\
+1
+\end{bmatrix} == \begin{bmatrix}
+0 \\
+0 \\
+f^2 \\
+f
+\end{bmatrix}
+\]</span> 可以得到方程： <span class="math display">\[
+\begin{bmatrix}
+0 &amp; 0 &amp; A &amp; B
+\end{bmatrix} \begin{bmatrix}
+0 \\
+0 \\
+f \\
+1
+\end{bmatrix}=f^2
+\]</span> 方程展开后可以得到： <span class="math display">\[
+\begin{align*}
+&amp; A n+B=n^2 \\
+&amp; A f+B=f^2
+\end{align*}
+\]</span> 解得： <span class="math display">\[
+\begin{aligned}
+&amp; A=n+f \\
+&amp; B=-n f
+\end{aligned}
+\]</span> 因此我们就解出了变换矩阵： <span class="math display">\[
+M_{persp \rightarrow ortho} = \begin{bmatrix}
+n &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; n &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; n + f &amp; -nf \\
+0 &amp; 0 &amp; 1 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<p>所以： <span class="math display">\[
+\begin{align*}
+M_{persp} &amp;= M_{ortho}M_{persp \rightarrow ortho}\\
+\end{align*}
+\]</span></p>
+<h3
+id="透视投影的变换后的正交投影变换矩阵">透视投影的变换后的正交投影变换矩阵</h3>
+<p>对于定义好的视锥，我们定义视野角度为 <span
+class="math inline">\(\alpha\)</span>，宽高比为 <span
+class="math inline">\(radio\)</span>，近平面 <span
+class="math inline">\(z\)</span> 值为 <span
+class="math inline">\(n\)</span>，那么投影变换后的长方体的中 <span
+class="math inline">\(t = n \tan{\frac{\alpha}{2}}\)</span>，<span
+class="math inline">\(b=-n\tan{\frac{\alpha}{2}}\)</span>，<span
+class="math inline">\(r = radio * n
+\tan{\frac{\alpha}{2}}\)</span>，<span class="math inline">\(l=-radio *
+n \tan{\frac{\alpha }{2}}\)</span> 代入正交投影变化公式中即可。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yao J
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xinransix.github.io/2023/07/16/%E5%8F%98%E6%8D%A2/" title="变换">https://xinransix.github.io/2023/07/16/变换/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 计算机图形学</a>
+              <a href="/tags/%E5%8F%98%E6%8D%A2/" rel="tag"><i class="fa fa-tag"></i> 变换</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0/" rel="prev" title="线性代数复习">
+                  <i class="fa fa-angle-left"></i> 线性代数复习
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E5%85%89%E6%A0%85%E5%8C%96/" rel="next" title="光栅化">
+                  光栅化 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yao J</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">102k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:12</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div><link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.css"
+/>
+<div id="sakana-widget" style="position: fixed; bottom: 10px; right: 20px; z-index: 999;"></div>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount('#sakana-widget');
+  }
+</script>
+<script
+  async
+  onload="initSakanaWidget()"
+  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.js"
+></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

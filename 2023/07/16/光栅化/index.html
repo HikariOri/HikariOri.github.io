@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="光栅图形学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="光栅化">
+<meta property="og:url" content="https://xinransix.github.io/2023/07/16/%E5%85%89%E6%A0%85%E5%8C%96/index.html">
+<meta property="og:site_name" content="木漏れ日">
+<meta property="og:description" content="光栅图形学">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229706381-92102eb5-bbf8-4c1c-a262-ecac7f479ca3.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229712533-69e42641-49bf-4ec9-9c44-3d45b768ead0.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229715145-9eb2f23b-e5c8-4705-ab55-ee70f62b1928.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229715725-bb3283a8-9d43-4dfc-bcc0-91586603a77b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229717368-4b294929-ce87-4f8d-b741-a63a8b0220ac.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229717860-97bec33e-e0b5-4e65-8da0-046940764d1e.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229718235-28dffa88-75ca-488c-9c2e-37e3b161f12d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229804678-bc129ae7-9d27-4c36-997a-5dacc0f3cce6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229805927-c5acc8ea-b1a7-4dd3-b3a9-023beee63260.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229806033-26f6c6a2-8c9f-4795-88f8-2a5972eea2cc.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229806257-f6180162-949c-4e79-ac1f-fa1b912d1d57.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229811294-639cc1ee-355c-4d67-b12c-911f00ac2b96.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/229814214-df26dd9e-899e-453e-b78c-a25cd2d67668.png">
+<meta property="article:published_time" content="2023-07-16T02:16:05.000Z">
+<meta property="article:modified_time" content="2023-07-16T02:16:48.564Z">
+<meta property="article:author" content="Yao J">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="光栅化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/62458905/229706381-92102eb5-bbf8-4c1c-a262-ecac7f479ca3.png">
+
+
+<link rel="canonical" href="https://xinransix.github.io/2023/07/16/%E5%85%89%E6%A0%85%E5%8C%96/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xinransix.github.io/2023/07/16/%E5%85%89%E6%A0%85%E5%8C%96/","path":"2023/07/16/光栅化/","title":"光栅化"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>光栅化 | 木漏れ日</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">木漏れ日</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4"><span class="nav-number">1.</span> <span class="nav-text">屏幕空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%85%89%E6%A0%85%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">三角形的光栅化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E8%B5%B0%E6%A0%B7"><span class="nav-number">3.</span> <span class="nav-text">反走样</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%91%95%E7%96%B5"><span class="nav-number">3.1.</span> <span class="nav-text">瑕疵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%B0%E6%A0%B7%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">3.2.</span> <span class="nav-text">走样产生的原因</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">3.2.1.</span> <span class="nav-text">傅立叶变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%B0%E6%A0%B7%E5%92%8C%E6%BB%A4%E6%B3%A2"><span class="nav-number">3.2.2.</span> <span class="nav-text">走样和滤波</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E5%92%8C%E5%8D%B7%E7%A7%AF%E5%AE%9A%E5%BE%8B"><span class="nav-number">3.3.</span> <span class="nav-text">卷积和卷积定律</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#box-filter"><span class="nav-number">3.3.1.</span> <span class="nav-text">Box Filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3%E9%87%87%E6%A0%B7"><span class="nav-number">3.3.2.</span> <span class="nav-text">深入了解采样</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E8%B5%B0%E6%A0%B7%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">3.4.</span> <span class="nav-text">反走样的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%85%E9%87%87%E6%A0%B7"><span class="nav-number">3.5.</span> <span class="nav-text">超采样</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%81%E6%80%A7%E4%B8%8E%E9%81%AE%E6%8C%A1%E6%80%A7visibility-and-occlusion"><span class="nav-number">4.</span> <span class="nav-text">可见性与遮挡性（Visibility
+And Occlusion）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%BB%E5%AE%B6%E7%AE%97%E6%B3%95painters-algorithm"><span class="nav-number">4.1.</span> <span class="nav-text">画家算法（Painter’s Algorithm）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#z-buffer"><span class="nav-number">4.2.</span> <span class="nav-text">Z-Buffer</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yao J"
+      src="https://avatars.githubusercontent.com/u/62458905?v=4">
+  <p class="site-author-name" itemprop="name">Yao J</p>
+  <div class="site-description" itemprop="description">图形渣</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/XinranSix" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;XinranSix" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2937552332@qq.com" title="E-Mail → 2937552332@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://shyarcher.github.io/" title="https:&#x2F;&#x2F;shyarcher.github.io&#x2F;" rel="noopener" target="_blank">ShyArcher</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://noahapps.github.io/" title="https:&#x2F;&#x2F;noahapps.github.io&#x2F;" rel="noopener" target="_blank">Noah</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xinransix.github.io/2023/07/16/%E5%85%89%E6%A0%85%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/62458905?v=4">
+      <meta itemprop="name" content="Yao J">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木漏れ日">
+      <meta itemprop="description" content="图形渣">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="光栅化 | 木漏れ日">
+      <meta itemprop="description" content="光栅图形学">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          光栅化
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-07-16 10:16:05 / 修改时间：10:16:48" itemprop="dateCreated datePublished" datetime="2023-07-16T10:16:05+08:00">2023-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/GAMES-101/" itemprop="url" rel="index"><span itemprop="name">GAMES 101</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>11 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">光栅图形学</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>我们已经通过 MVP 变换将要显示到屏幕上的物体变换到 <span
+class="math inline">\(\left[-1, 1\right]^3\)</span>
+的立方体中，接下来要将 <span class="math inline">\(\left[-1,
+1\right]^3\)</span>
+的立方体中的物体绘制到屏幕上。首先定义屏幕（screen）：</p>
+<ol type="1">
+<li>屏幕是像素（pixels）的数组；</li>
+<li>分辨率（resolution）是屏幕像素数组的尺寸；</li>
+<li>屏幕是光栅成像设备。</li>
+</ol>
+<p><strong>光栅化</strong>指的是将物体绘制到屏幕上。像素是具有统一颜色的小方块，是由不同颜色组合而成的（例如
+RGB）。</p>
+<h2 id="屏幕空间">屏幕空间</h2>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229706381-92102eb5-bbf8-4c1c-a262-ecac7f479ca3.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>我们认为屏幕左下角为原点，向右为 <span
+class="math inline">\(x\)</span> 轴，向上为 <span
+class="math inline">\(y\)</span>
+轴。建立平面直角坐标系。屏幕空间满足以下几点：</p>
+<ol type="1">
+<li>像素坐标 <span class="math inline">\(\left(x, y\right)\)</span>
+为整数；</li>
+<li>像素坐标覆盖范围为 <span class="math inline">\(\left(0,
+0\right)\)</span> 到 <span class="math inline">\(\left(\text{width} - 1,
+\text{height} - 1\right)\)</span>；</li>
+<li>坐标为 <span class="math inline">\(\left(x, y\right)\)</span>
+的像素的中心点的坐标为：<span
+class="math inline">\(\left(x+0.5,y+0.5\right)\)</span>；</li>
+<li>整个屏幕的覆盖范围为：<span
+class="math inline">\(\left(0,0\right)\)</span> 到 <span
+class="math inline">\(\left(\text{width},\text{height}\right)\)</span>.</li>
+</ol>
+<p>在这里，我们先忽略 <span class="math inline">\(z\)</span>
+坐标，只考虑 <span class="math inline">\(x\)</span> 和 <span
+class="math inline">\(y\)</span> 坐标。我们需要将 <span
+class="math inline">\(\left[-1,1\right]\)</span> 变换到 <span
+class="math inline">\(\left[0,\text{width}\right] \times \left[0,
+\text{height}\right]\)</span>，称之为<strong>视口变换</strong>，变换矩阵为：
+<span class="math display">\[
+M_{viewport} = \begin{bmatrix}
+\frac{width}{2} &amp; 0 &amp; 0 &amp; \frac{width}{2} \\
+0 &amp; \frac{height}{2} &amp; 0 &amp; \frac{height}{2} \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{bmatrix}
+\]</span></p>
+<h2 id="三角形的光栅化">三角形的光栅化</h2>
+<p>对于一个 3
+维图形我们可以用三角形去表示一个一个小面。使用三角形的主要原因是：</p>
+<ol type="1">
+<li>三角形是最基本的多边形；</li>
+<li>任何多边形都可以拆分成三角形；</li>
+<li>空间内任何三个点的连线一定是平面；</li>
+<li>三角形有清晰的内部和外部定义；</li>
+<li>三角形只要定义顶点的属性就可以计算三角形内部点的渐变关系（三角形的内部插值）。</li>
+</ol>
+<p>对于一个三角形，如何映射在像素空间上问题，可以转换成判断一个像素和三角形的位置关系。最简单的方法就是进行<strong>采样</strong>（Sampling）。采样就是连续函数的离散化过程。下面的代码就是对函数
+<span class="math inline">\(f(x)\)</span> 进行采样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">0</span>; x &lt; xmax; ++x)</span><br><span class="line">    output[x] = <span class="built_in">f</span>(x);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>采样是图形学中的一个核心思想，我们可以对时间（time）、面积（area）、方向（direction）、体积（volume）等进行采样。</p>
+</blockquote>
+<p>对于给定的三角形，定义一个函数，来判断某个坐标是否在三角形内部，函数定义如下：
+<span class="math display">\[
+\text { inside }(t, x, y)=\left\{\begin{array}{lc}
+1 &amp; \text { point }(x, y) \text { in triangle } t \\
+0 &amp; \text { otherwise }
+\end{array}\right.
+\]</span> 那么对三角形采样的代码如下所示：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">0</span>; x &lt; xmax; ++x)</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> y = <span class="number">0</span>; y &lt; ymax; ++y)</span><br><span class="line">        image[x][y] = <span class="built_in">inside</span>(tri, x + <span class="number">0.5</span>, y + <span class="number">0.5</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：判断某个像素是否在三角形内部实际上是判断像素的中心是否在三角形内部。</p>
+</blockquote>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229712533-69e42641-49bf-4ec9-9c44-3d45b768ead0.png" alt="Img" style="zoom:70%;" />
+</center>
+<p>判断某个像素是否在三角形内部，可以使用叉乘。对于三角形边界上的点，这里不做处理。</p>
+<p>为了能够更快速的遍历像素点，我们可以用以下方法：</p>
+<ul>
+<li>使用包围盒（Bounding
+box），只对三角形最大的包围正方形区进行遍历。但是不适用于窄长的三角形。</li>
+<li>找到每一行三角形包围住最左和最右边的点进行遍历。</li>
+</ul>
+<h2 id="反走样">反走样</h2>
+<p>光栅化的三角形可能会生成大量的据此，此时我们需要一些方式来消除锯齿。</p>
+<h3 id="瑕疵">瑕疵</h3>
+<p>在采样的过程中，我们会产生许多的锯齿。这些锯齿的学名就叫做<strong>走样</strong>（Alias）。之所以会产生走样的原因是因为信号的变化速度比较快（高频信号），但是我们的采样比较慢（低频采样）。常见的走样分为以下几种：</p>
+<ul>
+<li>锯齿：空间上采样产生的走样；</li>
+<li>摩尔纹：空间上下采样产生的走样；</li>
+<li>车轮效应：时间上采样产生的走样。</li>
+</ul>
+<p>这些我们也称为采样的<strong>瑕疵</strong>（Artifacts）。</p>
+<h3 id="走样产生的原因">走样产生的原因</h3>
+<h4 id="傅立叶变换">傅立叶变换</h4>
+<p>任何一个信号都可以表示为一些正弦波和余弦波以及常数的线性表示，我们称之为<strong><a
+target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0">傅立叶展开</a></strong>。而<strong><a
+target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2">傅立叶变换</a></strong>指的是将一个时域上的信号转换到频域的过程。</p>
+<h4 id="走样和滤波">走样和滤波</h4>
+<p>走样更为学术的定义是两个不同频率的信号在使用相同采样的方法后产生的结果无法进行区分。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229715145-9eb2f23b-e5c8-4705-ab55-ee70f62b1928.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>图中的红色信号和蓝色信号是两个频率不一样的信号，绿色虚线处是采样点，我们发现两个不同频率的信号在同一个采样方式下结果相同，这就产生了走样。</p>
+<p><strong>滤波</strong>（Filter）是把特定频率的波过滤掉。如果仅保留高频信息，那么这称为高通滤波；如果仅保留低频信息称为低通滤波；如果既删除高频信息，还删除低频信息，只保留中频信息称为带通滤波。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229715725-bb3283a8-9d43-4dfc-bcc0-91586603a77b.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>对一个图片进行傅立叶变换后，得到的是上图右图的样子。中心代表了低频信息，边缘代表了高频信息，亮度代表对应频率的能量。对于图片而言，一般低频信息更加的丰富，而高频信息比较少。高频信息一般代表<strong>边缘信息</strong>，因为边缘信息频率比较高；低频信息是图片<strong>模糊后的结果</strong>，频率变化小。</p>
+<h3 id="卷积和卷积定律">卷积和卷积定律</h3>
+<p>滤波可以看作卷积操作，也可以看作平均操作。<strong>卷积</strong>（Convolution）操作是用一个卷积核在信号上不断地滑动，每一次卷积操作的结果是卷积核和对应位置信号乘积的和，可以看作一次加权平均的过程。</p>
+<p>卷积定律：时域上的卷积等于频域上的乘积，频域上的乘积等于等于频域上的卷积。</p>
+<h4 id="box-filter">Box Filter</h4>
+<p>Box Filter 是一个格式如下的滤波器： <span class="math display">\[
+\frac{1}{n^2} X^{n\times n}
+\]</span> 其中，<span class="math inline">\(X\)</span> 是一个全 <span
+class="math inline">\(1\)</span> 矩阵。这个卷积核对临近的 <span
+class="math inline">\(n \times n\)</span> 的像素做平均。<span
+class="math inline">\(n\)</span>
+越大，滤波器得到的频率范围越低。下图是一个 <span class="math inline">\(3
+\times 3\)</span> 的 Box Filter.</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229717368-4b294929-ce87-4f8d-b741-a63a8b0220ac.png" alt="Img" style="zoom:60%;" />
+</center>
+<h4 id="深入了解采样">深入了解采样</h4>
+<p>采样我们可以认为是一个连续函数乘以一系列的脉冲函数的结果。根据卷积定律我们知道，这相当于连续函数的傅立叶变换和脉冲函数傅立叶变换的卷积。脉冲函数的傅立叶变换还是脉冲函数。卷积的结果是信号的频谱在不断地重复。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229717860-97bec33e-e0b5-4e65-8da0-046940764d1e.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>当采样率不足时会使得频谱之间的间隔太小，导致频谱间产生重叠，这些重叠就是走样。</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229718235-28dffa88-75ca-488c-9c2e-37e3b161f12d.png" alt="频谱重叠示意图" style="zoom:75%;" />
+</center>
+<p>这也就解释了为什么使用高通滤波器可以帮助我们减少走样。这是因为使用高通滤波器只保留更窄的频率范围，可以减少频谱的重叠。</p>
+<h3 id="反走样的方法">反走样的方法</h3>
+<p>目前常用的反走样方法有两种：</p>
+<ul>
+<li>提高采样率（分辨率）。这是从物理层面上提高采样率来减少走样的方式，但是不够实用；</li>
+<li>采用低通滤波器先进行模糊操作，再进行采样的操作。如下图所示：</li>
+<li>超采样（Supersampling）。</li>
+</ul>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229804678-bc129ae7-9d27-4c36-997a-5dacc0f3cce6.png" alt="Img" style="zoom:75%;" />
+</center>
+<h3 id="超采样">超采样</h3>
+<p>在实际的操作中，我们使用 MSAA（Multi-Sampling
+Antialiasing）的方式来近似进行反走样的操作，具体的步骤如下：</p>
+<ol type="1">
+<li>把每一个像素点拆分成 <span class="math inline">\(n \times n\)</span>
+的小像素点；</li>
+<li>对每一个小像素点判断该点是否在图形中；</li>
+<li>每一个像素点的结果都是这些小像素点的平均结果。</li>
+</ol>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229805927-c5acc8ea-b1a7-4dd3-b3a9-023beee63260.png" alt="Img" style="zoom:50%;" />
+<img src="https://user-images.githubusercontent.com/62458905/229806033-26f6c6a2-8c9f-4795-88f8-2a5972eea2cc.png" alt="Img" style="zoom:50%;" />
+<img src="https://user-images.githubusercontent.com/62458905/229806257-f6180162-949c-4e79-ac1f-fa1b912d1d57.png" alt="Img" style="zoom:50%;" />
+</center>
+<p>MSAA
+仅仅指的是模糊的过程，并不包含采样的过程。这样的方法虽然简单，效果好，但是会增加计算量。在工业界中，一般会采用更为有效的方式拆分采样点，甚至会复用采样点以达到更好的效果。</p>
+<p>除此之外，目前业界还有一些其他的方式进行反走样：</p>
+<ul>
+<li>FXAA（Fast approximate
+AA）是通过后期处理的方式处理锯齿。先得到已经有锯齿的图像，找到边界后替换成没有锯齿的边界；</li>
+<li>TAA（Temporal
+AA）是通过抖动的方式进行多次采样，将多个帧合成就相当于多次采样。</li>
+</ul>
+<blockquote>
+<p>超分辨率：将一个分辨率较小的图片还原成分辨率较大的图片。和反走样虽然意义不同，但是任务类似。对于超分辨率问题，最重要的是猜测缺失像素的内容，比较适合使用神经网络进行预测，即所谓的
+DLSS（Deep-learning Super Sampling）。</p>
+</blockquote>
+<h2
+id="可见性与遮挡性visibility-and-occlusion">可见性与遮挡性（Visibility
+And Occlusion）</h2>
+<p>当有多个三角形需要光栅化时，我们需要正确处理三角形的前后关系，以保证前面的三角形会正确地遮挡后面的三角形。</p>
+<h3 id="画家算法painters-algorithm">画家算法（Painter’s Algorithm）</h3>
+<p>画家算法是通过模拟油画家的作画方式来进行渲染。油画家们在画油画时，会先画处于远处的物体，然后再画处于近处的物体，这样处于近处的物体就会遮挡处于远处的物体。类似的，在光栅化三角形时，先光栅化处于远处的三角形，再光栅化处于近处的三角形。这个算法需要先将所有的三角形按照深度（即
+<span class="math inline">\(z\)</span> 坐标）进行排序，假设有 <span
+class="math inline">\(n\)</span> 个三角形，排序算法的复杂度为 <span
+class="math inline">\(\Omicron\left(n \log
+n\right)\)</span>。这个算法存在以下几个问题：</p>
+<ol type="1">
+<li>算法复杂度较高；</li>
+<li>有时候不好确定各个三角形的远近，甚至会出现下图所示的情况。</li>
+</ol>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229811294-639cc1ee-355c-4d67-b12c-911f00ac2b96.png" alt="遮挡成环的情况" style="zoom:75%;" />
+</center>
+<h3 id="z-buffer">Z-Buffer</h3>
+<p><strong>深度缓存</strong>（Z-Bufer）算法是处理远近的终极算法。</p>
+<p>深度缓存会记录每个像素最小的深度值，会生成深度缓存（Depth
+buffer）和颜色缓存（Frame
+buffer）遍历所以三角形上的点，对于任意一个像素，我们记录下这个像素上深度最小的深度信息和颜色信息（假设深度是正数）。Z-Buffer
+算法的描述如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (each triangle T) &#123;</span><br><span class="line">    <span class="keyword">for</span> (each <span class="built_in">sample</span>(x, y, z) in T) &#123;</span><br><span class="line">        <span class="keyword">if</span> (z &lt; zbuffer[x, y]) &#123;	<span class="comment">// closest sample so far</span></span><br><span class="line">            framebuffer[x, y] = rgb;	<span class="comment">// update color</span></span><br><span class="line">            zbuffer[x, y] = z;	<span class="comment">// update depth</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// do nothing, this sample is occluded</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>使用深度缓存生成的深度缓存图和颜色缓存图如下所示：</p>
+<center>
+<img src="https://user-images.githubusercontent.com/62458905/229814214-df26dd9e-899e-453e-b78c-a25cd2d67668.png" alt="Img" style="zoom:100%;" />
+</center>
+<p>深度缓存技术的时间复杂度是 <span class="math inline">\(\Omicron
+\left(n\right)\)</span>。这并不是一个排序算法，因此复杂度比排序算法要小。如果
+MASS 中需要深度缓存技术，需要对每一个采样点应用 Z-Buffer 算法。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yao J
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xinransix.github.io/2023/07/16/%E5%85%89%E6%A0%85%E5%8C%96/" title="光栅化">https://xinransix.github.io/2023/07/16/光栅化/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 计算机图形学</a>
+              <a href="/tags/%E5%85%89%E6%A0%85%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 光栅化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E5%8F%98%E6%8D%A2/" rel="prev" title="变换">
+                  <i class="fa fa-angle-left"></i> 变换
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/16/%E7%9D%80%E8%89%B2/" rel="next" title="着色">
+                  着色 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yao J</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">102k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:12</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div><link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.css"
+/>
+<div id="sakana-widget" style="position: fixed; bottom: 10px; right: 20px; z-index: 999;"></div>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount('#sakana-widget');
+  }
+</script>
+<script
+  async
+  onload="initSakanaWidget()"
+  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.0/lib/sakana.min.js"
+></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
