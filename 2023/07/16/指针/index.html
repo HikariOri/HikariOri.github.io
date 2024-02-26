@@ -185,13 +185,13 @@
         <a href="/2937552332@qq.com" title="E-Mail → 2937552332@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-
 <div style="">
   <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
 </div>
 <script>
 (function(){
-   let digit=
+
+   var digit=
     [
         [
             [0,0,1,1,1,0,0],
@@ -327,33 +327,33 @@
         ]//:
     ];
 
-let canvas = document.getElementById('canvas');
+var canvas = document.getElementById('canvas');
 
 if(canvas.getContext){
-    let cxt = canvas.getContext('2d');
+    var cxt = canvas.getContext('2d');
     //声明canvas的宽高
-    let H = 100,W = 700;
+    var H = 100,W = 700;
     canvas.height = H;
     canvas.width = W;
     cxt.fillStyle = '#f00';
     cxt.fillRect(10,10,50,50);
 
     //存储时间数据
-    let data = [];
+    var data = [];
     //存储运动的小球
-    let balls = [];
+    var balls = [];
     //设置粒子半径
-    let R = canvas.height/20-1;
+    var R = canvas.height/20-1;
     (function(){
-        let temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
         //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
         data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
     })();
 
     /*生成点阵数字*/
     function renderDigit(index,num){
-        for(let i = 0; i < digit[num].length; i++){
-            for(let j = 0; j < digit[num][i].length; j++){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
                 if(digit[num][i][j] == 1){
                     cxt.beginPath();
                     cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
@@ -399,12 +399,12 @@ if(canvas.getContext){
 
     /*增加要运动的小球*/
     function addBalls(index,num){
-        let numArray = [1,2,3];
-        let colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
-        for(let i = 0; i < digit[num].length; i++){
-            for(let j = 0; j < digit[num][i].length; j++){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
                 if(digit[num][i][j] == 1){
-                    let ball = {
+                    var ball = {
                         x:14*(R+2)*index + j*2*(R+1)+(R+1),
                         y:i*2*(R+1)+(R+1),
                         stepX:Math.floor(Math.random() * 4 -2),
@@ -446,9 +446,9 @@ if(canvas.getContext){
         render();
     },50);
 }
-})();/*
-</script>
 
+})();
+</script>
         </div>
       </div>
         <div class="back-to-top animated" role="button" aria-label="返回顶部">
