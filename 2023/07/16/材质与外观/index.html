@@ -67,6 +67,24 @@
 
 
 <link rel="dns-prefetch" href="https://comment-for-blog-psi.vercel.app/">
+
+
+<script>
+  var OriginTitile = document.title;
+  var titleTime;
+  document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+      document.title = "(つェ⊂)看不见我看不见我" + OriginTitile;
+      clearTimeout(titleTime);
+    } else {
+      document.title = "(*´∇｀*) 咦，竟然被你发现了~" + OriginTitile;
+      titleTime = setTimeout(function() {
+        document.title = OriginTitile;
+      }, 2000);
+    }
+  });
+</script>
+
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>

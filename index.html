@@ -50,6 +50,24 @@
 
 
 <link rel="dns-prefetch" href="https://comment-for-blog-psi.vercel.app/">
+
+
+<script>
+  var OriginTitile = document.title;
+  var titleTime;
+  document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+      document.title = "(つェ⊂)看不见我看不见我" + OriginTitile;
+      clearTimeout(titleTime);
+    } else {
+      document.title = "(*´∇｀*) 咦，竟然被你发现了~" + OriginTitile;
+      titleTime = setTimeout(function() {
+        document.title = OriginTitile;
+      }, 2000);
+    }
+  });
+</script>
+
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -1021,7 +1039,7 @@ target="_blank" rel="noopener" href="https://github.com/itorr/sakana">石蒜模�
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-02-23 18:21:42" itemprop="dateModified" datetime="2024-02-23T18:21:42+08:00">2024-02-23</time>
+      <time title="修改时间：2024-02-26 18:53:27" itemprop="dateModified" datetime="2024-02-26T18:53:27+08:00">2024-02-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
