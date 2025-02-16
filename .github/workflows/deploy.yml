@@ -24,7 +24,7 @@ jobs:
 
       - name: Install pandoc
         run: |
-            apt install pandoc
+            sudo apt install pandoc
         
       - name: Install hexo
         run: |
