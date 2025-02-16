@@ -14,13 +14,13 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":{"waline":{"order":-2},"gitalk":{"order":-1}},"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xinransix.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"width":280},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":{"waline":{"order":-2},"gitalk":{"order":-1}},"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="C++11 到 C++17 对多线程的支持">
 <meta property="og:type" content="article">
@@ -29,8 +29,18 @@
 <meta property="og:site_name" content="木漏れ日">
 <meta property="og:description" content="C++11 到 C++17 对多线程的支持">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/bg1.JPG">
+<meta property="og:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/con_and_par.jpg">
+<meta property="og:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/single_core.png">
+<meta property="og:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/four_core.png">
+<meta property="og:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/cpp_timeline.png">
+<meta property="og:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/cpu.png">
+<meta property="og:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/multithread.png">
+<meta property="og:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/deadlock.gif">
+<meta property="og:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/deadlock.png">
+<meta property="og:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/Thread_pool.svg">
 <meta property="article:published_time" content="2024-08-06T04:38:14.000Z">
-<meta property="article:modified_time" content="2024-08-06T04:59:09.062Z">
+<meta property="article:modified_time" content="2025-02-16T07:25:49.333Z">
 <meta property="article:author" content="Yao J">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="Thread">
@@ -39,10 +49,10 @@
 <meta property="article:tag" content="Lock">
 <meta property="article:tag" content="Mutex">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/bg1.JPG">
 
 
 <link rel="canonical" href="https://xinransix.github.io/2024/08/06/C-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BB%8EC-11%E5%88%B0C-17%EF%BC%89/">
-
 
 
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xinransix.github.io/2024/08/06/C-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BB%8EC-11%E5%88%B0C-17%EF%BC%89/","path":"2024/08/06/C-并发编程（从C-11到C-17）/","title":"C++ 并发编程（从 C++11 到 C++17）"}</script>
@@ -115,7 +125,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a></li><li class="menu-item menu-item-友人帐"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友人帐</a></li><li class="menu-item menu-item-rss"><a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a></li><li class="menu-item menu-item-友人帐"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友人帐</a></li><li class="menu-item menu-item-rss"><a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -126,25 +136,25 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -192,7 +202,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -540,9 +550,15 @@ if(canvas.getContext){
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-08-06 12:38:14 / 修改时间：12:59:09" itemprop="dateCreated datePublished" datetime="2024-08-06T12:38:14+08:00">2024-08-06</time>
+      <time title="创建时间：2024-08-06 12:38:14" itemprop="dateCreated datePublished" datetime="2024-08-06T12:38:14+08:00">2024-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 15:25:49" itemprop="dateModified" datetime="2025-02-16T15:25:49+08:00">2025-02-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -612,7 +628,7 @@ if(canvas.getContext){
 语言开始支持多线程模型。借助多线程模型，我们可以开发出更好的并发系统。本文以
 C++ 语言为例，讲解如何进行并发编程。并尽可能涉及 C++11，C++14 以及 C++17
 中的主要内容。</p>
-<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/bg1.JPG" /></p>
+<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/bg1.JPG" /></p>
 <h2 id="为什么要并发编程">为什么要并发编程</h2>
 <p>大型的软件项目常常包含非常多的任务需要处理。例如：对于大量数据的数据流处理，或者是包含复杂
 GUI
@@ -633,7 +649,7 @@ Intel i7 有 8 核的版本，Xeon 处理器达到了 28
 <p>并发（Concurrent）与并行（Parallel）都是很常见的术语。</p>
 <p>Erlang 之父 Joe Armstrong
 曾经以人们使用咖啡机的场景为例描述了这两个术语。如下图所示：</p>
-<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/con_and_par.jpg" /></p>
+<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/con_and_par.jpg" /></p>
 <ul>
 <li><strong>并发</strong>：如果多个队列可以交替使用某台咖啡机，则这一行为就是并发的。</li>
 <li><strong>并行</strong>：如果存在多台咖啡机可以被多个队列交替使用，则就是并行。</li>
@@ -660,9 +676,9 @@ JavaScript 这样的语言来说，它就没有多线程的概念。</p>
 <p>当我们只有一个处理器时，所有的进程或线程会分时占用这个处理器。但如果系统中存在多个处理器时，则就可能有多个任务并行的运行在不同的处理器上。</p>
 <p>下面两幅图以不同颜色的矩形代表不同的任务（可能是进程，也可能是线程）来描述它们可能在处理器上执行的顺序。</p>
 <p>下图是单核处理器的情况：</p>
-<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/single_core.png" /></p>
+<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/single_core.png" /></p>
 <p>下面是四核处理器的情况：</p>
-<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/four_core.png" /></p>
+<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/four_core.png" /></p>
 <p>任务会在何时占有处理器，通常是由操作系统的调度策略决定的。在<a
 target="_blank" rel="noopener" href="https://paul.pub/android-process-schedule/">《Android
 系统上的进程管理：进程的调度》</a>一文中，我们介绍过 Linux
@@ -693,7 +709,7 @@ Windows 系统，你可能要写两套代码。</p>
 <p>这个状态在 C++ 11 标准发布之后得到了改变。并且，在 C++ 14 和 C++ 17
 标准中又对并发编程机制进行了增强。</p>
 <p>下图是最近几个版本的 C++ 标准特性的线路图。</p>
-<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/cpp_timeline.png" /></p>
+<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/cpp_timeline.png" /></p>
 <h2 id="编译器与-c-标准">编译器与 C++ 标准</h2>
 <p>编译器对于语言特性的支持是逐步完成的。想要使用特定的特性你需要相应版本的编译器。</p>
 <ul>
@@ -984,10 +1000,10 @@ API（由于篇幅所限，这里不展开这方面内容）为基础。</li>
 <blockquote>
 <p>事实上，目前大部分 CPU 的缓存已经不只一层。</p>
 </blockquote>
-<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/cpu.png" /></p>
+<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/cpu.png" /></p>
 <p>处理器在进行计算的时候，高速缓存会参与其中，例如数据的读和写。而高速缓存和系统主存（Memory）是有可能存在不一致的。即：某个结果计算后保存在处理器的高速缓存中了，但是没有同步到主存中，此时这个值对于其他处理器就是不可见的。</p>
 <p>事情还远不止这么简单。我们对于全局变量值的修改：<code>sum += sqrt(i);</code>这条语句，它并非是原子的。它其实是很多条指令的组合才能完成。假设在某个设备上，这条语句通过下面这几个步骤来完成。它们的时序可能如下所示：</p>
-<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/multithread.png" /></p>
+<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/multithread.png" /></p>
 <p>在时间点 a 的时候，所有线程对于<code>sum</code>变量的值是一致的。</p>
 <p>但是在时间点 b 之后，thread3
 上已经对<code>sum</code>进行了赋值。而这个时候其他几个线程也同时在其他处理器上使用了这个值，那么这个时候它们所使用的值就是旧的（错误的）。最后得到的结果也自然是错的。</p>
@@ -1181,7 +1197,7 @@ needed to perform the required operations.</p>
 <p>死锁是指：两个或以上的运算单元，每一方都在等待其他方释放资源，但是所有方都不愿意释放资源。结果是没有任何一方能继续推进下去，于是整个系统无法再继续运转。</p>
 <p>死锁在现实中也很常见，例如：两个孩子分别拿着玩具的一半然后哭着要从对方手里得到另外一半玩具，但是谁都不肯让步。</p>
 <p>在成年人的世界里也会发生类似的情况，例如下面这个交通状况：</p>
-<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/deadlock.gif" /></p>
+<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/deadlock.gif" /></p>
 <p>下面我们来看一个编程示例。</p>
 <p>现在假设我们在开发一个银行的系统，这个系统包含了转账的功能。</p>
 <p>首先我们创建一个<code>Account</code>类来描述银行账号。由于这仅仅是一个演示使用的代码，所以我们希望代码足够的简单。<code>Account</code>类仅仅包含名称和金额两个字段。</p>
@@ -1207,7 +1223,7 @@ needed to perform the required operations.</p>
 <p>如果你运行了这个程序，你会发现很快它就卡住不动了。为什么？</p>
 <p>因为发生了死锁。</p>
 <p>我们仔细思考一下这两个线程的逻辑：这两个线程可能会同时获取其中一个账号的锁，然后又想获取另外一个账号的锁，此时就发生了死锁。如下图所示：</p>
-<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/deadlock.png" /></p>
+<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/deadlock.png" /></p>
 <p>当然，发生死锁的原因远不止上面这一种情况。如果两个线程互相<code>join</code>就可能发生死锁。还有在一个线程中对一个不可重入的互斥体（例如<code>mutex</code>而非<code>recursive_mutex</code>）多次加锁也会死锁。</p>
 <p>你可能会觉得，我可不会这么傻，写出这样的代码。但实际上，很多时候是由于代码的深层次嵌套导致了死锁的发生，由于调用关系的复杂导致发现这类问题并不容易。</p>
 <p>如果仔细看一下上面的输出，我们会发现还有另外一个问题：这里的输出是乱的。两个线程的输出混杂在一起了。究其原因也很容易理解：两个线程可能会同时输出，没有做好隔离。</p>
@@ -1538,7 +1554,7 @@ target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Command_patte
 </ol>
 <p>为了简单起见，这里的示例只使用了我们熟悉的例子和结构。但在实际上的工程中，调用关系通常更复杂，你可以借助于<code>packaged_task</code>将任务组装成队列，然后通过<a
 target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Thread_pool">线程池</a>的方式进行调度：</p>
-<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/Thread_pool.svg" /></p>
+<p><img data-src="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/Thread_pool.svg" /></p>
 <h2 id="promise-与-future">promise 与 future</h2>
 <p>在上面的例子中，<code>concurrent_task</code>的结果是通过<code>return</code>返回的。但在一些时候，我们可能不能这么做：在得到任务结果之后，可能还有一些事情需要继续处理，例如清理工作。</p>
 <p>这个时候，就可以将<code>promise</code>与<code>future</code>配对使用。这样就可以将返回结果和任务结束两个事情分开。</p>
@@ -1757,7 +1773,7 @@ unwanted</a></li>
 
   <div class="copyright">
     &copy; 2023 – 
-    <span itemprop="copyrightYear">2024</span>
+    <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -1819,6 +1835,12 @@ unwanted</a></li>
   </footer>
 
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
   <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
@@ -1830,9 +1852,9 @@ unwanted</a></li>
   
   <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.33/fancybox/fancybox.umd.js" integrity="sha256-+2+qOqR8CKoHh/AsVR9k2qaDBKWjYNC2nozhYmv5j9k=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>
