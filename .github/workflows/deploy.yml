@@ -22,6 +22,10 @@ jobs:
         with:
           node-version: 22  # 根据你的 Node.js 版本调整
 
+      - name: Install pandoc
+        run: |
+            apt install pandoc
+        
       - name: Install hexo
         run: |
             npm install -g hexo-cli
