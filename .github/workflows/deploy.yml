@@ -1,0 +1,42 @@
+name: Deploy Hexo to GitHub Pages
+
+on:
+    push:
+        branches:
+            - src  # 监听 src 分支的推送
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code with submodules
+        uses: actions/checkout@v4
+        with:
+          ref: src  # 检出 src 分支
+          submodules: true  # 递归初始化子模块
+          fetch-depth: 0  # 获取完整的 Git 历史记录（确保子模块更新）
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22  # 根据你的 Node.js 版本调整
+
+      - name: Install hexo
+        run: |
+            npm install -g hexo-cli
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Generate static files
+        run: |
+          hexo generate  
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public  # Hexo 生成的静态文件目录
+          publish_branch: main  # 部署到 main 分支
