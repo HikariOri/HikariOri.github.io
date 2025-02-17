@@ -97,11 +97,11 @@ open_graph:
 # External url should start with http:// or https://
 menu:
   home: / || fa fa-home
-  about: /about/ || fa fa-user
+  参考资料: /materials/ || fa fa-user
   tags: /tags/ || fa fa-tags
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
-  友人帐: /links/ || fa fa-link
+  TODO: /todo/ || fa fa-link
   RSS: /atom.xml || fa fa-rss
   #schedule: /schedule/ || fa fa-calendar
   # sitemap: /sitemap.xml || fa fa-sitemap
@@ -144,7 +144,8 @@ sidebar:
 # Sidebar Avatar
 avatar:
   # Replace the default image and set the url here.
-  url: https://avatars.githubusercontent.com/u/62458905?v=4
+  # url: https://avatars.githubusercontent.com/u/62458905?v=4
+  url: https://www.loliapi.com/acg/pp/
   # If true, the avatar will be displayed in circle.
   rounded: true
   # If true, the avatar will be rotated with the cursor.
