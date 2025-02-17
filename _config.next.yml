@@ -158,7 +158,7 @@ site_state: true
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
-  GitHub: https://github.com/XinranSix || fab fa-github
+  GitHub: https://github.com/HikariOri || fab fa-github
   E-Mail: 2937552332@qq.com || fa fa-envelope
   #GitHub: https://github.com/yourname || fab fa-github
   #E-Mail: mailto:yourname@gmail.com || fa fa-envelope
@@ -294,7 +294,7 @@ follow_me:
   #Telegram: https://t.me/channel_name || fab fa-telegram
   #WeChat: /images/wechat_channel.png || fab fa-weixin
   #RSS: /atom.xml || fa fa-rss
-  WeChat: https://github.com/XinranSix/archives/assets/62458905/6a6f2373-fbf5-4367-9ac2-65230cba90a2 || fab fa-weixin
+  WeChat: https://github.com/HikariOri/archives/assets/62458905/6a6f2373-fbf5-4367-9ac2-65230cba90a2 || fab fa-weixin
   RSS: /atom.xml || fa fa-rss
 
 # Related popular posts
@@ -786,11 +786,11 @@ waline:
 # For more information: https://gitalk.github.io
 gitalk:
   enable: true
-  github_id: 'XinranSix'
+  github_id: 'HikariOri'
   repo: 'comment'
   client_id: '9c03a2ae7f09aea822ba'
   client_secret: 'd1c9ff2bb92b84493b307f1587585a6b12fc78b8'
-  admin_user: 'XinranSix'
+  admin_user: 'HikariOri'
   distraction_free_mode: true # Facebook-like distraction free mode
   # When the official proxy is not available, you can change it to your own proxy address
   proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy address
