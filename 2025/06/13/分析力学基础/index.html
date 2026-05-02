@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hikariori.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"width":280},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":false,"lazyload":false,"nav":{"waline":{"order":-2},"gitalk":{"order":-1}}},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="dsadsadsa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分析力学基础">
+<meta property="og:url" content="https://hikariori.github.io/2025/06/13/%E5%88%86%E6%9E%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Lemon">
+<meta property="og:description" content="dsadsadsa">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-13T17:31:32.000Z">
+<meta property="article:modified_time" content="2026-05-02T15:13:29.970Z">
+<meta property="article:author" content="Lemon">
+<meta property="article:tag" content="E-L 方程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hikariori.github.io/2025/06/13/%E5%88%86%E6%9E%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://hikariori.github.io/2025/06/13/%E5%88%86%E6%9E%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/","path":"2025/06/13/分析力学基础/","title":"分析力学基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>分析力学基础 | Lemon</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hikariori.github.io/2025/06/13/%E5%88%86%E6%9E%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+
+
+<script>
+  var OriginTitile = document.title;
+  var titleTime;
+  document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+      document.title = "(つェ⊂)看不见我看不见我" + OriginTitile;
+      clearTimeout(titleTime);
+    } else {
+      document.title = "(*´∇｀*) 咦，竟然被你发现了~" + OriginTitile;
+      titleTime = setTimeout(function() {
+        document.title = OriginTitile;
+      }, 2000);
+    }
+  });
+</script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Lemon" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Lemon</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Graphics Programming</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">58</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">37</span></a></li><li class="menu-item menu-item-rss"><a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#e-l-%E6%96%B9%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">E-L 方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%BD%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">能量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">动量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A8%E5%BF%83"><span class="nav-number">4.</span> <span class="nav-text">质心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%AF%E5%B0%BC%E5%B8%8C%E5%AE%9A%E7%90%86"><span class="nav-number">4.1.</span> <span class="nav-text">柯尼希定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%A8%E5%BF%83%E5%8F%82%E8%80%83%E7%B3%BB"><span class="nav-number">4.2.</span> <span class="nav-text">质心参考系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%92%E5%8A%A8%E9%87%8F"><span class="nav-number">5.</span> <span class="nav-text">角动量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E9%87%8F%E4%B8%8E%E8%A7%92%E5%8A%A8%E9%87%8F%E5%AE%88%E6%81%92%E5%BE%8B%E7%9A%84%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">动量与角动量守恒律的统一处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9B%E5%AD%A6%E7%9B%B8%E4%BC%BC%E6%80%A7"><span class="nav-number">7.</span> <span class="nav-text">力学相似性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E6%96%B9%E7%A8%8B%E7%9A%84%E7%A7%AF%E5%88%86"><span class="nav-number">8.</span> <span class="nav-text">运动方程的积分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E8%BF%90%E5%8A%A8"><span class="nav-number">8.1.</span> <span class="nav-text">一维运动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E6%8C%AF%E5%8A%A8%E7%A1%AE%E5%AE%9A%E5%8A%BF%E8%83%BD"><span class="nav-number">8.2.</span> <span class="nav-text">根据振动确定势能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A6%E5%8C%96%E8%B4%A8%E9%87%8F"><span class="nav-number">8.3.</span> <span class="nav-text">约化质量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%BF%83%E5%8A%9B%E5%9C%BA%E5%86%85%E7%9A%84%E8%BF%90%E5%8A%A8"><span class="nav-number">8.4.</span> <span class="nav-text">有心力场内的运动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%99%AE%E5%8B%92%E9%97%AE%E9%A2%98"><span class="nav-number">8.5.</span> <span class="nav-text">开普勒问题</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lemon"
+      src="https://img1.picmix.com/output/stamp/normal/9/5/4/6/2636459_f6cfb.png">
+  <p class="site-author-name" itemprop="name">Lemon</p>
+  <div class="site-description" itemprop="description">Passionate about games, music, anime, and computer graphics, always exploring where technology meets art.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HikariOri" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HikariOri" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2937552332@qq.com" title="E-Mail → 2937552332@qq.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://godbolt.org/" title="https:&#x2F;&#x2F;godbolt.org&#x2F;" rel="noopener" target="_blank">Compiler Explorer</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://cppinsights.io/" title="https:&#x2F;&#x2F;cppinsights.io&#x2F;" rel="noopener" target="_blank">C++ Insights</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://play.rust-lang.org/" title="https:&#x2F;&#x2F;play.rust-lang.org&#x2F;" rel="noopener" target="_blank">Rust Playground</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://hikariori.github.io/2025/06/13/%E5%88%86%E6%9E%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://img1.picmix.com/output/stamp/normal/9/5/4/6/2636459_f6cfb.png">
+      <meta itemprop="name" content="Lemon">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="Passionate about games, music, anime, and computer graphics, always exploring where technology meets art.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="分析力学基础 | Lemon">
+      <meta itemprop="description" content="dsadsadsa">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          分析力学基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-06-14 01:31:32" itemprop="dateCreated datePublished" datetime="2025-06-14T01:31:32+08:00">2025-06-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-05-02 23:13:29" itemprop="dateModified" datetime="2026-05-02T23:13:29+08:00">2026-05-02</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>2.9k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>11 mins.</span>
+    </span>
+</div>
+
+            <div class="post-description">dsadsadsa</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="e-l-方程">E-L 方程</h2>
+<p><span class="math display">\[
+\frac{\mathrm{d}}{\mathrm{~d}x}\frac{\partial L}{\partial
+\dot{q}}-\frac{\partial L}{\partial q}=0
+\]</span></p>
+<h2 id="能量">能量</h2>
+<p><span class="math display">\[
+E=\sum_i \dot{q}\frac{\partial L}{\partial \dot{q}}-L
+\]</span></p>
+<p>如果 <span class="math inline">\(L\)</span> 中不含 <span
+class="math inline">\(t\)</span>，且只含有 <span
+class="math inline">\(\dot{q}\)</span> 二次齐次项，则：</p>
+<p><span class="math display">\[
+E = T+U
+\]</span></p>
+<p>如果 <span class="math inline">\(L\)</span> 中不含 <span
+class="math inline">\(t\)</span>，且只有 <span
+class="math inline">\(\dot{q}\)</span>
+零次其次项、一次其次项和二次其次项，则：</p>
+<p><span class="math display">\[
+E=T^{2}-T^{0}+U
+\]</span></p>
+<blockquote>
+<p>如果拉格朗日方程不显示含有时间 <span
+class="math inline">\(t\)</span>，则这个这个系统的机械能守恒。</p>
+</blockquote>
+<h2 id="动量">动量</h2>
+<p><span class="math display">\[
+\boldsymbol{P}=\sum_a \frac{\partial L}{\partial \boldsymbol{v_a}}
+\]</span></p>
+<p><span class="math display">\[
+\boldsymbol{P}=\sum_a m_a \boldsymbol{v_a}
+\]</span></p>
+<p>广义动量：</p>
+<p><span class="math display">\[
+\boldsymbol{P}_i=\frac{\partial L}{\partial \dot{q_i}}
+\]</span></p>
+<blockquote>
+<p>广义动量包含了通常的动量和角动量。</p>
+</blockquote>
+<p>广义力：</p>
+<p><span class="math display">\[
+\boldsymbol{F}_i = \frac{\partial L}{\partial q_i}
+\]</span></p>
+<p>显然：</p>
+<p><span class="math display">\[
+\dot{\boldsymbol{P}_i}=\boldsymbol{F}_i
+\]</span></p>
+<h2 id="质心">质心</h2>
+<p>质心参考系相对于惯性参考系的速度为：</p>
+<p><span class="math display">\[
+\boldsymbol{V}=\frac{\boldsymbol{P}}{\sum m_a}=\frac{\sum m_a
+\boldsymbol{v}_a}{\sum m_a}
+\]</span></p>
+<p><span class="math inline">\(\boldsymbol{v}_a\)</span>
+为系统中各质点相对于同一惯性参考系的速度，<span
+class="math inline">\(\boldsymbol{V}\)</span>
+是系统相对于这一惯性参考系整体运动的速度。</p>
+<p><span class="math display">\[
+\boldsymbol{R}=\frac{\sum m_a \boldsymbol{r}_a}{\sum m_a}
+\]</span></p>
+<p>如果 <span
+class="math inline">\(\boldsymbol{V}=\dot{\boldsymbol{R}}\)</span>，这个点即为系统的质点</p>
+<p>质点系中力学系统的能量称为内能 <span
+class="math inline">\(E_{\mathrm{int}}\)</span>，它包括系统内质点的相对运动动能呵呵相互作用势能。以速度
+<span class="math inline">\(\boldsymbol{V}\)</span>
+做整体运动的系统的能量为：</p>
+<p><span class="math display">\[
+E = \frac{1}{2}\mu V^2+E_\mathrm{int}
+\]</span></p>
+<p>其中 <span class="math inline">\(\displaystyle {\mu = \sum_a
+m_a}\)</span> 为系统的总重量。</p>
+<h3 id="柯尼希定理">柯尼希定理</h3>
+<p>柯尼希定理说明了系统的动能等于质心的动能 <span
+class="math inline">\(\displaystyle{\frac{\mu
+V^2}{2}}\)</span>（系统整体运动的动能）与相对于质点运动的动能 <span
+class="math inline">\(\displaystyle T^{\prime}=\frac{1}{2\sum_a m
+v_a^{\prime ~ 2}}\)</span> 之和，即：</p>
+<p><span class="math display">\[
+T = \frac{1}{2}\mu V^2 + \frac{1}{2}\sum_a m v_a^{\prime~2}
+\]</span></p>
+<p>其中 <span
+class="math inline">\(\boldsymbol{V}=\dot{\boldsymbol{R}}\)</span>
+为系统质心的速度，<span
+class="math inline">\(\boldsymbol{v}_a^{\prime}\)</span>
+为系统中各质点相对于质心参考系的速度。</p>
+<p>上述表述说明：柯尼希定理可以将系统的整体运动的动能与其他运动的动能分离开来。对于角动量，也可分为整体移动的角动量和相对于质心的角动量。</p>
+<p>将 <span class="math inline">\(\displaystyle {\frac{1}{2}}\sum_a m
+v_{a}^{\prime~2}\)</span> 与质点的相互作用势能 <span
+class="math inline">\(U\)</span> 相加就是内能，即：</p>
+<p><span class="math display">\[
+E_{int}=\frac{1}{2}\sum_a m v_{a}^{\prime~2} + U
+\]</span></p>
+<blockquote>
+<p>注意：这里假定系统的相互作用势能与参考系无关，也就是说一般它仅与质点之间的相对位置
+<span class="math inline">\(\boldsymbol{r}_a-\boldsymbol{r}_b\)</span>
+有关，也可能依赖与时间 <span class="math inline">\(t\)</span>，即 <span
+class="math inline">\(U=U\left(\boldsymbol{r}_a-\boldsymbol{r}_b,t
+\right)\)</span>.</p>
+</blockquote>
+<p>如果系统是孤立的，则上面给出的能量公式就是这个系统的能量。</p>
+<h3 id="质心参考系">质心参考系</h3>
+<p>质心参考系定义为系统总动量为 0 的参考系。</p>
+<p>质心参考系有如下有些特点：</p>
+<ol type="1">
+<li>描述系统力学的一些物理量（如角动量、动能等）均可分解为与质心有关的部分和相对于质心参考系的部分，即与质心有关的部分可以与其他部分完全分离。如此一来，质心参考系中，与系统整体运动情况有关的部分完全不出现，只有涉及相对运动的部分。通常与相对运动有关的性质称为内禀性质，如果内禀角动量、内能等，这些都是与参考系无关的，是系统固有的。在热力学统计物理中，主要关注这样的相对运动。</li>
+<li>质心相对于惯性参考系可以有加速度，质心参考系一般不是惯性参考系。但，相对于质心参考系，角动量定理和功能原理等具有与惯性参考系中完全相同的形式，其中不出现与惯性力有关部分。在质心参考系中，每个质点均受到惯性力
+<span class="math inline">\(-m_a \ddot{\boldsymbol{R}}\)</span>
+的作用，其对质心的力矩为：</li>
+</ol>
+<p><span class="math display">\[
+\sum_a
+\boldsymbol{r}^{\prime}_{a}\times(-m_a)\ddot{\boldsymbol{R}}=-\left(\sum_a
+m_a \boldsymbol{r}^{\prime}_{a}  \right) \times \ddot{\boldsymbol{R}}=0
+\]</span></p>
+<p>惯性力对系统所作元功为：</p>
+<p><span class="math display">\[
+\mathrm{d}W=\sum_a \left(-m_a \ddot{\boldsymbol{R}}\right)\cdot
+\mathrm{d}\boldsymbol{r}_a^{\prime}=-\ddot{\boldsymbol{R}}\cdot
+\mathrm{d}\left(\sum_a m_a \boldsymbol{r}_a^{\prime}\right)=0
+\]</span></p>
+<ol start="3" type="1">
+<li>由于相对于质心参考系系统的总动量总对于
+0，这对于在该参考系中处理碰撞、散射等问题将带来非常大的方便。</li>
+</ol>
+<h2 id="角动量">角动量</h2>
+<p>对于封闭的力学系统，若它具有与空间的各向同性的转动的不变性，即系统的拉格朗日函数相对与转动变换时不变的，则系统的角动量守恒，即他是运动积分。</p>
+<p>系统的角动量定义为：</p>
+<p><span class="math display">\[
+\boldsymbol{M}=\sum_a \boldsymbol{r}_a\times \boldsymbol{p}_a
+\]</span></p>
+<p>角动量的值与坐标原点的选取有关（即与参考系的选取有关）。设 <span
+class="math inline">\(\boldsymbol{a}\)</span> 为原点 <span
+class="math inline">\(O^{\prime}\)</span> 相对于原点 <span
+class="math inline">\(O\)</span>
+的位矢，则相对于这个两个原点的角动量之间有如下关系：</p>
+<p><span class="math display">\[
+\boldsymbol{M}=\boldsymbol{M}^{\prime}+\boldsymbol{a}\times
+\boldsymbol{P}
+\]</span></p>
+<p>如果 <span class="math inline">\(O^{\prime}\)</span>
+位于系统的质心，则 <span
+class="math inline">\(\boldsymbol{a}=\boldsymbol{R}\)</span>, 有：</p>
+<p><span class="math display">\[
+\boldsymbol{M}=\boldsymbol{M}^{\prime}+\boldsymbol{R}\times
+\boldsymbol{P}
+\]</span></p>
+<blockquote>
+<p>[!NOTE] <span class="math inline">\(\boldsymbol{M}^{\prime}\)</span>
+是系统相对于质心的角动量，称为「内禀角动量」，<span
+class="math inline">\(\boldsymbol{R}\times \boldsymbol{P}\)</span>
+为将系统的质量集中与质心并以系统的整体速度 <span
+class="math inline">\(V\)</span> 运动是相对与 <span
+class="math inline">\(O\)</span> 点的角动量，称之为「轨道角动量」</p>
+</blockquote>
+<h2 id="动量与角动量守恒律的统一处理">动量与角动量守恒律的统一处理</h2>
+<p>考察 <span class="math inline">\(L=L\left( q,\dot{q},t
+\right)\)</span>，有：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\delta L &amp;= \sum_i
+\left(\frac{\partial L}{\partial q_i}\delta q_i + \frac{\partial
+L}{\partial \dot{q}_i}\delta \dot{q}_i  \right)\\
+&amp;= \sum_i \left( \frac{\mathrm{d~}}{\mathrm{d}t}\frac{\partial
+L}{\partial \dot{q}_i}\delta q_i+\frac{\partial L}{\partial
+\dot{q}_i}\delta \dot{q}_i\right)  \\
+&amp;= \frac{\mathrm{d}~}{\mathrm{d}t} \left( \sum_i \frac{\partial
+L}{\partial \dot{q}_i}\delta q_i \right)  \\
+\end{aligned}
+\]</span></p>
+<p>设坐标变换关系为：</p>
+<p><span class="math display">\[
+\boldsymbol{r}_a=\boldsymbol{r}_a\left( q_1,q_2,\cdots,q_s,t  \right)
+\]</span></p>
+<p>则有关系：</p>
+<p><span class="math display">\[
+\delta \boldsymbol{r}_a=\sum_i \frac{\partial \boldsymbol{r}_a}{\partial
+q_i}, \frac{\partial \boldsymbol{r}_a}{\partial q_i}=\frac{\partial
+\dot{\boldsymbol{r}}_a}{\partial \dot{q}_i}
+\]</span></p>
+<p>如果系统的势能 <span class="math inline">\(U\)</span>
+与广义速度无关，即 <span class="math inline">\(U=U\left( q,t
+\right)\)</span>，而 <span
+class="math inline">\(L=T-U\)</span>，有：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial L}{\partial \dot{q}_i}&amp;=\frac{\partial T}{\partial
+\dot{q}_i}\\
+&amp;= \frac{\partial ~}{\partial \dot{q}_i}\left( \sum_a \frac{1}{2}m_a
+\boldsymbol{\dot{r}}_a \cdot \boldsymbol{\dot{r}}_a  \right)\\
+&amp;=\sum_a m_a \frac{\partial \boldsymbol{\dot{r}}_a}{\partial
+\dot{q}_i} \cdot \boldsymbol{\dot{r}}_a\\
+&amp;= \sum_a m_a \frac{\partial \boldsymbol{r}_a}{\partial q_i}\cdot
+\boldsymbol{\dot{r}}_a
+\end{aligned}
+\]</span></p>
+<p>于是：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\delta L &amp;= \frac{\mathrm{d}~}{\mathrm{d}t}\left( \sum_i
+\frac{\partial L}{\partial \dot{q}_i}\delta q_i \right) \\
+&amp;= \frac{\mathrm{d}~}{\mathrm{d}t}\left( \sum_i \sum_a m_a
+\frac{\partial \boldsymbol{r}_a}{\partial q_i} \cdot
+\boldsymbol{\dot{r}}_a \delta q_i\right)\\
+&amp;= \frac{\mathrm{d}~}{\mathrm{d}t}\left( \sum_a m_a
+\boldsymbol{\dot{r}}_a \cdot \delta \boldsymbol{r}_a\right)
+\end{aligned}
+\]</span></p>
+<p>变换要使得拉格朗日函数导出的运动方程不变，这时 <span
+class="math inline">\(\delta
+L=0\)</span>，则可通过考虑上式得到运动积分。</p>
+<ol type="1">
+<li>做平移变换时，有 <span class="math inline">\(\delta
+\boldsymbol{r}_a=\varepsilon\)</span>，其中 <span
+class="math inline">\(\varepsilon\)</span> 为无穷小矢量，则有：</li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathrm{d}~}{\mathrm{d}t}\left( \sum_a m_a \boldsymbol{\dot{r}}_a
+\cdot \delta \boldsymbol{r}_a\right)&amp;=
+\frac{\mathrm{d}~}{\mathrm{d}t}\left( \sum_a m_a \boldsymbol{\dot{r}}_a
+\right)\cdot \varepsilon\\
+&amp;=0
+\end{aligned}
+\]</span></p>
+<p>即：</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d}t}\left( \sum_a m_a \boldsymbol{\dot{r}}_a
+\right)=0
+\]</span></p>
+<p>故有：</p>
+<p><span class="math display">\[
+\sum_a m_a \boldsymbol{\dot{r}}_a = \boldsymbol{P}=\operatorname{const}
+\]</span></p>
+<p>即此系统动量守恒。</p>
+<ol start="2" type="1">
+<li>做转动变换时，有 <span class="math inline">\(\delta
+\boldsymbol{r}_a=\delta \boldsymbol{\varphi} \times
+\boldsymbol{r}_a\)</span>，其中 <span class="math inline">\(\delta
+\boldsymbol{\varphi}\)</span> 为无穷小角位移，则有：</li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathrm{d}~}{\mathrm{d}t}\left( \sum_a m_a \boldsymbol{\dot{r}} _a
+\cdot \delta
+\boldsymbol{r}_a\right)&amp;=\frac{\mathrm{d}~}{\mathrm{d}t}\left[
+\sum_a m_a \boldsymbol{\dot{r}}_a\cdot \left( \delta
+\boldsymbol{\varphi\times  \boldsymbol{r}_a} \right) \right]  \\
+&amp;= \frac{\mathrm{d}~}{\mathrm{d}t}\left[ \sum_a m_a \delta
+\boldsymbol{\varphi} \cdot \left( \boldsymbol{r}_a\times
+\boldsymbol{\dot{r}}_a \right) \right]\\
+&amp;=\delta \boldsymbol{\varphi}\cdot
+\frac{\mathrm{d}~}{\mathrm{d}t}\left[ \sum_a(\boldsymbol{r}_a\times
+\boldsymbol{\dot{r}_a}) \right]\\
+&amp;= \delta \varphi \cdot
+\frac{\mathrm{d}~}{\mathrm{d}t}\boldsymbol{M}\\
+&amp;=0
+\end{aligned}
+\]</span></p>
+<p>即：</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d}t} \boldsymbol{M}=0
+\]</span></p>
+<p>有：</p>
+<p><span class="math display">\[
+\sum_a m_a\left( \boldsymbol{r}\cdot \boldsymbol{\dot{r}}_a
+\right)=\boldsymbol{M}=\operatorname{const}
+\]</span></p>
+<p>即此系统角动量守恒。</p>
+<h2 id="力学相似性">力学相似性</h2>
+<p>如何势函数是坐标的 <span class="math inline">\(k\)</span>
+次齐次函数，即对坐标做变换 <span
+class="math inline">\(\boldsymbol{r}_a\to \alpha
+\boldsymbol{r}_a\)</span> 时，有：</p>
+<p><span class="math display">\[
+U\left( \alpha \boldsymbol{r}_1,\alpha \boldsymbol{r}_2,\cdots,\alpha
+\boldsymbol{r}_n  \right)=\alpha^K
+U\left(\boldsymbol{r}_1,\boldsymbol{r}_2,\cdots,\boldsymbol{r}_n  \right)
+\]</span></p>
+<p>再对时间做变换 <span class="math inline">\(t\to \beta t\)</span>
+则在满足条件 <span class="math inline">\(\beta=\alpha^{1-k/2}\)</span>
+时，变换后的拉格朗日函数 <span class="math inline">\(L^{\prime}\)</span>
+有关系：</p>
+<p><span class="math display">\[
+L^{\prime}=\alpha^k
+\]</span></p>
+<p><span class="math inline">\(L^{\prime}\)</span> 和 <span
+class="math inline">\(L\)</span>
+有相同的运动方程，变换前后的运动轨迹几何上相似</p>
+<p>如果力学系统在有限空间中运动，势能时坐标的齐次函数，则动能和势能的时间平均值之间存在关系，称为位力定理：</p>
+<p><span class="math display">\[
+2 \overline{T} = \sum_a \overline{\boldsymbol{r}_a \cdot \frac{\partial
+U}{\partial \boldsymbol{r}_a}}
+\]</span></p>
+<blockquote>
+<p>[!NOTE] 其中对时间的平均定义为： <span class="math display">\[
+\overline{f} = \lim_{\tau \to \infty} \frac{1}{\tau}\int_0^\tau f\left(
+t \right) \mathrm{d}t
+\]</span></p>
+</blockquote>
+<p>如果势能是所有矢径 <span
+class="math inline">\(\boldsymbol{r}_a\)</span> 的 <span
+class="math inline">\(k\)</span> 次齐次函数，则：</p>
+<p><span class="math display">\[
+2 \overline{T}=k \overline{U}
+\]</span></p>
+<p>对于力学相似性，设 <span class="math inline">\(t^{\prime}=\beta
+t,l^{\prime}=\alpha l\)</span> 有如下结论：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{t^{\prime}}{t}&amp;=\left( \frac{l^{\prime}}{l} \right)^{1-k/2}\\
+\frac{v^{\prime}}{v}&amp;=\left( \frac{l^{\prime}}{l} \right)^{k/2} \\
+  \frac{E^{\prime}}{E}&amp;=\left( \frac{l^{\prime}}{l} \right)^{k} \\
+  \frac{M^{\prime}}{M}&amp;=\left( \frac{l^{\prime}}{l} \right)^{1+k/2}
+\\
+\end{aligned}
+\]</span></p>
+<h2 id="运动方程的积分">运动方程的积分</h2>
+<h3 id="一维运动">一维运动</h3>
+<p>一维运动指的是自由度为 1 的系统的运动。考虑能量守恒：</p>
+<p><span class="math display">\[
+\frac{1}{2}m \dot{x}^2 +U\left( x \right)=E
+\]</span></p>
+<p>可得：</p>
+<p><span class="math display">\[
+t=\sqrt{\frac{m}{2}}\int \frac{\mathrm{d}x}{E-U\left( x
+\right)}+\operatorname{const}
+\]</span></p>
+<p>运动的转折点满足条件：</p>
+<p><span class="math display">\[
+E=U\left( x \right)
+\]</span></p>
+<p>转折点处能量全部为势能，即速度为 <span
+class="math inline">\(0\)</span>。</p>
+<p>如果运动限制在两个转折点之间，运动是有界的，否则是无解的。</p>
+<p>有界运动通常是周期运动，周期为：</p>
+<p><span class="math display">\[
+T\left( E \right)=\sqrt{2m}\int_{x_1\left( E \right)}^{x_2\left( E
+\right)}\frac{\mathrm{d}x}{\sqrt{E-U\left( x \right)}}
+\]</span></p>
+<p>其中 <span class="math inline">\(x_1\left( E \right)\)</span> 和
+<span class="math inline">\(x_2\left( E \right)\)</span> 转折点。</p>
+<h3 id="根据振动确定势能">根据振动确定势能</h3>
+<p>对于做有界运动的质点，设 <span class="math inline">\(x_1,x_2\)</span>
+是运动的转折点，且在所考虑的区域中势函数 <span
+class="math inline">\(U\)</span> 仅有一个极小值点，假设位于 <span
+class="math inline">\(x=0\)</span> 处，则由质点的远动周期可以确定势能
+<span class="math inline">\(U(x)\)</span>，他是下面方程的解：</p>
+<p><span class="math display">\[
+x_2\left( U \right)-x_1\left( U \right)=\frac{1}{\pi \sqrt{2m}}\int_0^U
+\frac{T\left( E \right)\mathrm{d}E}{\sqrt{U-E}}
+\]</span></p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>上述方程不能唯一地确定势能。可以考虑 <span
+class="math inline">\(U\)</span> 对称对称的情况，即 <span
+class="math inline">\(x_2\left( U \right)=-x_1\left( U
+\right)\)</span>，此时势能唯一确定为： <span class="math display">\[
+x\left( U \right)=\frac{1}{2}\left[ x_2\left( U \right)-x_1\left( U
+\right) \right]
+\]</span> <span class="math inline">\(x\left( U \right)\)</span>
+的单值表达式为： <span class="math display">\[
+x\left( U \right)=\frac{1}{2\pi\sqrt{2m}}\int_0^U \frac{T\left( E
+\right)\mathrm{d}E}{\sqrt{U-E}}
+\]</span></p>
+</blockquote>
+<h3 id="约化质量">约化质量</h3>
+<p>考察相互作用的两个质点组成的系统的运动问题，称为二体问题。</p>
+<p>将二体问题等效为系统的质心运动和两质点相对运动的两个部分。相对运动部分又等价于质量为
+<span class="math inline">\(\displaystyle
+m=\frac{m_1m_2}{m_1+m_2}\)</span> 的质点在外场 <span
+class="math inline">\(U\left( \boldsymbol{r} \right)\)</span>
+中的运动这样的单体问题，并且这是有心力问题，相应的拉格朗日量为：</p>
+<p><span class="math display">\[
+L=\frac{1}{2}m \boldsymbol{\dot{r}}^2-U\left( \boldsymbol{r} \right)
+\]</span></p>
+<p>这里的 <span class="math inline">\(m\)</span> 称之为约化质量，<span
+class="math inline">\(\boldsymbol{r}\)</span> 是两质点的相对位矢 <span
+class="math inline">\(\boldsymbol{r}=\boldsymbol{r}_1-\boldsymbol{r}_2\)</span>.</p>
+<h3 id="有心力场内的运动">有心力场内的运动</h3>
+<h3 id="开普勒问题">开普勒问题</h3>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Lemon
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://hikariori.github.io/2025/06/13/%E5%88%86%E6%9E%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/" title="分析力学基础">https://hikariori.github.io/2025/06/13/分析力学基础/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/HikariOri/archives/assets/62458905/6a6f2373-fbf5-4367-9ac2-65230cba90a2">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/E-L-%E6%96%B9%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> E-L 方程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/16/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" rel="prev" title="计算几何">
+                  <i class="fa fa-angle-left"></i> 计算几何
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/04/30/%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" rel="next" title="图形渲染管线">
+                  图形渲染管线 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Lemon</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>Word count total: </span>
+    <span title="Word count total">130k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>Reading time total &asymp;</span>
+    <span title="Reading time total">7:51</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
