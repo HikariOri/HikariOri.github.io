@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@waline/hexo-next": "^3.0.1",
-    "hexo": "^7.0.0",
+    "hexo": "^8.1.1",
     "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^4.0.0",
     "hexo-filter-plantuml": "^2.1.1",
