@@ -2,7 +2,7 @@ hexo.extend.tag.register('sketchfab', function (args) {
   const id = args[0];
 
   return `
-<div style="width: 100%; max-width: 1200px; margin: 0 auto; position: relative; padding-bottom: 56.25%;">
+<div style="width: 100%; position: relative; padding-bottom: 56.25%;">
   <iframe
     title="Sketchfab Model"
     frameborder="0"
