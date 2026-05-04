@@ -23,32 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hikariori.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"width":280},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":false,"lazyload":false,"nav":{"waline":{"order":-2},"gitalk":{"order":-1}}},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="介绍 C 语言预处理过程以及常用预处理指令">
+    <meta name="description" content="图形渲染管线">
 <meta property="og:type" content="article">
-<meta property="og:title" content="预处理">
-<meta property="og:url" content="https://hikariori.github.io/2023/07/16/%E9%A2%84%E5%A4%84%E7%90%86/index.html">
+<meta property="og:title" content="The Graphics Rendering Pipeline">
+<meta property="og:url" content="https://hikariori.github.io/2026/05/04/The-Graphics-Rendering-Pipeline/index.html">
 <meta property="og:site_name" content="Lemon">
-<meta property="og:description" content="介绍 C 语言预处理过程以及常用预处理指令">
+<meta property="og:description" content="图形渲染管线">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/XinranSix/Computer-Graphics/assets/62458905/968daaa1-8453-4af8-a6e0-8e023250be1d">
-<meta property="og:image" content="https://github.com/XinranSix/Computer-Graphics/assets/62458905/54474424-669a-4578-b0b2-8702ff446ce1">
-<meta property="og:image" content="https://github.com/XinranSix/Computer-Graphics/assets/62458905/ff827787-315b-4865-8903-8c88cbbb3e9a">
-<meta property="article:published_time" content="2023-07-16T02:32:37.000Z">
-<meta property="article:modified_time" content="2026-05-04T05:09:00.324Z">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/62458905?v=4">
+<meta property="article:published_time" content="2026-05-04T04:57:32.000Z">
+<meta property="article:modified_time" content="2026-05-04T05:09:00.321Z">
 <meta property="article:author" content="Lemon">
-<meta property="article:tag" content="C">
-<meta property="article:tag" content="预处理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/XinranSix/Computer-Graphics/assets/62458905/968daaa1-8453-4af8-a6e0-8e023250be1d">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/62458905?v=4">
 
 
-<link rel="canonical" href="https://hikariori.github.io/2023/07/16/%E9%A2%84%E5%A4%84%E7%90%86/">
+<link rel="canonical" href="https://hikariori.github.io/2026/05/04/The-Graphics-Rendering-Pipeline/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://hikariori.github.io/2023/07/16/%E9%A2%84%E5%A4%84%E7%90%86/","path":"2023/07/16/预处理/","title":"预处理"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://hikariori.github.io/2026/05/04/The-Graphics-Rendering-Pipeline/","path":"2026/05/04/The-Graphics-Rendering-Pipeline/","title":"The Graphics Rendering Pipeline"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>预处理 | Lemon</title>
+<title>The Graphics Rendering Pipeline | Lemon</title>
   
 
 
@@ -89,7 +85,7 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hikariori.github.io/2023/07/16/%E9%A2%84%E5%A4%84%E7%90%86/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hikariori.github.io/2026/05/04/The-Graphics-Rendering-Pipeline/"}</script>
   <script src="/js/third-party/quicklink.js" defer></script>
 
 
@@ -188,7 +184,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -201,7 +197,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#c-%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">C 语言编译过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#include"><span class="nav-number">2.</span> <span class="nav-text">include</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#define"><span class="nav-number">3.</span> <span class="nav-text">define</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91"><span class="nav-number">4.</span> <span class="nav-text">条件编译</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -284,7 +279,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://hikariori.github.io/2023/07/16/%E9%A2%84%E5%A4%84%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="https://hikariori.github.io/2026/05/04/The-Graphics-Rendering-Pipeline/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/62458905?v=4">
@@ -297,12 +292,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="预处理 | Lemon">
-      <meta itemprop="description" content="介绍 C 语言预处理过程以及常用预处理指令">
+      <meta itemprop="name" content="The Graphics Rendering Pipeline | Lemon">
+      <meta itemprop="description" content="图形渲染管线">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          预处理
+          The Graphics Rendering Pipeline
         </h1>
 
         <div class="post-meta-container">
@@ -312,24 +307,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2023-07-16 10:32:37" itemprop="dateCreated datePublished" datetime="2023-07-16T10:32:37+08:00">2023-07-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-05-04 13:09:00" itemprop="dateModified" datetime="2026-05-04T13:09:00+08:00">2026-05-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">C 语言基础</span></a>
-        </span>
+      <time title="Created: 2026-05-04 12:57:32 / Modified: 13:09:00" itemprop="dateCreated datePublished" datetime="2026-05-04T12:57:32+08:00">2026-05-04</time>
     </span>
 
   
@@ -346,92 +326,250 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>795</span>
+      <span>42</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>3 mins.</span>
+      <span>1 mins.</span>
     </span>
 </div>
 
-            <div class="post-description">介绍 C 语言预处理过程以及常用预处理指令</div>
+            <div class="post-description">图形渲染管线</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="c-语言编译过程">C 语言编译过程</h2>
-<p>预处理、编译、汇编、链接。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gcc -E main.c -o main.i <span class="comment"># 预处理</span></span><br><span class="line">gcc -S main.i -o main.s <span class="comment"># 编译</span></span><br><span class="line">gcc -c main.s -o main.o <span class="comment"># 汇编</span></span><br><span class="line">gcc main.o -o main <span class="comment">#链接</span></span><br></pre></td></tr></table></figure>
-<ol type="1">
-<li>预处理：将 <code>.c</code> 的头文件展开、宏展开，生成
-<code>.i</code> 文件；</li>
-<li>编译：将预处理后 <code>.i</code> 文件生成 <code>.s</code>
-汇编文件；</li>
-<li>汇编：将 <code>.s</code> 汇编文件生成 <code>.o</code>
-目标文件；</li>
-<li>链接：将 <code>.o</code> 文件链接成目标文件。</li>
-</ol>
-<h2 id="include">include</h2>
-<p><code>#include&lt;&gt;</code>：用尖括号包含头文件，在系统指定的路径下找头文件。</p>
-<p><code>#include ""</code>：用双引号包含头文件，先在当前目录下找头文件，找不到，再到系统指定的路径下找。</p>
-<blockquote>
-<p>注意：<code>include</code> 经常用来包含头文件，可以包含
-<code>.c</code> 文件，但不要这么做，因为 <code>include</code>
-包含的文件会在预编译被展开，如果一个 <code>.c</code>
-被包含多次，展开多次，会导致函数重复定义。</p>
-</blockquote>
-<blockquote>
-<p>注意：预处理只是对 <code>include</code>
-等预处理操作进行处理并不会进行语法检查这个阶段有语法错误也不会报错，第二个阶段即编译阶段才进行语法检查。</p>
-</blockquote>
-<h2 id="define">define</h2>
-<p>用来定义宏。</p>
-<p><strong>不带参宏：</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.14</span></span><br></pre></td></tr></table></figure>
-<p>在预编译的时候如果代码中出现了 PI 就用 3.14 去替换。</p>
-<p>宏的好处：只要修改宏定义，其他地方在预编译的时候就会重新替换。</p>
-<blockquote>
-<p>注意：宏定义后边不要加分号。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.1415926</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;PI = %lf\n&quot;</span>, PI);</span><br><span class="line">    <span class="type">double</span> d = PI;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;d = %lf\n&quot;</span>, d);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
+    <div class="post-body" itemprop="articleBody"><p>啊实打实的</p>
+
+<div style="width: 100%; position: relative; padding-bottom: 56.25%;">
+  <iframe
+    title="Sketchfab Model"
+    frameborder="0"
+    allowfullscreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    allow="autoplay; fullscreen; xr-spatial-tracking"
+    src="https://sketchfab.com/models/25c098543a2d4f579bee56ba7d82b70d/embed"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+  </iframe>
+</div>
+
+<p>啊实打实的</p>
 <figure>
-<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/968daaa1-8453-4af8-a6e0-8e023250be1d"
-alt="image" />
-<figcaption aria-hidden="true">image</figcaption>
+<img data-src="https://avatars.githubusercontent.com/u/62458905?v=4"
+alt="asd" />
+<figcaption aria-hidden="true">asd</figcaption>
 </figure>
-<p>宏定义的作用范围：从定义的地方到本文件末，可以使用
-<code>#undef PI</code> 提前结束宏定义的作用。</p>
-<p><strong>带参宏：</strong></p>
-<p><code>#define S(a, b) a * b</code></p>
-<p>注意带参宏的形参 a 和 b 没有类型名，<code>S(2, 4)</code>
-将来在预处理的时候替换成实参替代字符串的形参，其他字符保留。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> S(a, b) ((a) * (b))</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, S(<span class="number">2</span>, <span class="number">4</span>));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, S(<span class="number">2</span> + <span class="number">8</span>, <span class="number">4</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<figure>
-<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/54474424-669a-4578-b0b2-8702ff446ce1"
-alt="image" />
-<figcaption aria-hidden="true">image</figcaption>
-</figure>
-<p><strong>带参宏和带参函数的区别：</strong></p>
-<p>带参宏被调用多少次就会展开多少次，执行代码的时候没有函数调用的过程，不需要压栈弹栈。所以带参宏，浪费了空间，节省时间。</p>
-<p>带参函数，代码只有一份，存在代码段，调用的时候去代码段取指令，调用的时候要压栈弹栈，有个调用的过程。带参函数是浪费了时间，节省了空间。</p>
-<p>带参函数的形参是有类型的，带参宏的形参没有类型名。</p>
-<p>如果功能实现的代码相对简单，并且不需要开辟太多的空间，可以选择使用带参宏，但是大多数情况都会使用函数。</p>
-<h2 id="条件编译">条件编译</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> AAA</span></span><br><span class="line">	代码段一</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">	代码段二</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">        </span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> AAA</span></span><br><span class="line">	代码段一</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">	代码段二</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">        </span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 表达式</span></span><br><span class="line">	程序段一</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">	程序段二</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> AAA</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> AAA</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello kitty!!\n&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello tom\n&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<figure>
-<img data-src="https://github.com/XinranSix/Computer-Graphics/assets/62458905/ff827787-315b-4865-8903-8c88cbbb3e9a"
-alt="image" />
-<figcaption aria-hidden="true">image</figcaption>
-</figure>
+
+<div style="width: 100%; position: relative; padding-bottom: 56.25%;">
+  <iframe
+    title="Desmos Calculator"
+    frameborder="0"
+    allowfullscreen
+    src="https://www.desmos.com/calculator/4ssj1lzhvp?embed"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid #ccc;">
+  </iframe>
+  <button id="desmos-fs-btn-4ssj1lzhvp" title="Fullscreen"
+     style="position: absolute; top: 8px; right: 8px; z-index: 10;
+            background: rgba(0,0,0,0.65); color: #fff; padding: 8px;
+            border: none; border-radius: 6px; cursor: pointer; line-height: 1;
+            display: flex; align-items: center; justify-content: center;">
+    <svg class="desmos-fs-icon-enter" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/>
+    </svg>
+    <svg class="desmos-fs-icon-exit" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+      <path d="M3 3v4h4M13 3v4h-4M3 13v-4h4M13 13v-4h-4"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    const btn = document.getElementById('desmos-fs-btn-4ssj1lzhvp');
+    const enter = btn.querySelector('.desmos-fs-icon-enter');
+    const exit = btn.querySelector('.desmos-fs-icon-exit');
+    const wrap = btn.parentElement;
+    function update() {
+      const isFS = document.fullscreenElement === wrap;
+      enter.style.display = isFS ? 'none' : '';
+      exit.style.display = isFS ? '' : 'none';
+      btn.title = isFS ? 'Exit fullscreen' : 'Fullscreen';
+    }
+    btn.onclick = function() {
+      document.fullscreenElement ? document.exitFullscreen() : wrap.requestFullscreen();
+    };
+    document.addEventListener('fullscreenchange', update);
+  })();
+  </script>
+</div>
+  
+
+<div style="width: 100%; position: relative; padding-bottom: 56.25%;">
+  <iframe
+    title="Desmos Calculator"
+    frameborder="0"
+    allowfullscreen
+    src="https://www.desmos.com/calculator/yj9pdz1cws?embed"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid #ccc;">
+  </iframe>
+  <button id="desmos-fs-btn-yj9pdz1cws" title="Fullscreen"
+     style="position: absolute; top: 8px; right: 8px; z-index: 10;
+            background: rgba(0,0,0,0.65); color: #fff; padding: 8px;
+            border: none; border-radius: 6px; cursor: pointer; line-height: 1;
+            display: flex; align-items: center; justify-content: center;">
+    <svg class="desmos-fs-icon-enter" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/>
+    </svg>
+    <svg class="desmos-fs-icon-exit" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+      <path d="M3 3v4h4M13 3v4h-4M3 13v-4h4M13 13v-4h-4"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    const btn = document.getElementById('desmos-fs-btn-yj9pdz1cws');
+    const enter = btn.querySelector('.desmos-fs-icon-enter');
+    const exit = btn.querySelector('.desmos-fs-icon-exit');
+    const wrap = btn.parentElement;
+    function update() {
+      const isFS = document.fullscreenElement === wrap;
+      enter.style.display = isFS ? 'none' : '';
+      exit.style.display = isFS ? '' : 'none';
+      btn.title = isFS ? 'Exit fullscreen' : 'Fullscreen';
+    }
+    btn.onclick = function() {
+      document.fullscreenElement ? document.exitFullscreen() : wrap.requestFullscreen();
+    };
+    document.addEventListener('fullscreenchange', update);
+  })();
+  </script>
+</div>
+  
+
+<div style="width: 100%; position: relative; padding-bottom: 56.25%;">
+  <iframe
+    title="Desmos Calculator"
+    frameborder="0"
+    allowfullscreen
+    src="https://www.desmos.com/calculator/h4ung9cru1?embed"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid #ccc;">
+  </iframe>
+  <button id="desmos-fs-btn-h4ung9cru1" title="Fullscreen"
+     style="position: absolute; top: 8px; right: 8px; z-index: 10;
+            background: rgba(0,0,0,0.65); color: #fff; padding: 8px;
+            border: none; border-radius: 6px; cursor: pointer; line-height: 1;
+            display: flex; align-items: center; justify-content: center;">
+    <svg class="desmos-fs-icon-enter" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/>
+    </svg>
+    <svg class="desmos-fs-icon-exit" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+      <path d="M3 3v4h4M13 3v4h-4M3 13v-4h4M13 13v-4h-4"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    const btn = document.getElementById('desmos-fs-btn-h4ung9cru1');
+    const enter = btn.querySelector('.desmos-fs-icon-enter');
+    const exit = btn.querySelector('.desmos-fs-icon-exit');
+    const wrap = btn.parentElement;
+    function update() {
+      const isFS = document.fullscreenElement === wrap;
+      enter.style.display = isFS ? 'none' : '';
+      exit.style.display = isFS ? '' : 'none';
+      btn.title = isFS ? 'Exit fullscreen' : 'Fullscreen';
+    }
+    btn.onclick = function() {
+      document.fullscreenElement ? document.exitFullscreen() : wrap.requestFullscreen();
+    };
+    document.addEventListener('fullscreenchange', update);
+  })();
+  </script>
+</div>
+  
+
+<div style="width: 100%; position: relative; padding-bottom: 56.25%;">
+  <iframe
+    title="Desmos Calculator"
+    frameborder="0"
+    allowfullscreen
+    src="https://www.desmos.com/calculator/tpsuk871fg?embed"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid #ccc;">
+  </iframe>
+  <button id="desmos-fs-btn-tpsuk871fg" title="Fullscreen"
+     style="position: absolute; top: 8px; right: 8px; z-index: 10;
+            background: rgba(0,0,0,0.65); color: #fff; padding: 8px;
+            border: none; border-radius: 6px; cursor: pointer; line-height: 1;
+            display: flex; align-items: center; justify-content: center;">
+    <svg class="desmos-fs-icon-enter" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/>
+    </svg>
+    <svg class="desmos-fs-icon-exit" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+      <path d="M3 3v4h4M13 3v4h-4M3 13v-4h4M13 13v-4h-4"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    const btn = document.getElementById('desmos-fs-btn-tpsuk871fg');
+    const enter = btn.querySelector('.desmos-fs-icon-enter');
+    const exit = btn.querySelector('.desmos-fs-icon-exit');
+    const wrap = btn.parentElement;
+    function update() {
+      const isFS = document.fullscreenElement === wrap;
+      enter.style.display = isFS ? 'none' : '';
+      exit.style.display = isFS ? '' : 'none';
+      btn.title = isFS ? 'Exit fullscreen' : 'Fullscreen';
+    }
+    btn.onclick = function() {
+      document.fullscreenElement ? document.exitFullscreen() : wrap.requestFullscreen();
+    };
+    document.addEventListener('fullscreenchange', update);
+  })();
+  </script>
+</div>
+  
+
+<div style="width: 100%; position: relative; padding-bottom: 56.25%;">
+  <iframe
+    title="Desmos Calculator"
+    frameborder="0"
+    allowfullscreen
+    src="https://www.desmos.com/3d/23cep9amn9"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid #ccc;">
+  </iframe>
+  <button id="desmos-fs-btn-23cep9amn9" title="Fullscreen"
+     style="position: absolute; top: 8px; right: 8px; z-index: 10;
+            background: rgba(0,0,0,0.65); color: #fff; padding: 8px;
+            border: none; border-radius: 6px; cursor: pointer; line-height: 1;
+            display: flex; align-items: center; justify-content: center;">
+    <svg class="desmos-fs-icon-enter" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/>
+    </svg>
+    <svg class="desmos-fs-icon-exit" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+      <path d="M3 3v4h4M13 3v4h-4M3 13v-4h4M13 13v-4h-4"/>
+    </svg>
+  </button>
+  <script>
+  (function() {
+    const btn = document.getElementById('desmos-fs-btn-23cep9amn9');
+    const enter = btn.querySelector('.desmos-fs-icon-enter');
+    const exit = btn.querySelector('.desmos-fs-icon-exit');
+    const wrap = btn.parentElement;
+    function update() {
+      const isFS = document.fullscreenElement === wrap;
+      enter.style.display = isFS ? 'none' : '';
+      exit.style.display = isFS ? '' : 'none';
+      btn.title = isFS ? 'Exit fullscreen' : 'Fullscreen';
+    }
+    btn.onclick = function() {
+      document.fullscreenElement ? document.exitFullscreen() : wrap.requestFullscreen();
+    };
+    document.addEventListener('fullscreenchange', update);
+  })();
+  </script>
+</div>
+  
 
     </div>
 
@@ -449,7 +587,7 @@ alt="image" />
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
-      <a href="https://hikariori.github.io/2023/07/16/%E9%A2%84%E5%A4%84%E7%90%86/" title="预处理">https://hikariori.github.io/2023/07/16/预处理/</a>
+      <a href="https://hikariori.github.io/2026/05/04/The-Graphics-Rendering-Pipeline/" title="The Graphics Rendering Pipeline">https://hikariori.github.io/2026/05/04/The-Graphics-Rendering-Pipeline/</a>
   </li>
   <li class="post-copyright-license">
       <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -484,22 +622,18 @@ alt="image" />
   </div>
 </div>
 
-          <div class="post-tags">
-              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
-              <a href="/tags/%E9%A2%84%E5%A4%84%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 预处理</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/07/16/%E5%87%BD%E6%95%B0/" rel="prev" title="函数">
-                  <i class="fa fa-angle-left"></i> 函数
+                <a href="/2025/06/13/%E5%88%86%E6%9E%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/" rel="prev" title="分析力学基础">
+                  <i class="fa fa-angle-left"></i> 分析力学基础
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/07/16/%E6%8C%87%E9%92%88/" rel="next" title="指针">
-                  指针 <i class="fa fa-angle-right"></i>
+                <a href="/2026/05/04/Transform/" rel="next" title="Transform">
+                  Transform <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
