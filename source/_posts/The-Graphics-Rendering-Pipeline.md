@@ -1,9 +1,9 @@
 ---
-title: 图形渲染管线
-date: 2026-04-30 16:34:41
+title: The Graphics Rendering Pipeline
+date: 2026-05-04 12:57:32
 tags:
 categories:
-description: "adssasad"
+description: "图形渲染管线"
 ---
 
 啊实打实的
@@ -23,3 +23,5 @@ description: "adssasad"
 {% desmos https://www.desmos.com/calculator/tpsuk871fg?embed %}
 
 {% desmos https://www.desmos.com/3d/23cep9amn9 %}
+
+
