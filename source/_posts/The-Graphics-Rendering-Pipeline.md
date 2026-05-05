@@ -6,11 +6,11 @@ categories:
 description: "图形渲染管线"
 ---
 
-啊实打实的
+测试文字
 
 {% sketchfab 25c098543a2d4f579bee56ba7d82b70d %}
 
-啊实打实的
+测试文字
 
 ![asd](https://avatars.githubusercontent.com/u/62458905?v=4)
 
@@ -23,5 +23,3 @@ description: "图形渲染管线"
 {% desmos https://www.desmos.com/calculator/tpsuk871fg?embed %}
 
 {% desmos https://www.desmos.com/3d/23cep9amn9 %}
-
-
