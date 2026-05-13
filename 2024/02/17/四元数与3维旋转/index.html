@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://github.com/XinranSix/comment/assets/62458905/42933dab-ad4a-4bfa-b3dd-4388a9a0b613">
 <meta property="og:image" content="https://github.com/XinranSix/comment/assets/62458905/12a9a2ee-2721-45e5-9d6f-d6110d40cb62">
 <meta property="article:published_time" content="2024-02-17T08:48:08.000Z">
-<meta property="article:modified_time" content="2026-05-05T07:01:54.719Z">
+<meta property="article:modified_time" content="2026-05-13T08:45:37.770Z">
 <meta property="article:author" content="Lemon">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="四元数">
@@ -325,7 +325,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-05-05 15:01:54" itemprop="dateModified" datetime="2026-05-05T15:01:54+08:00">2026-05-05</time>
+      <time title="Modified: 2026-05-13 16:45:37" itemprop="dateModified" datetime="2026-05-13T16:45:37+08:00">2026-05-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -351,14 +351,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>6k</span>
+      <span>6.3k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>22 mins.</span>
+      <span>23 mins.</span>
     </span>
 </div>
 
@@ -433,23 +433,25 @@ alt="复数可视化" />
 <p>设 <span class="math inline">\(z_1 = a + b\mathrm{i}\)</span>，<span
 class="math inline">\(z_2 = c + d\mathrm{i}\)</span>，则：</p>
 <p><span class="math display">\[
-z_1 \pm z_2 = (a \pm c) + (b \pm d)\mathrm{i}
+z_1 \pm z_2 = \left(a \pm c\right) + \left(b \pm d\right)\mathrm{i}
 \]</span></p>
 <h4 id="乘法">乘法</h4>
 <p>设 <span class="math inline">\(z_1 = a + b\mathrm{i}\)</span>，<span
 class="math inline">\(z_2 = c + d\mathrm{i}\)</span>，则：</p>
 <p><span class="math display">\[
 \begin{align*}
-    z_1z_2 &amp;= (a + b\mathrm{i})(c + d\mathrm{i}) \\
+    z_1z_2 &amp;= \left(a + b\mathrm{i}\right)\left(c +
+d\mathrm{i}\right) \\
     &amp;= ac + ad\mathrm{i} + bc\mathrm{i} + bd\mathrm{i}^2 \\
-    &amp;= (ac - bd) + (bc + ad)\mathrm{i}
+    &amp;= \left(ac - bd\right) + \left(bc + ad\right)\mathrm{i}
 \end{align*}
 \]</span></p>
 <p>瞪眼法发现，这不就是矩阵乘法吗？所以，我们可以把复数看成是一个 <span
 class="math inline">\(2 \times 2\)</span> 的矩阵作用于一个向量。即：</p>
 <p><span class="math display">\[
 \begin{align*}
-    z_1z_2 &amp;= (ac - bd) + (bc + ad)\mathrm{i} \\
+    z_1z_2 &amp;= \left(ac - bd\right) + \left(bc + ad\right)\mathrm{i}
+\\
     &amp;= \begin{bmatrix}
     a &amp; -b \\
     b &amp; a
@@ -523,7 +525,7 @@ class="math inline">\(\begin{bmatrix} 0 &amp; -1 \\ 1 &amp; 0
 <span class="math inline">\(z\)</span>
 的<strong>模长</strong>（Magnitude）定义为：</p>
 <p><span class="math display">\[
-\|z\| = \sqrt{a^2 + b^2}
+\left\|z\right\| = \sqrt{a^2 + b^2}
 \]</span></p>
 <p><span class="math inline">\(z\)</span>
 的<strong>共轭</strong>（Conjugate）定义为：</p>
@@ -532,11 +534,12 @@ class="math inline">\(\begin{bmatrix} 0 &amp; -1 \\ 1 &amp; 0
 \]</span></p>
 <p>可以发现：</p>
 <p><span class="math display">\[
-z\overline{z} = (a + b\mathrm{i})(a - b\mathrm{i}) = a^2 + b^2 = \|z\|^2
+z\overline{z} = \left(a + b\mathrm{i}\right)\left(a - b\mathrm{i}\right)
+= a^2 + b^2 = \left\|z\right\|^2
 \]</span></p>
 <p>所以：</p>
 <p><span class="math display">\[
-\|z\| = \sqrt{z\overline{z}}
+\left\|z\right\| = \sqrt{z\overline{z}}
 \]</span></p>
 <p>同时我们发现：</p>
 <p><span class="math display">\[
@@ -553,16 +556,17 @@ target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Euler%27s_for
 b\mathrm{i}\)</span>，则其复数矩阵形式和复数形式为：</p>
 <p><span class="math display">\[
 \begin{align*}
-z &amp;= \|z\|\begin{bmatrix}
+z &amp;= \left\|z\right\|\begin{bmatrix}
 \cos \theta &amp; -\sin \theta \\
 \sin \theta &amp; \cos \theta
 \end{bmatrix} \\
-&amp;= \|z\|(\cos \theta + \mathrm{i}\sin \theta) \\
-&amp;= \|z\|\mathrm{e}^{\mathrm{i}\theta}
+&amp;= \left\|z\right\|\left(\cos \theta + \mathrm{i}\sin \theta\right)
+\\
+&amp;= \left\|z\right\|\mathrm{e}^{\mathrm{i}\theta}
 \end{align*}
 \]</span></p>
-<p>其中： <span class="math display">\[\theta = \mathrm{atan2}(b,
-a)\]</span></p>
+<p>其中： <span class="math display">\[\theta = \mathrm{atan2}\left(b,
+a\right)\]</span></p>
 <p>我们可以得到：</p>
 <p><span class="math display">\[
 \sin x = \frac{\mathrm{e}^{\mathrm{i}x} -
@@ -575,7 +579,7 @@ r_1\mathrm{e}^{\mathrm{i}\theta_1}\)</span>，<span
 class="math inline">\(z_2 =
 r_2\mathrm{e}^{\mathrm{i}\theta_2}\)</span>，则：</p>
 <p><span class="math display">\[
-z_1z_2 = r_1r_2\mathrm{e}^{\mathrm{i}(\theta_1 + \theta_2)}
+z_1z_2 = r_1r_2\mathrm{e}^{\mathrm{i}\left(\theta_1 + \theta_2\right)}
 \]</span></p>
 <p>使用三角函数的复数形式可以很方便地证明三角函数的一些公式。</p>
 <h3 id="复数与-2d-旋转">复数与 2D 旋转</h3>
@@ -591,11 +595,11 @@ class="math inline">\(\begin{bmatrix} a &amp; -b \\ b &amp; a
 \frac{a}{\sqrt{a^2 + b^2}} &amp; \frac{-b}{\sqrt{a^2 + b^2}} \\
 \frac{b}{\sqrt{a^2 + b^2}} &amp; \frac{a}{\sqrt{a^2 + b^2}}
 \end{bmatrix} \\
-&amp;= \|z\|\begin{bmatrix} \cos \theta &amp; -\sin \theta \\ \sin
-\theta &amp; \cos \theta \end{bmatrix} \\
+&amp;= \left\|z\right\|\begin{bmatrix} \cos \theta &amp; -\sin \theta \\
+\sin \theta &amp; \cos \theta \end{bmatrix} \\
 &amp;= \begin{bmatrix}
-\|z\| &amp; 0 \\
-0 &amp; \|z\|
+\left\|z\right\| &amp; 0 \\
+0 &amp; \left\|z\right\|
 \end{bmatrix}\begin{bmatrix} \cos \theta &amp; -\sin \theta \\ \sin
 \theta &amp; \cos \theta \end{bmatrix}
 \end{align*}
@@ -603,10 +607,11 @@ class="math inline">\(\begin{bmatrix} a &amp; -b \\ b &amp; a
 <p>原来这个矩阵表示是一个旋转矩阵和一个缩放矩阵的复合。</p>
 <p>即：复数 <span class="math inline">\(z = a + b\mathrm{i}\)</span>
 可以表示一个平面上的旋转和缩放变换。缩放因子为：<span
-class="math inline">\(\|z\|\)</span>，旋转角度为：<span
-class="math inline">\(\mathrm{atan2}(b, a)\)</span>（逆时针）。</p>
-<p>如果 <span class="math inline">\(\|z\| = 1\)</span>，即 <span
-class="math inline">\(a^2 + b^2 = 1\)</span>，则 <span
+class="math inline">\(\left\|z\right\|\)</span>，旋转角度为：<span
+class="math inline">\(\mathrm{atan2}\left(b,
+a\right)\)</span>（逆时针）。</p>
+<p>如果 <span class="math inline">\(\left\|z\right\| = 1\)</span>，即
+<span class="math inline">\(a^2 + b^2 = 1\)</span>，则 <span
 class="math inline">\(z\)</span>
 是一个单位复数，那么这个变换就是一个纯粹的旋转变换：</p>
 <p><span class="math display">\[
@@ -632,7 +637,7 @@ y \end{bmatrix}\)</span> 看成一个复数 <span class="math inline">\(v = x
 class="math inline">\(z = \cos \theta + \mathrm{i}\sin
 \theta\)</span>，那么可以使用复数的乘法来表示旋转变换：</p>
 <p><span class="math display">\[
-v&#39; = zv = (\cos \theta + \mathrm{i}\sin \theta) v
+v&#39; = zv = \left(\cos \theta + \mathrm{i}\sin \theta\right) v
 \]</span></p>
 <p>我们还可以使用复数的指数形式来表示旋转变换：</p>
 <p><span class="math display">\[
@@ -649,11 +654,12 @@ class="math inline">\(z_2 = \cos \phi + \mathrm{i}\sin
 \phi\)</span>，那么这两个旋转的复合变换可以表示为：</p>
 <p><span class="math display">\[
 \begin{align*}
-z_1z_2 &amp;= (\cos \theta + \mathrm{i}\sin \theta)(\cos \phi +
-\mathrm{i}\sin \phi) \\
-&amp;= (\cos \theta \cos \phi - \sin \theta \sin \phi) + \mathrm{i}(\cos
-\theta \sin \phi + \sin \theta \cos \phi) \\
-&amp;= \cos (\theta + \phi) + \mathrm{i} \sin (\theta + \phi)
+z_1z_2 &amp;= \left(\cos \theta + \mathrm{i}\sin \theta\right)\left(\cos
+\phi + \mathrm{i}\sin \phi\right) \\
+&amp;= \left(\cos \theta \cos \phi - \sin \theta \sin \phi\right) +
+\mathrm{i}\left(\cos \theta \sin \phi + \sin \theta \cos \phi\right) \\
+&amp;= \cos\left(\theta + \phi\right) + \mathrm{i} \sin\left(\theta +
+\phi\right)
 \end{align*}
 \]</span></p>
 <h2 id="d-空间中的旋转">3D 空间中的旋转</h2>
@@ -691,13 +697,13 @@ z\right]^{\mathrm{T}}\)</span> 旋转有什么区别吗？显然没有。</p>
 <p>既然向量的长度没有影响，若无特殊说明，后面讨论的向量 <span
 class="math inline">\(\mathbf{u}\)</span> 都为单位向量，即：</p>
 <p><span class="math display">\[
-\|\mathbf{u}\| = \sqrt{x^2 + y^2 + z^2} = 1
+\left\|\mathbf{u}\right\| = \sqrt{x^2 + y^2 + z^2} = 1
 \]</span></p>
 <blockquote>
 <p>在编程时，拿到的 <span class="math inline">\(\mathbf{u}\)</span>
 很有可能不是单位向量，所以在使用前需要先将其归一化：</p>
 <p><span class="math display">\[
-\mathbf{\hat{u}} = \frac{\mathbf{u}}{\|\mathbf{u}\|}
+\mathbf{\hat{u}} = \frac{\mathbf{u}}{\left\|\mathbf{u}\right\|}
 \]</span></p>
 </blockquote>
 <h3 id="旋转的分解">旋转的分解</h3>
@@ -724,20 +730,20 @@ class="math inline">\(\mathbf{u}\)</span>
 上的投影，那我们就快点把它算出来吧：</p>
 <p><span class="math display">\[
 \mathbf{v}_{\parallel} = \mathrm{proj}_{\mathbf{u}} \mathbf{v} =
-(\mathbf{u} \cdot \mathbf{v}) \mathbf{u}
+\left(\mathbf{u} \cdot \mathbf{v}\right) \mathbf{u}
 \]</span></p>
 <blockquote>
 <p>向量 <span class="math inline">\(\mathbf{a}\)</span> 在向量 <span
 class="math inline">\(\mathbf{b}\)</span> 上的投影为：</p>
 <p><span class="math display">\[
 \mathrm{proj}_{\mathbf{b}} \mathbf{a} = \frac{\mathbf{a} \cdot
-\mathbf{b}}{\|\mathbf{b}\|^2} \mathbf{b}
+\mathbf{b}}{\left\|\mathbf{b}\right\|^2} \mathbf{b}
 \]</span></p>
-<p>如果 <span class="math inline">\(\|\mathbf{b}\| =
+<p>如果 <span class="math inline">\(\left\|\mathbf{b}\right\| =
 1\)</span>，则：</p>
 <p><span class="math display">\[
-\mathrm{proj}_{\mathbf{b}} \mathbf{a} = (\mathbf{a} \cdot \mathbf{b})
-\mathbf{b}
+\mathrm{proj}_{\mathbf{b}} \mathbf{a} = \left(\mathbf{a} \cdot
+\mathbf{b}\right) \mathbf{b}
 \]</span></p>
 </blockquote>
 <p>因为 <span class="math inline">\(\mathbf{v} = \mathbf{v}_{\parallel}
@@ -745,7 +751,8 @@ class="math inline">\(\mathbf{b}\)</span> 上的投影为：</p>
 <p><span class="math display">\[
 \begin{align*}
     \mathbf{v}_{\perp} &amp;= \mathbf{v} - \mathbf{v}_{\parallel} \\
-    &amp;= \mathbf{v} - (\mathbf{u} \cdot \mathbf{v}) \mathbf{u}
+    &amp;= \mathbf{v} - \left(\mathbf{u} \cdot \mathbf{v}\right)
+\mathbf{u}
 \end{align*}
 \]</span></p>
 <p>接下来只需分别讨论 <span
@@ -773,20 +780,22 @@ alt="旋转示意图" />
 class="math inline">\(\pi / 2\)</span> 之后得到的结果。可以发现：</p>
 <p><span class="math display">\[
 \begin{align*}
-    \|\mathbf{w}\| &amp;= \|\mathbf{u} \times \mathbf{v}_{\perp}\| \\
-    &amp;= \|\mathbf{u}\| \|\mathbf{v}_{\perp}\| \sin \frac{\pi}{2} \\
-    &amp;= \|\mathbf{v}_{\perp}\|
+    \left\|\mathbf{w}\right\| &amp;= \left\|\mathbf{u} \times
+\mathbf{v}_{\perp}\right\| \\
+    &amp;= \left\|\mathbf{u}\right\| \left\|\mathbf{v}_{\perp}\right\|
+\sin \frac{\pi}{2} \\
+    &amp;= \left\|\mathbf{v}_{\perp}\right\|
 \end{align*}
 \]</span></p>
-<p>也就是说，<span class="math inline">\(\|\mathbf{w}\| =
-\|\mathbf{v}_{\perp}\|\)</span>，即 <span
+<p>也就是说，<span class="math inline">\(\left\|\mathbf{w}\right\| =
+\left\|\mathbf{v}_{\perp}\right\|\)</span>，即 <span
 class="math inline">\(\mathbf{w}\)</span> 也在圆上。所以：</p>
 <p><span class="math display">\[
 \begin{align*}
     \mathbf{v}_{\perp}&#39; &amp;= \mathbf{v}_{\perp} \cos \theta +
 \mathbf{w} \sin \theta \\
-    &amp;= \mathbf{v}_{\perp} \cos \theta + (\mathbf{u} \times
-\mathbf{v}_{\perp}) \sin \theta
+    &amp;= \mathbf{v}_{\perp} \cos \theta + \left(\mathbf{u} \times
+\mathbf{v}_{\perp}\right) \sin \theta
 \end{align*}
 \]</span></p>
 <h3 id="mathbfv-的旋转"><span class="math inline">\(\mathbf{v}\)</span>
@@ -797,14 +806,14 @@ class="math inline">\(\mathbf{w}\)</span> 也在圆上。所以：</p>
     \mathbf{v}&#39; &amp;= \mathbf{v}_{\parallel}&#39; +
 \mathbf{v}_{\perp}&#39; \\
     &amp;= \mathbf{v}_{\parallel} + \mathbf{v}_{\perp} \cos \theta +
-(\mathbf{u} \times \mathbf{v}_{\perp}) \sin \theta
+\left(\mathbf{u} \times \mathbf{v}_{\perp}\right) \sin \theta
 \end{align*}
 \]</span></p>
 <p>叉乘具有结合律：</p>
 <p><span class="math display">\[
 \begin{align*}
     \mathbf{u} \times \mathbf{v}_{\perp} &amp;= \mathbf{u} \times
-(\mathbf{v} - \mathbf{v}_{\parallel}) \\
+\left(\mathbf{v} - \mathbf{v}_{\parallel}\right) \\
     &amp;= \mathbf{u} \times \mathbf{v} - \mathbf{u} \times
 \mathbf{v}_{\parallel} \\
     &amp;= \mathbf{u} \times \mathbf{v}
@@ -816,11 +825,13 @@ class="math inline">\(\mathbf{v}_{\perp} = \mathbf{v} - (\mathbf{u}
 \cdot \mathbf{v})\mathbf{u}\)</span> 代入得：</p>
 <p><span class="math display">\[
 \begin{align*}
-    \mathbf{v}&#39; &amp;= (\mathbf{u} \cdot \mathbf{v})\mathbf{u} +
-(\mathbf{v} - (\mathbf{u} \cdot \mathbf{v})\mathbf{u}) \cos \theta +
-(\mathbf{u} \times \mathbf{v}) \sin \theta \\
-    &amp;= \mathbf{v} \cos \theta + (1 - \cos \theta) (\mathbf{u} \cdot
-\mathbf{v})\mathbf{u} + (\mathbf{u} \times \mathbf{v}) \sin \theta
+    \mathbf{v}&#39; &amp;= \left(\mathbf{u} \cdot
+\mathbf{v}\right)\mathbf{u} + \left(\mathbf{v} - \left(\mathbf{u} \cdot
+\mathbf{v}\right)\mathbf{u}\right) \cos \theta + \left(\mathbf{u} \times
+\mathbf{v}\right) \sin \theta \\
+    &amp;= \mathbf{v} \cos \theta + \left(1 - \cos \theta\right)
+\left(\mathbf{u} \cdot \mathbf{v}\right)\mathbf{u} + \left(\mathbf{u}
+\times \mathbf{v}\right) \sin \theta
 \end{align*}
 \]</span></p>
 <p>即 3D 空间中任意一个向量 <span
@@ -829,8 +840,9 @@ class="math inline">\(\mathbf{u}\)</span> 旋转 <span
 class="math inline">\(\theta\)</span> 之后得到的 <span
 class="math inline">\(\mathbf{v}&#39;\)</span> 为：</p>
 <p><span class="math display">\[
-\mathbf{v}&#39; = \mathbf{v} \cos \theta + (1 - \cos \theta) (\mathbf{u}
-\cdot \mathbf{v})\mathbf{u} + (\mathbf{u} \times \mathbf{v}) \sin \theta
+\mathbf{v}&#39; = \mathbf{v} \cos \theta + \left(1 - \cos \theta\right)
+\left(\mathbf{u} \cdot \mathbf{v}\right)\mathbf{u} + \left(\mathbf{u}
+\times \mathbf{v}\right) \sin \theta
 \]</span></p>
 <p>这个公式叫做 Rodrigues' rotation formula.</p>
 <h2 id="四元数">四元数</h2>
@@ -858,7 +870,7 @@ d
 \]</span></p>
 <p>还可以将四元数的实部和虚部分开，用一个三维的向量来表示虚部，将四元数表示为标量和向量的有序对：</p>
 <p><span class="math display">\[
-q = [s, \mathbf{v}]
+q = \left[s, \mathbf{v}\right]
 \]</span></p>
 <p>其中：<span class="math inline">\(\mathbf{v} = [x, y,
 z]^{\mathrm{T}}\)</span>，且 <span class="math inline">\(s, x, y, z \in
@@ -869,26 +881,26 @@ z]^{\mathrm{T}}\)</span>，且 <span class="math inline">\(s, x, y, z \in
 c\mathrm{j} + d\mathrm{k}\)</span>，则 <span
 class="math inline">\(q\)</span> 的模长定义为：</p>
 <p><span class="math display">\[
-\|q\| = \sqrt{a^2 + b^2 + c^2 + d^2}
+\left\|q\right\| = \sqrt{a^2 + b^2 + c^2 + d^2}
 \]</span></p>
 <p>如果使用标量向量的形式来表示的话，设 <span class="math inline">\(q =
-[s, \mathbf{v}]\)</span>，则：</p>
+\left[s, \mathbf{v}\right]\)</span>，则：</p>
 <p><span class="math display">\[
-\|q\| = \sqrt{s^2 + \|\mathbf{v}\|^2}
+\left\|q\right\| = \sqrt{s^2 + \left\|\mathbf{v}\right\|^2}
 \]</span></p>
 <h4 id="加减法-1">加减法</h4>
 <p>设 <span class="math inline">\(q_1 = a + b\mathrm{i} + c\mathrm{j} +
 d\mathrm{k}\)</span>，<span class="math inline">\(q_2 = e + f\mathrm{i}
 + g\mathrm{j} + h\mathrm{k}\)</span>，则：</p>
 <p><span class="math display">\[
-q_1 \pm q_2 = (a \pm e) + (b \pm f)\mathrm{i} + (c \pm g)\mathrm{j} + (d
-\pm h)\mathrm{k}
+q_1 \pm q_2 = \left(a \pm e\right) + \left(b \pm f\right)\mathrm{i} +
+\left(c \pm g\right)\mathrm{j} + \left(d \pm h\right)\mathrm{k}
 \]</span></p>
 <p>使用标量向量有序对形式表示，设 <span class="math inline">\(q_1 =
-[s_1, \mathbf{v}_1]\)</span>、<span class="math inline">\(q_2 = [s_2,
-\mathbf{v}_2]\)</span>，则：</p>
+\left[s_1, \mathbf{v}_1\right]\)</span>、<span class="math inline">\(q_2
+= \left[s_2, \mathbf{v}_2\right]\)</span>，则：</p>
 <p><span class="math display">\[
-q_1 \pm q_2 = [s_1 \pm s_2, \mathbf{v}_1 \pm \mathbf{v}_2]
+q_1 \pm q_2 = \left[s_1 \pm s_2, \mathbf{v}_1 \pm \mathbf{v}_2\right]
 \]</span></p>
 <h4 id="数乘">数乘</h4>
 <p>设四元数 <span class="math inline">\(q = a + b\mathrm{i} +
@@ -918,8 +930,9 @@ d\mathrm{k}\)</span>，<span class="math inline">\(q_2 = e + f\mathrm{i}
 + g\mathrm{j} + h\mathrm{k}\)</span>，则：</p>
 <p><span class="math display">\[
 \begin{align*}
-q_1 q_2 &amp;= (a + b\mathrm{i} + c\mathrm{j} + d\mathrm{k})(e +
-f\mathrm{i} + g\mathrm{j} + h\mathrm{k}) \\
+q_1 q_2 &amp;= \left(a + b\mathrm{i} + c\mathrm{j} +
+d\mathrm{k}\right)\left(e + f\mathrm{i} + g\mathrm{j} +
+h\mathrm{k}\right) \\
 &amp;= ae + af\mathrm{i} + ag\mathrm{j} + ah\mathrm{k} + \\
 &amp;\quad be\mathrm{i} + bf\mathrm{i}^2 + bg\mathrm{i}\mathrm{j} +
 bh\mathrm{i}\mathrm{k} + \\
@@ -947,10 +960,10 @@ dg\mathrm{k}\mathrm{j} + dh\mathrm{k}^2
 <p>化简后得：</p>
 <p><span class="math display">\[
 \begin{align*}
-q_1 q_2 &amp;= (ae - bf - cg - dh) + \\
-&amp;\quad (be + af + ch - dg)\mathrm{i} + \\
-&amp;\quad (ce + dg + ag - bh)\mathrm{j} + \\
-&amp;\quad (de + bh + bg + ah)\mathrm{k}
+q_1 q_2 &amp;= \left(ae - bf - cg - dh\right) + \\
+&amp;\quad \left(be + af + ch - dg\right)\mathrm{i} + \\
+&amp;\quad \left(ce + dg + ag - bh\right)\mathrm{j} + \\
+&amp;\quad \left(de + bh + bg + ah\right)\mathrm{k}
 \end{align*}
 \]</span></p>
 <h4 id="四元数乘法的矩阵形式">四元数乘法的矩阵形式</h4>
@@ -990,15 +1003,15 @@ h
 <p>前面已经得到：</p>
 <p><span class="math display">\[
 \begin{align*}
-q_1 q_2 &amp;= (ae - bf - cg - dh) + \\
-&amp;\quad (be + af + ch - dg)\mathrm{i} + \\
-&amp;\quad (ce + dg + ag - bh)\mathrm{j} + \\
-&amp;\quad (de + bh + bg + ah)\mathrm{k}
+q_1 q_2 &amp;= \left(ae - bf - cg - dh\right) + \\
+&amp;\quad \left(be + af + ch - dg\right)\mathrm{i} + \\
+&amp;\quad \left(ce + dg + ag - bh\right)\mathrm{j} + \\
+&amp;\quad \left(de + bh + bg + ah\right)\mathrm{k}
 \end{align*}
 \]</span></p>
-<p>我们都知道，如果 <span class="math inline">\(\mathbf{v} = [b, c,
-d]^{\mathrm{T}}\)</span>，<span class="math inline">\(\mathbf{u} = [f,
-g, h]^{\mathrm{T}}\)</span>，则：</p>
+<p>我们都知道，如果 <span class="math inline">\(\mathbf{v} = \left[b, c,
+d\right]^{\mathrm{T}}\)</span>，<span class="math inline">\(\mathbf{u} =
+\left[f, g, h\right]^{\mathrm{T}}\)</span>，则：</p>
 <p><span class="math display">\[
 \begin{align*}
 \mathbf{v} \cdot \mathbf{u} &amp;= bf + cg + dh \\
@@ -1014,23 +1027,23 @@ f &amp; g &amp; h
 q_1q_2 = ae - \mathbf{v} \cdot \mathbf{u} + a\mathbf{u} + e\mathbf{v} +
 \mathbf{v} \times \mathbf{u}
 \]</span></p>
-<p>如果 <span class="math inline">\(q_1 = [s_1,
-\mathbf{v}_1]\)</span>，<span class="math inline">\(q_2 = [s_2,
-\mathbf{v}_2]\)</span>，则：</p>
+<p>如果 <span class="math inline">\(q_1 = \left[s_1,
+\mathbf{v}_1\right]\)</span>，<span class="math inline">\(q_2 =
+\left[s_2, \mathbf{v}_2\right]\)</span>，则：</p>
 <p><span class="math display">\[
-q_1q_2 = [s_1s_2 - \mathbf{v}_1 \cdot \mathbf{v}_2, s_1\mathbf{v}_2 +
-s_2\mathbf{v}_1 + \mathbf{v}_1 \times \mathbf{v}_2]
+q_1q_2 = \left[s_1s_2 - \mathbf{v}_1 \cdot \mathbf{v}_2, s_1\mathbf{v}_2
++ s_2\mathbf{v}_1 + \mathbf{v}_1 \times \mathbf{v}_2\right]
 \]</span></p>
 <p>这个结果叫做 Grassmann 积 (Grassmann Product)</p>
 <h4 id="纯四元数">纯四元数</h4>
 <p>如果一个四元数的实部为 0，那么这个四元数就是一个纯四元数。即如果
-<span class="math inline">\(q = [0, \mathbf{v}]\)</span>，则 <span
-class="math inline">\(q\)</span> 是一个纯四元数。</p>
+<span class="math inline">\(q = \left[0, \mathbf{v}\right]\)</span>，则
+<span class="math inline">\(q\)</span> 是一个纯四元数。</p>
 <p>我们可以将一个纯四元数和一个 3D 向量等价起来。</p>
 <p>在后文中，如果 <span class="math inline">\(\mathbf{v}\)</span>
 表示一个向量，则使用 <span class="math inline">\(v\)</span> 表示 <span
 class="math inline">\(\mathbf{v}\)</span> 对应的纯四元数，即：<span
-class="math inline">\(v = [0, \mathbf{v}]\)</span>.</p>
+class="math inline">\(v = \left[0, \mathbf{v}\right]\)</span>.</p>
 <h4 id="逆和共轭">逆和共轭</h4>
 <p>对于四元数 <span class="math inline">\(q = a + b\mathrm{i} +
 c\mathrm{j} + d\mathrm{k}\)</span>，其共轭定义为：</p>
@@ -1045,19 +1058,20 @@ qq^{-1} = q^{-1}q = 1
 <blockquote>
 <p>只有当 <span class="math inline">\(q \neq 0\)</span> 时才可逆。</p>
 </blockquote>
-<p>设 <span class="math inline">\(q = [s, \mathbf{v}]\)</span>，则 <span
-class="math inline">\(q^{\star} = [s, -\mathbf{v}]\)</span>，那么：</p>
+<p>设 <span class="math inline">\(q = \left[s,
+\mathbf{v}\right]\)</span>，则 <span class="math inline">\(q^{\star} =
+\left[s, -\mathbf{v}\right]\)</span>，那么：</p>
 <p><span class="math display">\[
 \begin{align*}
-qq^{\star} &amp;= [s, \mathbf{v}][s, -\mathbf{v}] \\
-&amp;= [s^2 + \mathbf{v} \cdot \mathbf{v}, 0]
+qq^{\star} &amp;= [s, \mathbf{v}]\left[s, -\mathbf{v}\right] \\
+&amp;= \left[s^2 + \mathbf{v} \cdot \mathbf{v}, 0\right]
 \end{align*}
 \]</span></p>
 <p>且：</p>
 <p><span class="math display">\[
 \begin{align*}
-q^{\star}q &amp;= [s, -\mathbf{v}][s, \mathbf{v}] \\
-&amp;= [s^2 + \mathbf{v} \cdot \mathbf{v}, 0]
+q^{\star}q &amp;= \left[s, -\mathbf{v}\right][s, \mathbf{v}] \\
+&amp;= \left[s^2 + \mathbf{v} \cdot \mathbf{v}, 0\right]
 \end{align*}
 \]</span></p>
 <p>那么：</p>
@@ -1065,13 +1079,13 @@ q^{\star}q &amp;= [s, -\mathbf{v}][s, \mathbf{v}] \\
 \begin{align*}
 qq^{-1} &amp;= 1 \\
 q^{\star}qq^{-1} &amp;= q^{\star} \\
-\|q\|^2 q^{-1} &amp;= q^{\star} \\
-q^{-1} &amp;= \frac{q^{\star}}{\|q\|^2}
+\left\|q\right\|^2 q^{-1} &amp;= q^{\star} \\
+q^{-1} &amp;= \frac{q^{\star}}{\left\|q\right\|^2}
 \end{align*}
 \]</span></p>
 <p>这样就求得了四元数的逆。</p>
-<p>如果 <span class="math inline">\(\|q\| = 1\)</span>，则 <span
-class="math inline">\(q\)</span> 是一个单位四元数，那么：</p>
+<p>如果 <span class="math inline">\(\left\|q\right\| = 1\)</span>，则
+<span class="math inline">\(q\)</span> 是一个单位四元数，那么：</p>
 <p><span class="math display">\[
 q^{-1} = \frac{q^{\star}}{1^2} = q^{\star}
 \]</span></p>
@@ -1092,13 +1106,13 @@ class="math inline">\(\mathbf{v}&#39;_{\perp}\)</span>，最后将这两部分�
 <p>我们可以将这些向量定义为纯四元数：</p>
 <p><span class="math display">\[
 \begin{align*}
-v &amp;= [0, \mathbf{v}] \\
-v_{\parallel} &amp;= [0, \mathbf{v}_{\parallel}] \\
-v_{\perp} &amp;= [0, \mathbf{v}_{\perp}] \\
-v&#39; &amp;= [0, \mathbf{v}&#39;] \\
+v &amp;= \left[0, \mathbf{v}\right] \\
+v_{\parallel} &amp;= \left[0, \mathbf{v}_{\parallel}\right] \\
+v_{\perp} &amp;= \left[0, \mathbf{v}_{\perp}\right] \\
+v&#39; &amp;= \left[0, \mathbf{v}&#39;\right] \\
 v&#39;_{\parallel} &amp;= [0, \mathbf{v}&#39;_{\parallel}] \\
 v&#39;_{\perp} &amp;= [0, \mathbf{v}&#39;_{\perp}] \\
-u &amp;= [0, \mathbf{u}]
+u &amp;= \left[0, \mathbf{u}\right]
 \end{align*}
 \]</span></p>
 <p>那么有：</p>
@@ -1130,10 +1144,11 @@ class="math inline">\(v&#39;_{\perp}\)</span> 和 <span
 class="math inline">\(v_{\perp}\)</span>，但 <span
 class="math inline">\(\mathbf{u} \times \mathbf{v}_{\perp}\)</span>
 又当如何？</p>
-<p>前面已经得到，对于纯四元数 <span class="math inline">\(v = [0,
-\mathbf{v}]\)</span> 和 <span class="math inline">\(u = [0,
-\mathbf{u}]\)</span>，有：<span class="math inline">\(vu = [-\mathbf{v}
-\cdot \mathbf{u}, \mathbf{v} \times \mathbf{u}]\)</span>. 那么：</p>
+<p>前面已经得到，对于纯四元数 <span class="math inline">\(v = \left[0,
+\mathbf{v}\right]\)</span> 和 <span class="math inline">\(u = \left[0,
+\mathbf{u}\right]\)</span>，有：<span class="math inline">\(vu =
+[-\mathbf{v} \cdot \mathbf{u}, \mathbf{v} \times \mathbf{u}]\)</span>.
+那么：</p>
 <p><span class="math display">\[
 \begin{align*}
 uv_{\perp} &amp;= [-\mathbf{u} \cdot \mathbf{v}_{\perp}, \mathbf{u}
@@ -1148,7 +1163,7 @@ uv_{\perp} &amp;= [-\mathbf{u} \cdot \mathbf{v}_{\perp}, \mathbf{u}
 <p><span class="math display">\[
 \begin{align*}
 v&#39;_{\perp} &amp;= v_{\perp} \cos \theta + uv_{\perp} \sin \theta \\
-&amp;= (\cos \theta + u \sin \theta)v_{\perp}
+&amp;= \left(\cos \theta + u \sin \theta\right)v_{\perp}
 \end{align*}
 \]</span></p>
 <p>我们可以将 <span class="math inline">\(\cos \theta + u \sin
@@ -1161,8 +1176,9 @@ v&#39;_{\perp} = qv_{\perp}
 <p><span class="math display">\[
 \begin{align*}
 q &amp;= \cos \theta + u \sin \theta \\
-&amp;= [\cos \theta, 0] + [0, \mathbf{u} \sin \theta] \\
-&amp;= [\cos \theta, \mathbf{u} \sin \theta]
+&amp;= \left[\cos \theta, 0\right] + \left[0, \mathbf{u} \sin
+\theta\right] \\
+&amp;= \left[\cos \theta, \mathbf{u} \sin \theta\right]
 \end{align*}
 \]</span></p>
 <p>也就是说，如果 <span class="math inline">\(\mathbf{u} =
@@ -1178,15 +1194,15 @@ q = \cos \theta + u_x \sin \theta \mathrm{i} + u_y \sin \theta
 的向量 <span class="math inline">\(\mathbf{v}_{\perp}\)</span>，旋转
 <span class="math inline">\(\theta\)</span> 角度之后得到 <span
 class="math inline">\(\mathbf{v}&#39;_{\perp}\)</span>，令 <span
-class="math inline">\(v_{\perp} = [0,
-\mathbf{v}_{\perp}]\)</span>，<span class="math inline">\(q = [\cos
-\theta, \mathbf{u} \sin \theta]\)</span>，那么：</p>
+class="math inline">\(v_{\perp} = \left[0,
+\mathbf{v}_{\perp}\right]\)</span>，<span class="math inline">\(q =
+\left[\cos \theta, \mathbf{u} \sin \theta\right]\)</span>，那么：</p>
 <p><span class="math display">\[
 v&#39;_{\perp} = qv_{\perp}
 \]</span></p>
 <p>我们可以发现：</p>
 <p><span class="math display">\[
-\|q\| = 1
+\left\|q\right\| = 1
 \]</span></p>
 <p>一个普通的四元数表示一个旋转变换和一个缩放变换的复合，而单位四元数表示一个纯粹的旋转变换，这一点和复数非常类似。</p>
 <h4 id="v-的旋转"><span class="math inline">\(v\)</span> 的旋转</h4>
@@ -1196,36 +1212,38 @@ v&#39; &amp;= v&#39;_{\parallel} + v&#39;_{\perp} \\
 &amp;= v_{\parallel} + qv_{\perp}
 \end{align*}
 \]</span></p>
-<p>其中 <span class="math inline">\(q = [\cos \theta, \mathbf{u} \sin
-\theta]\)</span>.</p>
+<p>其中 <span class="math inline">\(q = \left[\cos \theta, \mathbf{u}
+\sin \theta\right]\)</span>.</p>
 <p>接下来要对上面的公式进行简化，在简化之前想给出三个引理。</p>
-<p>引理 1：如果 <span class="math inline">\(q = [\cos \theta, \mathbf{u}
-\sin \theta]\)</span>，且 <span class="math inline">\(\|\mathbf{u}\| =
-1\)</span>，那么：</p>
+<p>引理 1：如果 <span class="math inline">\(q = \left[\cos \theta,
+\mathbf{u} \sin \theta\right]\)</span>，且 <span
+class="math inline">\(\left\|\mathbf{u}\right\| = 1\)</span>，那么：</p>
 <p><span class="math display">\[
-q^2 = qq = [\cos 2\theta, \mathbf{u} \sin 2\theta]
+q^2 = qq = \left[\cos 2\theta, \mathbf{u} \sin 2\theta\right]
 \]</span></p>
 <p>证明：</p>
 <p><span class="math display">\[
 \begin{align*}
-q^2 &amp;= [\cos \theta, \mathbf{u} \sin \theta] [\cos \theta,
-\mathbf{u} \sin \theta] \\
-&amp;= [\cos^2 \theta - (\mathbf{u} \sin \theta) \cdot (\mathbf{u} \sin
-\theta), (\cos \theta \sin \theta + \sin \theta \cos \theta) \mathbf{u}
-+ (\sin \theta \mathbf{u}) \times (\sin \theta \mathbf{u})] \\
-&amp;= [\cos^2 \theta - \|\mathbf{u}\|^2 \sin^2 \theta, 2 \mathbf{u}
-\sin \theta \cos \theta + \mathbf{0}] \\
-&amp;= [\cos^2 \theta - \sin^2 \theta, 2 \mathbf{u} \sin \theta \cos
-\theta] \\
-&amp;= [\cos 2\theta, \mathbf{u} \sin 2\theta]
+q^2 &amp;= \left[\cos \theta, \mathbf{u} \sin \theta\right] \left[\cos
+\theta, \mathbf{u} \sin \theta\right] \\
+&amp;= \left[\cos^2 \theta - \left(\mathbf{u} \sin \theta\right) \cdot
+\left(\mathbf{u} \sin \theta\right), \left(\cos \theta \sin \theta +
+\sin \theta \cos \theta\right) \mathbf{u} + \left(\sin \theta
+\mathbf{u}\right) \times \left(\sin \theta \mathbf{u}\right)\right] \\
+&amp;= \left[\cos^2 \theta - \left\|\mathbf{u}\right\|^2 \sin^2 \theta,
+2 \mathbf{u} \sin \theta \cos \theta + \mathbf{0}\right] \\
+&amp;= \left[\cos^2 \theta - \sin^2 \theta, 2 \mathbf{u} \sin \theta
+\cos \theta\right] \\
+&amp;= \left[\cos 2\theta, \mathbf{u} \sin 2\theta\right]
 \end{align*}
 \]</span></p>
 <p>接下来利用上面的引理，我们可以对 <span
 class="math inline">\(v&#39;\)</span> 进行简化，先令 <span
-class="math inline">\(p = [\cos \frac{\theta}{2}, \mathbf{u} \sin
-\frac{\theta}{2}]\)</span>，显然 <span class="math inline">\(q =
-p^2\)</span> 且 <span class="math inline">\(\|p\| = 1\)</span>，即 <span
-class="math inline">\(p^{-1} = p^{\star}\)</span> 那么：</p>
+class="math inline">\(p = \left[\cos \frac{\theta}{2}, \mathbf{u} \sin
+\frac{\theta}{2}\right]\)</span>，显然 <span class="math inline">\(q =
+p^2\)</span> 且 <span class="math inline">\(\left\|p\right\| =
+1\)</span>，即 <span class="math inline">\(p^{-1} = p^{\star}\)</span>
+那么：</p>
 <p><span class="math display">\[
 \begin{align*}
 v&#39; &amp;= v_{\parallel} + qv_{\perp} \\
@@ -1236,26 +1254,27 @@ v&#39; &amp;= v_{\parallel} + qv_{\perp} \\
 <p>引理 2：对于平行于 <span class="math inline">\(\mathbf{u}\)</span>
 的向量 <span
 class="math inline">\(\mathbf{v}_{\parallel}\)</span>，其四元数为：<span
-class="math inline">\(v_{\parallel} = [0,
-\mathbf{v}_{\parallel}]\)</span>，且 <span
-class="math inline">\(\|\mathbf{u}\| = 1\)</span>。设 <span
-class="math inline">\(q = [\alpha, \beta
-\mathbf{u}]\)</span>，那么：<span class="math inline">\(qv_{\parallel} =
-v_{\parallel}q\)</span>.</p>
+class="math inline">\(v_{\parallel} = \left[0,
+\mathbf{v}_{\parallel}\right]\)</span>，且 <span
+class="math inline">\(\left\|\mathbf{u}\right\| = 1\)</span>。设 <span
+class="math inline">\(q = \left[\alpha, \beta
+\mathbf{u}\right]\)</span>，那么：<span
+class="math inline">\(qv_{\parallel} = v_{\parallel}q\)</span>.</p>
 <p>引理 3：对于正交于 <span class="math inline">\(\mathbf{u}\)</span>
 的向量 <span
 class="math inline">\(\mathbf{v}_{\perp}\)</span>，其四元数为：<span
-class="math inline">\(v_{\perp} = [0, \mathbf{v}_{\perp}]\)</span>，且
-<span class="math inline">\(\|\mathbf{u}\| = 1\)</span>。设 <span
-class="math inline">\(q = [\alpha, \beta
-\mathbf{u}]\)</span>，那么：<span class="math inline">\(qv_{\perp} =
-v_{\perp}q^{\star}\)</span>.</p>
+class="math inline">\(v_{\perp} = \left[0,
+\mathbf{v}_{\perp}\right]\)</span>，且 <span
+class="math inline">\(\left\|\mathbf{u}\right\| = 1\)</span>。设 <span
+class="math inline">\(q = \left[\alpha, \beta
+\mathbf{u}\right]\)</span>，那么：<span class="math inline">\(qv_{\perp}
+= v_{\perp}q^{\star}\)</span>.</p>
 <p>现在，我们就能对之前的公式做出最后的变形了：</p>
 <p><span class="math display">\[
 \begin{align*}
 v&#39; &amp;= pp^{\star} v_{\parallel} + pp v_{\perp} \\
 &amp;= p v_{\parallel} p^{\star} + p v_{\perp} p^{\star} \\
-&amp;= p(v_{\parallel} + v_{\perp}) p^{\star} \\
+&amp;= p\left(v_{\parallel} + v_{\perp}\right) p^{\star} \\
 &amp;= pvp^{\star}
 \end{align*}
 \]</span></p>
@@ -1264,21 +1283,22 @@ v&#39; &amp;= pp^{\star} v_{\parallel} + pp v_{\perp} \\
 绕以单位向量定义的旋转轴 <span class="math inline">\(\mathbf{u}\)</span>
 旋转 <span class="math inline">\(\theta\)</span> 角度之后得到的 <span
 class="math inline">\(\mathbf{v}&#39;\)</span> 可以用四元数来表示。令
-<span class="math inline">\(v = [0, \mathbf{v}]\)</span>，<span
-class="math inline">\(p = [\cos \frac{\theta}{2}, \mathbf{u} \sin
-\frac{\theta}{2}]\)</span>，则：</p>
+<span class="math inline">\(v = \left[0,
+\mathbf{v}\right]\)</span>，<span class="math inline">\(p = \left[\cos
+\frac{\theta}{2}, \mathbf{u} \sin
+\frac{\theta}{2}\right]\)</span>，则：</p>
 <p><span class="math display">\[
 v&#39; = p v p^{\star} = p v p^{-1}
 \]</span></p>
 <p>这个公式非常简洁，比矩阵形式的旋转变换要简单很多。</p>
 <p>实际上：</p>
 <p><span class="math display">\[
-p v p^{\star} = [0, \mathbf{v} \cos \theta + (1 - \cos
-\theta)(\mathbf{u} \cdot \mathbf{v})\mathbf{u} + (\mathbf{u} \times
-\mathbf{v}) \sin \theta]
+p v p^{\star} = \left[0, \mathbf{v} \cos \theta + \left(1 - \cos
+\theta\right)\left(\mathbf{u} \cdot \mathbf{v}\right)\mathbf{u} +
+\left(\mathbf{u} \times \mathbf{v}\right) \sin \theta\right]
 \]</span></p>
-<p>如果有一个单位四元数 <span class="math inline">\(q = [s,
-\mathbf{v}]\)</span>，我们想获取它对应的旋转角度和旋转轴，可以直接得到：</p>
+<p>如果有一个单位四元数 <span class="math inline">\(q = \left[s,
+\mathbf{v}\right]\)</span>，我们想获取它对应的旋转角度和旋转轴，可以直接得到：</p>
 <p><span class="math display">\[
 \begin{align*}
 \frac{\theta}{2} &amp;= \arccos s \\
@@ -1307,8 +1327,9 @@ class="math inline">\(q_1\)</span> 变换，再对 <span
 class="math inline">\(v\)</span> 进行 <span
 class="math inline">\(q_2\)</span> 变换，其结果为：</p>
 <p><span class="math display">\[
-v&#39;&#39; = q_2(q_1vq_1^{\star})q_2^{\star} =
-(q_2q_1)v(q_1^{\star}q_2^{\star}) = (q_2q_1)v(q_2q_1)^{\star}
+v&#39;&#39; = q_2\left(q_1vq_1^{\star}\right)q_2^{\star} =
+\left(q_2q_1\right)v\left(q_1^{\star}q_2^{\star}\right) =
+\left(q_2q_1\right)v\left(q_2q_1\right)^{\star}
 \]</span></p>
 <p>也就是说，两次旋转可以先计算两个四元数的乘积，然后再对 <span
 class="math inline">\(v\)</span>
@@ -1328,20 +1349,21 @@ Homomorphism）」的关系，或者说单位四元数双倍覆盖了 3D 旋转�
 <h3 id="指数形式">指数形式</h3>
 <p>类似于复数，四元数也有指数形式。如果 <span
 class="math inline">\(\mathbf{u}\)</span> 是一个单位向量，那么对纯四元数
-<span class="math inline">\(u = [0, \mathbf{u}]\)</span>，有：</p>
+<span class="math inline">\(u = \left[0,
+\mathbf{u}\right]\)</span>，有：</p>
 <p><span class="math display">\[
 \mathrm{e}^{u\theta} = \cos \theta + u \sin \theta = \cos \theta +
 \mathbf{u} \sin \theta
 \]</span></p>
-<p>也就是说，四元数 <span class="math inline">\(q = [\cos \theta,
-\mathbf{u} \sin \theta]\)</span> 可以使用指数表示为：<span
+<p>也就是说，四元数 <span class="math inline">\(q = \left[\cos \theta,
+\mathbf{u} \sin \theta\right]\)</span> 可以使用指数表示为：<span
 class="math inline">\(\mathrm{e}^{u\theta}\)</span>.</p>
 <h2 id="四元数插值">四元数插值</h2>
 <p>在 3D 动画中，我们经常需要在两个旋转之间进行插值。</p>
 <h3 id="线性插值-lerp">线性插值 (Lerp)</h3>
 <p>最简单的插值方式是线性插值 (Linear Interpolation)：</p>
 <p><span class="math display">\[
-\mathrm{Lerp}(q_0, q_1, t) = (1 - t)q_0 + tq_1
+\mathrm{Lerp}\left(q_0, q_1, t\right) = \left(1 - t\right)q_0 + tq_1
 \]</span></p>
 <p>虽然简单，但 Lerp 有两个问题： 1.
 插值得到的结果通常不再是单位四元数，需要再次归一化。 2.
@@ -1352,8 +1374,9 @@ class="math inline">\(\mathrm{e}^{u\theta}\)</span>.</p>
 <p>设两个单位四元数的夹角为 <span
 class="math inline">\(\Omega\)</span>，则 Slerp 的公式为：</p>
 <p><span class="math display">\[
-\mathrm{Slerp}(q_0, q_1, t) = \frac{\sin((1 - t)\Omega)}{\sin \Omega}q_0
-+ \frac{\sin(t\Omega)}{\sin \Omega}q_1
+\mathrm{Slerp}\left(q_0, q_1, t\right) = \frac{\sin\left(\left(1 -
+t\right)\Omega\right)}{\sin \Omega}q_0 +
+\frac{\sin\left(t\Omega\right)}{\sin \Omega}q_1
 \]</span></p>
 <p>其中 <span class="math inline">\(\cos \Omega = q_0 \cdot
 q_1\)</span>（四元数的点积）。</p>
@@ -1495,7 +1518,7 @@ al.</li>
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">7:51</span>
+    <span title="Reading time total">7:53</span>
   </span>
 </div>
 <div class="busuanzi-count">
