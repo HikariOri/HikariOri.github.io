@@ -3,3 +3,4 @@
 3. HSV 是什么意思，如何对应到 RGB
 4. Landscape 材质如何设置？
 5. Landscape 材质的参数规定及其含义
+6. Triplanar Projection 的原理
