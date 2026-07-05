@@ -135,7 +135,7 @@
 
 ## 官方（必须）
 
-### [Epic Developer Community](https://dev.epicgames.com/community/?utm_source=chatgpt.com)
+### [Epic Developer Community](https://dev.epicgames.com/documentation/unreal-engine)
 
 Epic 官方学习平台。
 
@@ -143,7 +143,7 @@ Epic 官方学习平台。
 
 ## 蓝图最推荐
 
-### [Stephen Ulibarri UE5 Blueprints Course](https://www.udemy.com/topic/unreal-engine-blueprints/?utm_source=chatgpt.com)
+### [Stephen Ulibarri UE5 Blueprints Course](https://www.udemy.com/course/ue5-ultimate-bp-course/)
 
 社区公认质量很高。 ([udemy.com][1])
 
@@ -157,11 +157,11 @@ Epic 官方学习平台。
 
 ## 免费推荐
 
-### [Unreal Sensei](https://www.youtube.com/@UnrealSensei?utm_source=chatgpt.com)
+### [Unreal Sensei](https://www.youtube.com/@UnrealSensei)
 
 适合快速建立 UE 感觉。
 
-### [Mathew Wadstein](https://www.youtube.com/@MathewWadsteinTutorials?utm_source=chatgpt.com)
+### [Mathew Wadstein](https://www.youtube.com/@MathewWadsteinTutorials)
 
 查节点神器。
 
@@ -322,7 +322,7 @@ UE C++ 有：
 
 ## 第一推荐
 
-### [Stephen Ulibarri UE5 C++ Course](https://www.udemy.com/topic/unreal-engine-blueprints/?utm_source=chatgpt.com)
+### [Stephen Ulibarri UE5 C++ Course](https://www.udemy.com/course/unreal-engine-5-the-ultimate-game-developer-course/?couponCode=PMNVD2025)
 
 目前社区评价非常高。 ([udemy.com][1])
 
@@ -341,7 +341,7 @@ UE C++ 有：
 
 ## 第二推荐（进阶）
 
-### [Tom Looman UE C++ Course](https://tomlooman.com/unreal-engine-cpp-course-early-access/?utm_source=chatgpt.com)
+### [Tom Looman UE C++ Course](https://tomlooman.com/)
 
 偏职业化。
 
@@ -357,7 +357,7 @@ UE C++ 有：
 
 ## C++ 基础（必须补）
 
-### [LearnCpp](https://www.learncpp.com/?utm_source=chatgpt.com)
+### [LearnCpp](https://www.learncpp.com/)
 
 这是最好的免费 C++ 教程之一。
 
