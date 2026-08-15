@@ -4,3 +4,4 @@
 4. Landscape 材质如何设置？
 5. Landscape 材质的参数规定及其含义
 6. Triplanar Projection 的原理
+7. IK Rig 和重定向的以及骨骼的完整原理
