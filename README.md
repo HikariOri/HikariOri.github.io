@@ -2,7 +2,8 @@
 
 ## 渲染
 
-- [Physically Based Rendering: From Theory To Implementation | Matt Pharr, Wenzel Jakob, and Greg Humphreys](https://www.pbr-book.org/)
+- [Physically Based Rendering: From Theory To Implementation](https://www.pbr-book.org/)
+- [Ray Tracing in One Weekend — The Book Series](https://www.pbr-book.org/)
 
 ## GDC 演讲
 
@@ -16,7 +17,7 @@
 - [GPU Gems 3](https://developer.nvidia.com/gpugems/gpugems3/contributors)
 </details>
 
-- [UE4 Materials 101 | Ben Cloward](https://www.youtube.com/watch?v=uQG0SWv5lbw&list=PL78XDi0TS4lFlOVKsNC6LR4sCQhetKJqs)
+- [UE4 Materials 101](https://www.youtube.com/watch?v=uQG0SWv5lbw&list=PL78XDi0TS4lFlOVKsNC6LR4sCQhetKJqs)
 
 ## GPU 知识
 
