@@ -2,7 +2,7 @@
 
 ## 渲染
 
-- [Physically Based Rendering: From Theory To Implementation](https://www.pbr-book.org/)
+- [Physically Based Rendering: From Theory To Implementation | Matt Pharr, Wenzel Jakob, and Greg Humphreys](https://www.pbr-book.org/)
 
 ## GDC 演讲
 
