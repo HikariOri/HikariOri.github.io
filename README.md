@@ -5,9 +5,22 @@
 - [Physically Based Rendering: From Theory To Implementation](https://www.pbr-book.org/)
 - [Ray Tracing in One Weekend — The Book Series](https://www.pbr-book.org/)
 
-## GDC 演讲
+## 会议、演讲
+
+### GDC
 
 - [GDC Vaults](https://gdcvault.com/browse)
+
+### CEDEC
+
+- [CEDEC 官网](https://cedec.cesa.or.jp)
+- [CEDEC Digital Library](https://cedil.cesa.or.jp/)
+
+<details>
+<summary>想看 / 看过</summary>
+  
+- [【CEDEC2016】Unreal Engine 4 のレンダリングフロー総おさらい](https://www.youtube.com/watch?v=w1TjKgAX1ks)
+</details>
 
 ## Shader 编程
 
