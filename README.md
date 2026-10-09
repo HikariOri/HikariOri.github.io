@@ -7,6 +7,8 @@
 
 ## GDC 演讲
 
+- [GDC Vaults](https://gdcvault.com/browse)
+
 ## Shader 编程
 
 <details>
