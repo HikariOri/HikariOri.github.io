@@ -11,6 +11,16 @@
 
 - [GDC Vaults](https://gdcvault.com/browse)
 
+<details>
+<summary>想看 / 看过</summary>
+  
+- [[GDC 2024] Nanite GPU-Driven Materials](https://gdcvault.com/play/1034407/Nanite-GPU-Driven)
+- [[GDC 2024] Advanced Graphics Summit: Making Connections: Real-Time Path-Traced Light Transport in Game Engines](https://www.gdcvault.com/play/1034648/Advanced-Graphics-Summit-Making-Connections)
+- [[GDC 2022] Adventures with Deferred Texturing in 'Horizon Forbidden West'](https://gdcvault.com/play/1027553/Adventures-with-Deferred-Texturing-in)
+- [[GDC 2021] "Alpha Point" UE5 Demo: Unlocking Artist Potential (Presented by Epic Games - Unreal Engine)](https://www.gdcvault.com/play/1027529/-Alpha-Point-UE5-Demo)
+- [[GDC 2018] HDR Image Based Lighting: From Acquisition to Render](https://www.gdcvault.com/play/1025148/HDR-Image-Based-Lighting-From)
+</details>
+
 ### CEDEC
 
 - [CEDEC 官网](https://cedec.cesa.or.jp)
@@ -19,7 +29,7 @@
 <details>
 <summary>想看 / 看过</summary>
   
-- [【CEDEC2016】Unreal Engine 4 のレンダリングフロー総おさらい](https://www.youtube.com/watch?v=w1TjKgAX1ks)
+- [[CEDEC2016] Unreal Engine 4 のレンダリングフロー総おさらい](https://www.youtube.com/watch?v=w1TjKgAX1ks)
 </details>
 
 ## Unreal
