@@ -35,8 +35,8 @@
 ## Unreal
 
 <details>
-<summary>Ben Cloward</summary>
-
+<summary>[Ben Cloward](https://www.youtube.com/@BenCloward)</summary>
+  
 - [Unreal Material Editor - UE4 Materials 101](https://www.youtube.com/playlist?list=PL78XDi0TS4lFlOVKsNC6LR4sCQhetKJqs)
 - [Advanced Materials](https://www.youtube.com/playlist?list=PL78XDi0TS4lGqHdLQGR2GHne85i9PebbN)
 - [Procedural Shapes and Patterns](https://www.youtube.com/playlist?list=PL78XDi0TS4lF5ASo3vpUFKenMkhMVeZ5y)
