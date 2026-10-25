@@ -44,6 +44,9 @@
 - [Post-Process Effects for Unreal And Unity](https://www.youtube.com/playlist?list=PL78XDi0TS4lGORvoEKCyw_6dO9tzlu6Ox)
 </details>
 
+- [Elden Ring/Soulslike GAS in Unreal Engine 5](https://www.youtube.com/playlist?list=PL7VxpjcexX-CEzyB1PcSEa63Ylzu5Kj69)
+
+
 ## Shader 编程
 
 <details>

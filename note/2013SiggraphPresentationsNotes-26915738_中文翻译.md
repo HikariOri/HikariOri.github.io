@@ -1,16 +1,8 @@
 # Real Shading in Unreal Engine 4
 
-Real Shading in Unreal Engine 4
+by Brian Karis, Epic Games
 
-![Figure 1: UE4: Infiltrator demo](image-1.png)
-
-Brian Karis，Epic Games
-
-中文翻译稿。本文档翻译 SIGGRAPH 2013 课程讲义中的技术论文与随附演示幻灯片文字；代码、公式符号、产品名和参考文献编号尽量保持原样，以便与英文原稿对照。
-
-译注：BaseColor、Metallic、Roughness、Cavity 等 UE 材质属性保留英文标识，并在首次出现处给出中文说明。
-
-## 引言
+## Introduction
 
 大约一年前，我们决定投入时间改进着色模型，并采用更具物理依据的材质工作流。驱动力一部分来自渲染更真实图像的愿望，另一部分来自我们希望借助更具物理依据的材质创建方式及材质分层达到的效果。艺术家认为这会极大改善工作流和品质；我此前也曾在另一家工作室亲历其益处，当时我们改用离线合成的材质层。Epic 的一位技术美术尝试在着色器中完成分层，结果很有前景，因此这也成为额外需求。
 
