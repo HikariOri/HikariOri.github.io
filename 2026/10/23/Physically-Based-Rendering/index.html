@@ -32,8 +32,13 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230720351-28c5443d-496e-4212-b194-cdddae6370a0.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230720515-56305412-c91a-4af5-a4e0-2e31ebd1abb2.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230768937-da2153ee-d92e-4315-8249-879b1fa9e3c4.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230769545-ddc3545f-a97a-4b14-bc5f-d9749674dbfb.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230770394-9a04aab5-c10e-48a4-bec3-e9e23773c4b3.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231383755-bd8a667b-47f4-45c6-96f8-3972624567c6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231384090-803d2a17-f56f-4351-8d6e-2fa0819f0f74.png">
 <meta property="article:published_time" content="2026-10-23T18:22:57.000Z">
-<meta property="article:modified_time" content="2026-10-25T02:51:29.028Z">
+<meta property="article:modified_time" content="2026-10-26T02:32:28.074Z">
 <meta property="article:author" content="Lemon">
 <meta property="article:tag" content="PBR">
 <meta name="twitter:card" content="summary">
@@ -199,7 +204,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#solid-angle"><span class="nav-number">1.</span> <span class="nav-text">Solid Angle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6"><span class="nav-number">2.</span> <span class="nav-text">辐射度量学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#radiant-flux"><span class="nav-number">2.1.</span> <span class="nav-text">Radiant Flux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#radiant-intensity"><span class="nav-number">2.2.</span> <span class="nav-text">Radiant Intensity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#irradiance"><span class="nav-number">2.3.</span> <span class="nav-text">Irradiance</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#solid-angle"><span class="nav-number">1.</span> <span class="nav-text">Solid Angle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6"><span class="nav-number">2.</span> <span class="nav-text">辐射度量学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#radiant-flux"><span class="nav-number">2.1.</span> <span class="nav-text">Radiant Flux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#radiant-intensity"><span class="nav-number">2.2.</span> <span class="nav-text">Radiant Intensity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#irradiance"><span class="nav-number">2.3.</span> <span class="nav-text">Irradiance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#radiance"><span class="nav-number">2.4.</span> <span class="nav-text">Radiance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E6%96%B9%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">渲染方程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#brdf-bidirectional-reflectance-distribution-function"><span class="nav-number">3.1.</span> <span class="nav-text">BRDF
+(Bidirectional Reflectance Distribution Function)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#brdr-%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">3.1.1.</span> <span class="nav-text">BRDR 的性质</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cooktorrance-%E5%BE%AE%E8%A1%A8%E9%9D%A2-brdf"><span class="nav-number">4.</span> <span class="nav-text">Cook–Torrance 微表面 BRDF</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -318,7 +324,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-10-25 10:51:29" itemprop="dateModified" datetime="2026-10-25T10:51:29+08:00">2026-10-25</time>
+      <time title="Modified: 2026-10-26 10:32:28" itemprop="dateModified" datetime="2026-10-26T10:32:28+08:00">2026-10-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -344,14 +350,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>456</span>
+      <span>1.4k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
+      <span>5 mins.</span>
     </span>
 </div>
 
@@ -407,7 +413,7 @@ class="math inline">\(\mathrm{m}\)</span>.</li>
 <h3 id="radiant-flux">Radiant Flux</h3>
 <p><span class="math display">\[
 \Phi=\frac{\mathrm{d}Q}{\mathrm{d}t}\left[
-\mathrm{W}\right]\left[\mathrm{lm}=\mathrm{lumen}  \right]
+\mathrm{W}=\mathrm{Watt}\right]\left[\mathrm{lm}=\mathrm{lumen}  \right]
 \]</span></p>
 <ul>
 <li><span class="math inline">\(\Phi\)</span>: Radiant Flux，单位 <span
@@ -420,7 +426,9 @@ class="math inline">\(\mathrm{J}\)</span>.</li>
 <h3 id="radiant-intensity">Radiant Intensity</h3>
 <p><span class="math display">\[
 I\left( \omega \right)=\frac{\mathrm{d}\Phi}{\mathrm{d}\omega}\left[
-\frac{\mathrm{W}}{\mathrm{sr}} \right]\left[ \mathrm{cd} \right]
+\frac{\mathrm{W}}{\mathrm{sr}}
+\right]\left[\frac{\mathrm{lm}}{\mathrm{sr}}
+=\mathrm{cd}=\mathrm{candela} \right]
 \]</span></p>
 <ul>
 <li><span class="math inline">\(I\)</span>: 辐射强度，单位 <span
@@ -446,10 +454,9 @@ I=\frac{\Omega}{4\pi}
 \]</span></p>
 <h3 id="irradiance">Irradiance</h3>
 <p><span class="math display">\[
-E\left( \mathbf{p} \right) =
-\frac{\mathrm{d}\Omega(\mathbf{p})}{\mathrm{d}A\cos \theta}\left[
-\frac{\mathrm{W}}{\mathrm{m}^2} \right]\left[
-\frac{\mathrm{lm}}{\mathrm{m}^2} \right]
+E\left( \mathbf{p} \right) = \frac{\mathrm{d}\Omega\left( \mathbf{p}
+\right)}{\mathrm{d}A\cos \theta}\left[ \frac{\mathrm{W}}{\mathrm{m}^2}
+\right]\left[ \frac{\mathrm{lm}}{\mathrm{m}^2}=\mathrm{lux} \right]
 \]</span></p>
 <ul>
 <li><span class="math inline">\(E\)</span>: 辐照度，单位 <span
@@ -458,6 +465,207 @@ class="math inline">\(\mathrm{W}/\mathrm{m}^2\)</span>.</li>
 接收光能的表面面积.</li>
 </ul>
 <p>辐照度描述一个表面实际接收到的光能密度。</p>
+<p>Lambert’s 余弦定理可以使用 Irradiance 来解释。</p>
+<p>假设光线一功率 <span class="math inline">\(\Phi\)</span>
+均匀向外均匀发出，一个球面上的 Irradiance
+和这个球的半径成平方反比。假设在半径为 1 的球面上的 Irradiance 为
+，则在半径为 的球面上的 Irradiance 为：</p>
+<p><span class="math display">\[
+\begin{align*}
+E&#39; &amp;= \frac{\Phi}{4 \pi r^2} \\
+&amp;= \frac{E} {r^2} \\
+\end{align*}
+\]</span></p>
+<h3 id="radiance">Radiance</h3>
+<figure>
+<img data-src="https://user-images.githubusercontent.com/62458905/230768937-da2153ee-d92e-4315-8249-879b1fa9e3c4.png"
+alt="辐亮度示意图" />
+<figcaption aria-hidden="true">辐亮度示意图</figcaption>
+</figure>
+<p><span class="math display">\[
+L\left(\mathbf{p}, \omega\right) \equiv \frac{\mathrm{d}^2
+\Phi(\mathbf{p}, \omega)}{\mathrm{d} \omega \mathrm{d} A \cos \theta} \,
+\left[\frac{\mathrm{W}}{\mathrm{sr}
+\mathrm{m}^2}\right]\left[\frac{\mathrm{cd}}{\mathrm{m}^2}=\frac{\mathrm{lm}}{\mathrm{sr}
+\mathrm{m}^2}=\mathrm{nit}\right]
+\]</span></p>
+<ul>
+<li><span class="math inline">\(L\)</span>: 辐亮度，单位 <span
+class="math inline">\(\mathbf{W}/\left( \mathbf{m}^2 \mathbf{sr}
+\right)\)</span>.</li>
+<li><span class="math inline">\(\mathrm{d}A\cos\theta\)</span>:
+垂直于关照或观察方向的投影面积.</li>
+</ul>
+<p>辐亮度描述某个位置，莫格方向上的辐射能量密度。</p>
+<p>渲染其实就是要计算：表面上一点 <span
+class="math inline">\(\mathbf{p}\)</span> 沿着观察方向 <span
+class="math inline">\(\omega_o\)</span> 离开的辐亮度 <span
+class="math inline">\(L_o\)</span>.</p>
+<p>从入射角度来说（Incident Radiance），可以认为 Radiance
+是单位立体角下的 Irradiance:</p>
+<p><span class="math display">\[
+L\left( \mathbf{p,\omega} \right)=\frac{\mathrm{d}E\left( \mathbf{p}
+\right)}{\mathrm{d}\omega\cos\theta}
+\]</span></p>
+<p>从出射角度来说（Exiting Radiance），可以认为 Radiance 是单位面积下的
+Intensity:</p>
+<p><span class="math display">\[
+L\left( \mathbf{p,\omega} \right)=\frac{\mathrm{d}I\left(
+\mathbf{p},\omega \right)}{\mathrm{d}A\cos\theta}
+\]</span></p>
+<p>对于来自各个方向的入射辐射，有：</p>
+<p><span class="math display">\[
+\begin{align*}
+E\left( \mathbf{p} \right) &amp;=\int_{H^2} L_i\left( \omega_i \right)
+\cos\theta \mathrm{d} \omega_i  \\
+&amp;=\int_{H^2} L_i\left( \omega_i \right) \max\left\{ 0, \mathbf{n}
+\cdot \omega_i \right\} \mathrm{d} \omega_i
+\end{align*}
+\]</span></p>
+<figure>
+<img data-src="https://user-images.githubusercontent.com/62458905/230769545-ddc3545f-a97a-4b14-bc5f-d9749674dbfb.png"
+alt="对 L 在半球上的积分" />
+<figcaption aria-hidden="true">对 L 在半球上的积分</figcaption>
+</figure>
+<p>其中：</p>
+<ul>
+<li><span class="math inline">\(L_i\)</span>: 入射方向的辐亮度.</li>
+<li><span class="math inline">\(\omega_i\)</span>：入射方向.</li>
+<li><span class="math inline">\(\mathbf{n}\)</span>：<span
+class="math inline">\(\mathbf{p}\)</span> 处的表面法线.</li>
+</ul>
+<h2 id="渲染方程">渲染方程</h2>
+<p><span class="math display">\[
+L_o\left(\mathbf{p}, \omega_o\right) =L_o\left( \mathbf{p},\omega
+\right) +\int_{H^2}f_r\left(\mathbf{p},
+\omega_i , \omega_o \right)L_i\left(\mathbf{p},
+\omega_i\right) \cos \theta_i \,\mathrm{d} \omega_i
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">符号</th>
+<th style="text-align: center;">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">\(L_o\)</span></td>
+<td style="text-align: center;">出射辐亮度</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span
+class="math inline">\(L_e\)</span></td>
+<td style="text-align: center;">自发光辐亮度</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">\(f_r\)</span></td>
+<td style="text-align: center;">BRDF</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span
+class="math inline">\(L_i\)</span></td>
+<td style="text-align: center;">入射辐亮度</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">\(\omega_i\)</span></td>
+<td style="text-align: center;">入射方向</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span
+class="math inline">\(\omega_o\)</span></td>
+<td style="text-align: center;">出射方向</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">\(\theta_i\)</span></td>
+<td style="text-align: center;">入射方向于表面法向夹角的余弦值</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span
+class="math inline">\(H^2\)</span></td>
+<td
+style="text-align: center;">入射半球（与法线在同一方向的半球面）</td>
+</tr>
+</tbody>
+</table>
+<p>此公式说明：出射光 = 自发光 +
+所有入射光照在材质表面之后反射的总和（不考虑透射）.</p>
+<h3 id="brdf-bidirectional-reflectance-distribution-function">BRDF
+(Bidirectional Reflectance Distribution Function)</h3>
+<p>BRDR 是一个表示一个点上的反射的函数：将从 <span
+class="math inline">\(\omega_i\)</span> 方向来的 Radiance 转换为 <span
+class="math inline">\(\mathrm{d}A\)</span> 上接收到的 Irradiance <span
+class="math inline">\(E\)</span>，任何 Irradiance <span
+class="math inline">\(E\)</span> 都会变成其他任意方向 <span
+class="math inline">\(\omega_o\)</span> 方向的 Radiance.</p>
+<blockquote>
+<p>一个点会接收来自四面八方的光照（来自四面八方的
+Radiance），全部加到一起就是这个点的 Irradiance.
+另外，这个点还会向四面八方发射光/能量（也就是
+Radiance），我们要计算的就是这个发射出去的 Radiance.
+也就是说，我们可以将反射分为两步： 1.
+光绪入射到某一点，得到了一部分能量. 2. 这个点将得到的能量发射出去.</p>
+</blockquote>
+<p>BRDF 表示从每个方向入射的光有多少发射到每个出射方向 <span
+class="math inline">\(\omega_r\)</span>.</p>
+<figure>
+<img data-src="https://user-images.githubusercontent.com/62458905/230770394-9a04aab5-c10e-48a4-bec3-e9e23773c4b3.png"
+alt="BRDR 示意" />
+<figcaption aria-hidden="true">BRDR 示意</figcaption>
+</figure>
+<p>BRDR 的定义如下：</p>
+<p><span class="math display">\[
+f_r\left(\omega_i , \omega_o \right) = \frac{\mathrm{d}
+L_o\left(\omega_o\right)}{\mathrm{d} E_i\left(\omega_i\right)} =
+\frac{\mathrm{d}L_o\left(\omega_o\right)}{L\left(\omega_i\right) \cos
+\theta_i \mathrm{d} \omega_i} \,\left[\frac{\text{1}}{\text{sr}}\right]
+\]</span></p>
+<h4 id="brdr-的性质">BRDR 的性质</h4>
+<ul>
+<li>非负性（Non-negativity）</li>
+</ul>
+<p><span class="math display">\[
+f_r\left(\omega_i , \omega_o \right) \ge 0
+\]</span></p>
+<ul>
+<li>线性（Linearity）</li>
+</ul>
+<center>
+<img data-src="https://user-images.githubusercontent.com/62458905/231383755-bd8a667b-47f4-45c6-96f8-3972624567c6.png" alt="线性" style="zoom:75%;" />
+</center>
+<ul>
+<li>可逆性（Reciprocity principle）</li>
+</ul>
+<p><span class="math display">\[
+f_r\left(\omega_o , \omega_i\right) = f_r\left(\omega_i ,\omega_o\right)
+\]</span></p>
+<center>
+<img data-src="https://user-images.githubusercontent.com/62458905/231384090-803d2a17-f56f-4351-8d6e-2fa0819f0f74.png" alt="可逆性" style="zoom:75%;" />
+</center>
+<ul>
+<li>能量守恒（Energy conservation）</li>
+</ul>
+<p><span class="math display">\[
+\forall \omega_o \int_{H^2}f_r\left(\omega_i , \omega_o\right) \cos
+\theta_i \, \mathrm{d}\omega_i \le 1
+\]</span></p>
+<ul>
+<li>各向同性 vs. 各向异性
+<ul>
+<li>对于各向同性：<span class="math inline">\(f_r\left(\theta_i,
+\phi_i;\theta_o, \phi_o\right) = f_r\left(\theta_i, \theta_o, \phi_o -
+\phi_i\right)\)</span>.</li>
+<li>对于各向异性：<span class="math inline">\(f_r\left(\theta_i,
+\theta_o, \phi_o - \phi_i\right) = f_r\left(\theta_o, \theta_i, \phi_i -
+\phi_o\right) = f_r\left(\theta_i, \theta_o, \left|\phi_o -
+\phi_i\right|\right)\)</span></li>
+</ul></li>
+</ul>
+<h2 id="cooktorrance-微表面-brdf">Cook–Torrance 微表面 BRDF</h2>
 
     </div>
 
@@ -554,14 +762,14 @@ class="math inline">\(\mathrm{W}/\mathrm{m}^2\)</span>.</li>
       <i class="fa fa-chart-line"></i>
     </span>
       <span>Word count total: </span>
-    <span title="Word count total">132k</span>
+    <span title="Word count total">133k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">8:01</span>
+    <span title="Reading time total">8:05</span>
   </span>
 </div>
 <div class="busuanzi-count">
