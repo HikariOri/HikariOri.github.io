@@ -46,7 +46,7 @@ $$
 ### Radiant Flux
 
 $$
-\Phi=\frac{\mathrm{d}Q}{\mathrm{d}t}\left[ \mathrm{W}\right]\left[\mathrm{lm}=\mathrm{lumen}  \right]
+\Phi=\frac{\mathrm{d}Q}{\mathrm{d}t}\left[ \mathrm{W}=\mathrm{Watt}\right]\left[\mathrm{lm}=\mathrm{lumen}  \right]
 $$
 
 - $\Phi$: Radiant Flux，单位 $\mathrm{W}$.
@@ -58,7 +58,7 @@ $$
 ### Radiant Intensity
 
 $$
-I\left( \omega \right)=\frac{\mathrm{d}\Phi}{\mathrm{d}\omega}\left[ \frac{\mathrm{W}}{\mathrm{sr}} \right]\left[ \mathrm{cd} \right]
+I\left( \omega \right)=\frac{\mathrm{d}\Phi}{\mathrm{d}\omega}\left[ \frac{\mathrm{W}}{\mathrm{sr}} \right]\left[\frac{\mathrm{lm}}{\mathrm{sr}} =\mathrm{cd}=\mathrm{candela} \right]
 $$
 
 - $I$: 辐射强度，单位 $\mathrm{W}/\mathrm{sr}$.
@@ -86,10 +86,151 @@ $$
 ### Irradiance
 
 $$
-E\left( \mathbf{p} \right) = \frac{\mathrm{d}\Omega(\mathbf{p})}{\mathrm{d}A\cos \theta}\left[ \frac{\mathrm{W}}{\mathrm{m}^2} \right]\left[ \frac{\mathrm{lm}}{\mathrm{m}^2} \right]
+E\left( \mathbf{p} \right) = \frac{\mathrm{d}\Omega\left( \mathbf{p} \right)}{\mathrm{d}A\cos \theta}\left[ \frac{\mathrm{W}}{\mathrm{m}^2} \right]\left[ \frac{\mathrm{lm}}{\mathrm{m}^2}=\mathrm{lux} \right]
 $$
 
 - $E$: 辐照度，单位 $\mathrm{W}/\mathrm{m}^2$.
 - $\mathrm{d}A$: 接收光能的表面面积.
 
 辐照度描述一个表面实际接收到的光能密度。
+
+Lambert’s 余弦定理可以使用 Irradiance 来解释。
+
+假设光线一功率 $\Phi$ 均匀向外均匀发出，一个球面上的 Irradiance 和这个球的半径成平方反比。假设在半径为 1 的球面上的 Irradiance 为 
+，则在半径为 
+ 的球面上的 Irradiance 为：
+
+$$
+\begin{align*}
+E' &= \frac{\Phi}{4 \pi r^2} \\
+&= \frac{E} {r^2} \\
+\end{align*}
+$$
+
+### Radiance
+
+![辐亮度示意图](https://user-images.githubusercontent.com/62458905/230768937-da2153ee-d92e-4315-8249-879b1fa9e3c4.png)
+
+$$
+L\left(\mathbf{p}, \omega\right) \equiv \frac{\mathrm{d}^2
+\Phi(\mathbf{p}, \omega)}{\mathrm{d} \omega \mathrm{d} A \cos \theta} \,
+\left[\frac{\mathrm{W}}{\mathrm{sr}
+\mathrm{m}^2}\right]\left[\frac{\mathrm{cd}}{\mathrm{m}^2}=\frac{\mathrm{lm}}{\mathrm{sr}
+\mathrm{m}^2}=\mathrm{nit}\right]
+$$
+
+- $L$: 辐亮度，单位 $\mathbf{W}/\left( \mathbf{m}^2 \mathbf{sr} \right)$.
+- $\mathrm{d}A\cos\theta$: 垂直于关照或观察方向的投影面积.
+
+辐亮度描述某个位置，莫格方向上的辐射能量密度。
+
+渲染其实就是要计算：表面上一点 $\mathbf{p}$ 沿着观察方向 $\omega_o$ 离开的辐亮度 $L_o$.
+
+从入射角度来说（Incident Radiance），可以认为 Radiance 是单位立体角下的 Irradiance:
+
+$$
+L\left( \mathbf{p,\omega} \right)=\frac{\mathrm{d}E\left( \mathbf{p} \right)}{\mathrm{d}\omega\cos\theta}
+$$
+
+从出射角度来说（Exiting Radiance），可以认为 Radiance 是单位面积下的 Intensity:
+
+$$
+L\left( \mathbf{p,\omega} \right)=\frac{\mathrm{d}I\left( \mathbf{p},\omega \right)}{\mathrm{d}A\cos\theta}
+$$
+
+对于来自各个方向的入射辐射，有：
+
+$$
+\begin{align*}
+E\left( \mathbf{p} \right) &=\int_{H^2} L_i\left( \omega_i \right) \cos\theta \mathrm{d} \omega_i  \\ 
+&=\int_{H^2} L_i\left( \omega_i \right) \max\left\{ 0, \mathbf{n} \cdot \omega_i \right\} \mathrm{d} \omega_i 
+\end{align*}
+$$
+
+![对 L 在半球上的积分](https://user-images.githubusercontent.com/62458905/230769545-ddc3545f-a97a-4b14-bc5f-d9749674dbfb.png)
+
+其中：
+
+- $L_i$: 入射方向的辐亮度.
+- $\omega_i$：入射方向.
+- $\mathbf{n}$：$\mathbf{p}$ 处的表面法线.
+
+## 渲染方程
+
+$$
+L_o\left(\mathbf{p}, \omega_o\right) =L_o\left( \mathbf{p},\omega \right) +\int_{H^2}f_r\left(\mathbf{p},
+\omega_i , \omega_o \right)L_i\left(\mathbf{p},
+\omega_i\right) \cos \theta_i \,\mathrm{d} \omega_i
+$$
+
+
+|    符号    |                 含义                 |
+| :--------: | :----------------------------------: |
+|   $L_o$    |              出射辐亮度              |
+|   $L_e$    |             自发光辐亮度             |
+|   $f_r$    |                 BRDF                 |
+|   $L_i$    |              入射辐亮度              |
+| $\omega_i$ |               入射方向               |
+| $\omega_o$ |               出射方向               |
+| $\theta_i$ |    入射方向于表面法向夹角的余弦值    |
+|   $H^2$    | 入射半球（与法线在同一方向的半球面） |
+
+此公式说明：出射光 = 自发光 + 所有入射光照在材质表面之后反射的总和（不考虑透射）.
+
+### BRDF (Bidirectional Reflectance Distribution Function)
+
+BRDR 是一个表示一个点上的反射的函数：将从 $\omega_i$ 方向来的 Radiance 转换为 $\mathrm{d}A$ 上接收到的 Irradiance $E$，任何 Irradiance $E$ 都会变成其他任意方向 $\omega_o$ 方向的 Radiance.
+
+> 一个点会接收来自四面八方的光照（来自四面八方的 Radiance），全部加到一起就是这个点的 Irradiance. 另外，这个点还会向四面八方发射光/能量（也就是 Radiance），我们要计算的就是这个发射出去的 Radiance.
+> 也就是说，我们可以将反射分为两步：
+> 1. 光绪入射到某一点，得到了一部分能量.
+> 2. 这个点将得到的能量发射出去.
+
+BRDF 表示从每个方向入射的光有多少发射到每个出射方向 $\omega_r$.
+
+![BRDR 示意](https://user-images.githubusercontent.com/62458905/230770394-9a04aab5-c10e-48a4-bec3-e9e23773c4b3.png)
+
+BRDR 的定义如下：
+
+$$
+f_r\left(\omega_i , \omega_o \right) = \frac{\mathrm{d}
+L_o\left(\omega_o\right)}{\mathrm{d} E_i\left(\omega_i\right)} =
+\frac{\mathrm{d}L_o\left(\omega_o\right)}{L\left(\omega_i\right) \cos
+\theta_i \mathrm{d} \omega_i} \,\left[\frac{\text{1}}{\text{sr}}\right]
+$$
+
+#### BRDR 的性质
+
+- 非负性（Non-negativity）
+
+$$
+f_r\left(\omega_i , \omega_o \right) \ge 0
+$$
+
+- 线性（Linearity）
+
+<center>
+    <img src="https://user-images.githubusercontent.com/62458905/231383755-bd8a667b-47f4-45c6-96f8-3972624567c6.png" alt="线性" style="zoom:75%;" />
+</center>
+
+- 可逆性（Reciprocity principle）
+
+$$
+f_r\left(\omega_o , \omega_i\right) = f_r\left(\omega_i ,\omega_o\right)
+$$
+
+<center>
+    <img src="https://user-images.githubusercontent.com/62458905/231384090-803d2a17-f56f-4351-8d6e-2fa0819f0f74.png" alt="可逆性" style="zoom:75%;" />
+</center>
+
+- 能量守恒（Energy conservation）
+
+$$
+\forall \omega_o \int_{H^2}f_r\left(\omega_i , \omega_o\right) \cos \theta_i \, \mathrm{d}\omega_i \le 1
+$$
+
+- 各向同性 vs. 各向异性
+  - 对于各向同性：$f_r\left(\theta_i, \phi_i;\theta_o, \phi_o\right) = f_r\left(\theta_i, \theta_o, \phi_o - \phi_i\right)$.
+  - 对于各向异性：$f_r\left(\theta_i, \theta_o, \phi_o - \phi_i\right) = f_r\left(\theta_o, \theta_i, \phi_i - \phi_o\right) =  f_r\left(\theta_i, \theta_o, \left|\phi_o - \phi_i\right|\right)$
+
+## Cook–Torrance 微表面 BRDF
