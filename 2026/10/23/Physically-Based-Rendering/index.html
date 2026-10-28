@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231383755-bd8a667b-47f4-45c6-96f8-3972624567c6.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231384090-803d2a17-f56f-4351-8d6e-2fa0819f0f74.png">
 <meta property="article:published_time" content="2026-10-23T18:22:57.000Z">
-<meta property="article:modified_time" content="2026-10-26T02:32:28.074Z">
+<meta property="article:modified_time" content="2026-10-28T21:29:19.100Z">
 <meta property="article:author" content="Lemon">
 <meta property="article:tag" content="PBR">
 <meta name="twitter:card" content="summary">
@@ -324,7 +324,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-10-26 10:32:28" itemprop="dateModified" datetime="2026-10-26T10:32:28+08:00">2026-10-26</time>
+      <time title="Modified: 2026-10-29 05:29:19" itemprop="dateModified" datetime="2026-10-29T05:29:19+08:00">2026-10-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -466,10 +466,8 @@ class="math inline">\(\mathrm{W}/\mathrm{m}^2\)</span>.</li>
 </ul>
 <p>辐照度描述一个表面实际接收到的光能密度。</p>
 <p>Lambert’s 余弦定理可以使用 Irradiance 来解释。</p>
-<p>假设光线一功率 <span class="math inline">\(\Phi\)</span>
-均匀向外均匀发出，一个球面上的 Irradiance
-和这个球的半径成平方反比。假设在半径为 1 的球面上的 Irradiance 为
-，则在半径为 的球面上的 Irradiance 为：</p>
+<!-- 假设光线一功率 $\Phi$ 均匀向外均匀发出，一个球面上的 Irradiance 和这个球的半径成平方反比。假设在半径为 1 的球面上的 Irradiance 为 
+，则在半径为 的球面上的 Irradiance 为： -->
 <p><span class="math display">\[
 \begin{align*}
 E&#39; &amp;= \frac{\Phi}{4 \pi r^2} \\
@@ -607,8 +605,11 @@ class="math inline">\(\omega_o\)</span> 方向的 Radiance.</p>
 Radiance），全部加到一起就是这个点的 Irradiance.
 另外，这个点还会向四面八方发射光/能量（也就是
 Radiance），我们要计算的就是这个发射出去的 Radiance.
-也就是说，我们可以将反射分为两步： 1.
-光绪入射到某一点，得到了一部分能量. 2. 这个点将得到的能量发射出去.</p>
+也就是说，我们可以将反射分为两步：</p>
+<ol type="1">
+<li>光绪入射到某一点，得到了一部分能量.</li>
+<li>这个点将得到的能量发射出去.</li>
+</ol>
 </blockquote>
 <p>BRDF 表示从每个方向入射的光有多少发射到每个出射方向 <span
 class="math inline">\(\omega_r\)</span>.</p>
@@ -634,18 +635,22 @@ f_r\left(\omega_i , \omega_o \right) \ge 0
 <ul>
 <li>线性（Linearity）</li>
 </ul>
-<center>
-<img data-src="https://user-images.githubusercontent.com/62458905/231383755-bd8a667b-47f4-45c6-96f8-3972624567c6.png" alt="线性" style="zoom:75%;" />
-</center>
+<figure>
+<img data-src="https://user-images.githubusercontent.com/62458905/231383755-bd8a667b-47f4-45c6-96f8-3972624567c6.png"
+alt="BRDR 的线性" />
+<figcaption aria-hidden="true">BRDR 的线性</figcaption>
+</figure>
 <ul>
 <li>可逆性（Reciprocity principle）</li>
 </ul>
 <p><span class="math display">\[
 f_r\left(\omega_o , \omega_i\right) = f_r\left(\omega_i ,\omega_o\right)
 \]</span></p>
-<center>
-<img data-src="https://user-images.githubusercontent.com/62458905/231384090-803d2a17-f56f-4351-8d6e-2fa0819f0f74.png" alt="可逆性" style="zoom:75%;" />
-</center>
+<figure>
+<img data-src="https://user-images.githubusercontent.com/62458905/231384090-803d2a17-f56f-4351-8d6e-2fa0819f0f74.png"
+alt="BRDR 的可逆性" />
+<figcaption aria-hidden="true">BRDR 的可逆性</figcaption>
+</figure>
 <ul>
 <li>能量守恒（Energy conservation）</li>
 </ul>
@@ -769,7 +774,7 @@ f_r\left(\omega_o , \omega_i\right) = f_r\left(\omega_i ,\omega_o\right)
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">8:05</span>
+    <span title="Reading time total">8:04</span>
   </span>
 </div>
 <div class="busuanzi-count">
