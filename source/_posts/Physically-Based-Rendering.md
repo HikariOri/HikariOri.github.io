@@ -96,9 +96,8 @@ $$
 
 Lambert’s 余弦定理可以使用 Irradiance 来解释。
 
-假设光线一功率 $\Phi$ 均匀向外均匀发出，一个球面上的 Irradiance 和这个球的半径成平方反比。假设在半径为 1 的球面上的 Irradiance 为 
-，则在半径为 
- 的球面上的 Irradiance 为：
+<!-- 假设光线一功率 $\Phi$ 均匀向外均匀发出，一个球面上的 Irradiance 和这个球的半径成平方反比。假设在半径为 1 的球面上的 Irradiance 为 
+，则在半径为 的球面上的 Irradiance 为： -->
 
 $$
 \begin{align*}
@@ -163,7 +162,6 @@ L_o\left(\mathbf{p}, \omega_o\right) =L_o\left( \mathbf{p},\omega \right) +\int_
 \omega_i\right) \cos \theta_i \,\mathrm{d} \omega_i
 $$
 
-
 |    符号    |                 含义                 |
 | :--------: | :----------------------------------: |
 |   $L_o$    |              出射辐亮度              |
@@ -183,6 +181,7 @@ BRDR 是一个表示一个点上的反射的函数：将从 $\omega_i$ 方向来
 
 > 一个点会接收来自四面八方的光照（来自四面八方的 Radiance），全部加到一起就是这个点的 Irradiance. 另外，这个点还会向四面八方发射光/能量（也就是 Radiance），我们要计算的就是这个发射出去的 Radiance.
 > 也就是说，我们可以将反射分为两步：
+>
 > 1. 光绪入射到某一点，得到了一部分能量.
 > 2. 这个点将得到的能量发射出去.
 
@@ -209,9 +208,7 @@ $$
 
 - 线性（Linearity）
 
-<center>
-    <img src="https://user-images.githubusercontent.com/62458905/231383755-bd8a667b-47f4-45c6-96f8-3972624567c6.png" alt="线性" style="zoom:75%;" />
-</center>
+![BRDR 的线性](https://user-images.githubusercontent.com/62458905/231383755-bd8a667b-47f4-45c6-96f8-3972624567c6.png)
 
 - 可逆性（Reciprocity principle）
 
@@ -219,9 +216,7 @@ $$
 f_r\left(\omega_o , \omega_i\right) = f_r\left(\omega_i ,\omega_o\right)
 $$
 
-<center>
-    <img src="https://user-images.githubusercontent.com/62458905/231384090-803d2a17-f56f-4351-8d6e-2fa0819f0f74.png" alt="可逆性" style="zoom:75%;" />
-</center>
+![BRDR 的可逆性](https://user-images.githubusercontent.com/62458905/231384090-803d2a17-f56f-4351-8d6e-2fa0819f0f74.png)
 
 - 能量守恒（Energy conservation）
 

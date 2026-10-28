@@ -4,6 +4,18 @@
 
 - [Physically Based Rendering: From Theory To Implementation](https://www.pbr-book.org/)
 - [Ray Tracing in One Weekend — The Book Series](https://www.pbr-book.org/)
+- [PBR-White-Paper](https://github.com/QianMo/PBR-White-Paper)
+
+<details>
+<summary>RealTime Rendering 4th</summary>
+  
+- [Real-Time Rendering Resources](https://www.realtimerendering.com/)
+- [Real-Time-Rendering-4th-CN](https://github.com/Morakito/Real-Time-Rendering-4th-CN)
+- [Real-Time Rendering 4th 中文版在线阅读](https://www.wolai.com/fkGSwxLu2pjWD7kiBY1V7W)
+- [Real-Time-Rendering-4th-Bibliography-Collection](https://github.com/QianMo/Real-Time-Rendering-4th-Bibliography-Collection)
+- [Real-Time-Rendering-4th-CN](https://github.com/Morakito/Real-Time-Rendering-4th-CN)
+</details>
+
 
 ## 会议、演讲
 
