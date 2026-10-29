@@ -3,8 +3,33 @@ title: Physically Based Rendering
 date: 2026-10-24 02:22:57
 tags: [PBR]
 categories: 渲染
-description: PBR 的原理
+description: PBR 综述
 ---
+
+## 综述
+
+本文以 GAMES 202 和毛星云的 *基于物理的渲染（PBR）白皮书*  为主要参考。
+
+毛星云在 *基于物理的渲染（PBR）白皮书* 中引用了大量文献，本文也会以这些文献作为参考。
+
+本文档会随着本人对渲染的深入了解一直更新。
+
+主要参考文献：
+
+《SIGGRAPH Course: Physically Based Shading in Theory and Practice》系列的 PPT 和 Note 等资料：
+
+- [SIGGRAPH 2010 Course | Physically-Based Shading Models in Film and Game Production](http://renderwonk.com/publications/s2010-shading-course/)
+- [SIGGRAPH 2012 Course | Practical Physically Based Shading in Film and Game Production](https://blog.selfshadow.com/publications/s2012-shading-course/)
+- [SIGGRAPH 2013 Course | Physically Based Shading in Theory and Practice](https://blog.selfshadow.com/publications/s2013-shading-course/)
+- [SIGGRAPH 2014 Course | Physically Based Shading in Theory and Practice](https://blog.selfshadow.com/publications/s2014-shading-course/)
+- [SIGGRAPH 2015 Course | Physically Based Shading in Theory and Practice](https://blog.selfshadow.com/publications/s2015-shading-course/)
+- [SIGGRAPH 2016 Course | Physically Based Shading in Theory and Practice](https://blog.selfshadow.com/publications/s2016-shading-course/)
+- [SIGGRAPH 2017 Course | Physically Based Shading in Theory and Practice](https://blog.selfshadow.com/publications/s2017-shading-course/)
+
+一些相关的著作：
+
+- [《Physically Based Rendering: From Theory to Implementation, Third Edition》](https://www.pbr-book.org/): 这本书主要专注离线渲染，实时渲染只能用到里面很少的一部分。
+- 《Real-Time Rendering 4th》中 PBR 的相关章节。
 
 ## Solid Angle
 
@@ -96,8 +121,7 @@ $$
 
 Lambert’s 余弦定理可以使用 Irradiance 来解释。
 
-<!-- 假设光线一功率 $\Phi$ 均匀向外均匀发出，一个球面上的 Irradiance 和这个球的半径成平方反比。假设在半径为 1 的球面上的 Irradiance 为 
-，则在半径为 的球面上的 Irradiance 为： -->
+假设光线以 Radiant Flux $\Phi$ 均匀向外均匀发出，一个球面上的 Irradiance 和这个球的半径成平方反比。假设在半径为 1 的球面上的 Irradiance 为 $E$，则在半径为 $r$ 的球面上的 Irradiance 为：
 
 $$
 \begin{align*}
@@ -154,7 +178,7 @@ $$
 - $\omega_i$：入射方向.
 - $\mathbf{n}$：$\mathbf{p}$ 处的表面法线.
 
-## 渲染方程
+## 渲染方程与反射方程
 
 $$
 L_o\left(\mathbf{p}, \omega_o\right) =L_o\left( \mathbf{p},\omega \right) +\int_{H^2}f_r\left(\mathbf{p},
@@ -174,6 +198,14 @@ $$
 |   $H^2$    | 入射半球（与法线在同一方向的半球面） |
 
 此公式说明：出射光 = 自发光 + 所有入射光照在材质表面之后反射的总和（不考虑透射）.
+
+如果不考虑自发光项，一般称之为反射方程（因为只描述了光的反射），也就是说，反射方程的公式是：
+
+$$
+L_o\left(\mathbf{p}, \omega_o\right) =\int_{H^2}f_r\left(\mathbf{p},
+\omega_i , \omega_o \right)L_i\left(\mathbf{p},
+\omega_i\right) \cos \theta_i \,\mathrm{d} \omega_i
+$$
 
 ### BRDF (Bidirectional Reflectance Distribution Function)
 
