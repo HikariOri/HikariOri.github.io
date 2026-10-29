@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/deadlock.png">
 <meta property="og:image" content="https://paul-pub.oss-cn-beijing.aliyuncs.com/2019/2019-11-26-cpp-concurrency/Thread_pool.svg">
 <meta property="article:published_time" content="2024-08-06T04:38:14.000Z">
-<meta property="article:modified_time" content="2026-10-28T21:29:19.100Z">
+<meta property="article:modified_time" content="2026-10-29T09:36:00.235Z">
 <meta property="article:author" content="Lemon">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="Thread">
@@ -331,7 +331,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-10-29 05:29:19" itemprop="dateModified" datetime="2026-10-29T05:29:19+08:00">2026-10-29</time>
+      <time title="Modified: 2026-10-29 17:36:00" itemprop="dateModified" datetime="2026-10-29T17:36:00+08:00">2026-10-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -477,21 +477,21 @@ Clang</a>。</li>
 </ul>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>C++ 版本</th>
 <th>GCC 版本</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>C++11</td>
 <td>4.8</td>
 </tr>
-<tr class="even">
+<tr>
 <td>C++14</td>
 <td>5.0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>C++17</td>
 <td>7.0</td>
 </tr>
@@ -502,21 +502,21 @@ Clang</a>。</li>
 </ul>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>C++ 版本</th>
 <th>Clang 版本</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>C++11</td>
 <td>3.3</td>
 </tr>
-<tr class="even">
+<tr>
 <td>C++14</td>
 <td>3.4</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>C++17</td>
 <td>5.0</td>
 </tr>
@@ -604,17 +604,17 @@ target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/language/
 </ul>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>API</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>join</td>
 <td>等待线程完成其执行</td>
 </tr>
-<tr class="even">
+<tr>
 <td>detach</td>
 <td>允许线程独立执行</td>
 </tr>
@@ -637,29 +637,29 @@ threads）。一旦<code>detach</code>之后，目标线程将独立执行，即
 </ul>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>API</th>
 <th>C++ 标准</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>yield</td>
 <td>C++11</td>
 <td>让出处理器，重新调度各执行线程</td>
 </tr>
-<tr class="even">
+<tr>
 <td>get_id</td>
 <td>C++11</td>
 <td>返回当前线程的线程 id</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sleep_for</td>
 <td>C++11</td>
 <td>使当前线程的执行停止指定的时间段</td>
 </tr>
-<tr class="even">
+<tr>
 <td>sleep_until</td>
 <td>C++11</td>
 <td>使当前线程的执行停止直到指定的时间点</td>
@@ -691,19 +691,19 @@ API（由于篇幅所限，这里不展开这方面内容）为基础。</li>
 </ul>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>API</th>
 <th>C++ 标准</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>call_once</td>
 <td>C++11</td>
 <td>即便在多线程环境下，也能保证只调用某个函数一次</td>
 </tr>
-<tr class="even">
+<tr>
 <td>once_flag</td>
 <td>C++11</td>
 <td>与<code>call_once</code>配合使用</td>
@@ -790,39 +790,39 @@ section）。具体到上面这个示例，临界区就是读写<code>sum</code>
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>API</th>
 <th>C++ 标准</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>mutex</td>
 <td>C++11</td>
 <td>提供基本互斥设施</td>
 </tr>
-<tr class="even">
+<tr>
 <td>timed_mutex</td>
 <td>C++11</td>
 <td>提供互斥设施，带有超时功能</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>recursive_mutex</td>
 <td>C++11</td>
 <td>提供能被同一线程递归锁定的互斥设施</td>
 </tr>
-<tr class="even">
+<tr>
 <td>recursive_timed_mutex</td>
 <td>C++11</td>
 <td>提供能被同一线程递归锁定的互斥设施，带有超时功能</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>shared_timed_mutex</td>
 <td>C++14</td>
 <td>提供共享互斥设施并带有超时功能</td>
 </tr>
-<tr class="even">
+<tr>
 <td>shared_mutex</td>
 <td>C++17</td>
 <td>提供共享互斥设施</td>
@@ -990,19 +990,19 @@ needed to perform the required operations.</p>
 </ul>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>API</th>
 <th>C++ 标准</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>lock</td>
 <td>C++11</td>
 <td>锁定指定的互斥体，若任何一个不可用则阻塞</td>
 </tr>
-<tr class="even">
+<tr>
 <td>try_lock</td>
 <td>C++11</td>
 <td>试图通过重复调用 try_lock 获得互斥体的所有权</td>
@@ -1033,29 +1033,29 @@ target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/named_req
 </ul>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>API</th>
 <th>C++ 标准</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>lock_guard</td>
 <td>C++11</td>
 <td>实现严格基于作用域的互斥体所有权包装器</td>
 </tr>
-<tr class="even">
+<tr>
 <td>unique_lock</td>
 <td>C++11</td>
 <td>实现可移动的互斥体所有权包装器</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>shared_lock</td>
 <td>C++14</td>
 <td>实现可移动的共享互斥体所有权封装器</td>
 </tr>
-<tr class="even">
+<tr>
 <td>scoped_lock</td>
 <td>C++17</td>
 <td>用于多个互斥体的免死锁 RAII 封装器</td>
@@ -1069,24 +1069,24 @@ target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/named_req
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>锁定策略</th>
 <th>C++ 标准</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>defer_lock</td>
 <td>C++11</td>
 <td>类型为 <code>defer_lock_t</code>，不获得互斥的所有权</td>
 </tr>
-<tr class="even">
+<tr>
 <td>try_to_lock</td>
 <td>C++11</td>
 <td>类型为<code>try_to_lock_t</code>，尝试获得互斥的所有权而不阻塞</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>adopt_lock</td>
 <td>C++11</td>
 <td>类型为<code>adopt_lock_t</code>，假设调用方已拥有互斥的所有权</td>
@@ -1144,29 +1144,29 @@ target="_blank" rel="noopener" href="http://www.stroustrup.com/bs_faq2.html#fina
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>API</th>
 <th>C++ 标准</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>condition_variable</td>
 <td>C++ 11</td>
 <td>提供与 std::unique_lock 关联的条件变量</td>
 </tr>
-<tr class="even">
+<tr>
 <td>condition_variable_any</td>
 <td>C++ 11</td>
 <td>提供与任何锁类型关联的条件变量</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>notify_all_at_thread_exit</td>
 <td>C++ 11</td>
 <td>安排到在此线程完全结束时对 notify_all 的调用</td>
 </tr>
-<tr class="even">
+<tr>
 <td>cv_status</td>
 <td>C++ 11</td>
 <td>列出条件变量上定时等待的可能结果</td>
@@ -1218,34 +1218,34 @@ target="_blank" rel="noopener" href="https://paul.pub/cpp-lambda-function-bind/"
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>API</th>
 <th>C++ 标准</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>async</td>
 <td>C++11</td>
 <td>异步运行一个函数，并返回保有其结果的<code>std::future</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>future</td>
 <td>C++11</td>
 <td>等待被异步设置的值</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>packaged_task</td>
 <td>C++11</td>
 <td>打包一个函数，存储其返回值以进行异步获取</td>
 </tr>
-<tr class="even">
+<tr>
 <td>promise</td>
 <td>C++11</td>
 <td>存储一个值以进行异步获取</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>shared_future</td>
 <td>C++11</td>
 <td>等待被异步设置的值（可能为其他 future 所引用）</td>
@@ -1336,7 +1336,7 @@ target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/numeric#N
 <col style="width: 25%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>变量</th>
 <th>类型</th>
 <th>C++ 版本</th>
@@ -1344,19 +1344,19 @@ target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/numeric#N
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>execution::seq</td>
 <td>execution::sequenced_policy</td>
 <td>C++17</td>
 <td>要求并行算法的执行可以不并行化</td>
 </tr>
-<tr class="even">
+<tr>
 <td>execution::par</td>
 <td>execution::parallel_policy</td>
 <td>C++17</td>
 <td>指示并行算法的执行可以并行化</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>execution::par_unseq</td>
 <td>execution::parallel_unsequenced_policy</td>
 <td>C++17</td>
@@ -1525,14 +1525,14 @@ unwanted</a></li>
       <i class="fa fa-chart-line"></i>
     </span>
       <span>Word count total: </span>
-    <span title="Word count total">133k</span>
+    <span title="Word count total">134k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">8:04</span>
+    <span title="Reading time total">8:06</span>
   </span>
 </div>
 <div class="busuanzi-count">

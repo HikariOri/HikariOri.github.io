@@ -23,12 +23,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hikariori.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"width":280},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":false,"lazyload":false,"nav":{"waline":{"order":-2},"gitalk":{"order":-1}}},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="PBR 的原理">
+    <meta name="description" content="PBR 综述">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Physically Based Rendering">
 <meta property="og:url" content="https://hikariori.github.io/2026/10/23/Physically-Based-Rendering/index.html">
 <meta property="og:site_name" content="Lemon">
-<meta property="og:description" content="PBR 的原理">
+<meta property="og:description" content="PBR 综述">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230720351-28c5443d-496e-4212-b194-cdddae6370a0.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/62458905/230720515-56305412-c91a-4af5-a4e0-2e31ebd1abb2.png">
@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231383755-bd8a667b-47f4-45c6-96f8-3972624567c6.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/62458905/231384090-803d2a17-f56f-4351-8d6e-2fa0819f0f74.png">
 <meta property="article:published_time" content="2026-10-23T18:22:57.000Z">
-<meta property="article:modified_time" content="2026-10-28T21:29:19.100Z">
+<meta property="article:modified_time" content="2026-10-29T09:36:00.236Z">
 <meta property="article:author" content="Lemon">
 <meta property="article:tag" content="PBR">
 <meta name="twitter:card" content="summary">
@@ -204,8 +204,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#solid-angle"><span class="nav-number">1.</span> <span class="nav-text">Solid Angle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6"><span class="nav-number">2.</span> <span class="nav-text">辐射度量学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#radiant-flux"><span class="nav-number">2.1.</span> <span class="nav-text">Radiant Flux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#radiant-intensity"><span class="nav-number">2.2.</span> <span class="nav-text">Radiant Intensity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#irradiance"><span class="nav-number">2.3.</span> <span class="nav-text">Irradiance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#radiance"><span class="nav-number">2.4.</span> <span class="nav-text">Radiance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E6%96%B9%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">渲染方程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#brdf-bidirectional-reflectance-distribution-function"><span class="nav-number">3.1.</span> <span class="nav-text">BRDF
-(Bidirectional Reflectance Distribution Function)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#brdr-%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">3.1.1.</span> <span class="nav-text">BRDR 的性质</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cooktorrance-%E5%BE%AE%E8%A1%A8%E9%9D%A2-brdf"><span class="nav-number">4.</span> <span class="nav-text">Cook–Torrance 微表面 BRDF</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%BC%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">综述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solid-angle"><span class="nav-number">2.</span> <span class="nav-text">Solid Angle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6"><span class="nav-number">3.</span> <span class="nav-text">辐射度量学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#radiant-flux"><span class="nav-number">3.1.</span> <span class="nav-text">Radiant Flux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#radiant-intensity"><span class="nav-number">3.2.</span> <span class="nav-text">Radiant Intensity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#irradiance"><span class="nav-number">3.3.</span> <span class="nav-text">Irradiance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#radiance"><span class="nav-number">3.4.</span> <span class="nav-text">Radiance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%8F%8D%E5%B0%84%E6%96%B9%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">渲染方程与反射方程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#brdf-bidirectional-reflectance-distribution-function"><span class="nav-number">4.1.</span> <span class="nav-text">BRDF
+(Bidirectional Reflectance Distribution Function)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#brdr-%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">4.1.1.</span> <span class="nav-text">BRDR 的性质</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cooktorrance-%E5%BE%AE%E8%A1%A8%E9%9D%A2-brdf"><span class="nav-number">5.</span> <span class="nav-text">Cook–Torrance 微表面 BRDF</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -302,7 +302,7 @@
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="Physically Based Rendering | Lemon">
-      <meta itemprop="description" content="PBR 的原理">
+      <meta itemprop="description" content="PBR 综述">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -324,7 +324,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-10-29 05:29:19" itemprop="dateModified" datetime="2026-10-29T05:29:19+08:00">2026-10-29</time>
+      <time title="Modified: 2026-10-29 17:36:00" itemprop="dateModified" datetime="2026-10-29T17:36:00+08:00">2026-10-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -350,25 +350,66 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>1.4k</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>5 mins.</span>
+      <span>6 mins.</span>
     </span>
 </div>
 
-            <div class="post-description">PBR 的原理</div>
+            <div class="post-description">PBR 综述</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="solid-angle">Solid Angle</h2>
+    <div class="post-body" itemprop="articleBody"><h2 id="综述">综述</h2>
+<p>本文以 GAMES 202 和毛星云的 <em>基于物理的渲染（PBR）白皮书</em>
+为主要参考。</p>
+<p>毛星云在 <em>基于物理的渲染（PBR）白皮书</em>
+中引用了大量文献，本文也会以这些文献作为参考。</p>
+<p>本文档会随着本人对渲染的深入了解一直更新。</p>
+<p>主要参考文献：</p>
+<p>《SIGGRAPH Course: Physically Based Shading in Theory and
+Practice》系列的 PPT 和 Note 等资料：</p>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="http://renderwonk.com/publications/s2010-shading-course/">SIGGRAPH
+2010 Course | Physically-Based Shading Models in Film and Game
+Production</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.selfshadow.com/publications/s2012-shading-course/">SIGGRAPH
+2012 Course | Practical Physically Based Shading in Film and Game
+Production</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.selfshadow.com/publications/s2013-shading-course/">SIGGRAPH
+2013 Course | Physically Based Shading in Theory and Practice</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.selfshadow.com/publications/s2014-shading-course/">SIGGRAPH
+2014 Course | Physically Based Shading in Theory and Practice</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.selfshadow.com/publications/s2015-shading-course/">SIGGRAPH
+2015 Course | Physically Based Shading in Theory and Practice</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.selfshadow.com/publications/s2016-shading-course/">SIGGRAPH
+2016 Course | Physically Based Shading in Theory and Practice</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://blog.selfshadow.com/publications/s2017-shading-course/">SIGGRAPH
+2017 Course | Physically Based Shading in Theory and Practice</a></li>
+</ul>
+<p>一些相关的著作：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.pbr-book.org/">《Physically Based Rendering:
+From Theory to Implementation, Third Edition》</a>:
+这本书主要专注离线渲染，实时渲染只能用到里面很少的一部分。</li>
+<li>《Real-Time Rendering 4th》中 PBR 的相关章节。</li>
+</ul>
+<h2 id="solid-angle">Solid Angle</h2>
 <p><span class="math display">\[
 \omega=\frac{A}{r^2}\left[ \mathrm{sr} \right]
 \]</span></p>
@@ -466,8 +507,11 @@ class="math inline">\(\mathrm{W}/\mathrm{m}^2\)</span>.</li>
 </ul>
 <p>辐照度描述一个表面实际接收到的光能密度。</p>
 <p>Lambert’s 余弦定理可以使用 Irradiance 来解释。</p>
-<!-- 假设光线一功率 $\Phi$ 均匀向外均匀发出，一个球面上的 Irradiance 和这个球的半径成平方反比。假设在半径为 1 的球面上的 Irradiance 为 
-，则在半径为 的球面上的 Irradiance 为： -->
+<p>假设光线以 Radiant Flux <span class="math inline">\(\Phi\)</span>
+均匀向外均匀发出，一个球面上的 Irradiance
+和这个球的半径成平方反比。假设在半径为 1 的球面上的 Irradiance 为 <span
+class="math inline">\(E\)</span>，则在半径为 <span
+class="math inline">\(r\)</span> 的球面上的 Irradiance 为：</p>
 <p><span class="math display">\[
 \begin{align*}
 E&#39; &amp;= \frac{\Phi}{4 \pi r^2} \\
@@ -532,7 +576,7 @@ alt="对 L 在半球上的积分" />
 <li><span class="math inline">\(\mathbf{n}\)</span>：<span
 class="math inline">\(\mathbf{p}\)</span> 处的表面法线.</li>
 </ul>
-<h2 id="渲染方程">渲染方程</h2>
+<h2 id="渲染方程与反射方程">渲染方程与反射方程</h2>
 <p><span class="math display">\[
 L_o\left(\mathbf{p}, \omega_o\right) =L_o\left( \mathbf{p},\omega
 \right) +\int_{H^2}f_r\left(\mathbf{p},
@@ -541,48 +585,48 @@ L_o\left(\mathbf{p}, \omega_o\right) =L_o\left( \mathbf{p},\omega
 \]</span></p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: center;">符号</th>
 <th style="text-align: center;">含义</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><span
 class="math inline">\(L_o\)</span></td>
 <td style="text-align: center;">出射辐亮度</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"><span
 class="math inline">\(L_e\)</span></td>
 <td style="text-align: center;">自发光辐亮度</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><span
 class="math inline">\(f_r\)</span></td>
 <td style="text-align: center;">BRDF</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"><span
 class="math inline">\(L_i\)</span></td>
 <td style="text-align: center;">入射辐亮度</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><span
 class="math inline">\(\omega_i\)</span></td>
 <td style="text-align: center;">入射方向</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"><span
 class="math inline">\(\omega_o\)</span></td>
 <td style="text-align: center;">出射方向</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: center;"><span
 class="math inline">\(\theta_i\)</span></td>
 <td style="text-align: center;">入射方向于表面法向夹角的余弦值</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: center;"><span
 class="math inline">\(H^2\)</span></td>
 <td
@@ -592,6 +636,12 @@ style="text-align: center;">入射半球（与法线在同一方向的半球面�
 </table>
 <p>此公式说明：出射光 = 自发光 +
 所有入射光照在材质表面之后反射的总和（不考虑透射）.</p>
+<p>如果不考虑自发光项，一般称之为反射方程（因为只描述了光的反射），也就是说，反射方程的公式是：</p>
+<p><span class="math display">\[
+L_o\left(\mathbf{p}, \omega_o\right) =\int_{H^2}f_r\left(\mathbf{p},
+\omega_i , \omega_o \right)L_i\left(\mathbf{p},
+\omega_i\right) \cos \theta_i \,\mathrm{d} \omega_i
+\]</span></p>
 <h3 id="brdf-bidirectional-reflectance-distribution-function">BRDF
 (Bidirectional Reflectance Distribution Function)</h3>
 <p>BRDR 是一个表示一个点上的反射的函数：将从 <span
@@ -666,7 +716,7 @@ alt="BRDR 的可逆性" />
 \phi_i\right)\)</span>.</li>
 <li>对于各向异性：<span class="math inline">\(f_r\left(\theta_i,
 \theta_o, \phi_o - \phi_i\right) = f_r\left(\theta_o, \theta_i, \phi_i -
-\phi_o\right) = f_r\left(\theta_i, \theta_o, \left|\phi_o -
+\phi_o\right) =  f_r\left(\theta_i, \theta_o, \left|\phi_o -
 \phi_i\right|\right)\)</span></li>
 </ul></li>
 </ul>
@@ -767,14 +817,14 @@ alt="BRDR 的可逆性" />
       <i class="fa fa-chart-line"></i>
     </span>
       <span>Word count total: </span>
-    <span title="Word count total">133k</span>
+    <span title="Word count total">134k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">8:04</span>
+    <span title="Reading time total">8:06</span>
   </span>
 </div>
 <div class="busuanzi-count">
